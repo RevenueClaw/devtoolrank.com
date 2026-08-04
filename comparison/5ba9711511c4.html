@@ -89,7 +89,7 @@
 <p>All three offer free tiers, branching, and connection pooling. But the devil is in the details: pricing, ecosystem, and lock-in.</p>
 <hr>
 <h2 id="what-is-planetscale">What Is PlanetScale?</h2>
-<p>PlanetScale launched in 2021 as a serverless MySQL database. It’s built on top of Vitess (the same tech that powers YouTube’s MySQL sharding). The killer feature is <strong>database branching</strong> – you can fork your production database instantly, make schema changes in a branch, then merge with zero downtime.</p>
+<p>PlanetScale launched in 2021 as a serverless MySQL database. It’s built on top of Vitess (the same tech that powers YouTube’s MySQL sharding). The killer feature is <strong>database branching</strong> – you can fork your production database instantly, <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> schema changes in a branch, then merge with zero downtime.</p>
 <p>PlanetScale uses a <strong>deploy request</strong> workflow similar to GitHub pull requests. You create a branch, make changes, and open a deploy request. The platform safely applies the schema migration without locking tables or causing downtime. This is huge for teams that can’t afford maintenance windows.</p>
 <p>It also includes a <strong>connection pooler</strong> (pScale Proxy) that handles thousands of concurrent connections. The free tier gives you 1 database, 1 branch, 5GB storage, and 10 million row reads per month. Paid plans start at $39/month for 1GB RAM, 10GB storage, and 100 million row reads.</p>
 <p><strong>Under the hood:</strong> MySQL 8.0, with some limitations (no foreign keys, no full-text search, no triggers – due to Vitess sharding limitations). If you need those features, look elsewhere.</p>
