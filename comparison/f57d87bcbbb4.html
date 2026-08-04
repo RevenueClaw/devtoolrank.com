@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next.js vs Remix vs Astro: Best React Framework for 2026 | Dev Tool Rank</title>
+    <meta name="description" content="An honest, developer-focused comparison of Next.js, Remix, and Astro for 2026. We break down rendering, data fetching, pricing, and use cases to help you pick t">
+    <meta name="keywords" content="nextjs vs remix vs astro, react framework, web framework comparison, best react framework 2026, next.js review, remix review, astro review">
+    <link rel="canonical" href="https://devtoolrank.com/comparison/f57d87bcbbb4.html">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Next.js vs Remix vs Astro: Best React Framework for 2026",
+  "description": "An honest, developer-focused comparison of Next.js, Remix, and Astro for 2026. We break down rendering, data fetching, pricing, and use cases to help you pick the right React framework.",
+  "datePublished": "2026-08-04",
+  "dateModified": "2026-08-04",
+  "author": {
+    "@type": "Person",
+    "name": "Editorial Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Devtoolrank Reviews",
+    "url": "https://devtoolrank.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://devtoolrank.com/comparison/f57d87bcbbb4.html"
+  }
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/comparisons/">Comparisons</a> <span>›</span>
+    Next.js vs Remix vs Astro: Best React Framework fo...
+</nav>
+        <header class="article-header">
+            <h1>Next.js vs Remix vs Astro: Best React Framework for 2026</h1>
+            <div class="meta-row">
+                <span class="badge badge-comparison">Comparison</span>
+                <time datetime="2026-08-04">August 04, 2026</time>
+                <span>·</span>
+                <span class="reading-time">11 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><em>When you buy through links on our site, we may earn a commission. We only recommend tools we've actually used and believe in.</em></p>
+<h2 id="quick-verdict">Quick Verdict</h2>
+<p>If you need a full-featured React framework with a massive ecosystem and are willing to pay for serverless hosting, <strong>Next.js</strong> is still the safe bet. If you value progressive enhancement and want to lean into web standards with a simpler mental model, <strong>Remix</strong> is the underdog that punches above its weight. And if your priority is shipping fast with minimal JavaScript and static content, <strong>Astro</strong> is the dark horse that will make your site scream.</p>
+<p><strong>Winner for most teams in 2026:</strong> Next.js (but only if you're on the App Router and can stomach the complexity). For content-heavy sites, Astro wins. For web-standard purists who want a full-stack app, Remix is the hidden gem.</p>
+<h2 id="comparison-overview">Comparison Overview</h2>
+<table class="price-table">
+<thead><tr><th>Feature</th><th>Next.js (App Router)</th><th>Remix</th><th>Astro</th></tr></thead>
+<tbody>
+<tr><td><strong>Rendering</strong></td><td>SSG, SSR, ISR, Partial Prerendering</td><td>SSR, SPA mode (no SSG)</td><td>Static-first, SSR, on-demand (soon)</td></tr>
+<tr><td><strong>Data Fetching</strong></td><td>Server Components, <code>async</code> components, <code>fetch</code> caching</td><td>Loader functions (server-side only)</td><td><code>Astro.glob()</code>, <code>getStaticPaths</code>, server endpoints</td></tr>
+<tr><td><strong>Routing</strong></td><td>File-based, nested layouts, parallel routes, intercepting routes</td><td>File-based, nested layouts, resource routes</td><td>File-based, partial hydration islands</td></tr>
+<tr><td><strong>Server Runtime</strong></td><td>Node.js, Edge (Vercel, Cloudflare)</td><td>Node.js, Edge (Fly.io, Netlify)</td><td>Node.js, Edge (Netlify, Cloudflare)</td></tr>
+<tr><td><strong>Learning Curve</strong></td><td>Steep (App Router concepts, caching)</td><td>Moderate (fewer abstractions)</td><td>Low (HTML-first, minimal React needed)</td></tr>
+<tr><td><strong>Bundle Size</strong></td><td>Large (React + framework)</td><td>Medium (React + framework)</td><td>Tiny (zero JS by default)</td></tr>
+<tr><td><strong>Best For</strong></td><td>Full-stack apps, e-commerce, dashboards</td><td>Full-stack apps, form-heavy apps, progressive enhancement</td><td>Content sites, blogs, documentation, marketing pages</td></tr>
+<tr><td><strong>Ecosystem</strong></td><td>Huge (Vercel, NextAuth, Prisma)</td><td>Growing (Remix Auth, Drizzle)</td><td>Growing (Astro integrations, Starlight)</td></tr>
+<tr><td><strong>Hosting Cost</strong></td><td>High on <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a> (serverless execution)</td><td>Moderate (Fly.io, Netlify)</td><td>Low (static hosting, CDN)</td></tr>
+</tbody>
+</table>
+<h2 id="what-is-next-js">What is Next.js?</h2>
+<p>Next.js is the React framework that popularized hybrid rendering. Created by Vercel, it's been the go-to choice for production React apps since 2016. The App Router (introduced in v13, stable in v15+) is a complete rewrite that embraces React Server Components, streaming, and a new caching model.</p>
+<p><strong>Key features:</strong></p>
+<ul>
+<li><strong>React Server Components (RSC):</strong> Components that run on the server, reducing client-side JavaScript.</li>
+<li><strong>Partial Prerendering (PPR):</strong> Combine static and dynamic content in the same page (still experimental in 2026).</li>
+<li><strong>Server Actions:</strong> Mutations handled via form actions, no API routes needed.</li>
+<li><strong>Middleware:</strong> Edge functions that run before every request.</li>
+<li><strong>ISR (Incremental Static Regeneration):</strong> Rebuild static pages on demand.</li>
+</ul>
+<p>Next.js is opinionated and powerful, but it comes with a learning curve. The caching behavior (request memoization, data cache, full route cache) can be confusing even for experienced developers. You'll often find yourself debugging stale data or unexpected revalidation.</p>
+<p><strong>Hosting:</strong> Vercel is the first-class platform, but you can also deploy to Netlify, Cloudflare, or self-host with Docker. Vercel's serverless pricing can get expensive quickly for high-traffic apps. <a href="https://vercel.com/pricing" rel="nofollow sponsored">Check Vercel pricing -></a></p>
+<h2 id="what-is-remix">What is Remix?</h2>
+<p>Remix (acquired by Shopify in 2022) takes a different approach: it's built on web standards and progressive enhancement. Instead of RSC, Remix uses loader functions that run on the server and return data to the client. Forms work without JavaScript, and the framework enhances them when JS loads.</p>
+<p><strong>Key features:</strong></p>
+<ul>
+<li><strong>Loaders & Actions:</strong> Server-side data loading and mutations, automatically handle caching.</li>
+<li><strong>Nested Routes & Outlets:</strong> Each route can fetch its own data, and errors are scoped.</li>
+<li><strong>Progressive Enhancement:</strong> Forms work with no JavaScript; the framework adds client-side navigation.</li>
+<li><strong>Resource Routes:</strong> Return any content type (JSON, CSV, images) from a route.</li>
+<li><strong>Error Boundaries:</strong> Catch errors at the route level, with automatic error handling.</li>
+</ul>
+<p>Remix's mental model is simpler than Next.js App Router. You write <code>loader</code> and <code>action</code> functions, and the framework handles the rest. No <code>getStaticProps</code>, no <code>revalidate</code>, no cache headers to worry about. But it lacks SSG (static site generation) – every page is rendered on the server at request time. This makes it less ideal for content-heavy sites where you want pre-built HTML.</p>
+<p><strong>Hosting:</strong> Remix works on any Node.js or Edge runtime. Popular choices are Fly.io (for global deployment) and Netlify (with edge functions). <a href="https://fly.io" rel="nofollow sponsored">Deploy Remix on Fly.io -></a> | <a href="https://netlify.com" rel="nofollow sponsored">Deploy Remix on Netlify -></a></p>
+<h2 id="what-is-astro">What is Astro?</h2>
+<p>Astro is the static site generator that evolved into a full framework. Its core idea: ship zero JavaScript by default. You can use React (or Vue, Svelte, etc.) for interactive "islands" within an otherwise static HTML page. Astro 4+ introduced server endpoints and on-demand rendering, making it viable for dynamic apps too.</p>
+<p><strong>Key features:</strong></p>
+<ul>
+<li><strong>Islands Architecture:</strong> Only load JavaScript for interactive components.</li>
+<li><strong>Multi-framework:</strong> Use React, Vue, Svelte, Solid, or even plain HTML in the same project.</li>
+<li><strong>Content Collections:</strong> Type-safe content management for Markdown, MDX, JSON, etc.</li>
+<li><strong>View Transitions:</strong> Smooth page transitions with minimal JS.</li>
+<li><strong>Server Endpoints:</strong> Build APIs and handle form submissions.</li>
+</ul>
+<p>Astro excels at content-driven sites. If you're building a blog, documentation, or marketing site, Astro will be faster and simpler than Next.js. The learning curve is low: you write HTML with <code>---</code> frontmatter for server-side logic. For dynamic features, you add a React island.</p>
+<p><strong>Limitations:</strong> Astro's SSR is still less mature than Next.js or Remix. On-demand rendering (ISR-like) is coming but not fully stable. Complex state management across islands can be awkward.</p>
+<p><strong>Hosting:</strong> Any static host (Netlify, Cloudflare Pages, Vercel) works great. For SSR, you need a Node.js or edge runtime. <a href="https://netlify.com" rel="nofollow sponsored">Deploy Astro on Netlify -></a> | <a href="https://pages.cloudflare.com" rel="nofollow sponsored">Deploy on Cloudflare Pages -></a></p>
+<h2 id="feature-comparison">Feature Comparison</h2>
+<h3 id="rendering-strategies">Rendering Strategies</h3>
+<p><strong>Next.js</strong> offers the most options: SSG, SSR, ISR, and Partial Prerendering (PPR). PPR is still experimental but promising – it lets you mix static and dynamic content in the same page. However, the caching model is complex. You have to understand <code>fetch</code> caching, <code>revalidate</code>, <code>dynamic = 'force-dynamic'</code>, and <code>generateStaticParams</code>. It's powerful but easy to misconfigure.</p>
+<p><strong>Remix</strong> does SSR only (with a SPA mode for client-only apps). No SSG. This simplifies things: every request is fresh. But if you have a blog with thousands of pages, you'll pay for server compute on every visit. For high-traffic static content, Remix is not ideal.</p>
+<p><strong>Astro</strong> is static-first. By default, every page is built at build time. You can opt into SSR for specific routes (e.g., a search page). Astro 5 (expected late 2026) will likely add on-demand revalidation. For now, if you need dynamic data per user, you use client-side fetching or server endpoints.</p>
+<h3 id="data-fetching">Data Fetching</h3>
+<ul>
+<li><strong>Next.js (App Router):</strong> You fetch data inside Server Components using <code>async</code> functions. <code>fetch</code> is extended with caching options (<code>{ cache: 'force-cache' }</code>, <code>{ next: { revalidate: 3600 } }</code>). You can also use <code>use</code> in Suspense boundaries. For mutations, Server Actions handle form submissions.</li>
+</ul>
+<ul>
+<li><strong>Remix:</strong> Each route exports a <code>loader</code> function that runs on the server. Data is serialized and passed to the component. Mutations go through <code>action</code> functions. Remix automatically handles revalidation after mutations – no manual cache invalidation.</li>
+</ul>
+<ul>
+<li><strong>Astro:</strong> In <code>.astro</code> files, you fetch data in the frontmatter (server-side). For dynamic data, you can use server endpoints (e.g., <code>/api/search.ts</code>) and fetch from the client. Astro also has <code>Astro.glob()</code> for local files.</li>
+</ul>
+<h3 id="routing">Routing</h3>
+<p>All three use file-based routing, but with differences:</p>
+<ul>
+<li><strong>Next.js:</strong> <code>app/</code> directory with <code>page.tsx</code>, <code>layout.tsx</code>, <code>loading.tsx</code>, <code>error.tsx</code>, <code>not-found.tsx</code>. Supports parallel routes (<code>@modal</code>), intercepting routes (<code>(.)</code>), and route groups.</li>
+</ul>
+<ul>
+<li><strong>Remix:</strong> <code>app/routes/</code> directory with <code>_layout.tsx</code>, <code>route.tsx</code>. Nested routes are explicit – you create folders for each segment. Remix's nested routing is more intuitive than Next.js's layout system.</li>
+</ul>
+<ul>
+<li><strong>Astro:</strong> <code>src/pages/</code> directory. Each <code>.astro</code> file becomes a page. Supports dynamic params (<code>[slug].astro</code>) and layouts via <code>Astro.props</code> or a layout component.</li>
+</ul>
+<h3 id="developer-experience">Developer Experience</h3>
+<ul>
+<li><strong>Next.js:</strong> Rich tooling (TypeScript, ESLint, Turbopack). But the App Router has a steep learning curve. You'll spend time understanding the caching model and when to use <code>'use client'</code> vs Server Components.</li>
+</ul>
+<ul>
+<li><strong>Remix:</strong> Simple mental model. Loaders, actions, and forms. TypeScript support is excellent. The docs are clear and concise. Fewer abstractions mean fewer surprises.</li>
+</ul>
+<ul>
+<li><strong>Astro:</strong> Very beginner-friendly. You can start with HTML and add React later. The content collections feature is a standout for documentation sites. The <code>astro add</code> command makes integrations easy.</li>
+</ul>
+<h2 id="pricing-comparison">Pricing Comparison</h2>
+<p>All three frameworks are open source (MIT license). The cost comes from hosting and third-party services.</p>
+<table class="price-table">
+<thead><tr><th>Framework</th><th>Hosting Cost</th><th>Typical Monthly Spend (small to medium app)</th></tr></thead>
+<tbody>
+<tr><td>Next.js</td><td>Vercel: $20–$200 (Pro) or pay-as-you-go. Self-hosted: server cost</td><td>$25–$100</td></tr>
+<tr><td>Remix</td><td>Fly.io: $10–$50. Netlify: $19–$99. Self-hosted: server cost</td><td>$15–$60</td></tr>
+<tr><td>Astro</td><td>Static: $0 (Netlify free tier, Cloudflare Pages). SSR: $10–$30</td><td>$0–$30</td></tr>
+</tbody>
+</table>
+<p><strong>Next.js on Vercel</strong> can get expensive due to serverless execution time and edge requests. A blog with 100k monthly visits might cost $50–$100 on Vercel Pro. Self-hosting Next.js is possible but requires managing Node.js servers and caching.</p>
+<p><strong>Remix</strong> on Fly.io is more predictable – you pay for a fixed number of VMs. On Netlify, you pay per function invocation, similar to Vercel but often cheaper.</p>
+<p><strong>Astro</strong> is cheapest because static sites can be served from a CDN for free. Even with SSR, Astro's compute needs are lower because most content is pre-built.</p>
+<h2 id="pros-and-cons">Pros and Cons</h2>
+<h3 id="next-js">Next.js</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Largest ecosystem (plugins, templates, community)</li>
+<li>Vercel integration provides smooth deployment and analytics</li>
+<li>ISR and PPR give fine-grained control over caching</li>
+<li>Server Actions simplify form handling</li>
+<li>Excellent for SEO with SSR and SSG</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Steep learning curve for App Router</li>
+<li>Caching model is confusing and error-prone</li>
+<li>Vercel lock-in for best experience; self-hosting is complex</li>
+<li>Bundle size is large (React + framework)</li>
+<li>Server Components can lead to unexpected client/server boundaries</li>
+</ul>
+<h3 id="remix">Remix</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Simple, web-standard approach (loaders, actions, forms)</li>
+<li>Progressive enhancement: forms work without JS</li>
+<li>Nested routing with automatic error boundaries</li>
+<li>Great developer experience with TypeScript</li>
+<li>No cache confusion – always fresh data on server render</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>No SSG – all pages are server-rendered (higher server costs for static content)</li>
+<li>Smaller ecosystem than Next.js</li>
+<li>Shopify acquisition might worry some about future direction</li>
+<li>Less suitable for content-heavy sites</li>
+<li>SPA mode is an afterthought</li>
+</ul>
+<h3 id="astro">Astro</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Zero JavaScript by default (fastest initial load)</li>
+<li>Multi-framework support (use React, Vue, Svelte together)</li>
+<li>Best for static content (blogs, docs, marketing)</li>
+<li>Low hosting costs (static hosting is free)</li>
+<li>Easy learning curve</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>SSR is less mature (no ISR, limited dynamic features)</li>
+<li>Complex state management across islands</li>
+<li>Not ideal for full-stack apps with heavy user interaction</li>
+<li>Smaller community and fewer third-party integrations</li>
+<li>Server endpoints are basic (no built-in ORM integration)</li>
+</ul>
+<h2 id="who-should-choose-next-js">Who Should Choose Next.js?</h2>
+<p>Choose Next.js if:</p>
+<ul>
+<li>You're building a full-stack application that needs both static and dynamic pages (e.g., an e-commerce site with product pages and a checkout flow).</li>
+<li>You want the largest ecosystem of tools and templates.</li>
+<li>You're already using Vercel and value the tight integration.</li>
+<li>You need ISR for content that updates periodically (e.g., a news site).</li>
+<li>You have a team that can handle the learning curve.</li>
+</ul>
+<p><strong>Example use case:</strong> A SaaS dashboard with public marketing pages (SSG) and authenticated user pages (SSR). Next.js's hybrid rendering shines here.</p>
+<h2 id="who-should-choose-remix">Who Should Choose Remix?</h2>
+<p>Choose Remix if:</p>
+<ul>
+<li>You value progressive enhancement and want forms to work without JavaScript.</li>
+<li>You prefer a simpler mental model over complex caching.</li>
+<li>You're building a data-driven app with lots of mutations (e.g., a project management tool).</li>
+<li>You want to deploy on Fly.io or self-host on your own servers.</li>
+<li>You dislike the Vercel lock-in of Next.js.</li>
+</ul>
+<p><strong>Example use case:</strong> A task management app where users create, edit, and delete tasks. Remix's actions and automatic revalidation make this a breeze.</p>
+<h2 id="who-should-choose-astro">Who Should Choose Astro?</h2>
+<p>Choose Astro if:</p>
+<ul>
+<li>You're building a content-driven site (blog, documentation, portfolio, marketing page).</li>
+<li>You want the fastest possible load times with minimal JavaScript.</li>
+<li>You need to integrate multiple frameworks (e.g., React for a dashboard component, Vue for a sidebar).</li>
+<li>You're on a tight budget and want free static hosting.</li>
+<li>You're new to web development and want an easy start.</li>
+</ul>
+<p><strong>Example use case:</strong> A documentation site for an open-source project. Astro's content collections and zero-JS output make it perfect.</p>
+<h2 id="final-verdict">Final Verdict</h2>
+<p>In 2026, there is no single "best" React framework – it depends on your project.</p>
+<p><strong>For most teams building modern web apps:</strong> Next.js (App Router) is the safe choice. It's mature, has the most features, and the largest community. Just be prepared to invest time in learning the caching model.</p>
+<p><strong>For teams that want simplicity and web standards:</strong> Remix is the hidden gem. It's especially good for apps with complex forms and data mutations. If you can live without SSG, Remix will make you more productive.</p>
+<p><strong>For content sites and performance-obsessed developers:</strong> Astro is the clear winner</p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#quick-verdict" class="toc-h2" style="padding-left:0px">Quick Verdict</a>
+<a href="#comparison-overview" class="toc-h2" style="padding-left:0px">Comparison Overview</a>
+<a href="#what-is-next-js" class="toc-h2" style="padding-left:0px">What is Next.js?</a>
+<a href="#what-is-remix" class="toc-h2" style="padding-left:0px">What is Remix?</a>
+<a href="#what-is-astro" class="toc-h2" style="padding-left:0px">What is Astro?</a>
+<a href="#feature-comparison" class="toc-h2" style="padding-left:0px">Feature Comparison</a>
+<a href="#rendering-strategies" class="toc-h3" style="padding-left:8px">Rendering Strategies</a>
+<a href="#data-fetching" class="toc-h3" style="padding-left:8px">Data Fetching</a>
+<a href="#routing" class="toc-h3" style="padding-left:8px">Routing</a>
+<a href="#developer-experience" class="toc-h3" style="padding-left:8px">Developer Experience</a>
+<a href="#pricing-comparison" class="toc-h2" style="padding-left:0px">Pricing Comparison</a>
+<a href="#pros-and-cons" class="toc-h2" style="padding-left:0px">Pros and Cons</a>
+<a href="#next-js" class="toc-h3" style="padding-left:8px">Next.js</a>
+<a href="#remix" class="toc-h3" style="padding-left:8px">Remix</a>
+<a href="#astro" class="toc-h3" style="padding-left:8px">Astro</a>
+<a href="#who-should-choose-next-js" class="toc-h2" style="padding-left:0px">Who Should Choose Next.js?</a>
+<a href="#who-should-choose-remix" class="toc-h2" style="padding-left:0px">Who Should Choose Remix?</a>
+<a href="#who-should-choose-astro" class="toc-h2" style="padding-left:0px">Who Should Choose Astro?</a>
+<a href="#final-verdict" class="toc-h2" style="padding-left:0px">Final Verdict</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

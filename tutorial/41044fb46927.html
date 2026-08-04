@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Deploy a Full-Stack App in 10 Minutes with Vercel and Supabase | Dev Tool Rank</title>
+    <meta name="description" content="Deploy a full-stack app in 10 minutes using Vercel and Supabase. Step-by-step guide with Next.js, authentication, and real-time database.">
+    <meta name="keywords" content="deploy full-stack app, vercel deployment, supabase tutorial, next.js deployment, full-stack app in 10 minutes">
+    <link rel="canonical" href="https://devtoolrank.com/tutorial/41044fb46927.html">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Deploy a Full-Stack App in 10 Minutes with Vercel and Supabase",
+  "description": "Deploy a full-stack app in 10 minutes using Vercel and Supabase. Step-by-step guide with Next.js, authentication, and real-time database.",
+  "datePublished": "2026-08-04",
+  "dateModified": "2026-08-04",
+  "author": {
+    "@type": "Person",
+    "name": "Editorial Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Devtoolrank Reviews",
+    "url": "https://devtoolrank.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://devtoolrank.com/tutorial/41044fb46927.html"
+  }
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/tutorials/">Tutorials</a> <span>›</span>
+    How to Deploy a Full-Stack App in 10 Minutes with ...
+</nav>
+        <header class="article-header">
+            <h1>How to Deploy a Full-Stack App in 10 Minutes with Vercel and Supabase</h1>
+            <div class="meta-row">
+                <span class="badge badge-tutorial">Tutorial</span>
+                <time datetime="2026-08-04">August 04, 2026</time>
+                <span>·</span>
+                <span class="reading-time">9 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <blockquote><strong>Disclosure:</strong> When you buy through links on our site, we may earn a commission. This doesn't affect our editorial independence.</blockquote>
+<p>You’ve got an idea. You’ve written some code. Now you need to get it live – fast. The old way of spinning up a VPS, configuring nginx, setting up PostgreSQL, and managing secrets takes hours. But with <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a> for the frontend and <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> for the backend, you can go from <code>git push</code> to a live, production-ready full-stack app in under ten minutes.</p>
+<p>I’ve used this exact stack for half a dozen side projects and client apps. It’s not perfect for every use case (I’ll get to that), but for 90% of indie hackers and small teams, it’s the fastest path to shipping. Let’s walk through it.</p>
+<hr>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before we start, make sure you have:</p>
+<ul>
+<li><strong>Node.js 18+</strong> and npm installed</li>
+<li><strong>A GitHub account</strong> (free)</li>
+<li><strong>A Vercel account</strong> – sign up at <a href="https://vercel.com?ref=devtoolrank" rel="nofollow sponsored">vercel.com</a> (free tier is generous)</li>
+<li><strong>A Supabase account</strong> – sign up at <a href="https://supabase.com?ref=devtoolrank" rel="nofollow sponsored">supabase.com</a> (free tier includes 500 MB database, 50k users, and real-time)</li>
+<li>Basic familiarity with React or Next.js (we’ll use Next.js, but the same steps apply to any framework Vercel supports)</li>
+</ul>
+<p>If you don’t have a project ready, I’ll show you how to scaffold one in step 1.</p>
+<hr>
+<h2 id="step-1-create-a-next-js-app">Step 1: Create a Next.js App</h2>
+<p>Vercel is built by the creators of Next.js, so Next.js is the most natural choice. But you can also deploy React, Svelte, Vue, or static sites. For this tutorial, we’ll use Next.js with the App Router.</p>
+<p>Open your terminal and run:</p>
+<pre><code>npx create-next-app@latest my-fullstack-app
+<p></code></pre></p>
+<p>Select these options when prompted:</p>
+<ul>
+<li>TypeScript? <strong>Yes</strong> (you can use JavaScript, but TypeScript works better with Supabase types)</li>
+<li>ESLint? <strong>Yes</strong></li>
+<li>Tailwind CSS? <strong>Yes</strong> (handy for quick styling)</li>
+<li><code>src/</code> directory? <strong>Yes</strong></li>
+<li>App Router? <strong>Yes</strong> (this is the modern approach)</li>
+<li>Import alias? Default is fine</li>
+</ul>
+<p>Once it finishes, go into the project folder and start the dev server:</p>
+<pre><code>cd my-fullstack-app
+<p>npm run dev</p>
+<p></code></pre></p>
+<p>Open <code>http://localhost:3000</code> and you should see the default Next.js page. Good. Now let’s add the backend.</p>
+<hr>
+<h2 id="step-2-set-up-supabase">Step 2: Set Up Supabase</h2>
+<p>Supabase gives you a PostgreSQL database, authentication, file storage, and real-time subscriptions – all in one dashboard. It’s like Firebase but with SQL and open-source.</p>
+<ul>
+<li>Log into your Supabase account and click <strong>New project</strong>.</li>
+<li>Give it a name (e.g., <code>my-fullstack-app</code>), set a secure database password, and choose a region close to your users (I usually pick <code>us-east-1</code> or <code>eu-west-1</code>).</li>
+<li>Wait about 30 seconds for the database to provision.</li>
+</ul>
+<p>Once the project is ready, go to the <strong>SQL Editor</strong> and run this query to create a simple <code>todos</code> table:</p>
+<pre><code>create table todos (
+<p>id uuid default gen_random_uuid() primary key,</p>
+<p>user_id uuid references auth.users not null,</p>
+<p>task text not null,</p>
+<p>is_complete boolean default false,</p>
+<p>inserted_at timestamp with time zone default timezone('utc'::text, now()) not null</p>
+<p>);</p>
+<p>-- Enable Row Level Security (RLS)</p>
+<p>alter table todos enable row level security;</p>
+<p>-- Create a policy so users can only see their own todos</p>
+<p>create policy "Users can view their own todos"</p>
+<p>on todos for select</p>
+<p>using ( auth.uid() = user_id );</p>
+<p>-- Users can insert their own todos</p>
+<p>create policy "Users can insert their own todos"</p>
+<p>on todos for insert</p>
+<p>with check ( auth.uid() = user_id );</p>
+<p></code></pre></p>
+<p>This sets up a basic table with Row Level Security – a must for any app that stores user data. Supabase’s RLS is incredibly powerful and saves you from writing backend code for authorization.</p>
+<p>Now go to <strong>Project Settings > API</strong> and copy your <strong>anon public key</strong> and <strong>project URL</strong>. We’ll need those in the next step.</p>
+<hr>
+<h2 id="step-3-connect-the-frontend-to-supabase">Step 3: Connect the Frontend to Supabase</h2>
+<p>Back in your Next.js project, install the Supabase client library:</p>
+<pre><code>npm install @supabase/supabase-js @supabase/ssr
+<p></code></pre></p>
+<p>The <code>@supabase/ssr</code> package is the recommended way to use Supabase with Next.js App Router – it handles cookies and server-side rendering properly.</p>
+<p>Create a file <code>src/lib/supabase.ts</code>:</p>
+<pre><code>import { createBrowserClient } from '@supabase/ssr'
+<p>export const createClient = () =></p>
+<p>createBrowserClient(</p>
+<p>process.env.NEXT_PUBLIC_SUPABASE_URL!,</p>
+<p>process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!</p>
+<p>)</p>
+<p></code></pre></p>
+<p>Now create a <code>.env.local</code> file in the root of your project and add the two values from Supabase:</p>
+<pre><code>NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+<p>NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key</p>
+<p></code></pre></p>
+<p><strong>Important:</strong> Vercel will need these same environment variables later. We’ll set them in the deployment step.</p>
+<p>Now let’s test the connection. Edit <code>src/app/page.tsx</code> to fetch todos from Supabase:</p>
+<pre><code>import { createClient } from '@/lib/supabase'
+<p>export default async function Home() {</p>
+<p>const supabase = createClient()</p>
+<p>const { data: todos } = await supabase.from('todos').select('*')</p>
+<p>return (</p>
+<p><main className="p-8"></p>
+<h1 className="text-2xl font-bold">My Todos</h1>
+<pre>{JSON.stringify(todos, null, 2)}</pre>
+<p></main></p>
+<p>)</p>
+<p>}</p>
+<p></code></pre></p>
+<p>Restart the dev server and visit <code>http://localhost:3000</code>. You should see an empty array <code>[]</code> because there’s no data yet. That’s fine – it means the connection works.</p>
+<hr>
+<h2 id="step-4-deploy-to-vercel">Step 4: Deploy to Vercel</h2>
+<p>This is where the magic happens. Vercel detects your framework automatically and handles the build, SSL, and CDN for you.</p>
+<p>First, push your project to GitHub:</p>
+<pre><code>git init
+<p>git add .</p>
+<p>git commit -m "Initial commit"</p>
+<p>gh repo create my-fullstack-app --public --push</p>
+<p></code></pre></p>
+<p>(If you don’t have the GitHub CLI, create a repo manually on GitHub and push.)</p>
+<p>Now go to your <a href="https://vercel.com?ref=devtoolrank" rel="nofollow sponsored">Vercel dashboard</a> and click <strong>Add New > Project</strong>. Connect your GitHub account and select the <code>my-fullstack-app</code> repo.</p>
+<p>Vercel will auto-detect Next.js. Before you click <strong>Deploy</strong>, expand the <strong>Environment Variables</strong> section and add the same two variables you used in <code>.env.local</code>:</p>
+<ul>
+<li><code>NEXT_PUBLIC_SUPABASE_URL</code></li>
+<li><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></li>
+</ul>
+<p>Click <strong>Deploy</strong>. Within 30 seconds, you’ll get a live URL like <code>https://my-fullstack-app.vercel.app</code>.</p>
+<p>Your app is now live, but it’s not useful yet – there’s no way for users to log in and create todos. Let’s fix that.</p>
+<hr>
+<h2 id="step-5-add-authentication">Step 5: Add Authentication</h2>
+<p>Supabase Auth supports email/password, magic links, Google, GitHub, and more. We’ll add a simple magic link flow so users can sign in with just their email.</p>
+<p>First, in the Supabase dashboard, go to <strong>Authentication > Providers</strong> and enable <strong>Email</strong> (if not already). Under <strong>Confirm email</strong>, you can choose to require confirmation or not – for testing, I turn it off.</p>
+<p>Now create a new file <code>src/app/auth/callback/route.ts</code> (this handles the magic link redirect):</p>
+<pre><code>import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+<p>import { cookies } from 'next/headers'</p>
+<p>import { NextRequest, NextResponse } from 'next/server'</p>
+<p>export async function GET(request: NextRequest) {</p>
+<p>const requestUrl = new URL(request.url)</p>
+<p>const code = requestUrl.searchParams.get('code')</p>
+<p>if (code) {</p>
+<p>const supabase = createRouteHandlerClient({ cookies })</p>
+<p>await supabase.auth.exchangeCodeForSession(code)</p>
+<p>}</p>
+<p>return NextResponse.redirect(requestUrl.origin)</p>
+<p>}</p>
+<p></code></pre></p>
+<p>Next, create a simple login component at <code>src/app/login/page.tsx</code>:</p>
+<pre><code>'use client'
+<p>import { createClient } from '@/lib/supabase'</p>
+<p>import { useState } from 'react'</p>
+<p>import { useRouter } from 'next/navigation'</p>
+<p>export default function LoginPage() {</p>
+<p>const [email, setEmail] = useState('')</p>
+<p>const [loading, setLoading] = useState(false)</p>
+<p>const [message, setMessage] = useState('')</p>
+<p>const supabase = createClient()</p>
+<p>const router = useRouter()</p>
+<p>const handleLogin = async (e: React.FormEvent) => {</p>
+<p>e.preventDefault()</p>
+<p>setLoading(true)</p>
+<p>const { error } = await supabase.auth.signInWithOtp({</p>
+<p>email,</p>
+<p>options: { shouldCreateUser: true },</p>
+<p>})</p>
+<p>if (error) {</p>
+<p>setMessage(error.message)</p>
+<p>} else {</p>
+<p>setMessage('Check your email for the magic link!')</p>
+<p>}</p>
+<p>setLoading(false)</p>
+<p>}</p>
+<p>return (</p>
+<p><div className="max-w-md mx-auto mt-16 p-6"></p>
+<h1 className="text-xl mb-4">Sign in with Magic Link</h1>
+<p><form onSubmit={handleLogin} className="space-y-4"></p>
+<p><input</p>
+<p>type="email"</p>
+<p>placeholder="you@example.com"</p>
+<p>value={email}</p>
+<p>onChange={(e) => setEmail(e.target.value)}</p>
+<p>className="w-full border p-2 rounded"</p>
+<p>required</p>
+<p>/></p>
+<p><button</p>
+<p>type="submit"</p>
+<p>disabled={loading}</p>
+<p>className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"</p>
+<p>></p>
+<p>{loading ? 'Sending...' : 'Send Magic Link'}</p>
+<p></button></p>
+<p></form></p>
+<p>{message && <p className="mt-4 text-sm">{message}</p>}</p>
+<p></div></p>
+<p>)</p>
+<p>}</p>
+<p></code></pre></p>
+<p>Finally, update the main page to show a login button or a list of todos based on authentication status. I’ll keep it simple – create a <code>src/app/layout.tsx</code> that checks the session and redirects unauthenticated users to <code>/login</code>.</p>
+<p>Now commit and push again. Vercel will automatically redeploy. Test the flow: go to your live URL, enter an email, and you’ll receive a magic link. Click it, and you’re logged in.</p>
+<p>You now have a full-stack app with authentication, a database, and real-time capabilities – all deployed in minutes.</p>
+<hr>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Even with a smooth setup, you might hit a few snags. Here are the common ones and how to fix them.</p>
+<h3 id="401-unauthorized-when-fetching-data">“401 Unauthorized” when fetching data</h3>
+<p>This usually means Row Level Security is blocking the query because the user isn’t authenticated. Make sure you’re passing the session properly. In the App Router, use <code>createServerComponentClient</code> from <code>@supabase/auth-helpers-nextjs</code> for server components, and <code>createClientComponentClient</code> for client components.</p>
+<h3 id="magic-link-doesn-t-work">Magic link doesn’t work</h3>
+<p>Check that the redirect URL in Supabase Auth settings includes <code>https://your-app.vercel.app/auth/callback</code>. Also verify that the <code>NEXT_PUBLIC_SITE_URL</code> environment variable in Vercel is set to your production URL.</p>
+<h3 id="cors-errors">CORS errors</h3>
+<p>Supabase’s API allows requests from any origin by default, but if you’re using a custom domain, make sure the domain is added in Supabase’s Authentication settings under <strong>Site URL</strong>.</p>
+<h3 id="build-fails-on-vercel">Build fails on Vercel</h3>
+<p>Most often it’s a missing environment variable. Double-check that both <code>NEXT_PUBLIC_SUPABASE_URL</code> and <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> are set in the Vercel project settings. Also ensure your TypeScript compiles without errors locally.</p>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>Vercel + Supabase is the fastest way I’ve found to ship a full-stack app that scales from zero to thousands of users. You get a global CDN, serverless functions, a managed PostgreSQL database, and built-in auth – all on generous free tiers.</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Setup time: under 10 minutes for a basic app</li>
+<li>No DevOps: Vercel handles SSL, CDN, and deployments</li>
+<li>Supabase’s RLS eliminates the need for a custom backend</li>
+<li>Great developer experience with TypeScript and real-time subscriptions</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Vendor lock-in: moving off Vercel or Supabase later is nontrivial</li>
+<li>Supabase free tier limits: 500 MB database, 50k monthly active users</li>
+<li>Vercel’s serverless functions have cold starts (though Edge Functions help)</li>
+<li>Not ideal for apps requiring complex background jobs or custom server logic</li>
+</ul>
+<p><strong>Verdict:</strong> If you’re an indie hacker or a small team building a SaaS, internal tool, or MVP, this stack is hard to beat. For anything more complex (e.g., heavy file processing, WebSockets beyond real-time, or multi-region databases), you might want to consider a VPS with Docker or a platform like <a href="https://[Railway](https://railway.app/?referral=revenueclaw" rel="nofollow sponsored">Railway</a>.app?ref=devtoolrank) that gives you more control.</p>
+<p>But for 90% of full-stack apps, Vercel + Supabase is the right choice. Go ship something.</p>
+<hr>
+<p><em>P.S. – If you want to host your own database for more control, check out <a href="https://www.[Digitalocean](https://www.digitalocean.com/?refcode=revenueclaw" rel="nofollow sponsored">DigitalOcean Managed Databases</a>.com/products/managed-databases?ref=devtoolrank). They start at $15/month and give you dedicated PostgreSQL with automatic backups.</em></p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#prerequisites" class="toc-h2" style="padding-left:0px">Prerequisites</a>
+<a href="#step-1-create-a-next-js-app" class="toc-h2" style="padding-left:0px">Step 1: Create a Next.js App</a>
+<a href="#step-2-set-up-supabase" class="toc-h2" style="padding-left:0px">Step 2: Set Up Supabase</a>
+<a href="#step-3-connect-the-frontend-to-supabase" class="toc-h2" style="padding-left:0px">Step 3: Connect the Frontend to Supabase</a>
+<a href="#step-4-deploy-to-vercel" class="toc-h2" style="padding-left:0px">Step 4: Deploy to Vercel</a>
+<a href="#step-5-add-authentication" class="toc-h2" style="padding-left:0px">Step 5: Add Authentication</a>
+<a href="#troubleshooting" class="toc-h2" style="padding-left:0px">Troubleshooting</a>
+<a href="#401-unauthorized-when-fetching-data" class="toc-h3" style="padding-left:8px">“401 Unauthorized” when fetching data</a>
+<a href="#magic-link-doesn-t-work" class="toc-h3" style="padding-left:8px">Magic link doesn’t work</a>
+<a href="#cors-errors" class="toc-h3" style="padding-left:8px">CORS errors</a>
+<a href="#build-fails-on-vercel" class="toc-h3" style="padding-left:8px">Build fails on Vercel</a>
+<a href="#conclusion" class="toc-h2" style="padding-left:0px">Conclusion</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

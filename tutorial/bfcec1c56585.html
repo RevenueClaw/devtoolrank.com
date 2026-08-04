@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up CI/CD with GitHub Actions in 15 Minutes | Dev Tool Rank</title>
+    <meta name="description" content="Learn to automate your deployment pipeline with GitHub Actions. Step-by-step guide to build, test, and deploy in 15 minutes. Includes real YAML examples and tro">
+    <meta name="keywords" content="github actions ci/cd, deployment pipeline, devops tutorial, github actions tutorial, ci/cd pipeline setup">
+    <link rel="canonical" href="https://devtoolrank.com/tutorial/bfcec1c56585.html">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Set Up CI/CD with GitHub Actions in 15 Minutes",
+  "description": "Learn to automate your deployment pipeline with GitHub Actions. Step-by-step guide to build, test, and deploy in 15 minutes. Includes real YAML examples and troubleshooting tips.",
+  "datePublished": "2026-08-04",
+  "dateModified": "2026-08-04",
+  "author": {
+    "@type": "Person",
+    "name": "Editorial Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Devtoolrank Reviews",
+    "url": "https://devtoolrank.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://devtoolrank.com/tutorial/bfcec1c56585.html"
+  }
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/tutorials/">Tutorials</a> <span>›</span>
+    How to Set Up CI/CD with GitHub Actions in 15 Minu...
+</nav>
+        <header class="article-header">
+            <h1>How to Set Up CI/CD with GitHub Actions in 15 Minutes</h1>
+            <div class="meta-row">
+                <span class="badge badge-tutorial">Tutorial</span>
+                <time datetime="2026-08-04">August 04, 2026</time>
+                <span>·</span>
+                <span class="reading-time">8 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><em>When you buy through links on our site, we may earn a commission.</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>You’ve just pushed a fix for that nasty bug. Now you wait. Wait for tests to run locally. Wait for the deploy script. Wait for the SSH connection. Wait for <code>npm install</code> to finish. By the time your fix is live, you could have built a whole new feature.</p>
+<p>That’s where CI/CD comes in. And GitHub Actions is the easiest way to get it running — no separate server, no Jenkins, no $50/month DevOps tool. It’s baked right into every repository you already have.</p>
+<p>In this tutorial, I’ll walk you through setting up a complete CI/CD pipeline using GitHub Actions. We’ll build, test, and deploy a simple Node.js app to production — all in about 15 minutes. By the end, every push to <code>main</code> will automatically ship your code. No more manual deploys, no more “it works on my machine.”</p>
+<p>Let’s get started.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before we look at YAML, make sure you have these basics:</p>
+<ul>
+<li><strong>A GitHub account</strong> – obviously. If you don’t have one, <a href="https://github.com/join" rel="nofollow sponsored">sign up for free</a>.</li>
+<li><strong>A repository</strong> with your code. I’ll use a simple Node.js Express app, but the same pattern works for Python, Go, static sites, or anything else.</li>
+<li><strong>A hosting provider</strong> to deploy to. I’ll use <a href="https://[Vercel](https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>.com/?utm_source=devtoolrank&utm_medium=referral) for this example because it’s dead simple for frontend and Node.js apps. But you can swap in <a href="https://[Railway](https://railway.app/?referral=revenueclaw" rel="nofollow sponsored">Railway</a>.app?referralCode=devtoolrank), <a href="https://www.[Digitalocean](https://www.digitalocean.com/?refcode=revenueclaw" rel="nofollow sponsored">DigitalOcean App Platform</a>.com/products/app-platform?refcode=devtoolrank), or even a plain VPS.</li>
+<li><strong>Basic familiarity with the command line</strong> – we won’t go deep, but you should know what <code>npm install</code> does.</li>
+</ul>
+<p>That’s it. No Docker required, no Kubernetes, no PhD in YAML indentation.</p>
+<h2 id="step-1-create-your-first-workflow-file">Step 1: Create Your First Workflow File</h2>
+<p>GitHub Actions workflows are defined in <code>.github/workflows/</code> inside your repository. Each file is a YAML document that describes one or more jobs.</p>
+<p>Open your project in your editor (or GitHub’s web interface) and create a new file:</p>
+<p><code>.github/workflows/deploy.yml</code></p>
+<p>Here’s the skeleton we’ll build on:</p>
+<pre><code>name: Deploy to Production
+<p>on:</p>
+<p>push:</p>
+<p>branches: [ main ]</p>
+<p>jobs:</p>
+<p>build-and-deploy:</p>
+<p>runs-on: ubuntu-latest</p>
+<p>steps:</p>
+<p>- uses: actions/checkout@v4</p>
+<p>- name: Setup Node.js</p>
+<p>uses: actions/setup-node@v4</p>
+<p>with:</p>
+<p>node-version: '20'</p>
+<p>- run: npm ci</p>
+<p>- run: npm test</p>
+<p>- name: Deploy to Vercel</p>
+<p>env:</p>
+<p>VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}</p>
+<p>run: npx vercel --prod --token $VERCEL_TOKEN</p>
+<p></code></pre></p>
+<p>Don’t worry if it looks like a lot — we’ll break down every line.</p>
+<p><strong>Why <code>actions/checkout</code>?</strong> This action pulls your code into the runner. Without it, the runner would have an empty filesystem.</p>
+<p><strong>Why <code>actions/setup-node</code>?</strong> It installs the exact Node.js version you specify. Other languages have similar actions: <code>setup-python</code>, <code>setup-go</code>, <code>setup-java</code>.</p>
+<p><strong>Why <code>npm ci</code> instead of <code>npm install</code>?</strong> <code>npm ci</code> is faster and respects your lockfile exactly. It’s the right choice for CI.</p>
+<p>Commit this file to your <code>main</code> branch. GitHub will automatically detect it and run the workflow on the next push.</p>
+<h2 id="step-2-define-your-triggers">Step 2: Define Your Triggers (When to Run)</h2>
+<p>The <code>on:</code> section controls when your workflow fires. The most common triggers:</p>
+<table class="price-table">
+<thead><tr><th>Trigger</th><th>YAML</th><th>Use case</th></tr></thead>
+<tbody>
+<tr><td>Push to branch</td><td><code>push: branches: [main]</code></td><td>Deploy on every commit to main</td></tr>
+<tr><td>Pull request</td><td><code>pull_request: branches: [main]</code></td><td>Run tests before merging</td></tr>
+<tr><td>Schedule (cron)</td><td><code>schedule: - cron: '0 6 <em> </em> *'</code></td><td>Nightly builds or cleanup</td></tr>
+<tr><td>Manual trigger</td><td><code>workflow_dispatch:</code></td><td>Click a button in GitHub UI</td></tr>
+<tr><td>Tag push</td><td><code>push: tags: ['v*']</code></td><td>Release builds</td></tr>
+</tbody>
+</table>
+<p>For a standard CI/CD pipeline, you’ll usually want:</p>
+<pre><code>on:
+<p>push:</p>
+<p>branches: [ main ]</p>
+<p>pull_request:</p>
+<p>branches: [ main ]</p>
+<p></code></pre></p>
+<p>This runs tests on every PR, and runs the full deploy only when merging to <code>main</code>. That way, you catch breakage before it hits production.</p>
+<p><strong>Pro tip:</strong> You can also use path filters to skip runs when only documentation changes:</p>
+<pre><code>on:
+<p>push:</p>
+<p>branches: [ main ]</p>
+<p>paths-ignore:</p>
+<p>- 'docs/**'</p>
+<p>- 'README.md'</p>
+<p></code></pre></p>
+<h2 id="step-3-add-build-steps">Step 3: Add Build Steps</h2>
+<p>The <code>steps</code> list is where the real work happens. Each step runs sequentially. If one fails, the rest stop.</p>
+<p>For a Node.js app, the build steps are straightforward:</p>
+<pre><code>steps:
+<p>- uses: actions/checkout@v4</p>
+<p>- name: Setup Node.js</p>
+<p>uses: actions/setup-node@v4</p>
+<p>with:</p>
+<p>node-version: '20'</p>
+<p>cache: 'npm'          # cache node_modules between runs</p>
+<p>- run: npm ci</p>
+<p>- run: npm run build       # if you have a build step</p>
+<p></code></pre></p>
+<p>The <code>cache: 'npm'</code> line is a huge time-saver. It caches <code>node_modules</code> based on your <code>package-lock.json</code>. Subsequent runs skip the <code>npm ci</code> if nothing changed. For a typical app, this cuts the build time from 2 minutes to 30 seconds.</p>
+<p><strong>What about other languages?</strong></p>
+<ul>
+<li><strong>Python:</strong> Replace <code>setup-node</code> with <code>actions/setup-python@v5</code>, then <code>pip install -r requirements.txt</code>.</li>
+<li><strong>Go:</strong> Use <code>actions/setup-go@v5</code>, then <code>go build ./...</code>.</li>
+<li><strong>Static site (HTML/CSS/JS):</strong> You might not need a build step at all.</li>
+</ul>
+<h2 id="step-4-add-test-steps">Step 4: Add Test Steps</h2>
+<p>Testing is the safety net of CI/CD. Without it, you’re just automating broken deploys.</p>
+<p>Add a test step right after the build:</p>
+<pre><code>  - run: npm test
+<p>env:</p>
+<p>CI: true</p>
+<p></code></pre></p>
+<p>The <code>CI: true</code> environment variable tells many test runners to treat warnings as errors and use CI-friendly output formatting.</p>
+<p>If your tests require a database or other services, you can spin them up using <strong>service containers</strong>:</p>
+<pre><code>jobs:
+<p>test:</p>
+<p>runs-on: ubuntu-latest</p>
+<p>services:</p>
+<p>postgres:</p>
+<p>image: postgres:16</p>
+<p>env:</p>
+<p>POSTGRES_PASSWORD: testpass</p>
+<p>options: >-</p>
+<p>--health-cmd pg_isready</p>
+<p>--health-interval 10s</p>
+<p>--health-timeout 5s</p>
+<p>--health-retries 5</p>
+<p>steps:</p>
+<p>- uses: actions/checkout@v4</p>
+<p>- run: npm ci</p>
+<p>- run: npm test</p>
+<p>env:</p>
+<p>DATABASE_URL: postgres://postgres:testpass@localhost:5432/postgres</p>
+<p></code></pre></p>
+<p>This is one of the most powerful features of GitHub Actions — you can test against real databases, Redis, or any Docker image without needing a separate CI server.</p>
+<p><strong>Honest take:</strong> Service containers are great, but they add ~30 seconds to startup time. For simple unit tests that don’t need a database, skip them. Your pipeline will be faster.</p>
+<h2 id="step-5-deploy-to-production">Step 5: Deploy to Production</h2>
+<p>Now the fun part — getting your code live.</p>
+<p>I’ll show you how to deploy to <a href="https://vercel.com/?utm_source=devtoolrank&utm_medium=referral" rel="nofollow sponsored">Vercel</a> because it’s the most popular choice for frontend and Node.js apps. But the pattern is similar for any platform.</p>
+<h3 id="deploying-to-vercel">Deploying to Vercel</h3>
+<ul>
+<li><strong>Get a Vercel token:</strong> Go to <a href="https://vercel.com/account/tokens" rel="nofollow sponsored">Vercel account settings</a> and create a token.</li>
+<li><strong>Add it as a GitHub secret:</strong> In your repo, go to Settings → Secrets and variables → Actions → New repository secret. Name it <code>VERCEL_TOKEN</code>, paste the token.</li>
+<li><strong>Add the deploy step:</strong></li>
+</ul>
+<pre><code>  - name: Deploy to Vercel
+<p>env:</p>
+<p>VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}</p>
+<p>VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}</p>
+<p>VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}</p>
+<p>run: npx vercel --prod --token $VERCEL_TOKEN</p>
+<p></code></pre></p>
+<p>You can also use the official <a href="https://github.com/amondnet/vercel-action" rel="nofollow sponsored">Vercel Action</a> if you prefer a pre-built step.</p>
+<h3 id="deploying-to-railway">Deploying to Railway</h3>
+<p><a href="https://railway.app?referralCode=devtoolrank" rel="nofollow sponsored">Railway</a> is another great option, especially for full-stack apps. They have native GitHub integration, but you can also do it manually:</p>
+<pre><code>  - name: Deploy to Railway
+<p>run: npx railway up --service ${{ secrets.RAILWAY_SERVICE }}</p>
+<p>env:</p>
+<p>RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}</p>
+<p></code></pre></p>
+<h3 id="deploying-to-digitalocean-app-platform">Deploying to DigitalOcean App Platform</h3>
+<p><a href="https://www.digitalocean.com/products/app-platform?refcode=devtoolrank" rel="nofollow sponsored">DigitalOcean</a> supports GitHub Actions via their CLI:</p>
+<pre><code>  - name: Deploy to DigitalOcean
+<p>uses: digitalocean/app_action@v1</p>
+<p>with:</p>
+<p>app_name: my-app</p>
+<p>token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}</p>
+<p></code></pre></p>
+<p><strong>Which one to pick?</strong> If your app is a static site or Next.js, Vercel is the smoothest. For backend-heavy apps with databases, Railway or DigitalOcean give you more control. I use Vercel for frontend and Railway for APIs.</p>
+<h2 id="troubleshooting-common-issues">Troubleshooting Common Issues</h2>
+<p>GitHub Actions is generally reliable, but here are the gotchas I’ve hit:</p>
+<h3 id="1-no-space-left-on-device">1. “No space left on device”</h3>
+<p>GitHub Actions runners have 14GB of storage. If you have large dependencies (e.g., Cypress, Chromium), you can hit the limit. Fix by:</p>
+<ul>
+<li>Using <code>actions/cache</code> more aggressively.</li>
+<li>Removing unnecessary files with <code>rm -rf</code> in a step.</li>
+<li>Using a self-hosted runner if you really need more space.</li>
+</ul>
+<h3 id="2-secrets-not-being-passed">2. Secrets not being passed</h3>
+<p>Double-check that your secret names match exactly. GitHub Actions secrets are <strong>case-sensitive</strong>. Also, secrets are only available to workflows triggered by <code>push</code> or <code>pull_request</code> from the same repository — not from forks (for security reasons).</p>
+<h3 id="3-workflow-not-running">3. Workflow not running</h3>
+<ul>
+<li>Make sure the file is in <code>.github/workflows/</code> (note the <code>s</code> in <code>workflows</code>).</li>
+<li>Check the branch name in your <code>on:</code> trigger. If you push to <code>master</code> but the trigger says <code>main</code>, it won’t run.</li>
+<li>Look at the <strong>Actions</strong> tab in your repo. If the workflow is disabled, click “Enable workflow.”</li>
+</ul>
+<h3 id="4-npm-ci-fails-with-package-lock-json-not-found">4. npm ci fails with “package-lock.json not found”</h3>
+<p>You need a lockfile. Run <code>npm install</code> locally to generate one, then commit it. Alternatively, use <code>npm install</code> instead of <code>npm ci</code>, but that’s slower and less deterministic.</p>
+<h3 id="5-build-succeeds-but-deploy-fails">5. Build succeeds but deploy fails</h3>
+<p>Most deployment failures are due to missing environment variables or incorrect tokens. Check the deploy step’s logs in the Actions tab. If your hosting provider requires a specific file structure (e.g., <code>vercel.json</code>), make sure it’s committed.</p>
+<h2 id="conclusion-verdict">Conclusion & Verdict</h2>
+<p>You now have a fully automated CI/CD pipeline. Every commit to <code>main</code> goes through: checkout → install → test → build → deploy. Total setup time: less than 15 minutes.</p>
+<p><strong>Is GitHub Actions the best CI/CD tool?</strong> For most solo developers and small teams, yes. It’s free for public repositories and gives you 2,000 minutes/month on private repos. That’s enough for hundreds of builds. The tight GitHub integration, massive action marketplace, and service containers make it unbeatable for the price.</p>
+<p><strong>Where it falls short:</strong> If you need to run Windows or macOS builds frequently, the free tier won’t cut it. Also, complex matrix builds can be hard to debug. For those cases, consider <a href="https://circleci.com" rel="nofollow sponsored">CircleCI</a> or <a href="https://docs.gitlab.com/ee/ci/" rel="nofollow sponsored">GitLab CI</a>.</p>
+<p>But for the 80% use case — build, test, deploy a web app — GitHub Actions is the clear winner. It’s already in your repo. No extra signups, no new dashboards to learn.</p>
+<p><strong>My recommendation:</strong> Start with the workflow we built here. Then add caching, parallel jobs, and maybe a staging environment. The <a href="https://docs.github.com/en/actions" rel="nofollow sponsored">GitHub Actions documentation</a> is excellent when you’re ready to go deeper.</p>
+<p>Now go ship that fix. Your CI/CD pipeline will handle the rest.</p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#introduction" class="toc-h2" style="padding-left:0px">Introduction</a>
+<a href="#prerequisites" class="toc-h2" style="padding-left:0px">Prerequisites</a>
+<a href="#step-1-create-your-first-workflow-file" class="toc-h2" style="padding-left:0px">Step 1: Create Your First Workflow File</a>
+<a href="#step-2-define-your-triggers" class="toc-h2" style="padding-left:0px">Step 2: Define Your Triggers</a>
+<a href="#step-3-add-build-steps" class="toc-h2" style="padding-left:0px">Step 3: Add Build Steps</a>
+<a href="#step-4-add-test-steps" class="toc-h2" style="padding-left:0px">Step 4: Add Test Steps</a>
+<a href="#step-5-deploy-to-production" class="toc-h2" style="padding-left:0px">Step 5: Deploy to Production</a>
+<a href="#deploying-to-vercel" class="toc-h3" style="padding-left:8px">Deploying to Vercel</a>
+<a href="#deploying-to-railway" class="toc-h3" style="padding-left:8px">Deploying to Railway</a>
+<a href="#deploying-to-digitalocean-app-platform" class="toc-h3" style="padding-left:8px">Deploying to DigitalOcean App Platform</a>
+<a href="#troubleshooting-common-issues" class="toc-h2" style="padding-left:0px">Troubleshooting Common Issues</a>
+<a href="#1-no-space-left-on-device" class="toc-h3" style="padding-left:8px">1. “No space left on device”</a>
+<a href="#2-secrets-not-being-passed" class="toc-h3" style="padding-left:8px">2. Secrets not being passed</a>
+<a href="#3-workflow-not-running" class="toc-h3" style="padding-left:8px">3. Workflow not running</a>
+<a href="#4-npm-ci-fails-with-package-lock-json-not-found" class="toc-h3" style="padding-left:8px">4. npm ci fails with “package-lock.json not found”</a>
+<a href="#5-build-succeeds-but-deploy-fails" class="toc-h3" style="padding-left:8px">5. Build succeeds but deploy fails</a>
+<a href="#conclusion-verdict" class="toc-h2" style="padding-left:0px">Conclusion & Verdict</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

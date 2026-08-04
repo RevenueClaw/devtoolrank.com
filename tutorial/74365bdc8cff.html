@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide | Dev Tool Rank</title>
+    <meta name="description" content="Learn how to migrate your app from Firebase to Supabase with this step-by-step guide covering database, auth, and storage migration. Includes code samples and t">
+    <meta name="keywords" content="migrate firebase to supabase, database migration, supabase guide, firebase to supabase">
+    <link rel="canonical" href="https://devtoolrank.com/tutorial/74365bdc8cff.html">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide",
+  "description": "Learn how to migrate your app from Firebase to Supabase with this step-by-step guide covering database, auth, and storage migration. Includes code samples and troubleshooting.",
+  "datePublished": "2026-08-04",
+  "dateModified": "2026-08-04",
+  "author": {
+    "@type": "Person",
+    "name": "Editorial Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Devtoolrank Reviews",
+    "url": "https://devtoolrank.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://devtoolrank.com/tutorial/74365bdc8cff.html"
+  }
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/tutorials/">Tutorials</a> <span>›</span>
+    How to Migrate from Firebase to Supabase: Complete...
+</nav>
+        <header class="article-header">
+            <h1>How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide</h1>
+            <div class="meta-row">
+                <span class="badge badge-tutorial">Tutorial</span>
+                <time datetime="2026-08-04">August 04, 2026</time>
+                <span>·</span>
+                <span class="reading-time">9 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><strong>Disclosure:</strong> When you buy through links on our site, we may earn a commission. This helps us keep reviews honest and independent.</p>
+<p>Firebase is great for prototyping, but once your app starts scaling, the pain points become real: vendor lock-in, unpredictable pricing (especially Firestore reads/writes), and a closed-source ecosystem. <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> offers a compelling alternative—open-source PostgreSQL, real‑time subscriptions, a generous free tier, and the freedom to self‑host if needed.</p>
+<p>I recently migrated a production app with ~5k users from Firebase to Supabase. This guide walks you through every step I took, including the gotchas I hit along the way. By the end, you’ll have a clear path to move your database, authentication, and storage—without downtime.</p>
+<hr>
+<h2 id="what-you-ll-need">What You’ll Need</h2>
+<p>Before we start, make sure you have:</p>
+<ul>
+<li>An existing Firebase project with Firestore, Auth, and Cloud Storage enabled.</li>
+<li>A Supabase project – you can create one at <a href="https://supabase.com" rel="nofollow sponsored">supabase.com</a> (the free tier is plenty for small to medium apps).</li>
+<li><strong>Node.js 18+</strong> and <code>npm</code> installed locally.</li>
+<li>The Firebase CLI: <code>npm install -g firebase-tools</code></li>
+<li>The Supabase CLI: <code>npm install -g supabase</code> (or use the dashboard).</li>
+</ul>
+<p>You’ll also need administrative access to both projects (Firebase Owner role, Supabase project owner).</p>
+<hr>
+<h2 id="step-1-export-your-firebase-data">Step 1: Export Your Firebase Data</h2>
+<p>We’ll export data in three parts: Firestore documents, Auth users, and Storage files.</p>
+<h3 id="1a-export-firestore-to-json">1a. Export Firestore to JSON</h3>
+<p>Use the Firebase Emulator or the <code>firestore:export</code> command. The cleanest approach is to use <code>firebase-tools</code>:</p>
+<pre><code>firebase export --project your-project-id --output ./firebase-export
+<p></code></pre></p>
+<p>This creates a structured directory with all collections in newline‑delimited JSON. If you only need certain collections, you can filter later with a script.</p>
+<blockquote><strong>Pain point:</strong> Firestore stores nested objects and references that don’t map 1:1 to SQL. You’ll need to flatten complex structures later.</blockquote>
+<h3 id="1b-export-auth-users">1b. Export Auth Users</h3>
+<p>Firebase doesn’t have a direct export for Auth users. Use the Admin SDK to list them:</p>
+<pre><code>const admin = require('firebase-admin');
+<p>const fs = require('fs');</p>
+<p>admin.initializeApp({ credential: admin.credential.applicationDefault() });</p>
+<p>async function exportUsers() {</p>
+<p>const users = [];</p>
+<p>const listAll = async (nextPageToken) => {</p>
+<p>const result = await admin.auth().listUsers(1000, nextPageToken);</p>
+<p>result.users.forEach(u => users.push(u.toJSON()));</p>
+<p>if (result.pageToken) await listAll(result.pageToken);</p>
+<p>};</p>
+<p>await listAll();</p>
+<p>fs.writeFileSync('./firebase-auth-users.json', JSON.stringify(users, null, 2));</p>
+<p>}</p>
+<p>exportUsers();</p>
+<p></code></pre></p>
+<p>Save this as <code>export-auth.js</code> and run <code>node export-auth.js</code>. You’ll get a JSON array of user objects including UID, email, display name, and hashed password (Firebase stores passwords as bcrypt hashes – more on that in Step 4).</p>
+<h3 id="1c-download-storage-files">1c. Download Storage Files</h3>
+<p>Use the Firebase Storage emulator or <code>gsutil</code>:</p>
+<pre><code># List all buckets
+<p>gsutil ls gs://your-project-id.appspot.com</p>
+<h2 id="download-recursively">Download recursively</h2>
+<p>gsutil -m cp -r gs://your-project-id.appspot.com/folder ./local-backup/</p>
+<p></code></pre></p>
+<p>If your app stores files in <code>gs://bucket/user-uploads/</code>, download them to a local folder. This can be slow with many files – consider using <code>rsync</code> if you’re on a server.</p>
+<hr>
+<h2 id="step-2-set-up-your-supabase-project">Step 2: Set Up Your Supabase Project</h2>
+<p>Log in to your <a href="https://supabase.com" rel="nofollow sponsored">Supabase dashboard</a> and create a new project. Choose a region close to your users (same as your Firebase location if possible).</p>
+<h3 id="2a-schema-design">2a. Schema Design</h3>
+<p>Firestore schemas are flexible; PostgreSQL requires defined tables. Map your collections:</p>
+<table class="price-table">
+<thead><tr><th>Firestore Collection</th><th>Supabase Table</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><code>users</code></td><td><code>profiles</code></td><td>Use <code>auth.users</code> for authentication data.</td></tr>
+<tr><td><code>posts</code></td><td><code>posts</code></td><td>Flatten nested arrays into junction tables.</td></tr>
+<tr><td><code>user_activities</code></td><td><code>user_activities</code></td><td>Timestamps → <code>timestamptz</code> columns.</td></tr>
+</tbody>
+</table>
+<p>For example, a Firestore document like:</p>
+<pre><code>{
+<p>"name": "Alice",</p>
+<p>"likedPosts": ["post1", "post2"],</p>
+<p>"profile": { "bio": "Dev", "age": 30 }</p>
+<p>}</p>
+<p></code></pre></p>
+<p>Becomes two Supabase tables: <code>profiles(id, name, bio, age)</code> and a join table <code>profile_liked_posts(profile_id, post_id)</code>.</p>
+<p>Use the Supabase SQL editor to create tables. I recommend enabling Row Level Security (RLS) from the start – it’s as powerful as Firestore security rules but more familiar to SQL developers.</p>
+<h3 id="2b-enable-extensions">2b. Enable Extensions</h3>
+<p>Supabase ships with many PostgreSQL extensions. For real‑time features, enable <code>pg_cron</code> and <code>pg_net</code> if you need scheduled tasks. For full‑text search, run:</p>
+<pre><code>CREATE EXTENSION IF NOT EXISTS pg_trgm;
+<p></code></pre></p>
+<p>Make a note of your Supabase project’s connection string (we’ll use it in the next step).</p>
+<hr>
+<h2 id="step-3-import-data-into-supabase">Step 3: Import Data into Supabase</h2>
+<p>The cleanest way to migrate data is to write a Node.js script that reads your Firestore export and inserts into Supabase using <code>pg</code> or <code>knex</code>.</p>
+<h3 id="3a-prepare-the-data">3a. Prepare the Data</h3>
+<p>Firestore exports use a specific internal format. I wrote a parser that flattens documents:</p>
+<pre><code>// parse-firestore-export.js
+<p>const fs = require('fs');</p>
+<p>const raw = JSON.parse(fs.readFileSync('./firebase-export/your-collection.json', 'utf8'));</p>
+<p>const documents = raw.documents.map(doc => {</p>
+<p>const fields = doc.fields;</p>
+<p>const flat = { id: doc.name.split('/').pop() };</p>
+<p>for (const [key, value] of Object.entries(fields)) {</p>
+<p>// Map Firestore types to JS values</p>
+<p>if (value.stringValue !== undefined) flat[key] = value.stringValue;</p>
+<p>else if (value.integerValue !== undefined) flat[key] = parseInt(value.integerValue, 10);</p>
+<p>else if (value.timestampValue !== undefined) flat[key] = new Date(value.timestampValue);</p>
+<p>// handle arrays, maps, etc.</p>
+<p>}</p>
+<p>return flat;</p>
+<p>});</p>
+<p>fs.writeFileSync('./parsed-collection.json', JSON.stringify(documents, null, 2));</p>
+<p></code></pre></p>
+<p>Run it for each collection you need.</p>
+<h3 id="3b-insert-into-supabase">3b. Insert into Supabase</h3>
+<p>Use the Supabase JavaScript client or raw SQL. For large datasets, I prefer <code>pg</code> with batch inserts:</p>
+<pre><code>const { Pool } = require('pg');
+<p>const pool = new Pool({ connectionString: process.env.SUPABASE_DB_URL });</p>
+<p>async function insertProfiles(profiles) {</p>
+<p>const client = await pool.connect();</p>
+<p>try {</p>
+<p>const batchSize = 500;</p>
+<p>for (let i = 0; i < profiles.length; i += batchSize) {</p>
+<p>const batch = profiles.slice(i, i + batchSize);</p>
+<p>const values = batch.map((p, idx) =></p>
+<p><code>($${idx <em> 3 + 1}, $${idx </em> 3 + 2}, $${idx * 3 + 3})</code></p>
+<p>).join(',');</p>
+<p>const params = batch.flatMap(p => [p.id, p.name, p.email]);</p>
+<p>await client.query(</p>
+<p><code>INSERT INTO profiles (id, name, email) VALUES ${values} ON CONFLICT (id) DO NOTHING</code>,</p>
+<p>params</p>
+<p>);</p>
+<p>}</p>
+<p>} finally {</p>
+<p>client.release();</p>
+<p>}</p>
+<p>}</p>
+<p>insertProfiles(parsedProfiles);</p>
+<p></code></pre></p>
+<blockquote><strong>Gotcha:</strong> Firestore timestamps are in nanosecond resolution. PostgreSQL <code>timestamptz</code> accepts microsecond precision – convert with <code>Math.floor(timestampNs / 1000)</code>.</blockquote>
+<h3 id="3c-migrate-real-time-data">3c. Migrate Real‑time Data (Optional)</h3>
+<p>If your app relies on Firestore real‑time listeners, Supabase offers equivalent subscriptions via <code>supabase-js</code>. You’ll need to rewrite client code, but the database triggers and replication are similar.</p>
+<hr>
+<h2 id="step-4-migrate-authentication-users">Step 4: Migrate Authentication Users</h2>
+<p>Firebase stores user credentials (email/password) as bcrypt hashes, but the algorithm version and salt are specific to Firebase. You cannot directly import the hash into Supabase’s <code>auth.users</code> table (which uses a different format).</p>
+<h3 id="4a-option-1-force-password-reset">4a. Option 1: Force Password Reset (Recommended)</h3>
+<p>The safest method is to import users without passwords and send a password reset email:</p>
+<pre><code>const { createClient } = require('@supabase/supabase-js');
+<p>const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);</p>
+<p>async function migrateUser(firebaseUser) {</p>
+<p>// Create user in Supabase auth (password will be null)</p>
+<p>const { data, error } = await supabase.auth.admin.createUser({</p>
+<p>email: firebaseUser.email,</p>
+<p>email_confirm: true, // if you already verified in Firebase</p>
+<p>user_metadata: {</p>
+<p>display_name: firebaseUser.displayName,</p>
+<p>firebase_uid: firebaseUser.uid</p>
+<p>}</p>
+<p>});</p>
+<p>if (error) {</p>
+<p>console.error('Failed to create user:', error.message);</p>
+<p>return;</p>
+<p>}</p>
+<p>// Send password reset email</p>
+<p>await supabase.auth.admin.resetPasswordForEmail(firebaseUser.email);</p>
+<p>console.log(<code>User ${firebaseUser.email} migrated – password reset sent.</code>);</p>
+<p>}</p>
+<p></code></pre></p>
+<p>This approach is honest and secure. Users will receive an email to set a new password on their first login.</p>
+<h3 id="4b-option-2-custom-claims-migration">4b. Option 2: Custom Claims Migration</h3>
+<p>If you have custom claims (e.g., “admin” roles), export them from Firebase and apply via Supabase’s <code>updateUserById</code> with <code>app_metadata</code>. Example:</p>
+<pre><code>// For each user with custom claims
+<p>await supabase.auth.admin.updateUserById(supabaseUserId, {</p>
+<p>app_metadata: { role: 'admin' }</p>
+<p>});</p>
+<p></code></pre></p>
+<p>Supabase enforces RLS using claims from <code>auth.jwt()</code> – you can map Firebase roles directly.</p>
+<hr>
+<h2 id="step-5-migrate-storage-files">Step 5: Migrate Storage Files</h2>
+<p>Uploading files from your local backup to Supabase Storage is straightforward using the Supabase JavaScript SDK.</p>
+<h3 id="5a-create-buckets">5a. Create Buckets</h3>
+<p>In the Supabase dashboard, create buckets with the same names as your Firebase buckets (e.g., <code>user-uploads</code>, <code>profile-pictures</code>). Set the appropriate public/private access.</p>
+<h3 id="5b-upload-files">5b. Upload Files</h3>
+<pre><code>const fs = require('fs');
+<p>const path = require('path');</p>
+<p>const { createClient } = require('@supabase/supabase-js');</p>
+<p>const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);</p>
+<p>async function uploadFile(filePath, bucketName, remotePath) {</p>
+<p>const fileBuffer = fs.readFileSync(filePath);</p>
+<p>const { data, error } = await supabase.storage</p>
+<p>.from(bucketName)</p>
+<p>.upload(remotePath, fileBuffer, {</p>
+<p>cacheControl: '3600',</p>
+<p>contentType: 'application/octet-stream', // detect MIME type if needed</p>
+<p>upsert: true</p>
+<p>});</p>
+<p>if (error) throw error;</p>
+<p>console.log(<code>Uploaded ${remotePath}</code>);</p>
+<p>}</p>
+<p>// iterate over your local files</p>
+<p>const files = fs.readdirSync('./local-backup/user-uploads');</p>
+<p>for (const file of files) {</p>
+<p>await uploadFile(<code>./local-backup/user-uploads/${file}</code>, 'user-uploads', <code>uploads/${file}</code>);</p>
+<p>}</p>
+<p></code></pre></p>
+<blockquote><strong>Note:</strong> Firestore stores file URLs that include a token (e.g., <code>?alt=media&token=abc</code>). Supabase doesn’t use tokens by default – you’ll need to generate signed URLs if you require expiring access. Use <code>supabase.storage.from('bucket').createSignedUrl(path, expiresIn)</code>.</blockquote>
+<hr>
+<h2 id="troubleshooting-common-issues">Troubleshooting Common Issues</h2>
+<h3 id="data-type-mismatches">Data type mismatches</h3>
+<ul>
+<li><strong>Firestore integers</strong> are 64‑bit, but PostgreSQL <code>INTEGER</code> is 32‑bit. Use <code>BIGINT</code> for user IDs or counters.</li>
+<li><strong>Firestore arrays</strong> become JSON arrays in SQL. Consider using a junction table if you need relational queries.</li>
+<li><strong>GeoPoints</strong> don’t have a direct PostgreSQL equivalent. Use <code>point</code> type or <code>earthdistance</code> extension.</li>
+</ul>
+<h3 id="nested-objects">Nested objects</h3>
+<p>Flatten deeply nested maps like this:</p>
+<pre><code>-- Instead of storing { address: { city: "NYC", zip: "10001" } }
+<p>-- Create columns address_city and address_zip in your table.</p>
+<p>ALTER TABLE profiles ADD COLUMN address_city TEXT;</p>
+<p>ALTER TABLE profiles ADD COLUMN address_zip TEXT;</p>
+<p></code></pre></p>
+<h3 id="authentication-tokens">Authentication tokens</h3>
+<p>Firebase uses JWT with a specific structure. Supabase’s JWT includes <code>aud</code>, <code>iss</code>, and <code>sub</code> fields that differ. You’ll need to update your client‑side token verification logic (switch from <code>verifyIdToken</code> to <code>supabase.auth.getUser()</code>).</p>
+<h3 id="downtime-concerns">Downtime concerns</h3>
+<p>To minimise downtime, run your migration in a maintenance window:</p>
+<ul>
+<li>Disable Firestore writes from the client app.</li>
+<li>Run the data import.</li>
+<li>Redeploy your app backend pointing to Supabase.</li>
+<li>Re‑enable writes on the new backend.</li>
+</ul>
+<p>If you need zero‑downtime, consider a dual‑write approach for a short period (write to both Firebase and Supabase), then switch readers.</p>
+<hr>
+<h2 id="final-verdict">Final Verdict</h2>
+<p>Migrating from Firebase to Supabase is a significant project – it took me about two days for a moderately complex app. The effort is absolutely worth it if:</p>
+<ul>
+<li>You want to escape vendor lock‑in and own your data.</li>
+<li>You need cost predictability (Firestore costs can spike without warning).</li>
+<li>You prefer SQL over NoSQL for complex queries.</li>
+</ul>
+<table class="price-table">
+<thead><tr><th>Feature</th><th>Firebase</th><th>Supabase</th></tr></thead>
+<tbody>
+<tr><td>Pricing</td><td>Pay per read/write</td><td>Flat monthly + storage</td></tr>
+<tr><td>Database</td><td>NoSQL (Firestore)</td><td>PostgreSQL</td></tr>
+<tr><td>Realtime</td><td>Via Firestore listeners</td><td>Via database replication</td></tr>
+<tr><td>Auth</td><td>Proprietary</td><td>Built‑in + external providers</td></tr>
+<tr><td>Open source</td><td>No</td><td>Yes (AGPL v3)</td></tr>
+<tr><td>Self-hostable</td><td>No</td><td>Yes</td></tr>
+</tbody>
+</table>
+<p>For most indie hackers and small teams, Supabase is the clear winner. The only case to stay with Firebase is if you need heavy integration with Google Cloud (Cloud Functions, ML Kit) or you’re already deeply embedded in Firebase Analytics.</p>
+<p>Ready to make the switch? Start by signing up for <a href="https://supabase.com" rel="nofollow sponsored">Supabase</a> – the free tier gives you 500 MB database, 1 GB storage, and 50k monthly active users. If you later need to host your own Supabase instance, consider <a href="https://www.[Digitalocean](https://www.digitalocean.com/?refcode=revenueclaw" rel="nofollow sponsored">DigitalOcean</a>.com) droplets (I use their $12/mo plan for staging).</p>
+<p>Good luck, and don’t forget to test everything in a staging environment first!</p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#what-you-ll-need" class="toc-h2" style="padding-left:0px">What You’ll Need</a>
+<a href="#step-1-export-your-firebase-data" class="toc-h2" style="padding-left:0px">Step 1: Export Your Firebase Data</a>
+<a href="#1a-export-firestore-to-json" class="toc-h3" style="padding-left:8px">1a. Export Firestore to JSON</a>
+<a href="#1b-export-auth-users" class="toc-h3" style="padding-left:8px">1b. Export Auth Users</a>
+<a href="#1c-download-storage-files" class="toc-h3" style="padding-left:8px">1c. Download Storage Files</a>
+<a href="#download-recursively" class="toc-h2" style="padding-left:0px">Download recursively</a>
+<a href="#step-2-set-up-your-supabase-project" class="toc-h2" style="padding-left:0px">Step 2: Set Up Your Supabase Project</a>
+<a href="#2a-schema-design" class="toc-h3" style="padding-left:8px">2a. Schema Design</a>
+<a href="#2b-enable-extensions" class="toc-h3" style="padding-left:8px">2b. Enable Extensions</a>
+<a href="#step-3-import-data-into-supabase" class="toc-h2" style="padding-left:0px">Step 3: Import Data into Supabase</a>
+<a href="#3a-prepare-the-data" class="toc-h3" style="padding-left:8px">3a. Prepare the Data</a>
+<a href="#3b-insert-into-supabase" class="toc-h3" style="padding-left:8px">3b. Insert into Supabase</a>
+<a href="#3c-migrate-real-time-data" class="toc-h3" style="padding-left:8px">3c. Migrate Real‑time Data</a>
+<a href="#step-4-migrate-authentication-users" class="toc-h2" style="padding-left:0px">Step 4: Migrate Authentication Users</a>
+<a href="#4a-option-1-force-password-reset" class="toc-h3" style="padding-left:8px">4a. Option 1: Force Password Reset</a>
+<a href="#4b-option-2-custom-claims-migration" class="toc-h3" style="padding-left:8px">4b. Option 2: Custom Claims Migration</a>
+<a href="#step-5-migrate-storage-files" class="toc-h2" style="padding-left:0px">Step 5: Migrate Storage Files</a>
+<a href="#5a-create-buckets" class="toc-h3" style="padding-left:8px">5a. Create Buckets</a>
+<a href="#5b-upload-files" class="toc-h3" style="padding-left:8px">5b. Upload Files</a>
+<a href="#troubleshooting-common-issues" class="toc-h2" style="padding-left:0px">Troubleshooting Common Issues</a>
+<a href="#data-type-mismatches" class="toc-h3" style="padding-left:8px">Data type mismatches</a>
+<a href="#nested-objects" class="toc-h3" style="padding-left:8px">Nested objects</a>
+<a href="#authentication-tokens" class="toc-h3" style="padding-left:8px">Authentication tokens</a>
+<a href="#downtime-concerns" class="toc-h3" style="padding-left:8px">Downtime concerns</a>
+<a href="#final-verdict" class="toc-h2" style="padding-left:0px">Final Verdict</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

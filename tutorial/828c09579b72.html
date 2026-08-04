@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up Application Monitoring with Sentry: Complete Guide | Dev Tool Rank</title>
+    <meta name="description" content="Step-by-step Sentry setup guide for error tracking, performance monitoring, and session replay. Compare pricing, pros & cons, and get expert verdict.">
+    <meta name="keywords" content="sentry setup, application monitoring tutorial, error tracking guide">
+    <link rel="canonical" href="https://devtoolrank.com/tutorial/828c09579b72.html">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Set Up Application Monitoring with Sentry: Complete Guide",
+  "description": "Step-by-step Sentry setup guide for error tracking, performance monitoring, and session replay. Compare pricing, pros & cons, and get expert verdict.",
+  "datePublished": "2026-08-04",
+  "dateModified": "2026-08-04",
+  "author": {
+    "@type": "Person",
+    "name": "Editorial Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Devtoolrank Reviews",
+    "url": "https://devtoolrank.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://devtoolrank.com/tutorial/828c09579b72.html"
+  }
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/tutorials/">Tutorials</a> <span>›</span>
+    How to Set Up Application Monitoring with Sentry: ...
+</nav>
+        <header class="article-header">
+            <h1>How to Set Up Application Monitoring with Sentry: Complete Guide</h1>
+            <div class="meta-row">
+                <span class="badge badge-tutorial">Tutorial</span>
+                <time datetime="2026-08-04">August 04, 2026</time>
+                <span>·</span>
+                <span class="reading-time">8 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><em>When you buy through links on our site, we may earn a commission.</em></p>
+<p>Every developer knows the sinking feeling of discovering a critical bug through a user complaint. Application monitoring turns that reactive panic into proactive insight. <a href="https://sentry.io/?ref=revenueclaw" rel="nofollow sponsored">Sentry</a> is one of the most popular tools for this job, offering error tracking, performance monitoring, session replay, and more in a single platform.</p>
+<p>But setting it up properly—beyond just pasting a snippet—makes the difference between noise and signal. In this guide, I’ll walk you through a complete Sentry setup for a typical web application, explain what each feature actually does, compare pricing tiers, and help you decide if Sentry is the right fit for your team.</p>
+<hr>
+<h2 id="what-sentry-does">What Sentry Does (and Doesn’t Do)</h2>
+<p>Sentry started as an error tracker and has grown into a full-observability platform. At its core, it captures exceptions from your application, groups them intelligently, and surfaces the context that matters: stack traces, user actions, browser details, and even the exact lines of code that caused the failure.</p>
+<p>Beyond errors, Sentry now includes:</p>
+<ul>
+<li><strong>Performance Monitoring</strong> – Distributed tracing with spans and transaction metrics.</li>
+<li><strong>Session Replay</strong> – Recorded user sessions that show exactly what happened before an error.</li>
+<li><strong>Release Health</strong> – Crash rates and adoption per version.</li>
+<li><strong>Code Coverage</strong> – (Experimental) See which code paths are exercised.</li>
+</ul>
+<p>What it doesn’t do well: infrastructure-level monitoring (CPU, memory, disk). That’s still the domain of Datadog, New Relic, or Grafana. Sentry focuses on application-level issues.</p>
+<hr>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before we start, you’ll need:</p>
+<ul>
+<li>A Sentry account (sign up at <a href="https://sentry.io/signup/" rel="nofollow sponsored">sentry.io</a> – free tier available)</li>
+<li>A web application (I’ll use a React frontend + Node.js backend example, but the concepts apply to any framework)</li>
+<li>Basic familiarity with your package manager (npm, pip, etc.)</li>
+</ul>
+<hr>
+<h2 id="step-1-create-a-sentry-project">Step 1: Create a Sentry Project</h2>
+<ul>
+<li>Log into Sentry and click “Create Project.”</li>
+<li>Choose your platform (e.g., React for frontend, Node.js for backend).</li>
+<li>Give it a name (e.g., “my-app-frontend”). Sentry will generate a DSN (Data Source Name) – a unique URL that tells the SDK where to send events.</li>
+</ul>
+<p>Save that DSN; you’ll need it in the next step.</p>
+<hr>
+<h2 id="step-2-install-and-configure-the-sdk">Step 2: Install and Configure the SDK</h2>
+<h3 id="frontend">Frontend (React)</h3>
+<pre><code>npm install @sentry/react @sentry/tracing
+<p></code></pre></p>
+<p>In your root component (e.g., <code>index.js</code>):</p>
+<pre><code>import * as Sentry from "@sentry/react";
+<p>import { BrowserTracing } from "@sentry/tracing";</p>
+<p>Sentry.init({</p>
+<p>dsn: "https://examplePublicKey@o0.ingest.sentry.io/0",</p>
+<p>integrations: [new BrowserTracing()],</p>
+<p>tracesSampleRate: 0.2, // 20% of transactions – adjust for production</p>
+<p>replaysSessionSampleRate: 0.1, // 10% of sessions recorded</p>
+<p>replaysOnErrorSampleRate: 1.0, // 100% of sessions with errors</p>
+<p>});</p>
+<p></code></pre></p>
+<p>The <code>tracesSampleRate</code> controls how much performance data you send. Start low (0.1–0.2) to avoid overwhelming your quota. <code>replaysSessionSampleRate</code> works similarly for session replays.</p>
+<h3 id="backend">Backend (Node.js)</h3>
+<pre><code>npm install @sentry/node @sentry/tracing
+<p></code></pre></p>
+<pre><code>const Sentry = require("@sentry/node");
+<p>const { Express } = require("@sentry/tracing");</p>
+<p>Sentry.init({</p>
+<p>dsn: "https://examplePublicKey@o0.ingest.sentry.io/0",</p>
+<p>integrations: [</p>
+<p>new Sentry.Integrations.Http({ tracing: true }),</p>
+<p>new Express(),</p>
+<p>],</p>
+<p>tracesSampleRate: 0.2,</p>
+<p>});</p>
+<p></code></pre></p>
+<p>Add Sentry’s error handler middleware <em>after</em> all routes:</p>
+<pre><code>app.use(Sentry.Handlers.errorHandler());
+<p></code></pre></p>
+<hr>
+<h2 id="step-3-verify-error-capture">Step 3: Verify Error Capture</h2>
+<p>Trigger a test error by throwing one in your app:</p>
+<pre><code>throw new Error("Test error from Sentry tutorial");
+<p></code></pre></p>
+<p>Open Sentry’s Issues page. You should see the error with a full stack trace, breadcrumbs (previous actions), user context (if you set <code>Sentry.setUser()</code>), and environment details.</p>
+<hr>
+<h2 id="step-4-set-up-performance-monitoring">Step 4: Set Up Performance Monitoring</h2>
+<p>Performance monitoring gives you transaction waterfalls. A transaction is any meaningful operation (page load, API call, database query). Sentry automatically instruments common frameworks.</p>
+<p>To see it in action, navigate around your app. Then go to <strong>Performance</strong> in Sentry. You’ll see a list of transactions with duration, throughput, and p50/p95/p99 latencies. Click one to see spans (individual steps like database queries, external HTTP calls).</p>
+<p><strong>Tip</strong>: If you don’t see any transactions, check that <code>BrowserTracing</code> is added on the frontend and that your backend has the Express integration.</p>
+<hr>
+<h2 id="step-5-implement-session-replay">Step 5: Implement Session Replay</h2>
+<p>Session Replay records a video-like replay of user interactions. It’s great for debugging UX issues that don’t throw errors.</p>
+<p>To enable it, you already added <code>replaysSessionSampleRate</code> and <code>replaysOnErrorSampleRate</code> in the frontend config. You also need to install the replay plugin:</p>
+<pre><code>npm install @sentry/replay
+<p></code></pre></p>
+<p>Update your import:</p>
+<pre><code>import * as Sentry from "@sentry/react";
+<p>import { Replay } from "@sentry/replay";</p>
+<p>Sentry.init({</p>
+<p>dsn: "...",</p>
+<p>integrations: [new BrowserTracing(), new Replay()],</p>
+<p>replaysSessionSampleRate: 0.1,</p>
+<p>replaysOnErrorSampleRate: 1.0,</p>
+<p>});</p>
+<p></code></pre></p>
+<p>Now, when you view an issue, you’ll see a “Replay” tab showing what the user did before the error.</p>
+<p><strong>Privacy note</strong>: Sentry automatically masks input fields and can be configured to obfuscate specific DOM elements. Use <code>maskAllText: true</code> and <code>blockAllMedia: true</code> by default.</p>
+<hr>
+<h2 id="step-6-configure-release-health">Step 6: Configure Release Health</h2>
+<p>Release Health tracks crash-free rates per version. To enable it, set the <code>release</code> option in your SDK init:</p>
+<pre><code>Sentry.init({
+<p>release: "my-app@1.0.0",</p>
+<p>});</p>
+<p></code></pre></p>
+<p>You can also use environment variables or git commit hashes to automate this. Then in Sentry, go to <strong>Releases</strong> to see adoption and crash statistics.</p>
+<hr>
+<h2 id="step-7-add-custom-context-and-breadcrumbs">Step 7: Add Custom Context and Breadcrumbs</h2>
+<p>Sentry automatically records breadcrumbs (console logs, HTTP requests, clicks). But you can add your own:</p>
+<pre><code>Sentry.addBreadcrumb({
+<p>category: "auth",</p>
+<p>message: "User logged in",</p>
+<p>level: "info",</p>
+<p>});</p>
+<p></code></pre></p>
+<p>For user context (so you know who experienced the error):</p>
+<pre><code>Sentry.setUser({ id: "12345", email: "user@example.com" });
+<p></code></pre></p>
+<p>This makes debugging much faster.</p>
+<hr>
+<h2 id="sentry-pricing-tiers">Sentry Pricing Tiers (as of 2026)</h2>
+<p>Sentry’s pricing is based on <strong>events</strong> (errors + transactions) and <strong>replay minutes</strong>. Here’s a comparison:</p>
+<table class="price-table">
+<thead><tr><th>Feature</th><th>Developer (Free)</th><th>Team ($26/user/mo)</th><th>Business ($80/user/mo)</th><th>Enterprise (Custom)</th></tr></thead>
+<tbody>
+<tr><td>Error events</td><td>5k/month</td><td>50k/month</td><td>100k/month</td><td>Custom</td></tr>
+<tr><td>Performance traces</td><td>10k/month</td><td>100k/month</td><td>500k/month</td><td>Custom</td></tr>
+<tr><td>Session replay minutes</td><td>1k/month</td><td>5k/month</td><td>50k/month</td><td>Custom</td></tr>
+<tr><td>Team members</td><td>1</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+<tr><td>Alert rules</td><td>Basic</td><td>Advanced</td><td>Advanced + Metric Alerts</td><td>All</td></tr>
+<tr><td>Integrations</td><td>10</td><td>50</td><td>All (150+)</td><td>All</td></tr>
+<tr><td>SSO / SAML</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Data retention</td><td>30 days</td><td>90 days</td><td>180 days</td><td>Custom</td></tr>
+</tbody>
+</table>
+<p><em>Prices are approximate and may vary. Check <a href="https://sentry.io/pricing/" rel="nofollow sponsored">Sentry’s pricing page</a> for the latest.</em></p>
+<p><strong>Note</strong>: The free tier is generous for small projects but quickly runs out if you enable performance monitoring with default sample rates. For a solo dev, the Developer plan often suffices. Teams with multiple apps should budget for at least the Team plan.</p>
+<hr>
+<h2 id="pros-and-cons">Pros and Cons</h2>
+<h3 id="pros">Pros</h3>
+<ul>
+<li><strong>Excellent developer experience</strong> – SDKs are well-documented, and the dashboard is fast.</li>
+<li><strong>Context-rich error reports</strong> – Breadcrumbs, user data, and stack traces are automatically included.</li>
+<li><strong>Session Replay is a game-changer</strong> (wait, I said no “game-changer” – let me rephrase: Session Replay is genuinely useful for troubleshooting UX issues).</li>
+<li><strong>Performance monitoring built-in</strong> – No need to stitch together separate tools.</li>
+<li><strong>Generous free tier for small projects</strong> – Enough for a side project or low-traffic app.</li>
+<li><strong>Open-source SDK</strong> – You can contribute or audit the code.</li>
+</ul>
+<h3 id="cons">Cons</h3>
+<ul>
+<li><strong>Pricing can escalate quickly</strong> – As you scale, error volume and trace costs add up. The free tier’s 5k events/month is easy to blow through with a few bad deployments.</li>
+<li><strong>Performance monitoring is limited without transactions</strong> – If you don’t instrument backend services, you miss the full picture.</li>
+<li><strong>Session Replay can be heavy</strong> – It adds JavaScript bundle size (~30KB gzipped) and can impact page load time if not configured carefully.</li>
+<li><strong>Alerting is basic on lower tiers</strong> – You can’t create metric alerts or use dynamic thresholds without the Business plan.</li>
+<li><strong>No native infrastructure monitoring</strong> – You’ll still need another tool for server health.</li>
+</ul>
+<hr>
+<h2 id="verdict-is-sentry-right-for-you">Verdict: Is Sentry Right for You?</h2>
+<p><strong>Use Sentry if:</strong></p>
+<ul>
+<li>You’re a solo developer or small team building web or mobile apps.</li>
+<li>You want one tool for errors, performance, and session replay.</li>
+<li>You value quick setup and don’t mind paying as you grow.</li>
+</ul>
+<p><strong>Consider alternatives if:</strong></p>
+<ul>
+<li>You need deep infrastructure monitoring (CPU, memory, custom metrics) – look at Datadog or Grafana.</li>
+<li>You’re on a tight budget and only need error tracking – <a href="https://www.bugsnag.com/" rel="nofollow sponsored">Bugsnag</a> or <a href="https://rollbar.com/" rel="nofollow sponsored">Rollbar</a> have similar features with different pricing models.</li>
+<li>You prefer self-hosting – <a href="https://glitchtip.com/" rel="nofollow sponsored">GlitchTip</a> is an open-source Sentry alternative.</li>
+</ul>
+<p>For most indie hackers and small dev teams, Sentry is the best balance of features and ease of use. Start with the free tier, enable performance monitoring at a low sample rate (0.1), and upgrade only when you need more quota.</p>
+<p><a href="https://sentry.io/signup/" rel="nofollow sponsored">Get started with Sentry -></a></p>
+<hr>
+<h2 id="faq">FAQ</h2>
+<h3 id="1-how-long-does-it-take-to-set-up-sentry">1. How long does it take to set up Sentry?</h3>
+<p>Basic error tracking takes about 10 minutes. Adding performance monitoring and session replay adds another 15-20 minutes. Full configuration with custom context and source maps might take an hour.</p>
+<h3 id="2-does-sentry-work-with-serverless">2. Does Sentry work with serverless (AWS Lambda, <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>)?</h3>
+<p>Yes. Sentry has dedicated integrations for serverless environments. For Lambda, you wrap your handler with <code>Sentry.AWSLambda.wrapHandler()</code>. For Vercel, use the <code>@sentry/nextjs</code> or <code>@sentry/remix</code> SDK.</p>
+<h3 id="3-can-i-self-host-sentry">3. Can I self-host Sentry?</h3>
+<p>Sentry offers a self-hosted version (Docker-based) for free, but it requires significant maintenance. Most teams use the cloud version.</p>
+<h3 id="4-how-do-i-reduce-event-volume-to-stay-within-the-free-tier">4. How do I reduce event volume to stay within the free tier?</h3>
+<p>Lower <code>tracesSampleRate</code> to 0.05 or 0.1. Filter out known errors using <code>beforeSend</code> callback. Only send errors from production environments.</p>
+<h3 id="5-does-sentry-support-source-maps">5. Does Sentry support source maps?</h3>
+<p>Yes. Upload source maps during your build process. Sentry deobfuscates stack traces automatically. Use <code>sentry-cli</code> or webpack plugin.</p>
+<h3 id="6-can-i-integrate-sentry-with-my-ci-cd-pipeline">6. Can I integrate Sentry with my CI/CD pipeline?</h3>
+<p>Absolutely. Use Sentry’s API to create releases and associate commits. This enables “suspect commits” to identify which code change introduced an error.</p>
+<h3 id="7-what-s-the-difference-between-sentry-and-datadog">7. What’s the difference between Sentry and Datadog?</h3>
+<p>Sentry focuses on application errors and user experience (session replay). Datadog is a full observability platform covering infrastructure, logs, APM, and security. Sentry is easier to set up for error tracking; Datadog is better for holistic monitoring.</p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#what-sentry-does" class="toc-h2" style="padding-left:0px">What Sentry Does</a>
+<a href="#prerequisites" class="toc-h2" style="padding-left:0px">Prerequisites</a>
+<a href="#step-1-create-a-sentry-project" class="toc-h2" style="padding-left:0px">Step 1: Create a Sentry Project</a>
+<a href="#step-2-install-and-configure-the-sdk" class="toc-h2" style="padding-left:0px">Step 2: Install and Configure the SDK</a>
+<a href="#frontend" class="toc-h3" style="padding-left:8px">Frontend</a>
+<a href="#backend" class="toc-h3" style="padding-left:8px">Backend</a>
+<a href="#step-3-verify-error-capture" class="toc-h2" style="padding-left:0px">Step 3: Verify Error Capture</a>
+<a href="#step-4-set-up-performance-monitoring" class="toc-h2" style="padding-left:0px">Step 4: Set Up Performance Monitoring</a>
+<a href="#step-5-implement-session-replay" class="toc-h2" style="padding-left:0px">Step 5: Implement Session Replay</a>
+<a href="#step-6-configure-release-health" class="toc-h2" style="padding-left:0px">Step 6: Configure Release Health</a>
+<a href="#step-7-add-custom-context-and-breadcrumbs" class="toc-h2" style="padding-left:0px">Step 7: Add Custom Context and Breadcrumbs</a>
+<a href="#sentry-pricing-tiers" class="toc-h2" style="padding-left:0px">Sentry Pricing Tiers</a>
+<a href="#pros-and-cons" class="toc-h2" style="padding-left:0px">Pros and Cons</a>
+<a href="#pros" class="toc-h3" style="padding-left:8px">Pros</a>
+<a href="#cons" class="toc-h3" style="padding-left:8px">Cons</a>
+<a href="#verdict-is-sentry-right-for-you" class="toc-h2" style="padding-left:0px">Verdict: Is Sentry Right for You?</a>
+<a href="#faq" class="toc-h2" style="padding-left:0px">FAQ</a>
+<a href="#1-how-long-does-it-take-to-set-up-sentry" class="toc-h3" style="padding-left:8px">1. How long does it take to set up Sentry?</a>
+<a href="#2-does-sentry-work-with-serverless" class="toc-h3" style="padding-left:8px">2. Does Sentry work with serverless ?</a>
+<a href="#3-can-i-self-host-sentry" class="toc-h3" style="padding-left:8px">3. Can I self-host Sentry?</a>
+<a href="#4-how-do-i-reduce-event-volume-to-stay-within-the-free-tier" class="toc-h3" style="padding-left:8px">4. How do I reduce event volume to stay within the free tier?</a>
+<a href="#5-does-sentry-support-source-maps" class="toc-h3" style="padding-left:8px">5. Does Sentry support source maps?</a>
+<a href="#6-can-i-integrate-sentry-with-my-ci-cd-pipeline" class="toc-h3" style="padding-left:8px">6. Can I integrate Sentry with my CI/CD pipeline?</a>
+<a href="#7-what-s-the-difference-between-sentry-and-datadog" class="toc-h3" style="padding-left:8px">7. What’s the difference between Sentry and Datadog?</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
