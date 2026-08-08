@@ -46,6 +46,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://devtoolrank.com/comparison/planetscale-vs-neon-vs-supabase-best-serverless-database.html</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://devtoolrank.com/best_of/10-best-developer-tools-indie-hackers.html</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -107,12 +113,6 @@
   </url>
   <url>
     <loc>https://devtoolrank.com/comparison/nextjs-vs-remix-vs-astro-best-react-framework.html</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/comparison/planetscale-vs-neon-vs-supabase-best-serverless-database.html</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
