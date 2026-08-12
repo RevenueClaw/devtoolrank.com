@@ -46,6 +46,30 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://devtoolrank.com/comparison/github-actions-vs-gitlab-ci-vs-circleci-best-cicd-pipeline</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/comparison/tailwind-css-vs-bootstrap-vs-chakra-ui-best-css-framework</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/tutorial/set-up-application-monitoring-sentry-complete-guide</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/review/nginx-review-2026-still-king-web-servers</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://devtoolrank.com/best_of/8-best-authentication-authorization-tools</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -112,12 +136,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/comparison/github-actions-vs-gitlab-ci-vs-circleci-best-cicd-pipeline</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/comparison/nextjs-vs-remix-vs-astro-best-react-framework</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -148,12 +166,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/comparison/tailwind-css-vs-bootstrap-vs-chakra-ui-best-css-framework</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/comparison/vercel-vs-netlify-vs-railway-best-hosting-indie-developers</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -161,12 +173,6 @@
   </url>
   <url>
     <loc>https://devtoolrank.com/guide/complete-guide-modern-developer-tools-2026-full-stack</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/review/nginx-review-2026-still-king-web-servers</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -239,12 +245,6 @@
   </url>
   <url>
     <loc>https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/tutorial/set-up-application-monitoring-sentry-complete-guide</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
