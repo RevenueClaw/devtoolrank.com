@@ -46,6 +46,30 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://devtoolrank.com/comparison/vercel-vs-netlify-vs-railway-best-hosting-indie-developers</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/best_of/10-best-web-hosting-services-developers</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/review/nginx-review-2026-still-king-web-servers</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/tutorial/set-up-cicd-github-actions-15-minutes</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://devtoolrank.com/comparison/github-actions-vs-gitlab-ci-vs-circleci-best-cicd-pipeline</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
@@ -58,14 +82,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/tutorial/set-up-application-monitoring-sentry-complete-guide</loc>
+    <loc>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</loc>
     <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/review/nginx-review-2026-still-king-web-servers</loc>
-    <lastmod>2026-08-10</lastmod>
+    <loc>https://devtoolrank.com/tutorial/set-up-application-monitoring-sentry-complete-guide</loc>
+    <lastmod>2026-08-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -89,12 +113,6 @@
   </url>
   <url>
     <loc>https://devtoolrank.com/best_of/10-best-developer-tools-indie-hackers</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/best_of/10-best-web-hosting-services-developers</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -166,12 +184,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/comparison/vercel-vs-netlify-vs-railway-best-hosting-indie-developers</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/guide/complete-guide-modern-developer-tools-2026-full-stack</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -185,12 +197,6 @@
   </url>
   <url>
     <loc>https://devtoolrank.com/review/railway-review-2026-developer-platform-makes-deployment-easy</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -245,12 +251,6 @@
   </url>
   <url>
     <loc>https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/tutorial/set-up-cicd-github-actions-15-minutes</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
