@@ -46,7 +46,19 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://devtoolrank.com/comparison/vercel-vs-netlify-vs-railway-best-hosting-indie-developers</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/review/railway-review-2026-developer-platform-makes-deployment-easy</loc>
     <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -196,12 +208,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/review/railway-review-2026-developer-platform-makes-deployment-easy</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/review/supabase-review-2026-open-source-firebase-alternative-ready-2</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -245,12 +251,6 @@
   </url>
   <url>
     <loc>https://devtoolrank.com/tutorial/implement-real-time-features-supabase-realtime-subscriptions</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
