@@ -46,6 +46,18 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://devtoolrank.com/best_of/top-5-cicd-tools-solo-developers</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/best_of/7-best-api-gateway-tools-microservices</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://devtoolrank.com/best_of/8-best-database-tools-saas-developers</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -160,19 +172,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/best_of/7-best-api-gateway-tools-microservices</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/best_of/9-best-monitoring-observability-tools-2026-compared</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/best_of/top-5-cicd-tools-solo-developers</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
