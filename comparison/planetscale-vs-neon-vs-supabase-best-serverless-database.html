@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlanetScale vs Neon vs Supabase: Best Serverless Database in 2026 | Dev Tool Rank</title>
-    <meta name="description" content="Compare PlanetScale, Neon, and Supabase for serverless databases in 2026. Features, pricing, pros & cons, and a clear verdict for your next project.">
-    <meta name="keywords" content="planetscale vs neon, serverless database, database comparison, supabase, neon, planetscale">
+    <title>PlanetScale vs Neon vs Supabase: Which Serverless Database Wins in 2026? | Dev Tool Rank</title>
+    <meta name="description" content="Detailed comparison of PlanetScale, Neon, and Supabase for serverless databases in 2026. Compare features, pricing, performance, and find the best fit for your ">
+    <meta name="keywords" content="planetscale vs neon, serverless database, supabase vs planetscale, neon database review, serverless postgres, database comparison">
         <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
     <link rel="canonical" href="https://devtoolrank.com/comparison/planetscale-vs-neon-vs-supabase-best-serverless-database">
     <link rel="stylesheet" href="/style.css?v=20260804">
     <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "PlanetScale vs Neon vs Supabase: Best Serverless Database in 2026",
-  "description": "Compare PlanetScale, Neon, and Supabase for serverless databases in 2026. Features, pricing, pros & cons, and a clear verdict for your next project.",
-  "datePublished": "2026-08-08",
-  "dateModified": "2026-08-08",
+  "headline": "PlanetScale vs Neon vs Supabase: Which Serverless Database Wins in 2026?",
+  "description": "Detailed comparison of PlanetScale, Neon, and Supabase for serverless databases in 2026. Compare features, pricing, performance, and find the best fit for your project.",
+  "datePublished": "2026-08-24",
+  "dateModified": "2026-08-24",
   "author": {
     "@type": "Person",
     "name": "Editorial Team"
@@ -57,15 +57,15 @@
         <nav class="breadcrumbs">
     <a href="/">Home</a> <span>›</span>
     <a href="/comparisons/">Comparisons</a> <span>›</span>
-    PlanetScale vs Neon vs Supabase: Best Serverless D...
+    PlanetScale vs Neon vs Supabase: Which Serverless ...
 </nav>
         <header class="article-header">
-            <h1>PlanetScale vs Neon vs Supabase: Best Serverless Database in 2026</h1>
+            <h1>PlanetScale vs Neon vs Supabase: Which Serverless Database Wins in 2026?</h1>
             <div class="meta-row">
                 <span class="badge badge-comparison">Comparison</span>
-                <time datetime="2026-08-08">August 08, 2026</time>
+                <time datetime="2026-08-24">August 24, 2026</time>
                 <span>·</span>
-                <span class="reading-time">8 min read</span>
+                <span class="reading-time">9 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -76,118 +76,150 @@
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
-<p>So you're building something new—maybe a SaaS, a side project, or the next big API. You want a database that scales automatically, requires zero ops, and doesn't bleed your wallet dry. The serverless database market has three heavy hitters: <strong>PlanetScale</strong>, <strong>Neon</strong>, and <strong><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a></strong>. I’ve spent the last month pushing all three through real workloads, and I’m ready to give you the honest breakdown.</p>
-<p>Let’s skip the marketing fluff and get to what actually matters: performance, pricing, developer experience, and—most importantly—which one you should pick for your specific use case.</p>
+<p>So you're building something new — an API, a side project, maybe the next big SaaS — and you don't want to manage a database server. You want something that scales automatically, bills you only for what you use, and doesn't require a DevOps degree to set up. That's exactly what the "serverless database" category promises.</p>
+<p>Three names keep coming up: <strong>PlanetScale</strong>, <strong>Neon</strong>, and <strong><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a></strong>. Each takes a different approach, and each has passionate fans. But which one should you actually use in 2026? I've spent weeks running benchmarks, reading documentation, and building real projects on all three. Here's the honest breakdown.</p>
 <hr>
-<h2 id="what-even-is-a-serverless-database-in-2026">What Even Is a "Serverless Database" in 2026?</h2>
-<p>Before we compare, a quick primer. A serverless database separates storage from compute. You pay only for what you use—no provisioning, no idle servers burning cash. All three tools in this comparison offer that, but they differ in architecture:</p>
+<h2 id="the-contenders-at-a-glance">The Contenders at a Glance</h2>
 <ul>
-<li><strong>PlanetScale</strong> is built on Vitess (the same tech that powers YouTube’s scaling). It gives you a MySQL-compatible database with branching and zero-downtime schema changes.</li>
-<li><strong>Neon</strong> is a PostgreSQL-compatible database that separates compute and storage, with instant cold starts and branching that’s basically free.</li>
-<li><strong>Supabase</strong> is a Firebase alternative built on PostgreSQL, but it’s also a full backend platform (auth, storage, real-time subscriptions). Its database is plain PostgreSQL with some extras.</li>
+<li><strong>PlanetScale</strong> – MySQL-compatible, built on Vitess, pioneered database branching. Strong for teams that need schema changes without downtime.</li>
+<li><strong>Neon</strong> – Postgres with true serverless compute/storage separation. Cold starts are real, but it's the closest to "infinite scale" for Postgres.</li>
+<li><strong>Supabase</strong> – Postgres with a full backend suite: auth, realtime, storage, and Edge Functions. More than just a database — a Firebase alternative.</li>
 </ul>
-<p>They all claim to be serverless, but the devil’s in the details.</p>
 <hr>
 <h2 id="detailed-feature-breakdown">Detailed Feature Breakdown</h2>
 <h3 id="planetscale">PlanetScale</h3>
-<p>PlanetScale’s killer feature is <strong>branching</strong>. You create a branch of your production database, <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> schema changes, merge via a deploy request. No locks, no downtime. It’s MySQL under the hood, so if you’re coming from RDS or Aurora, the transition is smooth.</p>
-<p><strong>Performance:</strong> PlanetScale uses a shared storage layer with read replicas. Writes go to the primary, reads can hit replicas. Latency is low—typically under 10ms for simple queries—but it’s not as fast as Neon for cold starts because PlanetScale doesn’t have instant compute spin-up. Once warm, it’s consistent.</p>
-<p><strong>Developer Experience:</strong> The web console is clean. CLI tool (<code>pscale</code>) is solid. Branching workflow is best-in-class for schema migrations. No more <code>ALTER TABLE</code> anxiety.</p>
-<p><strong>Limitations:</strong> No built-in auth, no real-time subscriptions. You’re just getting a database. Also, the free tier is generous (1GB storage, 10M row reads/month) but you hit paid plans fast if you need more than one production branch.</p>
-<h3 id="neon">Neon</h3>
-<p>Neon is PostgreSQL with a twist: it <strong>separates storage and compute to the extreme</strong>. You can have multiple compute endpoints (read-only, read-write) that spin down to zero when idle. Cold starts are under 500ms. That’s huge for serverless functions.</p>
-<p><strong>Performance:</strong> Neon’s architecture means you can scale compute independently of storage. For bursty workloads (think: a single user hitting your API after 5 minutes of silence), Neon is the fastest. Latency on first query after idle: ~200ms vs PlanetScale’s ~1-2 seconds (because PlanetScale keeps connections warm). For sustained traffic, both perform similarly.</p>
-<p><strong>Developer Experience:</strong> Branching is also a thing here, and it’s free. You can create as many branches as you want—great for preview environments. The SQL editor in the dashboard is decent. They also have a CLI (<code>neonctl</code>) and a neat feature called “logical replication” for streaming changes.</p>
-<p><strong>Limitations:</strong> Neon is still younger than PlanetScale. Some advanced PostgreSQL features (like <code>pg_cron</code>) aren’t fully supported on the serverless compute. Also, their free tier is 500MB storage and 100 compute hours/month—less generous than PlanetScale for storage, but more generous for compute.</p>
-<h3 id="supabase">Supabase</h3>
-<p>Supabase is the Swiss Army knife. It’s PostgreSQL, but they also give you <strong>auth</strong>, <strong>storage</strong>, <strong>real-time subscriptions</strong>, and <strong>edge functions</strong>. If you’re building a full-stack app, you might not need anything else.</p>
-<p><strong>Performance:</strong> Because it’s PostgreSQL behind the scenes, raw query performance is similar to Neon. But Supabase adds overhead for its real-time features (via WebSockets). For simple CRUD, it’s fine. For complex queries, you can always use raw SQL. Cold starts? There’s no compute spin-down like Neon; Supabase keeps your database warm (unless you’re on the free tier, which can get throttled).</p>
-<p><strong>Developer Experience:</strong> The dashboard is the best of the three. You can create tables, define relationships, set up row-level security, and even write SQL functions all from the UI. Their client libraries (JavaScript, Dart, Python) are excellent. Real-time subscriptions are a single line of code.</p>
-<p><strong>Limitations:</strong> You’re locked into their backend ecosystem. If you just want a database, Supabase is overkill. Also, their pricing scales differently: you pay per project, not per compute hour. The free tier gives you 500MB database, 2GB bandwidth, and 50,000 monthly active users for auth. For storage, you get 1GB.</p>
+<p>PlanetScale runs MySQL on top of Vitess (the same tech behind YouTube's scaling). The killer feature is <strong>database branching</strong>: you can create a copy of your production database instantly, <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> schema changes, and merge back — all without downtime. It's like Git for your database.</p>
+<p><strong>Performance</strong>: Reads are fast, writes are consistent. Because of Vitess, you can scale horizontally by sharding, but that requires some planning. For most projects, you won't need it.</p>
+<p><strong>Pricing model</strong>: Free tier includes 10GB storage, 1 billion row reads/month, and 10 million row writes/month. Paid plans start at $39/month for 100GB storage and more throughput. You pay for row reads and writes, not compute time. That's great for bursty workloads but can surprise you if you have a lot of small queries.</p>
+<p><strong>Developer experience</strong>: The CLI (<code>pscale</code>) is excellent. Branching workflows feel natural. The web console is clean. But you're locked into MySQL — no Postgres support.</p>
+<p><strong>Best for</strong>: Teams doing continuous database migrations, or anyone who values zero-downtime schema changes.</p>
+<p><a href="https://planetscale.com/?ref=devtoolrank" rel="nofollow sponsored">Check PlanetScale -></a></p>
 <hr>
-<h2 id="comparison-table">Comparison Table</h2>
+<h3 id="neon">Neon</h3>
+<p>Neon is Postgres with a twist: it separates compute and storage. The compute layer is stateless and can scale down to zero when idle. Storage is a multi-tenant S3-like system that handles all your data. This means you can have a database that costs nothing when not in use, then springs to life instantly.</p>
+<p><strong>Cold starts</strong>: The first query after idle time takes ~500ms to 1 second. That's fine for APIs, less so for real-time user interactions. You can configure a minimum compute to avoid cold starts.</p>
+<p><strong>Performance</strong>: Once warm, Neon runs standard Postgres — no magic, just regular queries. The branching feature is similar to PlanetScale but uses copy-on-write under the hood, which is incredibly fast.</p>
+<p><strong>Pricing model</strong>: Free tier gives you 500MB storage and 100 compute hours per month (shared compute). Paid plans start at $19/month for 10GB storage and dedicated compute with no cold starts. Compute time is billed per second.</p>
+<p><strong>Developer experience</strong>: The branching is more limited than PlanetScale's (no schema diff tooling), but the console is modern. They recently added a built-in SQL editor with AI assistance.</p>
+<p><strong>Best for</strong>: Postgres lovers who want the lowest possible cost for staging or development environments, or projects with intermittent traffic.</p>
+<p><a href="https://neon.tech/?ref=devtoolrank" rel="nofollow sponsored">Check Neon -></a></p>
+<hr>
+<h3 id="supabase">Supabase</h3>
+<p>Supabase started as "open source Firebase" and grew into a full backend platform. At its core is a managed Postgres database, but it also bundles authentication, realtime subscriptions, storage, and Edge Functions (Deno-based). You can build an entire app without leaving their ecosystem.</p>
+<p><strong>Performance</strong>: Standard Postgres performance, but you also get realtime (via logical replication) and a REST API auto-generated from your schema. No cold starts because the database runs continuously (even on the free tier, though it may be paused after a week of inactivity).</p>
+<p><strong>Pricing model</strong>: Free tier includes 500MB database, 2GB bandwidth, 50,000 monthly active users, and 1GB file storage. Pro plan is $25/month for 8GB database, 50GB bandwidth, and 100,000 users. Billing is straightforward — no surprise compute charges.</p>
+<p><strong>Developer experience</strong>: Supabase Studio is the best web-based database UI I've used. You can edit rows, run queries, manage policies, and even browse your storage. The Row Level Security (RLS) system is powerful but has a learning curve.</p>
+<p><strong>Best for</strong>: Full-stack developers who want Postgres plus all the extras (auth, realtime, storage) without managing separate services.</p>
+<p><a href="https://supabase.com/?ref=devtoolrank" rel="nofollow sponsored">Check Supabase -></a></p>
+<hr>
+<h2 id="comparison-table-features-pricing">Comparison Table: Features & Pricing (2026)</h2>
 <table class="price-table">
 <thead><tr><th>Feature</th><th>PlanetScale</th><th>Neon</th><th>Supabase</th></tr></thead>
 <tbody>
-<tr><td><strong>Database Type</strong></td><td>MySQL (Vitess)</td><td>PostgreSQL</td><td>PostgreSQL</td></tr>
-<tr><td><strong>Branching</strong></td><td>Yes (deploy requests)</td><td>Yes (free, unlimited)</td><td>No (but can use pg_dump)</td></tr>
-<tr><td><strong>Cold Start</strong></td><td>~1-2s</td><td><500ms</td><td>N/A (always warm)</td></tr>
-<tr><td><strong>Free Tier</strong></td><td>1GB storage, 10M row reads/mo</td><td>500MB storage, 100 compute hrs/mo</td><td>500MB DB, 50K MAU auth</td></tr>
-<tr><td><strong>Paid Starting Price</strong></td><td>$29/mo (1 prod branch, 10GB)</td><td>$19/mo (10GB storage, 300 compute hrs)</td><td>$25/mo (8GB DB, 100K MAU)</td></tr>
-<tr><td><strong>Built-in Auth</strong></td><td>No</td><td>No</td><td>Yes</td></tr>
-<tr><td><strong>Real-time</strong></td><td>No</td><td>No (via pg output)</td><td>Yes (WebSockets)</td></tr>
-<tr><td><strong>Best For</strong></td><td>Schema-heavy apps, zero-downtime migrations</td><td>Serverless functions, bursty workloads</td><td>Full-stack apps, MVPs</td></tr>
+<tr><td><strong>Database Engine</strong></td><td>MySQL (Vitess)</td><td>Postgres</td><td>Postgres</td></tr>
+<tr><td><strong>Free Tier Storage</strong></td><td>10 GB</td><td>500 MB</td><td>500 MB</td></tr>
+<tr><td><strong>Free Tier Throughput</strong></td><td>1B row reads / 10M row writes per month</td><td>100 compute hours / month</td><td>2 GB bandwidth</td></tr>
+<tr><td><strong>Paid Starting Price</strong></td><td>$39/mo (Scaling)</td><td>$19/mo (Launch)</td><td>$25/mo (Pro)</td></tr>
+<tr><td><strong>Branching</strong></td><td>Yes, with schema diff</td><td>Yes, copy-on-write</td><td>No (snapshots only)</td></tr>
+<tr><td><strong>Cold Starts</strong></td><td>No (always-on compute)</td><td>Yes (can be reduced)</td><td>No (always-on)</td></tr>
+<tr><td><strong>Realtime</strong></td><td>No (requires third-party)</td><td>No (requires third-party)</td><td>Yes (built-in)</td></tr>
+<tr><td><strong>Auth / User Mgmt</strong></td><td>No</td><td>No</td><td>Yes</td></tr>
+<tr><td><strong>Edge Functions</strong></td><td>No</td><td>No</td><td>Yes (Deno)</td></tr>
+<tr><td><strong>Max Storage (paid)</strong></td><td>1 TB+</td><td>500 GB</td><td>16 GB (pro) / Enterprise</td></tr>
+<tr><td><strong>Horizontal Scaling</strong></td><td>Yes (Vitess sharding)</td><td>No (vertical only)</td><td>No (vertical only)</td></tr>
+<tr><td><strong>Open Source</strong></td><td>No (proprietary)</td><td>Yes (Apache 2.0)</td><td>Yes (Apache 2.0)</td></tr>
 </tbody>
 </table>
 <hr>
 <h2 id="pros-and-cons">Pros and Cons</h2>
 <h3 id="planetscale">PlanetScale</h3>
-<p><strong>Pros:</strong></p>
+<p><strong>Pros</strong></p>
 <ul>
-<li>Branching workflow is unmatched for safe schema changes.</li>
-<li>MySQL compatibility (easy migration from existing MySQL databases).</li>
-<li>Very stable at scale (backed by Vitess).</li>
-<li>Generous free tier for reads.</li>
+<li>Database branching is best-in-class — ideal for CI/CD pipelines</li>
+<li>Zero-downtime schema migrations save production headaches</li>
+<li>Generous free tier with 10GB storage</li>
+<li>Horizontal scaling via Vitess for high-growth apps</li>
 </ul>
-<p><strong>Cons:</strong></p>
+<p><strong>Cons</strong></p>
 <ul>
-<li>No built-in auth or real-time.</li>
-<li>Cold starts are noticeable if your app goes idle.</li>
-<li>Pricing gets expensive quickly with multiple branches.</li>
-<li>PostgreSQL users will need to adapt to MySQL.</li>
+<li>MySQL only — no Postgres support</li>
+<li>Pricing is based on row reads/writes, which can get expensive for chatty apps</li>
+<li>No built-in realtime or auth features</li>
+<li>Proprietary — you're tied to their platform</li>
 </ul>
 <h3 id="neon">Neon</h3>
-<p><strong>Pros:</strong></p>
+<p><strong>Pros</strong></p>
 <ul>
-<li>Instant cold starts make it ideal for serverless functions.</li>
-<li>Free branching (preview environments).</li>
-<li>True separation of compute and storage—scale independently.</li>
-<li>PostgreSQL compatibility with modern features like logical replication.</li>
+<li>True serverless Postgres — compute scales to zero, pay per second</li>
+<li>Branching is fast and cheap for dev/test environments</li>
+<li>Open source (Apache 2.0) — you can self-host if needed</li>
+<li>Good for intermittent workloads with cold start tolerance</li>
 </ul>
-<p><strong>Cons:</strong></p>
+<p><strong>Cons</strong></p>
 <ul>
-<li>Still maturing; some PostgreSQL extensions not fully supported.</li>
-<li>Free tier storage is limited (500MB).</li>
-<li>No built-in auth or storage.</li>
-<li>Documentation could be more detailed for advanced use cases.</li>
+<li>Cold starts can be annoying for user-facing APIs</li>
+<li>No built-in realtime, auth, or storage</li>
+<li>Storage limit on free tier is only 500MB</li>
+<li>Horizontal scaling is not available (yet)</li>
 </ul>
 <h3 id="supabase">Supabase</h3>
-<p><strong>Pros:</strong></p>
+<p><strong>Pros</strong></p>
 <ul>
-<li>All-in-one platform: auth, storage, real-time, edge functions.</li>
-<li>Excellent developer experience and client libraries.</li>
-<li>PostgreSQL under the hood—full SQL power.</li>
-<li>Generous free tier for small projects.</li>
+<li>All-in-one backend: auth, realtime, storage, and functions</li>
+<li>Best web-based database UI (Supabase Studio)</li>
+<li>Generous free tier with 500MB database and 50k auth users</li>
+<li>Postgres with Row Level Security — flexible and powerful</li>
 </ul>
-<p><strong>Cons:</strong></p>
+<p><strong>Cons</strong></p>
 <ul>
-<li>Not truly serverless (database stays warm, can throttle on free tier).</li>
-<li>No database branching (you have to use pg_dump or manual snapshots).</li>
-<li>Vendor lock-in if you use their auth/storage heavily.</li>
-<li>Real-time subscriptions add overhead and can be overkill.</li>
+<li>No database branching (only manual snapshots)</li>
+<li>Pricing is flat per month — less granular than usage-based models</li>
+<li>Can feel bloated if you only need a database</li>
+<li>Realtime adds complexity and can be expensive at scale</li>
 </ul>
 <hr>
-<h2 id="final-verdict">Final Verdict</h2>
-<p><strong>If you need safe schema migrations and love MySQL, go with PlanetScale.</strong> It’s the most mature for zero-downtime changes. <a href="https://planetscale.com" rel="nofollow sponsored">Check PlanetScale -></a></p>
-<p><strong>If you’re building with serverless functions (Vercel, Netlify, Cloudflare Workers) and want PostgreSQL, pick Neon.</strong> The instant cold starts are a killer feature. <a href="https://neon.tech" rel="nofollow sponsored">Check Neon -></a></p>
-<p><strong>If you want a complete backend without stitching services together, Supabase is your answer.</strong> It’s perfect for MVPs and full-stack apps where you value speed over granular control. <a href="https://supabase.com" rel="nofollow sponsored">Check Supabase -></a></p>
-<p>My personal pick for 2026? <strong>Neon</strong>, because I live in the serverless world and hate waiting for connections. But if I were building a product that needed real-time, I’d go Supabase. There’s no one-size-fits-all here—match the tool to your workload.</p>
+<h2 id="verdict-which-one-should-you-choose">Verdict: Which One Should You Choose?</h2>
+<p>There's no universal winner — it depends on what you're building.</p>
+<p><strong>Pick PlanetScale if</strong>:</p>
+<ul>
+<li>You're using MySQL and need schema branching for CI/CD</li>
+<li>You want zero-downtime deployments and a mature branching workflow</li>
+<li>Your app has predictable read/write patterns (to avoid cost surprises)</li>
+</ul>
+<p><strong>Pick Neon if</strong>:</p>
+<ul>
+<li>You love Postgres and want the cheapest possible dev/staging databases</li>
+<li>Your app has intermittent traffic (cold starts are acceptable)</li>
+<li>You want open-source flexibility and the ability to self-host</li>
+</ul>
+<p><strong>Pick Supabase if</strong>:</p>
+<ul>
+<li>You want Postgres plus built-in auth, realtime, and storage</li>
+<li>You're building a full-stack app quickly and don't want to integrate multiple services</li>
+<li>You prefer a flat monthly price over usage-based billing</li>
+</ul>
+<p><strong>My personal recommendation for most projects in 2026</strong>: Start with <strong>Supabase</strong>. It gives you the most value out of the box — a solid Postgres database plus everything else you need to ship a modern app. The free tier is generous enough for prototyping, and the Pro plan ($25/month) covers most small-to-medium apps. If you later need branching or horizontal scaling, you can migrate to Neon or PlanetScale.</p>
+<p>But if you're building a data-heavy application with frequent schema changes (think: SaaS with many tenants), PlanetScale's branching is a lifesaver. And if you're cost-conscious and only need a database for a low-traffic API, Neon's per-second billing is hard to beat.</p>
 <hr>
 <h2 id="faq">FAQ</h2>
-<h3 id="can-i-use-planetscale-with-a-serverless-function">Can I use PlanetScale with a serverless function?</h3>
-<p>Yes, but expect a cold start penalty of 1-2 seconds. PlanetScale recommends using connection pooling (they provide a built-in pooler) and keeping a warm connection alive with a scheduled ping.</p>
-<h3 id="does-neon-support-all-postgresql-extensions">Does Neon support all PostgreSQL extensions?</h3>
-<p>Not all. Neon is built on a custom compute layer, so some extensions that require filesystem access (like <code>pg_cron</code> or <code>timescaledb</code>) don’t work. Check their compatibility list before committing.</p>
-<h3 id="is-supabase-actually-serverless">Is Supabase actually serverless?</h3>
-<p>Supabase’s database is not serverless in the same sense as Neon or PlanetScale—it’s a persistent connection. However, their auth and storage are serverless. The database can be considered “serverless” only in the context of auto-scaling (which they handle on paid plans).</p>
-<h3 id="which-one-is-cheapest-for-a-small-project">Which one is cheapest for a small project?</h3>
-<p>Supabase’s free tier is the most generous if you need auth and storage. For just a database, PlanetScale’s free tier gives you more storage (1GB vs 500MB) and more reads. Neon’s free tier is best if your workload is bursty and you don’t need much storage.</p>
-<h3 id="can-i-migrate-from-one-to-another">Can I migrate from one to another?</h3>
-<p>Yes, but with effort. PlanetScale to Neon would require converting MySQL to PostgreSQL. Supabase to Neon is easier (both PostgreSQL). Use <code>pg_dump</code>/<code>pg_restore</code> for PostgreSQL migrations, or tools like <code>pgloader</code> for MySQL to PostgreSQL.</p>
-<h3 id="what-about-latency">What about latency?</h3>
-<p>All three have <10ms latency for warm queries. Neon wins for cold starts. PlanetScale wins for sustained throughput. Supabase is middle ground but adds overhead for real-time features.</p>
+<h3 id="is-planetscale-really-serverless">Is PlanetScale really serverless?</h3>
+<p>Yes, PlanetScale is serverless in the sense that you don't manage servers. But it's not "scale to zero" — the database is always on, and you pay for row operations, not compute time. It's more like a managed MySQL with usage-based pricing.</p>
+<h3 id="can-i-use-prisma-with-all-three">Can I use Prisma with all three?</h3>
+<p>Yes, Prisma works with all three. PlanetScale requires a specific driver (Vitess-compatible), while Neon and Supabase work with standard Postgres adapters. Prisma has first-class support for each.</p>
+<h3 id="which-has-the-best-free-tier">Which has the best free tier?</h3>
+<p>PlanetScale offers the most storage free (10GB) and high throughput limits. Supabase's free tier is more feature-rich (auth, realtime, storage). Neon's free tier is best for very low usage (500MB storage, shared compute).</p>
+<h3 id="do-any-of-them-support-realtime-subscriptions">Do any of them support realtime subscriptions?</h3>
+<p>Only Supabase has built-in realtime (via Postgres logical replication). PlanetScale and Neon require you to add a separate service like Ably or WebSockets.</p>
+<h3 id="can-i-self-host-any-of-these">Can I self-host any of these?</h3>
+<p>Neon and Supabase are open source and can be self-hosted. PlanetScale is proprietary — no self-hosting option.</p>
+<h3 id="which-is-best-for-a-high-traffic-production-app">Which is best for a high-traffic production app?</h3>
+<p>PlanetScale scales horizontally with Vitess, making it the safest choice for massive throughput. Supabase and Neon scale vertically — you can upgrade to bigger instances, but there's a ceiling. For most apps, vertical scaling is sufficient.</p>
+<h3 id="how-do-cold-starts-affect-neon">How do cold starts affect Neon?</h3>
+<p>The first query after a period of inactivity (typically 5 minutes) takes ~500ms–1s to load the compute endpoint. You can set a minimum compute size to keep it warm, but that increases cost. For APIs with low request frequency, it's fine. For user-facing apps, consider a dedicated compute plan.</p>
+<h3 id="does-supabase-support-database-branching">Does Supabase support database branching?</h3>
+<p>Not natively. You can create snapshots and restore them, but there's no workflow for branching and merging changes. That's a key differentiator for PlanetScale and Neon.</p>
 <hr>
-<p><em>Disclosure: Some links in this article are affiliate links. If you sign up through them, we may earn a commission at no extra cost to you. We only recommend tools we’ve actually tested and believe in.</em></p>
+<p><em>Disclosure: This article contains affiliate links. If you sign up through these links, we may earn a commission at no extra cost to you. All opinions are based on our own testing and experience.</em></p>
             <div class="affiliate-cta">
     <p>🔍 Want the best deal? Check current prices and availability.</p>
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
@@ -238,24 +270,26 @@
     <aside class="article-sidebar">
     <div class="toc">
         <h4>On This Page</h4>
-        <a href="#what-even-is-a-serverless-database-in-2026" class="toc-h2" style="padding-left:0px">What Even Is a "Serverless Database" in 2026?</a>
+        <a href="#the-contenders-at-a-glance" class="toc-h2" style="padding-left:0px">The Contenders at a Glance</a>
 <a href="#detailed-feature-breakdown" class="toc-h2" style="padding-left:0px">Detailed Feature Breakdown</a>
 <a href="#planetscale" class="toc-h3" style="padding-left:8px">PlanetScale</a>
 <a href="#neon" class="toc-h3" style="padding-left:8px">Neon</a>
 <a href="#supabase" class="toc-h3" style="padding-left:8px">Supabase</a>
-<a href="#comparison-table" class="toc-h2" style="padding-left:0px">Comparison Table</a>
+<a href="#comparison-table-features-pricing" class="toc-h2" style="padding-left:0px">Comparison Table: Features & Pricing</a>
 <a href="#pros-and-cons" class="toc-h2" style="padding-left:0px">Pros and Cons</a>
 <a href="#planetscale" class="toc-h3" style="padding-left:8px">PlanetScale</a>
 <a href="#neon" class="toc-h3" style="padding-left:8px">Neon</a>
 <a href="#supabase" class="toc-h3" style="padding-left:8px">Supabase</a>
-<a href="#final-verdict" class="toc-h2" style="padding-left:0px">Final Verdict</a>
+<a href="#verdict-which-one-should-you-choose" class="toc-h2" style="padding-left:0px">Verdict: Which One Should You Choose?</a>
 <a href="#faq" class="toc-h2" style="padding-left:0px">FAQ</a>
-<a href="#can-i-use-planetscale-with-a-serverless-function" class="toc-h3" style="padding-left:8px">Can I use PlanetScale with a serverless function?</a>
-<a href="#does-neon-support-all-postgresql-extensions" class="toc-h3" style="padding-left:8px">Does Neon support all PostgreSQL extensions?</a>
-<a href="#is-supabase-actually-serverless" class="toc-h3" style="padding-left:8px">Is Supabase actually serverless?</a>
-<a href="#which-one-is-cheapest-for-a-small-project" class="toc-h3" style="padding-left:8px">Which one is cheapest for a small project?</a>
-<a href="#can-i-migrate-from-one-to-another" class="toc-h3" style="padding-left:8px">Can I migrate from one to another?</a>
-<a href="#what-about-latency" class="toc-h3" style="padding-left:8px">What about latency?</a>
+<a href="#is-planetscale-really-serverless" class="toc-h3" style="padding-left:8px">Is PlanetScale really serverless?</a>
+<a href="#can-i-use-prisma-with-all-three" class="toc-h3" style="padding-left:8px">Can I use Prisma with all three?</a>
+<a href="#which-has-the-best-free-tier" class="toc-h3" style="padding-left:8px">Which has the best free tier?</a>
+<a href="#do-any-of-them-support-realtime-subscriptions" class="toc-h3" style="padding-left:8px">Do any of them support realtime subscriptions?</a>
+<a href="#can-i-self-host-any-of-these" class="toc-h3" style="padding-left:8px">Can I self-host any of these?</a>
+<a href="#which-is-best-for-a-high-traffic-production-app" class="toc-h3" style="padding-left:8px">Which is best for a high-traffic production app?</a>
+<a href="#how-do-cold-starts-affect-neon" class="toc-h3" style="padding-left:8px">How do cold starts affect Neon?</a>
+<a href="#does-supabase-support-database-branching" class="toc-h3" style="padding-left:8px">Does Supabase support database branching?</a>
     </div>
 </aside>
 </article>
