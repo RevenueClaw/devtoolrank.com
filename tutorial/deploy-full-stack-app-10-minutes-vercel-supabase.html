@@ -84,8 +84,8 @@
 <ul>
 <li><strong>Node.js 18+</strong> and npm installed</li>
 <li><strong>A GitHub account</strong> (free)</li>
-<li><strong>A Vercel account</strong> – sign up at <a href="https://vercel.com?ref=devtoolrank" rel="nofollow sponsored">vercel.com</a> (free tier is generous)</li>
-<li><strong>A Supabase account</strong> – sign up at <a href="https://supabase.com?ref=devtoolrank" rel="nofollow sponsored">supabase.com</a> (free tier includes 500 MB database, 50k users, and real-time)</li>
+<li><strong>A <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a> account</strong> – sign up at <a href="https://[Vercel](https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">vercel.com</a>.com?ref=devtoolrank) (free tier is generous)</li>
+<li><strong>A <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> account</strong> – sign up at <a href="https://[Supabase](https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">supabase.com</a>.com?ref=devtoolrank) (free tier includes 500 MB database, 50k users, and real-time)</li>
 <li>Basic familiarity with React or Next.js (we’ll use Next.js, but the same steps apply to any framework Vercel supports)</li>
 </ul>
 <p>If you don’t have a project ready, I’ll show you how to scaffold one in step 1.</p>
@@ -264,11 +264,11 @@
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>Even with a smooth setup, you might hit a few snags. Here are the common ones and how to fix them.</p>
 <h3 id="401-unauthorized-when-fetching-data">“401 Unauthorized” when fetching data</h3>
-<p>This usually means Row Level Security is blocking the query because the user isn’t authenticated. Make sure you’re passing the session properly. In the App Router, use <code>createServerComponentClient</code> from <code>@supabase/auth-helpers-nextjs</code> for server components, and <code>createClientComponentClient</code> for client components.</p>
+<p>This usually means Row Level Security is blocking the query because the user isn’t authenticated. <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure you’re passing the session properly. In the App Router, use <code>createServerComponentClient</code> from <code>@supabase/auth-helpers-nextjs</code> for server components, and <code>createClientComponentClient</code> for client components.</p>
 <h3 id="magic-link-doesn-t-work">Magic link doesn’t work</h3>
 <p>Check that the redirect URL in Supabase Auth settings includes <code>https://your-app.vercel.app/auth/callback</code>. Also verify that the <code>NEXT_PUBLIC_SITE_URL</code> environment variable in Vercel is set to your production URL.</p>
 <h3 id="cors-errors">CORS errors</h3>
-<p>Supabase’s API allows requests from any origin by default, but if you’re using a custom domain, make sure the domain is added in Supabase’s Authentication settings under <strong>Site URL</strong>.</p>
+<p>Supabase’s API allows requests from any origin by default, but if you’re using a custom domain, <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure the domain is added in Supabase’s Authentication settings under <strong>Site URL</strong>.</p>
 <h3 id="build-fails-on-vercel">Build fails on Vercel</h3>
 <p>Most often it’s a missing environment variable. Double-check that both <code>NEXT_PUBLIC_SUPABASE_URL</code> and <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> are set in the Vercel project settings. Also ensure your TypeScript compiles without errors locally.</p>
 <hr>
@@ -361,6 +361,15 @@
 
     <footer class="site-footer">
         <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
             <div class="footer-nav">
                 <a href="/">Home</a>
                 <a href="/comparisons/">Comparisons</a>

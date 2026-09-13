@@ -248,7 +248,7 @@
 <p>By default, Route Handlers run on the Node.js runtime. You can opt into the Edge runtime by exporting a <code>runtime</code> config:</p>
 <pre><code>export const runtime = "edge"; // or "nodejs"
 <p></code></pre></p>
-<p>Edge runtime is faster (deploys to Vercel’s edge network) but has constraints: no <code>Buffer</code>, no <code>process.env</code> at runtime (use <code>process.env</code> at build time or <code>NextRequest</code>’s <code>geo</code> and <code>ip</code>), and limited Node.js APIs. For most CRUD APIs, Node.js runtime is fine. Use Edge when you need global low latency for read-heavy endpoints.</p>
+<p>Edge runtime is faster (deploys to <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>’s edge network) but has constraints: no <code>Buffer</code>, no <code>process.env</code> at runtime (use <code>process.env</code> at build time or <code>NextRequest</code>’s <code>geo</code> and <code>ip</code>), and limited Node.js APIs. For most CRUD APIs, Node.js runtime is fine. Use Edge when you need global low latency for read-heavy endpoints.</p>
 <hr>
 <h2 id="comparison-route-handlers-vs-other-api-approaches">Comparison: Route Handlers vs Other API Approaches</h2>
 <table class="price-table">
@@ -262,7 +262,7 @@
 <tr><td><strong>Typed request/response</strong></td><td>Web API (Request/Response)</td><td>Express req/res</td><td>IncomingMessage/ServerResponse</td></tr>
 <tr><td><strong>Authentication libraries</strong></td><td>NextAuth.js, Clerk, custom</td><td>Passport, JWT</td><td>NextAuth.js, custom</td></tr>
 <tr><td><strong>Learning curve</strong></td><td>Medium (App Router)</td><td>Low</td><td>Medium (Pages Router)</td></tr>
-<tr><td><strong>Hosting options</strong></td><td>Vercel, Netlify, self-hosted</td><td>Any Node.js host</td><td>Same as Route Handlers</td></tr>
+<tr><td><strong>Hosting options</strong></td><td><a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>, Netlify, self-hosted</td><td>Any Node.js host</td><td>Same as Route Handlers</td></tr>
 <tr><td><strong>Pricing (free tier limits)</strong></td><td>Vercel: 100k requests/month, 100GB bandwidth; Netlify: 125k requests/month</td><td>Self-hosted: server cost</td><td>Same as Route Handlers</td></tr>
 </tbody>
 </table>
@@ -398,6 +398,15 @@
 
     <footer class="site-footer">
         <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
             <div class="footer-nav">
                 <a href="/">Home</a>
                 <a href="/comparisons/">Comparisons</a>

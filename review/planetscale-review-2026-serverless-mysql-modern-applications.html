@@ -86,7 +86,7 @@
 <p>PlanetScale uses a <strong>per-second billing model</strong> based on read and write rows, plus storage. The free tier gives you 10GB of storage and 1 billion row reads per month — which is surprisingly generous. Beyond that, paid plans start at $39/month for the "Scaler" tier (25GB, 10 billion reads, 100 million writes). Enterprise custom plans exist too.</p>
 <p>I've found the free tier enough for low-traffic APIs, personal projects, and even staging environments. The row-based billing can be confusing at first. A "row read" isn't necessarily a SQL row — it's a page of data (typically 1KB). So scanning large tables can burn through reads fast. But for typical CRUD workloads, costs stay predictable.</p>
 <h2 id="branching-the-killer-feature">Branching – The Killer Feature</h2>
-<p>PlanetScale's branching model is genuinely innovative. It's inspired by Git: you have a <code>main</code> branch that's your production database, and you create development branches to make changes. Each branch is a full copy of the schema and data (if you use a production branch as the base) — but on the storage side it uses copy-on-write, so branching is nearly instant even for multi-gigabyte databases.</p>
+<p>PlanetScale's branching model is genuinely innovative. It's inspired by Git: you have a <code>main</code> branch that's your production database, and you create development branches to <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> changes. Each branch is a full copy of the schema and data (if you use a production branch as the base) — but on the storage side it uses copy-on-write, so branching is nearly instant even for multi-gigabyte databases.</p>
 <p>Why does this matter? Because it lets you test schema migrations in isolation before deploying to production. You can create a branch, run your Rails migration or Django migration, verify everything works, then open a "deploy request" (like a pull request) to merge the schema changes into main. PlanetScale handles the schema diff and applies changes in a non-blocking way using its deploy request workflow.</p>
 <p>This is where PlanetScale shines for teams practicing CI/CD for databases. You can integrate deploy requests into your GitHub workflow, have peers review the SQL changes, and merge only after tests pass. The same workflow applies to data, not just schema. You can branch off production, run a script that modifies data, test it, and merge back. It's powerful.</p>
 <p>Downside: branching is heavily oriented toward schema changes. For data modifications, you still need to be careful about write conflicts when merging back. PlanetScale's merge is schema-only; data branches don't get merged automatically. You have to handle data synchronization yourself. So branching is more about schema development than data development.</p>
@@ -142,9 +142,9 @@
 <li><strong>Backup and restore:</strong> You can create manual backups, but restoring from backup requires contacting support (or using the API). It's not as self-serve as RDS snapshots.</li>
 </ul>
 <h2 id="how-it-compares-to-alternatives">How It Compares to Alternatives</h2>
-<p>PlanetScale often gets compared to Neon (serverless PostgreSQL), Amazon Aurora Serverless v2, and Supabase (PostgreSQL with BaaS features).</p>
+<p>PlanetScale often gets compared to Neon (serverless PostgreSQL), Amazon Aurora Serverless v2, and <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> (PostgreSQL with BaaS features).</p>
 <table class="price-table">
-<thead><tr><th>Feature</th><th>PlanetScale</th><th>Neon</th><th>Aurora Serverless v2</th><th>Supabase</th></tr></thead>
+<thead><tr><th>Feature</th><th>PlanetScale</th><th>Neon</th><th>Aurora Serverless v2</th><th><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a></th></tr></thead>
 <tbody>
 <tr><td>Database Engine</td><td>MySQL (Vitess)</td><td>PostgreSQL</td><td>MySQL/PostgreSQL</td><td>PostgreSQL</td></tr>
 <tr><td>Serverless</td><td>Yes (scale to zero)</td><td>Yes (scale to zero)</td><td>Yes (pauses after inactivity)</td><td>Yes (always-on)</td></tr>
@@ -269,6 +269,15 @@
 
     <footer class="site-footer">
         <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
             <div class="footer-nav">
                 <a href="/">Home</a>
                 <a href="/comparisons/">Comparisons</a>

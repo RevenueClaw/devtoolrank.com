@@ -118,7 +118,7 @@
 <tr><td><strong>PostgreSQL</strong></td><td>Relational (SQL)</td><td>Vertical + read replicas; sharding via extensions</td><td>ACID</td><td><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a>, RDS, <a href="https://railway.app/?referral=revenueclaw" rel="nofollow sponsored">Railway</a>, Aiven</td><td>Free tier (Supabase), $15/mo (RDS)</td><td>Most SaaS apps, especially with complex queries or transactions</td></tr>
 <tr><td><strong>MongoDB</strong></td><td>Document (JSON)</td><td>Horizontal via sharding</td><td>Configurable (eventual/strong)</td><td>MongoDB Atlas</td><td>Free 512MB, $57/mo for 2GB</td><td>Rapid prototyping, flexible schema, large-scale read-heavy apps</td></tr>
 <tr><td><strong>Firebase Firestore</strong></td><td>Document (NoSQL)</td><td>Horizontal (auto-shard)</td><td>Strong / eventual per query</td><td>Fully managed by Google</td><td>Free quota, then pay per write/read</td><td>Real-time apps, mobile backends, low-latency reads</td></tr>
-<tr><td><strong>Supabase</strong></td><td>PostgreSQL-based</td><td>Vertical + read replicas</td><td>ACID</td><td>Supabase managed</td><td>Free 500MB, $25/mo for 8GB</td><td>Want SQL but with managed backend (auth, storage)</td></tr>
+<tr><td><strong><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a></strong></td><td>PostgreSQL-based</td><td>Vertical + read replicas</td><td>ACID</td><td><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> managed</td><td>Free 500MB, $25/mo for 8GB</td><td>Want SQL but with managed backend (auth, storage)</td></tr>
 <tr><td><strong>PlanetScale</strong></td><td>MySQL-compatible (Vitess)</td><td>Horizontal (auto-shard)</td><td>ACID (strong consistency per shard)</td><td>Fully managed</td><td>Free 1GB, $39/mo for 10GB</td><td>High-scale SQL with zero-downtime schema changes</td></tr>
 <tr><td><strong>CockroachDB</strong></td><td>NewSQL (PostgreSQL-wire)</td><td>Horizontal (auto-shard)</td><td>ACID (global consistency)</td><td>CockroachDB Cloud</td><td>Free 5GB, $10/mo for 10GB</td><td>Multi-region apps, need strong consistency worldwide</td></tr>
 <tr><td><strong>DynamoDB</strong></td><td>Key-Value + Document</td><td>Horizontal (auto-partition)</td><td>Eventual / strong optional</td><td>Fully managed (AWS)</td><td>Free 25GB, pay per read/write</td><td>High-throughput serverless, AWS ecosystem</td></tr>
@@ -321,6 +321,15 @@
 
     <footer class="site-footer">
         <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
             <div class="footer-nav">
                 <a href="/">Home</a>
                 <a href="/comparisons/">Comparisons</a>

@@ -95,7 +95,7 @@
 <li>A domain or IP address pointing to that server</li>
 <li>Basic comfort editing YAML</li>
 </ul>
-<p>If you don't have a server yet, <a href="https://m.do.co/c/your-link-here" rel="nofollow sponsored">DigitalOcean</a> has $6/month droplets that work perfectly for this. Linode starts at $5/month.</p>
+<p>If you don't have a server yet, <a href="https://m.do.co/c/your-link-here" rel="nofollow sponsored">DigitalOcean</a> has $6/month droplets that work perfectly for this. <a href="https://www.linode.com/?r=revenueclaw" rel="nofollow sponsored">Linode</a> starts at $5/month.</p>
 <h2 id="step-1-set-up-your-github-repository">Step 1: Set Up Your GitHub Repository</h2>
 <p>This part is quick. Navigate to your project on GitHub, click the <strong>Actions</strong> tab, and you'll see a bunch of starter workflows. Ignore those for now—we're building our own.</p>
 <p>Create a new directory in your repo:</p>
@@ -212,7 +212,7 @@
 <p>Go to the <strong>Actions</strong> tab in your repo. You'll see the workflow start running. Click into it to watch the logs.</p>
 <p>The first run might fail. That's normal. Common issues:</p>
 <ul>
-<li><strong>SSH key format</strong> – Make sure it's PEM, not OpenSSH</li>
+<li><strong>SSH key format</strong> – <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure it's PEM, not OpenSSH</li>
 <li><strong>Node version mismatch</strong> – Your local <code>package.json</code> engines field should match the workflow</li>
 <li><strong>Missing dependencies</strong> – <code>npm ci</code> requires an exact <code>package-lock.json</code>. If you don't have one, use <code>npm install</code> instead</li>
 </ul>
@@ -299,7 +299,7 @@
 <p>But if you need unlimited private repos and more CI minutes, GitLab's free tier is more generous. And if you're doing heavy matrix testing across hundreds of commits, CircleCI's parallel execution is smoother.</p>
 <p>For the typical solo developer or small team building a SaaS app or side project:</p>
 <p><strong>Use GitHub Actions.</strong> Set up the workflow I showed you above, add caching and notifications, and you're done. You'll spend more time deciding which YAML editor to use than actually building your pipeline.</p>
-<p>If you want a deployment platform that handles the server side too, <a href="https://railway.app?ref=devtoolrank" rel="nofollow sponsored">Railway</a> connects to your repo and deploys automatically without SSH or PM2 config. It's more expensive than a $6 VPS, but the convenience might be worth it.</p>
+<p>If you want a deployment platform that handles the server side too, <a href="https://[Railway](https://railway.app/?referral=revenueclaw" rel="nofollow sponsored">Railway</a>.app?ref=devtoolrank) connects to your repo and deploys automatically without SSH or PM2 config. It's more expensive than a $6 VPS, but the convenience might be worth it.</p>
 <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
 <h3 id="how-do-i-run-workflows-locally">How do I run workflows locally?</h3>
 <p>You can't natively, but <a href="https://github.com/nektos/act" rel="nofollow sponsored">act</a> lets you run GitHub Actions locally using Docker containers. It's not perfect—some actions don't translate well—but it's useful for quick YAML validation.</p>
@@ -410,6 +410,15 @@
 
     <footer class="site-footer">
         <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
             <div class="footer-nav">
                 <a href="/">Home</a>
                 <a href="/comparisons/">Comparisons</a>
