@@ -46,8 +46,50 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://devtoolrank.com/guide/complete-guide-modern-developer-tools-2026-full-stack</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://devtoolrank.com/best_of/10-best-developer-tools-indie-hackers</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/tutorial/choose-right-database-saas-application</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/comparison/digitalocean-vs-linode-vs-vultr-best-vps-provider-developers</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/tutorial/build-rest-api-nextjs-route-handlers</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/comparison/nextjs-vs-remix-vs-astro-best-react-framework</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/comparison/redis-vs-memcached-vs-dragonfly-best-memory-cache</loc>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -88,19 +130,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/best_of/8-best-authentication-authorization-tools</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/comparison/nextjs-vs-remix-vs-astro-best-react-framework</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -190,18 +220,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/comparison/digitalocean-vs-linode-vs-vultr-best-vps-provider-developers</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/comparison/redis-vs-memcached-vs-dragonfly-best-memory-cache</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/comparison/sentry-vs-datadog-vs-new-relic-best-application-monitoring</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -214,12 +232,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/guide/complete-guide-modern-developer-tools-2026-full-stack</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/review/planetscale-review-2026-serverless-mysql-modern-applications</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -227,18 +239,6 @@
   </url>
   <url>
     <loc>https://devtoolrank.com/review/supabase-review-2026-open-source-firebase-alternative-ready-2</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/tutorial/build-rest-api-nextjs-route-handlers</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/tutorial/choose-right-database-saas-application</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Build a REST API with Next.js Route Handlers | Dev Tool Rank</title>
-    <meta name="description" content="Learn to build a REST API using Next.js Route Handlers in the App Router. Step-by-step guide with examples, comparison of deployment costs, and best practices.">
-    <meta name="keywords" content="next.js api tutorial, rest api nextjs, api development, next.js route handlers, vercel api pricing">
+    <meta name="description" content="Learn to build a REST API using Next.js Route Handlers in the App Router. Step-by-step guide with code examples, comparisons, and best practices for API develop">
+    <meta name="keywords" content="next.js api tutorial, rest api nextjs, api development, next.js route handlers, next.js app router">
         <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
     <link rel="canonical" href="https://devtoolrank.com/tutorial/build-rest-api-nextjs-route-handlers">
     <link rel="stylesheet" href="/style.css?v=20260804">
@@ -13,9 +13,9 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "How to Build a REST API with Next.js Route Handlers",
-  "description": "Learn to build a REST API using Next.js Route Handlers in the App Router. Step-by-step guide with examples, comparison of deployment costs, and best practices.",
-  "datePublished": "2026-08-04",
-  "dateModified": "2026-08-04",
+  "description": "Learn to build a REST API using Next.js Route Handlers in the App Router. Step-by-step guide with code examples, comparisons, and best practices for API development.",
+  "datePublished": "2026-09-07",
+  "dateModified": "2026-09-07",
   "author": {
     "@type": "Person",
     "name": "Editorial Team"
@@ -63,7 +63,7 @@
             <h1>How to Build a REST API with Next.js Route Handlers</h1>
             <div class="meta-row">
                 <span class="badge badge-tutorial">Tutorial</span>
-                <time datetime="2026-08-04">August 04, 2026</time>
+                <time datetime="2026-09-07">September 07, 2026</time>
                 <span>·</span>
                 <span class="reading-time">9 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
@@ -77,233 +77,251 @@
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
 <h2 id="how-to-build-a-rest-api-with-next-js-route-handlers">How to Build a REST API with Next.js Route Handlers</h2>
-<p>Next.js has come a long way from being just a React framework for server-side rendering. With the introduction of the App Router (starting in Next.js 13.4), you can now build fully functional REST APIs without needing a separate backend service. Route Handlers let you define API endpoints inside your Next.js project using the <code>route.ts</code> file conventions.</p>
-<p>In this tutorial, I'll walk you through everything you need to build a production-ready REST API with Next.js Route Handlers – from basic CRUD operations to validation, error handling, and deployment. I'll also compare this approach against traditional frameworks like Express.js and Fastify, so you can decide if it's the right fit for your next project.</p>
+<p>If you’re building a Next.js application and need an API, you used to have two choices: spin up a separate Express server, or use the Pages Router’s API routes. With the App Router (stable since Next.js 14), there’s a cleaner option: <strong>Route Handlers</strong>. They let you define API endpoints directly inside your <code>app</code> directory, sharing the same file-based routing as your pages. No extra server, no boilerplate – just a <code>route.ts</code> file and you’re done.</p>
+<p>In this tutorial, I’ll walk you through building a complete REST API with Next.js Route Handlers. We’ll cover everything from basic GET endpoints to authentication, error handling, and deployment. By the end, you’ll have a clear picture of when Route Handlers <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sense and when you might want something else.</p>
 <hr>
-<h2 id="what-are-route-handlers">What Are Route Handlers?</h2>
-<p>Route Handlers replace the old <code>/pages/api/</code> directory from Next.js 12 and earlier. They live directly inside the <code>app/</code> directory following the file-system routing convention. Instead of exporting a default function, you export named functions for each HTTP method: <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code>, <code>HEAD</code>, and <code>OPTIONS</code>.</p>
-<p><strong>Example structure:</strong></p>
-<pre><code>app/
-<p>api/</p>
-<p>users/</p>
-<p>route.ts          // handles /api/users</p>
-<p>[id]/</p>
-<p>route.ts        // handles /api/users/123</p>
+<h2 id="what-are-next-js-route-handlers">What Are Next.js Route Handlers?</h2>
+<p>Route Handlers are the App Router’s replacement for the old <code>pages/api</code> endpoints. They live in <code>app/api/*/route.ts</code> (or <code>.js</code>) and automatically handle HTTP methods based on exported functions.</p>
+<pre><code>// app/api/hello/route.ts
+<p>export async function GET(request: Request) {</p>
+<p>return new Response(JSON.stringify({ message: "Hello World" }), {</p>
+<p>status: 200,</p>
+<p>headers: { "Content-Type": "application/json" },</p>
+<p>});</p>
+<p>}</p>
 <p></code></pre></p>
-<p>Each <code>route.ts</code> file exports async functions that receive a <code>NextRequest</code> and return a <code>NextResponse</code>.</p>
+<p>That’s it – no Express setup, no <code>apiRoutes</code> config. The file structure mirrors the URL path: <code>app/api/users/route.ts</code> maps to <code>GET /api/users</code>.</p>
+<p>Key features:</p>
+<ul>
+<li><strong>File-based routing</strong> – no need to manually define routes.</li>
+<li><strong>HTTP method support</strong> – export <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code>, etc.</li>
+<li><strong>Request/Response Web API</strong> – uses the standard <code>Request</code> and <code>Response</code> objects.</li>
+<li><strong>Dynamic routes</strong> – <code>[id]</code> folders for parameters.</li>
+<li><strong>Middleware</strong> – run logic before handlers (via <code>middleware.ts</code> in the project root).</li>
+<li><strong>Edge runtime</strong> – deploy to <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>’s edge network for low latency.</li>
+<li><strong>Streaming</strong> – return <code>ReadableStream</code> for real-time data.</li>
+</ul>
+<p>Route Handlers are designed for full-stack Next.js apps where the API logic is tightly coupled with the frontend, but they can also serve as a standalone backend for mobile apps or third-party integrations.</p>
 <hr>
-<h2 id="step-1-setting-up-a-next-js-project">Step 1: Setting Up a Next.js Project</h2>
-<p>If you don't already have a Next.js app using the App Router, create one:</p>
-<pre><code>npx create-next-app@latest my-api --typescript --app
-<p>cd my-api</p>
+<h2 id="step-by-step-building-a-rest-api">Step-by-Step: Building a REST API</h2>
+<p>Let’s build a simple task manager API with CRUD operations. We’ll use an in-memory store for simplicity, but the patterns work with any database (Postgres, MongoDB, Prisma, etc.).</p>
+<h3 id="1-set-up-the-project">1. Set Up the Project</h3>
+<p>Create a new Next.js App Router project:</p>
+<pre><code>npx create-next-app@latest task-api --typescript --app
+<p>cd task-api</p>
 <p></code></pre></p>
-<p><a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure your <code>next.config.js</code> is using the App Router (it’s the default since Next.js 14).</p>
-<hr>
-<h2 id="step-2-building-a-basic-crud-api">Step 2: Building a Basic CRUD API</h2>
-<p>Let's create a simple resource: <strong>products</strong>. We'll use an in‑memory array for demo purposes. In production you'd connect a real database.</p>
-<p><strong><code>app/api/products/route.ts</code></strong> – handles <code>GET</code> (list) and <code>POST</code> (create).</p>
-<pre><code>import { NextRequest, NextResponse } from 'next/server';
-<p>// Fake database</p>
-<p>const products = <a href="https://www.amazon.com/dp/B09HZ6B2M6?tag=devtoolran-20&linkCode=ogi&th=1&psc=1" rel="nofollow sponsored"></p>
-<p>{ id: 1, name: 'Wireless [Mouse</a>', price: 29.99 },</p>
-<p>{ id: 2, name: 'Mechanical <a href="https://www.amazon.com/dp/B09TMRCGNH?tag=devtoolran-20&linkCode=ogi&th=1&psc=1" rel="nofollow sponsored">Keyboard</a>', price: 89.99 },</p>
+<p>The <code>--app</code> flag enables the App Router. You can also add <code>--tailwind</code> if you want a frontend later.</p>
+<h3 id="2-define-the-data-model">2. Define the Data Model</h3>
+<p>We’ll use a plain array as our “database” for now. Create a <code>lib/data.ts</code> file:</p>
+<pre><code>// lib/data.ts
+<p>export interface Task {</p>
+<p>id: string;</p>
+<p>title: string;</p>
+<p>completed: boolean;</p>
+<p>createdAt: Date;</p>
+<p>}</p>
+<p>let tasks: Task[] = [</p>
+<p>{ id: "1", title: "Learn Next.js Route Handlers", completed: false, createdAt: new Date() },</p>
 <p>];</p>
-<p>export async function GET() {</p>
-<p>return NextResponse.json(products);</p>
+<p>export function getTasks(): Task[] {</p>
+<p>return tasks;</p>
 <p>}</p>
-<p>export async function POST(request: NextRequest) {</p>
-<p>const body = await request.json();</p>
-<p>const newProduct = { id: products.length + 1, ...body };</p>
-<p>products.push(newProduct);</p>
-<p>return NextResponse.json(newProduct, { status: 201 });</p>
+<p>export function addTask(title: string): Task {</p>
+<p>const task: Task = {</p>
+<p>id: String(Date.now()),</p>
+<p>title,</p>
+<p>completed: false,</p>
+<p>createdAt: new Date(),</p>
+<p>};</p>
+<p>tasks.push(task);</p>
+<p>return task;</p>
+<p>}</p>
+<p>export function updateTask(id: string, updates: Partial<Task>): Task | null {</p>
+<p>const index = tasks.findIndex((t) => t.id === id);</p>
+<p>if (index === -1) return null;</p>
+<p>tasks[index] = { ...tasks[index], ...updates };</p>
+<p>return tasks[index];</p>
+<p>}</p>
+<p>export function deleteTask(id: string): boolean {</p>
+<p>const index = tasks.findIndex((t) => t.id === id);</p>
+<p>if (index === -1) return false;</p>
+<p>tasks.splice(index, 1);</p>
+<p>return true;</p>
 <p>}</p>
 <p></code></pre></p>
-<p><strong><code>app/api/products/[id]/route.ts</code></strong> – handles <code>GET</code> (single), <code>PUT</code>, and <code>DELETE</code>.</p>
-<pre><code>import { NextRequest, NextResponse } from 'next/server';
+<h3 id="3-create-the-route-handlers">3. Create the Route Handlers</h3>
+<p>We’ll put all task endpoints under <code>app/api/tasks</code>.</p>
+<p><strong>GET /api/tasks</strong> – list all tasks:</p>
+<pre><code>// app/api/tasks/route.ts
+<p>import { NextRequest, NextResponse } from "next/server";</p>
+<p>import { getTasks } from "@/lib/data";</p>
+<p>export async function GET(request: NextRequest) {</p>
+<p>const tasks = getTasks();</p>
+<p>return NextResponse.json(tasks);</p>
+<p>}</p>
+<p></code></pre></p>
+<p><code>NextResponse.json()</code> is a convenience wrapper around <code>Response.json()</code>. It sets the <code>Content-Type</code> header automatically.</p>
+<p><strong>POST /api/tasks</strong> – create a new task:</p>
+<pre><code>export async function POST(request: NextRequest) {
+<p>const body = await request.json();</p>
+<p>const { title } = body;</p>
+<p>if (!title || typeof title !== "string") {</p>
+<p>return NextResponse.json(</p>
+<p>{ error: "Title is required and must be a string" },</p>
+<p>{ status: 400 }</p>
+<p>);</p>
+<p>}</p>
+<p>const task = addTask(title);</p>
+<p>return NextResponse.json(task, { status: 201 });</p>
+<p>}</p>
+<p></code></pre></p>
+<p>We added basic validation. Route Handlers can read the request body via <code>request.json()</code> (or <code>request.text()</code>, <code>request.formData()</code>).</p>
+<p><strong>Dynamic route for single task</strong> – create <code>app/api/tasks/[id]/route.ts</code>:</p>
+<pre><code>import { NextRequest, NextResponse } from "next/server";
+<p>import { getTasks, updateTask, deleteTask } from "@/lib/data";</p>
 <p>export async function GET(</p>
 <p>request: NextRequest,</p>
 <p>{ params }: { params: { id: string } }</p>
 <p>) {</p>
-<p>const product = products.find(p => p.id === Number(params.id));</p>
-<p>if (!product) {</p>
-<p>return NextResponse.json({ error: 'Product not found' }, { status: 404 });</p>
+<p>const tasks = getTasks();</p>
+<p>const task = tasks.find((t) => t.id === params.id);</p>
+<p>if (!task) {</p>
+<p>return NextResponse.json({ error: "Task not found" }, { status: 404 });</p>
 <p>}</p>
-<p>return NextResponse.json(product);</p>
+<p>return NextResponse.json(task);</p>
 <p>}</p>
 <p>export async function PUT(</p>
 <p>request: NextRequest,</p>
 <p>{ params }: { params: { id: string } }</p>
 <p>) {</p>
-<p>const index = products.findIndex(p => p.id === Number(params.id));</p>
-<p>if (index === -1) {</p>
-<p>return NextResponse.json({ error: 'Product not found' }, { status: 404 });</p>
-<p>}</p>
 <p>const body = await request.json();</p>
-<p>products[index] = { ...products[index], ...body };</p>
-<p>return NextResponse.json(products[index]);</p>
+<p>const updated = updateTask(params.id, body);</p>
+<p>if (!updated) {</p>
+<p>return NextResponse.json({ error: "Task not found" }, { status: 404 });</p>
+<p>}</p>
+<p>return NextResponse.json(updated);</p>
 <p>}</p>
 <p>export async function DELETE(</p>
 <p>request: NextRequest,</p>
 <p>{ params }: { params: { id: string } }</p>
 <p>) {</p>
-<p>const index = products.findIndex(p => p.id === Number(params.id));</p>
-<p>if (index === -1) {</p>
-<p>return NextResponse.json({ error: 'Product not found' }, { status: 404 });</p>
+<p>const deleted = deleteTask(params.id);</p>
+<p>if (!deleted) {</p>
+<p>return NextResponse.json({ error: "Task not found" }, { status: 404 });</p>
 <p>}</p>
-<p>products.splice(index, 1);</p>
-<p>return NextResponse.json({ message: 'Deleted' });</p>
+<p>return NextResponse.json({ message: "Task deleted" });</p>
 <p>}</p>
 <p></code></pre></p>
-<p>That's it. Start the dev server with <code>npm run dev</code> and test endpoints with <code>curl</code> or Postman.</p>
+<p>Dynamic segments work exactly like page routes: <code>[id]</code> captures the value and passes it to <code>params.id</code>.</p>
+<h3 id="4-test-the-api">4. Test the API</h3>
+<p>Run <code>npm run dev</code> and test with curl or a tool like Postman:</p>
+<pre><code>curl http://localhost:3000/api/tasks
+<p>curl -X POST http://localhost:3000/api/tasks -H "Content-Type: application/json" -d '{"title":"New task"}'</p>
+<p>curl http://localhost:3000/api/tasks/1</p>
+<p>curl -X PUT http://localhost:3000/api/tasks/1 -H "Content-Type: application/json" -d '{"completed":true}'</p>
+<p>curl -X DELETE http://localhost:3000/api/tasks/1</p>
+<p></code></pre></p>
+<p>Everything works. No Express, no extra config.</p>
 <hr>
-<h2 id="step-3-adding-input-validation">Step 3: Adding Input Validation (with Zod)</h2>
-<p>Raw body parsing can lead to bad data. Let's add validation using <a href="https://zod.dev" rel="nofollow sponsored">Zod</a>. Install it:</p>
-<pre><code>npm install zod
-<p></code></pre></p>
-<p>Update the <code>POST</code> handler in <code>app/api/products/route.ts</code>:</p>
-<pre><code>import { z } from 'zod';
-<p>const productSchema = z.object({</p>
-<p>name: z.string().min(1, 'Name is required'),</p>
-<p>price: z.number().positive('Price must be positive'),</p>
-<p>});</p>
-<p>export async function POST(request: NextRequest) {</p>
-<p>try {</p>
-<p>const body = await request.json();</p>
-<p>const parsed = productSchema.parse(body);</p>
-<p>const newProduct = { id: products.length + 1, ...parsed };</p>
-<p>products.push(newProduct);</p>
-<p>return NextResponse.json(newProduct, { status: 201 });</p>
-<p>} catch (error) {</p>
-<p>if (error instanceof z.ZodError) {</p>
-<p>return NextResponse.json({ errors: error.errors }, { status: 400 });</p>
-<p>}</p>
-<p>return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });</p>
-<p>}</p>
-<p>}</p>
-<p></code></pre></p>
-<p>Now invalid requests return clear error messages with proper status codes.</p>
-<hr>
-<h2 id="step-4-adding-middleware-for-authentication">Step 4: Adding Middleware for Authentication</h2>
-<p>Next.js allows you to run middleware at the edge or on the server. Middleware files (<code>middleware.ts</code>) sit in the root of your project and can intercept all requests.</p>
-<p><strong><code>middleware.ts</code>:</strong></p>
-<pre><code>import { NextResponse } from 'next/server';
-<p>import type { NextRequest } from 'next/server';</p>
+<h2 id="adding-authentication-with-middleware">Adding Authentication with Middleware</h2>
+<p>Route Handlers can be protected by Next.js Middleware, which runs before every request. Here’s a simple API key check:</p>
+<pre><code>// middleware.ts
+<p>import { NextResponse } from "next/server";</p>
+<p>import type { NextRequest } from "next/server";</p>
 <p>export function middleware(request: NextRequest) {</p>
-<p>const token = request.headers.get('authorization')?.split(' ')[1];</p>
-<p>if (!token) {</p>
-<p>return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });</p>
+<p>// Only protect API routes</p>
+<p>if (request.nextUrl.pathname.startsWith("/api/")) {</p>
+<p>const apiKey = request.headers.get("x-api-key");</p>
+<p>if (apiKey !== process.env.API_KEY) {</p>
+<p>return NextResponse.json({ error: "Unauthorized" }, { status: 401 });</p>
 <p>}</p>
-<p>// Validate token (e.g., JWT verification)</p>
+<p>}</p>
 <p>return NextResponse.next();</p>
 <p>}</p>
 <p>export const config = {</p>
-<p>matcher: '/api/:path*',</p>
+<p>matcher: "/api/:path*",</p>
 <p>};</p>
 <p></code></pre></p>
-<p>This protects all <code>/api/*</code> routes. You can also apply different rules per route.</p>
+<p>This runs on the Edge runtime, so it’s fast but has some limitations (no access to Node.js APIs like <code>fs</code>). For more complex auth (e.g., JWT verification), you can write logic inside each route handler or use a library like NextAuth.js.</p>
 <hr>
-<h2 id="step-5-handling-cors">Step 5: Handling CORS</h2>
-<p>If your frontend is on a different domain, you need CORS headers. You can set them in each route handler or create a shared middleware. Here's a quick middleware approach:</p>
-<pre><code>export function middleware(request: NextRequest) {
-<p>if (request.method === 'OPTIONS') {</p>
-<p>return new NextResponse(null, {</p>
-<p>headers: {</p>
-<p>'Access-Control-Allow-Origin': '*',</p>
-<p>'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',</p>
-<p>'Access-Control-Allow-Headers': 'Content-Type, Authorization',</p>
-<p>},</p>
-<p>});</p>
-<p>}</p>
-<p>// ... authentication logic</p>
-<p>}</p>
+<h2 id="edge-vs-node-js-runtime">Edge vs Node.js Runtime</h2>
+<p>By default, Route Handlers run on the Node.js runtime. You can opt into the Edge runtime by exporting a <code>runtime</code> config:</p>
+<pre><code>export const runtime = "edge"; // or "nodejs"
 <p></code></pre></p>
-<p>For a deeper CORS solution, use the <code>cors</code> package or wrap your responses.</p>
+<p>Edge runtime is faster (deploys to Vercel’s edge network) but has constraints: no <code>Buffer</code>, no <code>process.env</code> at runtime (use <code>process.env</code> at build time or <code>NextRequest</code>’s <code>geo</code> and <code>ip</code>), and limited Node.js APIs. For most CRUD APIs, Node.js runtime is fine. Use Edge when you need global low latency for read-heavy endpoints.</p>
 <hr>
-<h2 id="step-6-caching-revalidation">Step 6: Caching & Revalidation</h2>
-<p>Route Handlers in Next.js are serverless functions by default. You can cache GET responses using <code>revalidate</code>:</p>
-<pre><code>export const revalidate = 60; // revalidate every 60 seconds
-<p>export async function GET() {</p>
-<p>// fetch data from DB</p>
-<p>return NextResponse.json(products);</p>
-<p>}</p>
-<p></code></pre></p>
-<p>If you want to opt out of caching entirely (for real‑time data), set <code>export const dynamic = 'force-dynamic'</code> at the file level.</p>
-<hr>
-<h2 id="comparison-next-js-route-handlers-vs-other-backend-frameworks">Comparison: Next.js Route Handlers vs. Other Backend Frameworks</h2>
-<p>Choosing the right tool depends on your deployment target, team size, and cost constraints. Here's a fair comparison of building a REST API with Next.js Route Handlers versus traditional frameworks.</p>
+<h2 id="comparison-route-handlers-vs-other-api-approaches">Comparison: Route Handlers vs Other API Approaches</h2>
 <table class="price-table">
-<thead><tr><th>Feature / Metric</th><th>Next.js Route Handlers (on <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>)</th><th>Express.js (on <a href="https://railway.app/?referral=revenueclaw" rel="nofollow sponsored">Railway</a>)</th><th>Fastify (on Fly.io)</th></tr></thead>
+<thead><tr><th>Feature</th><th>Next.js Route Handlers</th><th>Express.js (standalone)</th><th>Next.js Pages Router API</th></tr></thead>
 <tbody>
-<tr><td><strong>Setup time</strong></td><td>~5 min (if Next.js already set)</td><td>~15 min</td><td>~20 min</td></tr>
-<tr><td><strong>Performance (req/s, simple)</strong></td><td>~1,200 (cold start ~300ms)</td><td>~2,500 (no cold start)</td><td>~3,000+</td></tr>
-<tr><td><strong>Built‑in TypeScript support</strong></td><td>Full</td><td>Optional</td><td>Optional</td></tr>
-<tr><td><strong>File‑based routing</strong></td><td>Yes</td><td>No</td><td>No</td></tr>
-<tr><td><strong>Hosting cost (1M req/month)</strong></td><td>~$20 (Vercel Pro)</td><td>~$10 (Railway Starter)</td><td>~$15 (Fly.io)</td></tr>
-<tr><td><strong>Cold starts</strong></td><td>Yes (serverless)</td><td>No (long‑running)</td><td>No (long‑running)</td></tr>
-<tr><td><strong>Learning curve</strong></td><td>Low (if known Next.js)</td><td>Low</td><td>Medium</td></tr>
+<tr><td><strong>File-based routing</strong></td><td>Yes (App Router)</td><td>No (manual)</td><td>Yes (Pages Router)</td></tr>
+<tr><td><strong>HTTP methods</strong></td><td>Export functions</td><td><code>app.get/post/...</code></td><td>Export default handler with <code>req.method</code> switch</td></tr>
+<tr><td><strong>Middleware</strong></td><td>Global <code>middleware.ts</code></td><td><code>app.use()</code></td><td>No built-in middleware; use <code>next-connect</code></td></tr>
+<tr><td><strong>Edge runtime</strong></td><td>Yes (opt-in)</td><td>No</td><td>No</td></tr>
+<tr><td><strong>Streaming</strong></td><td>Yes (Response stream)</td><td>Yes (with pipe)</td><td>No</td></tr>
+<tr><td><strong>Typed request/response</strong></td><td>Web API (Request/Response)</td><td>Express req/res</td><td>IncomingMessage/ServerResponse</td></tr>
+<tr><td><strong>Authentication libraries</strong></td><td>NextAuth.js, Clerk, custom</td><td>Passport, JWT</td><td>NextAuth.js, custom</td></tr>
+<tr><td><strong>Learning curve</strong></td><td>Medium (App Router)</td><td>Low</td><td>Medium (Pages Router)</td></tr>
+<tr><td><strong>Hosting options</strong></td><td>Vercel, Netlify, self-hosted</td><td>Any Node.js host</td><td>Same as Route Handlers</td></tr>
+<tr><td><strong>Pricing (free tier limits)</strong></td><td>Vercel: 100k requests/month, 100GB bandwidth; Netlify: 125k requests/month</td><td>Self-hosted: server cost</td><td>Same as Route Handlers</td></tr>
 </tbody>
 </table>
-<p><strong>Notes:</strong></p>
+<p><strong>Verdict on the table:</strong> Route Handlers are the most integrated option for full-stack Next.js apps. They share the same routing, middleware, and deployment as your frontend. Express.js is better if you want a separate backend that can be scaled independently. Pages Router API routes are legacy but still work – just less flexible.</p>
+<hr>
+<h2 id="pros-and-cons-of-next-js-route-handlers">Pros and Cons of Next.js Route Handlers</h2>
+<h3 id="pros">Pros</h3>
 <ul>
-<li>Vercel charges per function invocation and edge requests. For 1M requests, the Pro plan ($20/mo) includes 1M edge requests.</li>
-<li>Railway offers a free tier with $5 credit; typical Express app with 1M requests stays under $10.</li>
-<li>Fly.io charges per VM and bandwidth; a small Fastify server costs about $15/mo.</li>
-<li>Performance numbers are rough averages from my tests. Cold starts on Vercel depend on function size and region.</li>
+<li><strong>No extra server</strong> – your API lives inside your Next.js project. One <code>package.json</code>, one deploy.</li>
+<li><strong>File-based routing</strong> – URL structure is obvious from the folder tree.</li>
+<li><strong>Web API standard</strong> – <code>Request</code> and <code>Response</code> are modern and familiar if you’ve used fetch.</li>
+<li><strong>Edge ready</strong> – drop-in for global performance.</li>
+<li><strong>Streaming support</strong> – great for real-time data (e.g., SSE, AI responses).</li>
+<li><strong>Middleware</strong> – centralize auth, logging, rate limiting.</li>
+</ul>
+<h3 id="cons">Cons</h3>
+<ul>
+<li><strong>Tight coupling</strong> – API logic is mixed with frontend code. Hard to reuse if you later extract a separate backend.</li>
+<li><strong>No built-in validation</strong> – you have to manually parse and validate request bodies (though libraries like Zod help).</li>
+<li><strong>Limited Node.js APIs on Edge</strong> – if you need <code>fs</code>, <code>crypto</code> (Node.js version), or database drivers that rely on Node.js streams, Edge won’t work.</li>
+<li><strong>Not ideal for microservices</strong> – each Next.js app is a monolith. If you need independent API services, Express or Fastify are better.</li>
+<li><strong>Learning curve</strong> – developers new to the App Router may find <code>route.ts</code> files confusing at first.</li>
 </ul>
 <hr>
-<h2 id="pros-of-using-next-js-route-handlers-for-rest-apis">Pros of Using Next.js Route Handlers for REST APIs</h2>
+<h2 id="verdict-should-you-use-next-js-route-handlers">Verdict: Should You Use Next.js Route Handlers?</h2>
+<p><strong>Yes, if:</strong></p>
 <ul>
-<li><strong>Unified codebase</strong> – frontend and backend in one project, no separate server to maintain.</li>
-<li><strong>Type safety</strong> – share types between client and server easily.</li>
-<li><strong>File‑based routing</strong> – no manual route registration.</li>
-<li><strong>Edge deployment</strong> – deploy globally with zero configuration (Vercel, Netlify).</li>
-<li><strong>Middleware support</strong> – authentication, logging, redirects run at the edge.</li>
-<li><strong>Automatic caching</strong> – ISR and static generation for GET endpoints.</li>
+<li>You’re already building a full-stack Next.js app and need a simple API.</li>
+<li>Your API is tightly coupled with your frontend (e.g., server data fetching, form submissions).</li>
+<li>You want to deploy everything on Vercel or Netlify with minimal configuration.</li>
+<li>You’re building a small-to-medium project and don’t need a separate backend team.</li>
 </ul>
-<h2 id="cons">Cons</h2>
+<p><strong>No, if:</strong></p>
 <ul>
-<li><strong>Cold starts</strong> – serverless means occasional latency spikes.</li>
-<li><strong>No persistent connections</strong> – WebSockets or SSE require workarounds.</li>
-<li><strong>Limited request body size</strong> – depends on hosting provider (Vercel caps at 4.5MB).</li>
-<li><strong>Long‑running tasks</strong> – serverless timeout (Vercel: 60s on Pro, 10s on Hobby).</li>
-<li><strong>Vendor lock‑in</strong> – you’re tied to Next.js and the hosting platform for optimal performance.</li>
+<li>You need a standalone API that multiple frontends (mobile, web, third-party) will consume.</li>
+<li>You want to scale the API independently from the frontend.</li>
+<li>You rely heavily on Node.js-specific APIs (e.g., <code>fs</code>, <code>child_process</code>, or database ORMs that require Node.js streams).</li>
+<li>You prefer Express.js middleware patterns and want to reuse existing Express middleware.</li>
 </ul>
-<hr>
-<h2 id="when-should-you-use-next-js-route-handlers">When Should You Use Next.js Route Handlers?</h2>
-<ul>
-<li><strong>Full‑stack side projects</strong> – you want to ship quickly without managing two repos.</li>
-<li><strong>Internal tool APIs</strong> – low traffic, simple CRUD.</li>
-<li><strong>Server‑driven components</strong> – you already use Next.js for SSR/SSG.</li>
-<li><strong>Prototypes</strong> – iterate fast without separate backend setup.</li>
-</ul>
-<p>Avoid when you need:</p>
-<ul>
-<li>Real‑time features (WebSockets).</li>
-<li>Heavy computation or background jobs that exceed time limits.</li>
-<li>High‑performance microservices at scale (choose Fastify or Express with dedicated servers).</li>
-</ul>
-<hr>
-<h2 id="deploying-your-api">Deploying Your API</h2>
-<p>I recommend <a href="https://vercel.com" rel="nofollow sponsored">Vercel</a> for seamless Next.js deployment. They provide a generous free tier (100GB bandwidth, 100k edge requests). <a href="https://vercel.com" rel="nofollow sponsored">Check Vercel -></a></p>
-<p>If you prefer a DIY approach, you can self‑host with Node on a VPS or use <a href="https://railway.app" rel="nofollow sponsored">Railway</a> (works well with Docker). <a href="https://railway.app" rel="nofollow sponsored">Check Railway -></a></p>
+<p>For most indie hackers and small teams building a Next.js app, Route Handlers are the fastest way to get an API up and running. They’re not a replacement for a dedicated backend framework, but they don’t need to be.</p>
+<p>If you’re deploying on Vercel, the free tier handles 100k requests per month – enough for a side project. <a href="https://vercel.com/?affiliate=example" rel="nofollow sponsored">Deploy on Vercel -></a></p>
 <hr>
 <h2 id="faq">FAQ</h2>
-<p><strong>Q: Can I use Route Handlers with the Pages Router?</strong></p>
-<p>A: No. Route Handlers are exclusive to the App Router. If you're on Next.js 12 or 13 with Pages Router, use the existing <code>pages/api/</code> directory.</p>
-<p><strong>Q: How do I handle file uploads?</strong></p>
-<p>A: Route Handlers don't natively support <code>multipart/form-data</code> parsing. Use the <code>formidable</code> or <code>busboy</code> package and read the request stream manually.</p>
-<p><strong>Q: Can I connect to a database like PostgreSQL?</strong></p>
-<p>A: Absolutely. Use any database client (Prisma, Drizzle, Knex) inside your route handlers. Just be aware of cold starts and connection pooling.</p>
-<p><strong>Q: How do I test my API locally?</strong></p>
-<p>A: Next.js provides <code>next dev</code>. Use a tool like Postman, Insomnia, or <code>curl</code>. For automated tests, I recommend using Vitest with Supertest.</p>
-<p><strong>Q: Is there a way to avoid cold starts on Vercel?</strong></p>
-<p>A: You can use the "Pro" plan and set functions to "always warm" (via cron jobs), but it adds cost. Alternatively, deploy on a platform without cold starts (e.g., Railway, Fly.io).</p>
-<hr>
-<h2 id="final-verdict">Final Verdict</h2>
-<p><strong>Next.js Route Handlers are a solid choice for small to medium‑sized APIs when you're already invested in the Next.js ecosystem.</strong> They excel in developer experience: no extra server code, shared types, and instant deployment.</p>
-<p>For high‑traffic production APIs or anything requiring persistent connections, stick with Express or Fastify on a long‑running server. The cost and performance trade‑offs become noticeable after a few hundred thousand requests per month.</p>
-<p><strong>Try Next.js Route Handlers for your next prototype or internal tool – you'll be surprised how quickly you can ship.</strong> If you outgrow them, migrating to a dedicated backend is straightforward since you're already using standard REST patterns.</p>
-<p><em>When you buy through links on our site, we may earn a commission.</em></p>
+<h3 id="1-can-i-use-route-handlers-with-the-pages-router">1. Can I use Route Handlers with the Pages Router?</h3>
+<p>No. Route Handlers are exclusive to the App Router. If you’re using the Pages Router, you’ll need to stick with <code>pages/api</code> or migrate to the App Router.</p>
+<h3 id="2-how-do-i-handle-cors">2. How do I handle CORS?</h3>
+<p>You can set CORS headers in a middleware or in each route handler:</p>
+<pre><code>// middleware.ts
+<p>export function middleware(request: NextRequest) {</p>
+<p>const response = NextResponse.next();</p>
+<p>response.headers.set("Access-Control-Allow-Origin", "*");</p>
+<p>response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");</p>
+<p>return response;</p>
+<p>}</p>
+<p></code></pre></p>
+<h3 id="3-can-i-use-route-handlers-with-prisma-or-other-orms">3. Can I use Route Handlers with Prisma or other ORMs?</h3>
+<p>Yes. Prisma works in the Node.js runtime. Just import your Prisma client in route handlers and use it as usual. For Edge runtime, use Prisma Accelerate or a serverless-compatible driver.</p>
+<h3 id="4-how-do-i-read-query-parameters">4. How do I read query parameters?</h3>
+<p>Use `</p>
             <div class="affiliate-cta">
     <p>🔍 Want the best deal? Check current prices and availability.</p>
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
@@ -319,6 +337,13 @@
     <h2>Related Articles</h2>
     <div class="articles-grid cols-2">
         <div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>September 10, 2026</time>
+                </div>
+                <h3><a href="/tutorial/choose-right-database-saas-application">How to Choose the Right Database for Your SaaS Application</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  Choosing a database for your SaaS app is one of tho</p>
+            </div><div class="card">
                 <div class="card-meta">
                     <span class="badge badge-tutorial">Tutorial</span>
                     <time>August 20, 2026</time>
@@ -339,13 +364,6 @@
                 </div>
                 <h3><a href="/tutorial/set-up-cicd-github-actions-15-minutes">How to Set Up CI/CD with GitHub Actions in 15 Minutes</a></h3>
                 <p>*When you buy through links on our site, we may earn a commission.*  So you've got a project on GitHub and you're tired </p>
-            </div><div class="card">
-                <div class="card-meta">
-                    <span class="badge badge-tutorial">Tutorial</span>
-                    <time>August 11, 2026</time>
-                </div>
-                <h3><a href="/tutorial/set-up-application-monitoring-sentry-complete-guide">How to Set Up Application Monitoring with Sentry: Complete Guide</a></h3>
-                <p>*When you buy through links on our site, we may earn a commission.*  # How to Set Up Application Monitoring with [Sentry</p>
             </div>
     </div>
 </section>
@@ -355,20 +373,24 @@
     <div class="toc">
         <h4>On This Page</h4>
         <a href="#how-to-build-a-rest-api-with-next-js-route-handlers" class="toc-h2" style="padding-left:0px">How to Build a REST API with Next.js Route Handlers</a>
-<a href="#what-are-route-handlers" class="toc-h2" style="padding-left:0px">What Are Route Handlers?</a>
-<a href="#step-1-setting-up-a-next-js-project" class="toc-h2" style="padding-left:0px">Step 1: Setting Up a Next.js Project</a>
-<a href="#step-2-building-a-basic-crud-api" class="toc-h2" style="padding-left:0px">Step 2: Building a Basic CRUD API</a>
-<a href="#step-3-adding-input-validation" class="toc-h2" style="padding-left:0px">Step 3: Adding Input Validation</a>
-<a href="#step-4-adding-middleware-for-authentication" class="toc-h2" style="padding-left:0px">Step 4: Adding Middleware for Authentication</a>
-<a href="#step-5-handling-cors" class="toc-h2" style="padding-left:0px">Step 5: Handling CORS</a>
-<a href="#step-6-caching-revalidation" class="toc-h2" style="padding-left:0px">Step 6: Caching & Revalidation</a>
-<a href="#comparison-next-js-route-handlers-vs-other-backend-frameworks" class="toc-h2" style="padding-left:0px">Comparison: Next.js Route Handlers vs. Other Backend Frameworks</a>
-<a href="#pros-of-using-next-js-route-handlers-for-rest-apis" class="toc-h2" style="padding-left:0px">Pros of Using Next.js Route Handlers for REST APIs</a>
-<a href="#cons" class="toc-h2" style="padding-left:0px">Cons</a>
-<a href="#when-should-you-use-next-js-route-handlers" class="toc-h2" style="padding-left:0px">When Should You Use Next.js Route Handlers?</a>
-<a href="#deploying-your-api" class="toc-h2" style="padding-left:0px">Deploying Your API</a>
+<a href="#what-are-next-js-route-handlers" class="toc-h2" style="padding-left:0px">What Are Next.js Route Handlers?</a>
+<a href="#step-by-step-building-a-rest-api" class="toc-h2" style="padding-left:0px">Step-by-Step: Building a REST API</a>
+<a href="#1-set-up-the-project" class="toc-h3" style="padding-left:8px">1. Set Up the Project</a>
+<a href="#2-define-the-data-model" class="toc-h3" style="padding-left:8px">2. Define the Data Model</a>
+<a href="#3-create-the-route-handlers" class="toc-h3" style="padding-left:8px">3. Create the Route Handlers</a>
+<a href="#4-test-the-api" class="toc-h3" style="padding-left:8px">4. Test the API</a>
+<a href="#adding-authentication-with-middleware" class="toc-h2" style="padding-left:0px">Adding Authentication with Middleware</a>
+<a href="#edge-vs-node-js-runtime" class="toc-h2" style="padding-left:0px">Edge vs Node.js Runtime</a>
+<a href="#comparison-route-handlers-vs-other-api-approaches" class="toc-h2" style="padding-left:0px">Comparison: Route Handlers vs Other API Approaches</a>
+<a href="#pros-and-cons-of-next-js-route-handlers" class="toc-h2" style="padding-left:0px">Pros and Cons of Next.js Route Handlers</a>
+<a href="#pros" class="toc-h3" style="padding-left:8px">Pros</a>
+<a href="#cons" class="toc-h3" style="padding-left:8px">Cons</a>
+<a href="#verdict-should-you-use-next-js-route-handlers" class="toc-h2" style="padding-left:0px">Verdict: Should You Use Next.js Route Handlers?</a>
 <a href="#faq" class="toc-h2" style="padding-left:0px">FAQ</a>
-<a href="#final-verdict" class="toc-h2" style="padding-left:0px">Final Verdict</a>
+<a href="#1-can-i-use-route-handlers-with-the-pages-router" class="toc-h3" style="padding-left:8px">1. Can I use Route Handlers with the Pages Router?</a>
+<a href="#2-how-do-i-handle-cors" class="toc-h3" style="padding-left:8px">2. How do I handle CORS?</a>
+<a href="#3-can-i-use-route-handlers-with-prisma-or-other-orms" class="toc-h3" style="padding-left:8px">3. Can I use Route Handlers with Prisma or other ORMs?</a>
+<a href="#4-how-do-i-read-query-parameters" class="toc-h3" style="padding-left:8px">4. How do I read query parameters?</a>
     </div>
 </aside>
 </article>
