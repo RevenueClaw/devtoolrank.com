@@ -46,6 +46,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://devtoolrank.com/review/digitalocean-review-2026-still-best-vps-solo-developers</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://devtoolrank.com/guide/complete-guide-modern-developer-tools-2026-full-stack</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -162,12 +168,6 @@
   <url>
     <loc>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</loc>
     <lastmod>2026-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/review/digitalocean-review-2026-still-best-vps-solo-developers</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
