@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use LangChain for Building AI-Powered API Endpoints | Dev Tool Rank</title>
+    <meta name="description" content="Learn how to build production-ready AI API endpoints with LangChain and FastAPI. Step-by-step code, pricing comparisons, and honest pros and cons.">
+    <meta name="keywords" content="langchain tutorial, ai api development, llm application guide, fastapi langchain, build ai api">
+        <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
+    <link rel="canonical" href="https://devtoolrank.com/tutorial/use-langchain-building-ai-powered-api-endpoints">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://devtoolrank.com/#org",
+      "name": "Dev Tool Rank",
+      "url": "https://devtoolrank.com/",
+      "description": "Ranked and reviewed tools for developers who ship"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://devtoolrank.com/#website",
+      "url": "https://devtoolrank.com/",
+      "name": "Dev Tool Rank",
+      "publisher": {
+        "@id": "https://devtoolrank.com/#org"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "How to Use LangChain for Building AI-Powered API Endpoints",
+      "description": "Learn how to build production-ready AI API endpoints with LangChain and FastAPI. Step-by-step code, pricing comparisons, and honest pros and cons.",
+      "datePublished": "2026-10-02",
+      "dateModified": "2026-10-02",
+      "author": {
+        "@type": "Person",
+        "name": "Editorial Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Devtoolrank Reviews",
+        "url": "https://devtoolrank.com"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://devtoolrank.com/tutorial/use-langchain-building-ai-powered-api-endpoints"
+      }
+    }
+  ]
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/tutorials/">Tutorials</a> <span>›</span>
+    How to Use LangChain for Building AI-Powered API E...
+</nav>
+        <header class="article-header">
+            <h1>How to Use LangChain for Building AI-Powered API Endpoints</h1>
+            <div class="meta-row">
+                <span class="badge badge-tutorial">Tutorial</span>
+                <time datetime="2026-10-02">October 02, 2026</time>
+                <span>·</span>
+                <span class="reading-time">5 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><em>When you buy through links on our site, we may earn a commission.</em></p>
+<h2 id="how-to-use-langchain-for-building-ai-powered-api-endpoints">How to Use LangChain for Building AI-Powered API Endpoints</h2>
+<p>So you want to expose an LLM through a REST API. Maybe you're building a support bot, a content summarizer, or something that needs to talk to a language model without living inside a notebook. You've probably heard of LangChain — it's the most popular framework for wiring up LLM applications — but there's a lot of confusion about whether it's actually worth the learning curve.</p>
+<p>Short answer: yes, for anything beyond a single <code>openai.ChatCompletion.create()</code> call.</p>
+<p>In this langchain tutorial, I'll walk you through building real AI API endpoints with LangChain and FastAPI. We'll cover setup, basic chat endpoints, streaming, memory, and RAG. I'll also give you an honest comparison with the alternatives so you know exactly what you're getting into. This is an llm application guide, not a marketing pitch — we're going to get our hands dirty.</p>
+<h2 id="what-actually-is-langchain">What Actually Is LangChain?</h2>
+<p>LangChain is an open-source framework (MIT licensed) that gives you building blocks for LLM applications. Instead of hand-rolling every prompt template, every retry, every bit of memory management, you get composable pieces that snap together.</p>
+<p>The core abstraction is called a <strong>chain</strong> — a sequence of steps that processes input and produces output. In modern LangChain (0.3+), you write chains using <strong>LCEL</strong> (LangChain Expression Language), which uses the <code>|</code> operator to pipe components together. It looks like this:</p>
+<pre><code>chain = prompt | llm | output_parser
+<p></code></pre></p>
+<p>That's it. Each component takes the output of the previous one and feeds it to the next. It's deceptively simple, and it's what makes LangChain worth using for anything non-trivial.</p>
+<p>LangChain also ships with integrations for hundreds of models, vector stores, and tools. You can swap out OpenAI for Anthropic, Google, or a local Ollama model by changing a single line. That flexibility is the main reason developers reach for it.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before we start, <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure you have:</p>
+<ul>
+<li>Python 3.9 or newer</li>
+<li>An OpenAI API key (or another provider's key — the pattern is the same)</li>
+<li>Basic familiarity with FastAPI and async Python</li>
+</ul>
+<p>You can find the <a href="https://python.langchain.com/" rel="nofollow sponsored">official LangChain docs</a> for reference, but I'll cover everything you need here.</p>
+<h2 id="setting-up-your-environment">Setting Up Your Environment</h2>
+<p>Create a fresh directory and set up a virtual environment:</p>
+<pre><code>mkdir langchain-api
+<p>cd langchain-api</p>
+<p>python -m venv .venv</p>
+<p>source .venv/bin/activate  # On Windows: .venv\Scripts\activate</p>
+<p></code></pre></p>
+<p>Now install the packages we need:</p>
+<pre><code>pip install langchain langchain-openai langchain-community fastapi uvicorn python-dotenv
+<p></code></pre></p>
+<p>For RAG later, you'll also want:</p>
+<pre><code>pip install faiss-cpu pypdf
+<p></code></pre></p>
+<p>Create a <code>.env</code> file with your API key:</p>
+<pre><code>OPENAI_API_KEY=sk-your-key-here
+<p></code></pre></p>
+<h2 id="building-your-first-endpoint">Building Your First Endpoint</h2>
+<p>Let's start with a simple chat endpoint. We'll create a FastAPI app that accepts a message and returns a response from GPT-4o-mini.</p>
+<p>Create a file called <code>main.py</code>:</p>
+<pre><code>from fastapi import FastAPI
+<p>from pydantic import BaseModel</p>
+<p>from langchain_openai import ChatOpenAI</p>
+<p>from langchain_core.prompts import ChatPromptTemplate</p>
+<p>from langchain_core.output_parsers import StrOutputParser</p>
+<p>app = FastAPI(title="LangChain AI API")</p>
+<p>class ChatRequest(BaseModel):</p>
+<p>message: str</p>
+<p>session_id: str = "default"</p>
+<p>class ChatResponse(BaseModel):</p>
+<p>response: str</p>
+<p>session_id: str</p>
+<p>llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)</p>
+<p>prompt = ChatPromptTemplate.from_messages([</p>
+<p>("system", "You are a helpful assistant."),</p>
+<p>("human", "{message}")</p>
+<p>])</p>
+<p>chain = prompt | llm | StrOutputParser()</p>
+<p>@app.post("/chat", response_model=ChatResponse)</p>
+<p>async def chat(request: ChatRequest):</p>
+<p>response = await chain.ainvoke({"message": request.message})</p>
+<p>return ChatResponse(response=response, session_id=request.session_id)</p>
+<p></code></pre></p>
+<p>Run it with:</p>
+<pre><code>uvicorn main:app --reload
+<p></code></pre></p>
+<p>Then hit it with curl:</p>
+<pre><code>curl -X POST http://localhost:8000/chat \
+<p>-H "Content-Type: application/json" \</p>
+<p>-d '{"message": "What is the capital of France?"}'</p>
+<p></code></pre></p>
+<p>You'll get back a JSON response with the answer. That's your first AI-powered API endpoint.</p>
+<p>Notice how the chain is defined: <code>prompt | llm | StrOutputParser()</code>. The prompt formats the input, the LLM generates a response, and the output parser converts the message object into a plain string. Clean and composable.</p>
+<h2 id="adding-streaming-for-real-time-responses">Adding Streaming for Real-Time Responses</h2>
+<p>Nobody likes waiting three seconds for a spinner. If you're building anything user-facing, you want tokens to stream back as they're generated. FastAPI supports this natively with <code>StreamingResponse</code>.</p>
+<p>Here's how to add streaming to your endpoint:</p>
+<pre><code>from fastapi.responses import StreamingResponse
+<p>from fastapi import Request</p>
+<p>import json</p>
+<p>@app.post("/chat/stream")</p>
+<p>async def chat_stream(request: Request):</p>
+<p>body = await request.json()</p>
+<p>message = body.get("message", "")</p>
+<p>async def generate():</p>
+<p>async for chunk in chain.astream({"message": message}):</p>
+<p>yield f"data: {json.dumps({'token': chunk})}\n\n"</p>
+<p>return StreamingResponse(</p>
+<p>generate(),</p>
+<p>media_type="text/event-stream",</p>
+<p>headers={"Cache-Control": "no-cache", "Connection": "keep-alive"}</p>
+<p>)</p>
+<p></code></pre></p>
+<p>Now the client receives Server-Sent Events (SSE) as tokens arrive. This is the same pattern used by ChatGPT and Claude. You can consume it from the frontend with <code>EventSource</code> or <code>fetch</code> with a ReadableStream.</p>
+<h2 id="adding-memory-and-conversation-context">Adding Memory and Conversation Context</h2>
+<p>Here's where LangChain starts to earn its keep. Stateless chat is fine for a demo, but real applications need context. Users expect the assistant to remember what they said five messages ago.</p>
+<p>LangChain provides <code>RunnableWithMessageHistory</code> for this. It stores message history by session ID and injects it into the prompt automatically.</p>
+<pre><code>from langchain_core.runnables.history import RunnableWithMessageHistory
+<p>from langchain_core.chat_history import InMemoryChatMessageHistory</p>
+<p>from langchain_core.messages import HumanMessage, SystemMessage</p>
+<p>store = {}</p>
+<p>def get_session_history(session_id: str):</p>
+<p>if session_id not in store:</p>
+<p>store[session_id] = InMemoryChatMessageHistory()</p>
+<p>return store[session_id]</p>
+<h2 id="keep-the-prompt-simple-history-gets-injected-automatically">Keep the prompt simple — history gets injected automatically</h2>
+<p>prompt = ChatPromptTemplate.from_messages([</p>
+<p>("system", "You are a helpful assistant."),</p>
+<p>("placeholder", "{history}"),</p>
+<p>("human", "{message}")</p>
+<p>])</p>
+<p>chain = prompt | llm | StrOutputParser()</p>
+<p>chain_with_history = RunnableWithMessageHistory(</p>
+<p>chain,</p>
+<p>get_session_history,</p>
+<p>input_messages_key="message",</p>
+<p>history_messages_key="history"</p>
+<p>)</p>
+<p>@app.post("/chat/memory", response_model=ChatResponse)</p>
+<p>async def chat_with_memory(request: ChatRequest):</p>
+<p>response = await chain_with_history.ainvoke(</p>
+<p>{"message": request.message},</p>
+<p>config={"configurable": {"session_id": request.session_id}}</p>
+<p>)</p>
+<p>return ChatResponse(response=response, session_id=request.session_id)</p>
+<p></code></pre></p>
+<p>Now if you send "My name is Alex" followed by "What's my name?", the second call will correctly answer "Alex". The history is stored in memory on the server, keyed by <code>session_id</code>.</p>
+<p>A word of caution: <code>InMemoryChatMessageHistory</code> stores everything in RAM. For a production deployment, you'll want to back this with Redis or Postgres. LangChain has integrations for both, and swapping them in is straightforward.</p>
+<h2 id="building-a-rag-endpoint">Building a RAG Endpoint</h2>
+<p>Retrieval-Augmented Generation (RAG) is the most common real-world use case for AI APIs. You give the model access to your own documents so it can answer questions about your specific data without retraining.</p>
+<p>Here's a minimal RAG setup with LangChain,</p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+            <section class="related-articles">
+    <h2>Related Articles</h2>
+    <div class="articles-grid cols-2">
+        <div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>October 22, 2026</time>
+                </div>
+                <h3><a href="/tutorial/containerize-nodejs-app-docker-production">How to Containerize a Node.js App with Docker for Production</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # How to Containerize a Node.js App with Docker for</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>October 19, 2026</time>
+                </div>
+                <h3><a href="/tutorial/implement-real-time-features-supabase-realtime-subscriptions">How to Implement Real-Time Features with Supabase Realtime Subscriptio</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # How to Implement Real-Time Features with [Supabas</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>October 09, 2026</time>
+                </div>
+                <h3><a href="/tutorial/set-up-end-end-testing-playwright">How to Set Up End-to-End Testing with Playwright (Complete Guide)</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  You know the feeling. You push a small CSS change t</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>September 22, 2026</time>
+                </div>
+                <h3><a href="/tutorial/migrate-nodejs-bun-30-minutes">How to Migrate from Node.js to Bun in 30 Minutes</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  ---  Let’s be honest: Node.js isn’t going anywhere.</p>
+            </div>
+    </div>
+</section>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#how-to-use-langchain-for-building-ai-powered-api-endpoints" class="toc-h2" style="padding-left:0px">How to Use LangChain for Building AI-Powered API Endpoints</a>
+<a href="#what-actually-is-langchain" class="toc-h2" style="padding-left:0px">What Actually Is LangChain?</a>
+<a href="#prerequisites" class="toc-h2" style="padding-left:0px">Prerequisites</a>
+<a href="#setting-up-your-environment" class="toc-h2" style="padding-left:0px">Setting Up Your Environment</a>
+<a href="#building-your-first-endpoint" class="toc-h2" style="padding-left:0px">Building Your First Endpoint</a>
+<a href="#adding-streaming-for-real-time-responses" class="toc-h2" style="padding-left:0px">Adding Streaming for Real-Time Responses</a>
+<a href="#adding-memory-and-conversation-context" class="toc-h2" style="padding-left:0px">Adding Memory and Conversation Context</a>
+<a href="#keep-the-prompt-simple-history-gets-injected-automatically" class="toc-h2" style="padding-left:0px">Keep the prompt simple — history gets injected automatically</a>
+<a href="#building-a-rag-endpoint" class="toc-h2" style="padding-left:0px">Building a RAG Endpoint</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

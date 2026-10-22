@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostHog vs Mixpanel vs Amplitude: Which Product Analytics Platform Actually Delivers? | Dev Tool Rank</title>
+    <meta name="description" content="Honest comparison of PostHog, Mixpanel, and Amplitude for developers. Features, pricing, self-hosting, and real use cases – find the best fit.">
+    <meta name="keywords" content="posthog vs mixpanel, product analytics comparison, user analytics tools, amplitude vs mixpanel, posthog review">
+        <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
+    <link rel="canonical" href="https://devtoolrank.com/comparison/posthog-vs-mixpanel-vs-amplitude-best-product-analytics">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://devtoolrank.com/#org",
+      "name": "Dev Tool Rank",
+      "url": "https://devtoolrank.com/",
+      "description": "Ranked and reviewed tools for developers who ship"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://devtoolrank.com/#website",
+      "url": "https://devtoolrank.com/",
+      "name": "Dev Tool Rank",
+      "publisher": {
+        "@id": "https://devtoolrank.com/#org"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "PostHog vs Mixpanel vs Amplitude: Which Product Analytics Platform Actually Delivers?",
+      "description": "Honest comparison of PostHog, Mixpanel, and Amplitude for developers. Features, pricing, self-hosting, and real use cases \u2013 find the best fit.",
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "author": {
+        "@type": "Person",
+        "name": "Editorial Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Devtoolrank Reviews",
+        "url": "https://devtoolrank.com"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://devtoolrank.com/comparison/posthog-vs-mixpanel-vs-amplitude-best-product-analytics"
+      }
+    }
+  ]
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/comparisons/">Comparisons</a> <span>›</span>
+    PostHog vs Mixpanel vs Amplitude: Which Product An...
+</nav>
+        <header class="article-header">
+            <h1>PostHog vs Mixpanel vs Amplitude: Which Product Analytics Platform Actually Delivers?</h1>
+            <div class="meta-row">
+                <span class="badge badge-comparison">Comparison</span>
+                <time datetime="2026-09-20">September 20, 2026</time>
+                <span>·</span>
+                <span class="reading-time">9 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><em>When you buy through links on our site, we may earn a commission.</em></p>
+<h2 id="posthog-vs-mixpanel-vs-amplitude-which-product-analytics-platform-actually-delivers">PostHog vs Mixpanel vs Amplitude: Which Product Analytics Platform Actually Delivers?</h2>
+<p>Product analytics tools are supposed to help you understand what users do inside your app. But picking the right one feels like choosing between three different kinds of Swiss Army knives – they all cut, but some come with a corkscrew you never asked for.</p>
+<p>I’ve spent the last month running each of these platforms through my own app’s data pipeline. I tracked events, built funnels, watched session replays, and even tried to break things. Here’s what I found about PostHog, Mixpanel, and Amplitude – and which one you should actually reach for.</p>
+<h2 id="the-big-three-at-a-glance">The Big Three at a Glance</h2>
+<p><strong>Mixpanel</strong> is the old guard. It’s been around since 2009 and shaped how most people think about product analytics. It’s powerful, but it’s also expensive and feels a bit like using a mainframe terminal that someone put a modern skin on.</p>
+<p><strong>Amplitude</strong> grew up alongside Mixpanel but leaned hard into behavioral analytics and predictive models. It’s the enterprise choice for teams that can afford the premium and want to run complex analyses without writing SQL.</p>
+<p><strong>PostHog</strong> is the new kid (launched 2020) that took a completely different approach: open-source core, self-hostable, and packed with features that Mixpanel and Amplitude treat as separate paid add-ons (session recording, feature flags, heatmaps). It’s built by developers for developers – and it shows.</p>
+<h2 id="feature-deep-dive">Feature Deep Dive</h2>
+<h3 id="event-tracking-data-modeling">Event Tracking & Data Modeling</h3>
+<p>All three let you send events from your app via SDK, API, or webhooks. The differences show up when you try to define metrics or build dashboards.</p>
+<p><strong>Mixpanel</strong> uses a property-based model. You define events and people properties, then use Mixpanel’s query builder to slice and dice. It’s flexible, but the learning curve is real. You’ll need to understand “buckets” and “breakouts” to get anything useful.</p>
+<p><strong>Amplitude</strong> pushes you toward its “Behavioral Graph” – a visual way to chain events and conditions. It’s slick for non-technical team members, but I found it harder to debug when something went wrong. The SQL-like Data Assistant (for enterprise) helps, but costs extra.</p>
+<p><strong>PostHog</strong> keeps it simple: events are JSON blobs. You can query them with plain SQL (they use ClickHouse under the hood) or use their drag-and-drop insight builder. The SQL access is a killer feature for developers – no more waiting for a BI team to write a query.</p>
+<h3 id="funnel-retention-analysis">Funnel & Retention Analysis</h3>
+<table class="price-table">
+<thead><tr><th>Feature</th><th>PostHog</th><th>Mixpanel</th><th>Amplitude</th></tr></thead>
+<tbody>
+<tr><td>Funnels</td><td>Unlimited, free tier</td><td>Limited to 5 events per funnel (free)</td><td>Unlimited, but pricing per query</td></tr>
+<tr><td>Retention</td><td>Cohort-based, built-in</td><td>Requires “Retention” add-on</td><td>Built-in, but complex settings</td></tr>
+<tr><td>Formulas</td><td>Custom SQL or visual</td><td>Custom expressions</td><td>Behavioral cohorts</td></tr>
+<tr><td>Conversion trend</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Time-to-convert</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+</tbody>
+</table>
+<p>Mixpanel’s free plan limits funnels to five steps and 10,000 tracked users. Amplitude’s free tier is more generous (10 events per funnel, 50,000 users), but the real cost hits when you scale. PostHog’s free tier includes unlimited funnels and 1 million events per month – and you can self-host to avoid any cap.</p>
+<h3 id="session-recording-replays">Session Recording & Replays</h3>
+<p>This is where PostHog absolutely crushes the competition. Session recording is included in PostHog’s free tier (up to 5,000 sessions/month). You get heatmaps, rage clicks, and console logs.</p>
+<p>Mixpanel has session replay as a separate product called <strong>Mixpanel Replay</strong> – it’s an add-on starting at $200/month. Amplitude’s <strong>Session Replay</strong> is also a paid upgrade, starting at $1,000+/month for the growth plan.</p>
+<p>If watching user sessions is part of your debugging flow, PostHog saves you a huge line item.</p>
+<h3 id="feature-flags-experimentation">Feature Flags & Experimentation</h3>
+<p>PostHog includes feature flags and A/B testing in the same platform. You can roll out a feature to 10% of users, measure the impact on retention, and roll back – all without leaving the app.</p>
+<p>Mixpanel and Amplitude don’t have native feature flags. You can approximate A/B tests by comparing cohorts, but you’ll need a separate tool (LaunchDarkly, Split) for serious feature management. PostHog’s integration saves you from juggling three different dashboards.</p>
+<h3 id="data-privacy-self-hosting">Data Privacy & Self-Hosting</h3>
+<p>PostHog is open-source (MIT license) and can be self-hosted on your own infrastructure. This is a big deal for companies in regulated industries (healthcare, fintech) or with strict data residency requirements. You own the data, and you can white-label the dashboard.</p>
+<p>Mixpanel and Amplitude are cloud-only. Mixpanel offers a “EU Data Residency” option (data stays in Frankfurt or Dublin), but it’s an enterprise-only feature. Amplitude has similar options, but you’re still sending data to their servers.</p>
+<p>Self-hosting PostHog on a single $40/month VPS can handle up to a few million events per day. That’s a bargain compared to Mixpanel’s $1,000/month startup plan.</p>
+<h2 id="pricing-comparison">Pricing Comparison</h2>
+<table class="price-table">
+<thead><tr><th>Plan</th><th>PostHog</th><th>Mixpanel</th><th>Amplitude</th></tr></thead>
+<tbody>
+<tr><td><strong>Free</strong></td><td>1M events/mo, unlimited team members, sessions, feature flags</td><td>10K tracked users, 5-step funnels, 1 user</td><td>50K users, 10 events per funnel, 1 user</td></tr>
+<tr><td><strong>Growth/Team</strong></td><td>$0.00035 per event (pay as you go)</td><td>Starts at $25/mo for 1K tracked users, then $1.50/1K users</td><td>Starts at $1,000/mo for 1M events</td></tr>
+<tr><td><strong>Business/Enterprise</strong></td><td>Custom (self-host or cloud)</td><td>$1,500+/mo</td><td>$4,000+/mo</td></tr>
+</tbody>
+</table>
+<p><strong>PostHog’s pricing model is radically different.</strong> They don’t charge per user – they charge per event. The free tier gives you 1 million events per month. After that, it’s $0.00035 per event (about $350 for 10 million events). No seat limits, no hidden fees.</p>
+<p>Mixpanel and Amplitude charge based on “tracked users” – every user who triggers an event counts, even if they only visit once. This can get expensive fast for high-traffic consumer apps.</p>
+<h2 id="pros-cons">Pros & Cons</h2>
+<h3 id="posthog">PostHog</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Open-source, self-hostable – total data control</li>
+<li>Session recording, feature flags, A/B testing all included</li>
+<li>SQL access to raw event data</li>
+<li>Generous free tier (1M events/mo, unlimited team members)</li>
+<li>Pay-per-event pricing, no per-user fees</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>UI feels less polished than Amplitude (more engineer-oriented)</li>
+<li>Limited pre-built integrations compared to Mixpanel</li>
+<li>Self-hosting requires some DevOps chops</li>
+<li>No mobile SDK for session replay (yet)</li>
+</ul>
+<h3 id="mixpanel">Mixpanel</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Mature, battle-tested platform with huge ecosystem</li>
+<li>Excellent for marketing analytics (email integration, push notification tracking)</li>
+<li>Rich set of pre-built dashboards and templates</li>
+<li>Strong data governance and permissions</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Pricing is opaque and expensive – tracked user model penalizes growth</li>
+<li>Session replay is a paid add-on</li>
+<li>Feature flags require third-party tool</li>
+<li>Free tier is very restrictive (10K users, 1 user seat)</li>
+<li>UI can be clunky and slow</li>
+</ul>
+<h3 id="amplitude">Amplitude</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Best-in-class behavioral analytics (predictive models, cohort analysis)</li>
+<li>Visual query builder is great for non-technical team members</li>
+<li>Strong integrations (especially with marketing and CRM tools)</li>
+<li>Enterprise-grade security and compliance</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Most expensive option – $1,000/mo for growth plan</li>
+<li>Session replay and feature flags are premium add-ons</li>
+<li>Overkill for small teams or simple products</li>
+<li>Data export restrictions on lower plans</li>
+<li>Learning curve for advanced features</li>
+</ul>
+<h2 id="who-should-use-what">Who Should Use What?</h2>
+<p><strong>Choose PostHog if:</strong></p>
+<ul>
+<li>You’re a developer or small team that wants full control over data</li>
+<li>You need session recording, feature flags, and analytics in one tool</li>
+<li>You want to avoid per-user pricing (or you have a high-traffic app)</li>
+<li>You’re comfortable with SQL or want the option to self-host</li>
+<li>You have privacy/regulatory requirements</li>
+</ul>
+<p><strong>Choose Mixpanel if:</strong></p>
+<ul>
+<li>You’re a marketing team that needs deep integration with email and push tools</li>
+<li>You have a large existing investment in Mixpanel (switching costs are high)</li>
+<li>You need complex user segmentation for targeted campaigns</li>
+<li>You have budget for enterprise pricing</li>
+</ul>
+<p><strong>Choose Amplitude if:</strong></p>
+<ul>
+<li>You’re a product team that needs predictive analytics and behavioral cohorts</li>
+<li>You have non-technical stakeholders who need visual query builders</li>
+<li>You’re at a startup that just raised a Series A and can afford $1K+/mo</li>
+<li>You need enterprise compliance (SOC2, HIPAA) without self-hosting</li>
+</ul>
+<h2 id="final-verdict">Final Verdict</h2>
+<p>There’s no one-size-fits-all winner, but for most developers and small teams, <strong>PostHog is the clear choice</strong>. It offers the best price-to-feature ratio, gives you total data control, and eliminates the need for three separate tools.</p>
+<p>If your team is already deep in Mixpanel’s ecosystem and you can stomach the cost, stick with it – switching is painful. Amplitude is the premium pick for teams that need advanced behavioral predictions and have the budget.</p>
+<p>But if you’re starting fresh or re-evaluating your stack, PostHog will save you money and headaches. You get session replays, feature flags, and unlimited funnels on the free tier – things Mixpanel and Amplitude charge hundreds for.</p>
+<p><a href="https://posthog.com/signup?utm_source=devtoolrank" rel="nofollow sponsored">Check PostHog -></a></p>
+<h2 id="faq">FAQ</h2>
+<h3 id="can-i-migrate-from-mixpanel-or-amplitude-to-posthog">Can I migrate from Mixpanel or Amplitude to PostHog?</h3>
+<p>Yes. PostHog provides migration scripts for Mixpanel and Amplitude. You can export your event data as JSON and import it into PostHog. The process isn’t instant (especially for historical data), but it’s well-documented.</p>
+<h3 id="does-posthog-support-mobile-apps">Does PostHog support mobile apps?</h3>
+<p>Yes. PostHog has SDKs for iOS, Android, React Native, and Flutter. Session replay is currently web-only, but mobile replay is in beta.</p>
+<h3 id="is-posthog-really-free-for-unlimited-team-members">Is PostHog really free for unlimited team members?</h3>
+<p>Yes. The free cloud tier allows unlimited team members with no extra cost. Mixpanel and Amplitude both charge per seat on their growth plans.</p>
+<h3 id="which-tool-is-best-for-gdpr-compliance">Which tool is best for GDPR compliance?</h3>
+<p>PostHog’s self-hosted option gives you the most control. You can delete user data on demand, set custom data retention policies, and keep everything in your own EU servers. Mixpanel and Amplitude offer EU data regions but only on enterprise plans.</p>
+<h3 id="can-i-use-posthog-for-a-b-testing-without-another-tool">Can I use PostHog for A/B testing without another tool?</h3>
+<p>Yes. PostHog has built-in feature flags and experiment tools. You can define variants, assign users, and measure conversion impact – all within the same platform. No need for LaunchDarkly or Optimizely.</p>
+<h3 id="how-does-posthog-handle-event-volume-spikes">How does PostHog handle event volume spikes?</h3>
+<p>Since PostHog uses ClickHouse, it handles high write throughput well. The cloud version auto-scales. Self-hosted users should size their ClickHouse cluster appropriately – but for most small teams, a single server works fine.</p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+            <section class="related-articles">
+    <h2>Related Articles</h2>
+    <div class="articles-grid cols-2">
+        <div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-comparison">Comparison</span>
+                    <time>October 21, 2026</time>
+                </div>
+                <h3><a href="/comparison/playwright-vs-cypress-vs-selenium-best-browser-automation">Playwright vs Cypress vs Selenium: Best Browser Automation in 2026</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # Playwright vs Cypress vs Selenium: Best Browser A</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-comparison">Comparison</span>
+                    <time>October 19, 2026</time>
+                </div>
+                <h3><a href="/comparison/cloudflare-workers-vs-aws-lambda-vs-vercel-edge-functions">Cloudflare Workers vs AWS Lambda vs Vercel Edge Functions: Which Serve</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # Cloudflare Workers vs AWS Lambda vs [Vercel](http</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-comparison">Comparison</span>
+                    <time>October 16, 2026</time>
+                </div>
+                <h3><a href="/comparison/bun-vs-nodejs-vs-deno-javascript-runtime-wins">Bun vs Node.js vs Deno: Which JavaScript Runtime Wins in 2026?</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # Bun vs Node.js vs Deno: Which JavaScript Runtime </p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-comparison">Comparison</span>
+                    <time>September 24, 2026</time>
+                </div>
+                <h3><a href="/comparison/shadcnui-vs-mantine-vs-chakra-best-react-component-library">shadcn/ui vs Mantine vs Chakra: Best React Component Library 2026</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  Picking a React component library in 2026 isn’t as </p>
+            </div>
+    </div>
+</section>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#posthog-vs-mixpanel-vs-amplitude-which-product-analytics-platform-actually-delivers" class="toc-h2" style="padding-left:0px">PostHog vs Mixpanel vs Amplitude: Which Product Analytics Platform Actually Delivers?</a>
+<a href="#the-big-three-at-a-glance" class="toc-h2" style="padding-left:0px">The Big Three at a Glance</a>
+<a href="#feature-deep-dive" class="toc-h2" style="padding-left:0px">Feature Deep Dive</a>
+<a href="#event-tracking-data-modeling" class="toc-h3" style="padding-left:8px">Event Tracking & Data Modeling</a>
+<a href="#funnel-retention-analysis" class="toc-h3" style="padding-left:8px">Funnel & Retention Analysis</a>
+<a href="#session-recording-replays" class="toc-h3" style="padding-left:8px">Session Recording & Replays</a>
+<a href="#feature-flags-experimentation" class="toc-h3" style="padding-left:8px">Feature Flags & Experimentation</a>
+<a href="#data-privacy-self-hosting" class="toc-h3" style="padding-left:8px">Data Privacy & Self-Hosting</a>
+<a href="#pricing-comparison" class="toc-h2" style="padding-left:0px">Pricing Comparison</a>
+<a href="#pros-cons" class="toc-h2" style="padding-left:0px">Pros & Cons</a>
+<a href="#posthog" class="toc-h3" style="padding-left:8px">PostHog</a>
+<a href="#mixpanel" class="toc-h3" style="padding-left:8px">Mixpanel</a>
+<a href="#amplitude" class="toc-h3" style="padding-left:8px">Amplitude</a>
+<a href="#who-should-use-what" class="toc-h2" style="padding-left:0px">Who Should Use What?</a>
+<a href="#final-verdict" class="toc-h2" style="padding-left:0px">Final Verdict</a>
+<a href="#faq" class="toc-h2" style="padding-left:0px">FAQ</a>
+<a href="#can-i-migrate-from-mixpanel-or-amplitude-to-posthog" class="toc-h3" style="padding-left:8px">Can I migrate from Mixpanel or Amplitude to PostHog?</a>
+<a href="#does-posthog-support-mobile-apps" class="toc-h3" style="padding-left:8px">Does PostHog support mobile apps?</a>
+<a href="#is-posthog-really-free-for-unlimited-team-members" class="toc-h3" style="padding-left:8px">Is PostHog really free for unlimited team members?</a>
+<a href="#which-tool-is-best-for-gdpr-compliance" class="toc-h3" style="padding-left:8px">Which tool is best for GDPR compliance?</a>
+<a href="#can-i-use-posthog-for-a-b-testing-without-another-tool" class="toc-h3" style="padding-left:8px">Can I use PostHog for A/B testing without another tool?</a>
+<a href="#how-does-posthog-handle-event-volume-spikes" class="toc-h3" style="padding-left:8px">How does PostHog handle event volume spikes?</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

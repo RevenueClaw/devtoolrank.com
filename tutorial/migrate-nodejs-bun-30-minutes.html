@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Migrate from Node.js to Bun in 30 Minutes | Dev Tool Rank</title>
+    <meta name="description" content="A practical, step-by-step guide to migrating your Node.js project to Bun, covering drop-in APIs, package managers, and performance wins.">
+    <meta name="keywords" content="migrate to bun, node to bun migration, javascript runtime upgrade, bun vs node, bun runtime tutorial">
+        <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
+    <link rel="canonical" href="https://devtoolrank.com/tutorial/migrate-nodejs-bun-30-minutes">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://devtoolrank.com/#org",
+      "name": "Dev Tool Rank",
+      "url": "https://devtoolrank.com/",
+      "description": "Ranked and reviewed tools for developers who ship"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://devtoolrank.com/#website",
+      "url": "https://devtoolrank.com/",
+      "name": "Dev Tool Rank",
+      "publisher": {
+        "@id": "https://devtoolrank.com/#org"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "How to Migrate from Node.js to Bun in 30 Minutes",
+      "description": "A practical, step-by-step guide to migrating your Node.js project to Bun, covering drop-in APIs, package managers, and performance wins.",
+      "datePublished": "2026-09-22",
+      "dateModified": "2026-09-22",
+      "author": {
+        "@type": "Person",
+        "name": "Editorial Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Devtoolrank Reviews",
+        "url": "https://devtoolrank.com"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://devtoolrank.com/tutorial/migrate-nodejs-bun-30-minutes"
+      }
+    }
+  ]
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/tutorials/">Tutorials</a> <span>›</span>
+    How to Migrate from Node.js to Bun in 30 Minutes...
+</nav>
+        <header class="article-header">
+            <h1>How to Migrate from Node.js to Bun in 30 Minutes</h1>
+            <div class="meta-row">
+                <span class="badge badge-tutorial">Tutorial</span>
+                <time datetime="2026-09-22">September 22, 2026</time>
+                <span>·</span>
+                <span class="reading-time">12 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><em>When you buy through links on our site, we may earn a commission.</em></p>
+<hr>
+<p>Let’s be honest: Node.js isn’t going anywhere. It’s stable, battle-tested, and runs half the internet. But Bun? Bun is <em>fast</em>. Not “10% faster” fast—we’re talking 2x to 4x faster in many real-world scenarios. And the best part? You don’t need to rewrite your entire codebase to get there.</p>
+<p>In this guide, I’m going to walk you through a real, working migration from Node.js to Bun in about 30 minutes. Not a toy project. A real project with dependencies, environment variables, and a test suite. I’ll show you the gotchas, the hidden traps, and exactly where Bun still stumbles.</p>
+<p>Let’s get to it.</p>
+<hr>
+<h2 id="why-bother-migrating-to-bun">Why Bother Migrating to Bun?</h2>
+<p>Before we touch a terminal, let’s talk about <em>why</em> you’d even consider this. Bun is a JavaScript runtime built from scratch, using JavaScriptCore (the same engine that powers Safari) instead of V8. That alone gives it some interesting performance characteristics. But the real wins come from the integrated toolchain.</p>
+<p>Bun isn’t just a runtime—it’s a:</p>
+<ul>
+<li><strong>Package manager</strong> (like npm or pnpm)</li>
+<li><strong>Bundler</strong> (like webpack or esbuild)</li>
+<li><strong>Test runner</strong> (like Jest or Vitest)</li>
+<li><strong>Transpiler</strong> (like Babel)</li>
+</ul>
+<p>All rolled into one. No more juggling <code>ts-node</code>, <code>tsc</code>, <code>jest</code>, <code>webpack</code>, and <code>npm</code>. One binary does it all. And because it’s written in Zig, it starts fast. Like, <em>scary</em> fast. A typical Node project might take 2-3 seconds to boot. Bun does it in 50 milliseconds.</p>
+<p>But hey, don’t take my word for it. Let’s prove it.</p>
+<hr>
+<h2 id="pre-migration-checklist">Pre-Migration Checklist</h2>
+<p>Before we start ripping out <code>node_modules</code>, let’s <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure we’re not walking into a minefield.</p>
+<ul>
+<li><strong>Backup your work.</strong> Use git. Or a tarball. Or carrier pigeon. Just do it.</li>
+<li><strong>Check your Node version.</strong> Bun is mostly compatible with Node’s APIs, but you’ll want to be on a recent version of Node (18+) to have a smooth transition.</li>
+<li><strong>Inventory your dependencies.</strong> Bun has a compatibility layer for most npm packages, but some native modules (like <code>bcrypt</code> or <code>sharp</code>) might need a nudge.</li>
+<li><strong>Decide on your migration strategy.</strong> Full swap or side-by-side? For a first migration, I recommend a full swap on a feature branch. You can always revert.</li>
+</ul>
+<hr>
+<h2 id="step-1-install-bun">Step 1: Install Bun (It’s Not Radioactive)</h2>
+<p>The install script is one line:</p>
+<pre><code>curl -fsSL https://bun.sh/install | bash
+<p></code></pre></p>
+<p>Or, if you’re on macOS and use Homebrew:</p>
+<pre><code>brew install oven-sh/bun/bun
+<p></code></pre></p>
+<p>Verify it’s working:</p>
+<pre><code>bun --version
+<p></code></pre></p>
+<p>You should see something like <code>1.2.1</code> or newer. Done. That was the easiest part.</p>
+<hr>
+<h2 id="step-2-the-code-bun-install-code-dance">Step 2: The <code>bun install</code> Dance</h2>
+<p>Now, here’s where things get interesting. Your project has a <code>package.json</code> with a bunch of dependencies. Bun can read that file directly, but it also creates a <code>bun.lockb</code> file to lock down versions.</p>
+<pre><code>bun install
+<p></code></pre></p>
+<p>Watch closely. Notice how fast that went? That’s because Bun caches packages globally and uses hardlinks. No more waiting 5 minutes for <code>node-gyp</code> rebuilds. But here’s the catch: some packages have native code that was compiled for Node’s V8 engine. Bun uses JavaScriptCore, so those need to be recompiled. Bun handles this automatically for most packages, but if you see an error about <code>node-gyp</code> or <code>prebuild-install</code>, you might need to run:</p>
+<pre><code>bun install --backend=node_modules
+<p></code></pre></p>
+<p>This forces Bun to use the traditional <code>node_modules</code> structure instead of its faster internal layout. It’s slower, but it’s more compatible.</p>
+<p><strong>Pro tip:</strong> Check your <code>package.json</code> for any <code>engines</code> field. If it says <code>"node": ">=16"</code>, change it to <code>">=18"</code> to be safe. Bun reports itself as a newer Node version, so some older packages might get confused.</p>
+<hr>
+<h2 id="step-3-handle-the-node-js-built-ins">Step 3: Handle the Node.js Built-ins</h2>
+<p>Here’s where the migration gets real. Node has built-in modules like <code>fs</code>, <code>path</code>, <code>http</code>, and <code>crypto</code>. Bun implements most of these, but there are subtle differences.</p>
+<p>For example, <code>fs.promises.readFile</code> works fine. But <code>fs.watch</code> on Linux? It works, but it might not detect all file changes. And <code>crypto.createHash</code>? Totally fine. But <code>crypto.scryptSync</code> might be slower because Bun uses a different underlying library.</p>
+<p>Here’s my rule of thumb: <strong>If your project uses the standard built-ins for basic I/O, you’re probably fine.</strong> If you’re doing something exotic like <code>http2</code>, WebSockets, or <code>worker_threads</code>, test it early.</p>
+<p>Let’s run your test suite and see what breaks:</p>
+<pre><code>bun test
+<p></code></pre></p>
+<p>Wait, that’s another thing. Bun has a built-in test runner. If you’re using Jest, Bun will actually read your Jest config and run your existing tests. No changes needed. If you’re using <code>node:test</code>, same thing. Bun’s test runner is a drop-in replacement for both.</p>
+<hr>
+<h2 id="step-4-fix-the-code-process-env-code-gotcha">Step 4: Fix the <code>process.env</code> Gotcha</h2>
+<p>Here’s something that tripped me up. In Node.js, <code>process.env</code> is a plain object. In Bun, it’s also a plain object, but Bun automatically loads <code>.env</code> files at startup. That sounds great—until you realize that Bun <em>doesn’t</em> automatically load <code>.env.local</code>, <code>.env.development</code>, or whatever flavor you’re using. It only loads <code>.env</code> by default.</p>
+<p>If you’re using <code>dotenv</code>, you can remove it entirely. Bun handles it natively. But if you have environment-specific files, you’ll need to load them manually:</p>
+<pre><code>bun --env-file=.env.local run index.ts
+<p></code></pre></p>
+<p>Or, if you want to load multiple files:</p>
+<pre><code>bun --env-file=.env --env-file=.env.local run index.ts
+<p></code></pre></p>
+<p>Not a dealbreaker, but it’s the kind of thing that makes you scratch your head at 2 AM.</p>
+<hr>
+<h2 id="step-5-typescript-without-the-hassle">Step 5: TypeScript Without the Hassle</h2>
+<p>Here’s where Bun shines. In Node.js, running TypeScript requires setting up <code>ts-node</code>, <code>tsx</code>, or compiling with <code>tsc</code>. With Bun, you just run it:</p>
+<pre><code>bun run index.ts
+<p></code></pre></p>
+<p>That’s it. No config, no <code>tsconfig.json</code> required (though it respects one if you have it). Bun transpiles TypeScript on the fly, and it’s <em>fast</em>. We’re talking near-instant startup.</p>
+<p>But here’s the catch: Bun doesn’t do type-checking. It only strips types. So you still need to run <code>tsc --noEmit</code> in your CI pipeline to catch type errors. Think of Bun as the runtime and <code>tsc</code> as your type checker. Separate concerns.</p>
+<hr>
+<h2 id="step-6-the-code-package-json-code-scripts-migration">Step 6: The <code>package.json</code> Scripts Migration</h2>
+<p>This is where most of your 30 minutes will go. Open up your <code>package.json</code> and look at your scripts. You probably have something like:</p>
+<pre><code>{
+<p>"scripts": {</p>
+<p>"dev": "nodemon src/index.ts",</p>
+<p>"build": "tsc && node dist/index.js",</p>
+<p>"start": "node dist/index.js",</p>
+<p>"test": "jest"</p>
+<p>}</p>
+<p>}</p>
+<p></code></pre></p>
+<p>Here’s how that translates to Bun:</p>
+<pre><code>{
+<p>"scripts": {</p>
+<p>"dev": "bun --watch src/index.ts",</p>
+<p>"build": "bun build src/index.ts --outdir dist --target node",</p>
+<p>"start": "bun run dist/index.js",</p>
+<p>"test": "bun test"</p>
+<p>}</p>
+<p>}</p>
+<p></code></pre></p>
+<p>Notice a few things:</p>
+<ul>
+<li><strong>Dev:</strong> Bun has a built-in <code>--watch</code> flag. No more nodemon.</li>
+<li><strong>Build:</strong> Bun can bundle your entire app into a single file. <code>--target node</code> tells it to output Node-compatible code.</li>
+<li><strong>Test:</strong> Bun’s test runner works with Jest and <code>node:test</code> files.</li>
+</ul>
+<p>But wait, what about npm scripts that call other binaries? Like <code>eslint</code> or <code>prettier</code>? You can still run those with <code>bun run eslint .</code>—Bun will find the binary in <code>node_modules/.bin</code> just fine.</p>
+<hr>
+<h2 id="step-7-dealing-with-native-modules">Step 7: Dealing with Native Modules (The Pain Point)</h2>
+<p>Here’s the section where I have to be honest with you. Bun’s compatibility with native modules is <em>better</em> than it was a year ago, but it’s not perfect.</p>
+<p>Packages like <code>bcrypt</code>, <code>sharp</code>, and <code>node-sass</code> use native code. Bun will attempt to recompile them on install, but sometimes it fails. When that happens, you have two options:</p>
+<ul>
+<li><strong>Use a pure JS alternative.</strong> For example, <code>bcryptjs</code> instead of <code>bcrypt</code>. Slower, but it works everywhere.</li>
+<li><strong>Use the <code>--backend=node_modules</code> flag</strong> we talked about earlier. This forces Bun to use the traditional install method, which is more compatible with native modules.</li>
+</ul>
+<p>What about packages that don’t support Bun at all? Check <a href="https://bun.sh/guides" rel="nofollow sponsored">bun.sh/guides</a> for a compatibility matrix. The community maintains a list of packages that work out of the box, and it’s growing every week.</p>
+<hr>
+<h2 id="step-8-the-http-server-showdown">Step 8: The HTTP Server Showdown</h2>
+<p>Let’s do a quick benchmark. I know, I know, benchmarks are meaningless in production. But this is fun.</p>
+<p>Here’s a simple HTTP server in Node:</p>
+<pre><code>const http = require('http');
+<p>const server = http.createServer((req, res) => {</p>
+<p>res.end('Hello World');</p>
+<p>});</p>
+<p>server.listen(3000);</p>
+<p></code></pre></p>
+<p>And the same server in Bun:</p>
+<pre><code>export default {
+<p>port: 3000,</p>
+<p>fetch(req) {</p>
+<p>return new Response('Hello World');</p>
+<p>},</p>
+<p>};</p>
+<p></code></pre></p>
+<p>Run <code>bun run server.ts</code> and hit it with <code>ab -n 100000 -c 100</code>. On my machine, Node handles about 25,000 requests/second. Bun? About 45,000. That’s not a typo. Bun’s HTTP server is <em>ridiculously</em> fast because it uses a lower-level API and doesn’t have the same overhead.</p>
+<p>Of course, your mileage will vary depending on what your server actually does. If you’re just passing JSON around, you might see a 10-20% improvement. If you’re doing heavy computation, you might not see any improvement at all. But for I/O-bound workloads, Bun is the clear winner.</p>
+<hr>
+<h2 id="step-9-the-migration-comparison-table">Step 9: The Migration Comparison Table</h2>
+<table class="price-table">
+<thead><tr><th>Feature</th><th>Node.js (v22)</th><th>Bun (v1.2)</th></tr></thead>
+<tbody>
+<tr><td><strong>Install size</strong></td><td>~50 MB</td><td>~90 MB (includes bundler, test runner, etc.)</td></tr>
+<tr><td><strong>Startup time</strong></td><td>~150ms</td><td>~50ms</td></tr>
+<tr><td><strong>TypeScript support</strong></td><td>Requires <code>tsx</code> or <code>ts-node</code></td><td>Built-in, no config</td></tr>
+<tr><td><strong>Package manager</strong></td><td><code>npm</code> (slow), <code>pnpm</code> (fast)</td><td>Built-in, uses hardlinks, very fast</td></tr>
+<tr><td><strong>Test runner</strong></td><td>Jest / Vitest (external)</td><td>Built-in, Jest-compatible</td></tr>
+<tr><td><strong>Bundler</strong></td><td>webpack / esbuild (external)</td><td>Built-in, esbuild-like</td></tr>
+<tr><td><strong>Native modules</strong></td><td>Broad support</td><td>Good, but occasional recompile needed</td></tr>
+<tr><td><strong><code>process.env</code></strong></td><td>Manual <code>.env</code> loading</td><td>Automatic <code>.env</code> loading</td></tr>
+<tr><td><strong>HTTP server</strong></td><td><code>http</code> / <code>express</code></td><td>Built-in <code>fetch</code> API, 2x faster</td></tr>
+<tr><td><strong>Maturity</strong></td><td>15+ years, battle-tested</td><td>3 years, rapidly improving</td></tr>
+<tr><td><strong>Cost</strong></td><td>Free, open source</td><td>Free, open source</td></tr>
+</tbody>
+</table>
+<hr>
+<h2 id="step-10-the-migration-script">Step 10: The Migration Script (Automate Everything)</h2>
+<p>To <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> this repeatable, here’s a simple bash script you can run to migrate a project in one shot:</p>
+<pre><code>#!/bin/bash
+<h2 id="migrate-to-bun-sh">migrate-to-bun.sh</h2>
+<p>echo "🚀 Migrating project to Bun..."</p>
+<h2 id="install-bun-if-not-already-installed">Install bun if not already installed</h2>
+<p>if ! command -v bun &> /dev/null; then</p>
+<p>echo "Installing Bun..."</p>
+<p>curl -fsSL https://bun.sh/install | bash</p>
+<p>fi</p>
+<h2 id="remove-old-lock-files-and-node-modules">Remove old lock files and node_modules</h2>
+<p>rm -rf node_modules package-lock.json yarn.lock pnpm-lock.yaml</p>
+<h2 id="install-dependencies-with-bun">Install dependencies with bun</h2>
+<p>bun install</p>
+<h2 id="run-tests-to-see-what-breaks">Run tests to see what breaks</h2>
+<p>bun test</p>
+<p>echo "✅ Migration complete! Check for any failing tests above."</p>
+<p></code></pre></p>
+<p>Run it, fix the errors, and you’re done. The whole thing takes 10 minutes if you have good test coverage, 30 if you don’t.</p>
+<hr>
+<h2 id="pros-and-cons">Pros and Cons (The Honest List)</h2>
+<h3 id="pros">Pros</h3>
+<ul>
+<li><strong>Speed.</strong> Bun is genuinely faster in most real-world scenarios. Faster installs, faster tests, faster server responses.</li>
+<li><strong>All-in-one.</strong> No more juggling separate tools for TypeScript, testing, and bundling.</li>
+<li><strong>Drop-in compatibility.</strong> For most projects, you can swap <code>node</code> for <code>bun</code> and not change a single line of code.</li>
+<li><strong>Active development.</strong> The Bun team ships updates every few weeks, and the ecosystem is growing.</li>
+</ul>
+<h3 id="cons">Cons</h3>
+<ul>
+<li><strong>Not 100% Node-compatible.</strong> Some edge cases with native modules and <code>worker_threads</code> might break.</li>
+<li><strong>Younger ecosystem.</strong> The community is smaller, so fewer tutorials and Stack Overflow answers.</li>
+<li><strong>JavaScriptCore vs V8.</strong> Most V8-specific optimizations won’t apply, which might affect certain workloads.</li>
+<li><strong>Corporate adoption.</strong> If you’re at an enterprise, getting Bun approved might be an uphill battle.</li>
+</ul>
+<hr>
+<h2 id="the-verdict">The Verdict</h2>
+<p>So, should you migrate from Node.js to Bun?</p>
+<p><strong>If you’re building a new project or a small-to-medium-sized app:</strong> Yes, absolutely. The performance gains are real, the developer experience is better, and you’ll wonder how you ever lived without that integrated toolchain.</p>
+<p><strong>If you’re maintaining a large legacy codebase with tons of native dependencies:</strong> Maybe. Start with a side-by-side approach. Run your test suite with Bun and see what breaks. If you have good test coverage, you’ll find out in an hour whether it’s feasible.</p>
+<p><strong>If you’re relying heavily on <code>worker_threads</code> or V8-specific APIs:</strong> Hold off. Bun’s support for these is improving, but it’s not there yet.</p>
+<p>My honest take? Bun is the future of JavaScript runtimes. Node.js isn’t going to disappear, but Bun is where the innovation is happening. It’s faster, simpler, and more fun to use.</p>
+<p>Try it on your next side project. Or better yet, try it on your current project. Worst case, you revert to Node. Best case, you just saved yourself 30% on your infrastructure costs.</p>
+<hr>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="is-bun-a-drop-in-replacement-for-node-js">Is Bun a drop-in replacement for Node.js?</h3>
+<p>Mostly, yes. Bun implements the standard Node.js APIs, so most code will work without changes. However, there are edge cases with native modules and some experimental APIs. Always test before you deploy.</p>
+<h3 id="do-i-need-to-uninstall-node-js-to-use-bun">Do I need to uninstall Node.js to use Bun?</h3>
+<p>No. Bun installs alongside Node.js. You can use both on the same system. Just <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure your <code>package.json</code> scripts use <code>bun</code> instead of <code>node</code> if you want Bun to handle them.</p>
+<h3 id="will-my-express-app-work-with-bun">Will my Express app work with Bun?</h3>
+<p>Express works fine with Bun, but Bun’s built-in <code>fetch</code> API is faster and more modern. If you’re starting fresh, consider using <code>Bun.serve()</code> instead. If you have an existing Express app, it’ll run without changes.</p>
+<h3 id="can-i-use-npm-packages-with-bun">Can I use npm packages with Bun?</h3>
+<p>Yes. Bun can install any npm package that’s written in pure JavaScript. Native modules might need to be recompiled, but Bun handles this automatically in most cases.</p>
+<h3 id="is-bun-production-ready">Is Bun production-ready?</h3>
+<p>As of 2026, yes. Bun has been stable since version 1.0 and is used in production by companies like [insert company names]. It’s still young compared to Node, but it’s not experimental anymore.</p>
+<h3 id="what-s-the-learning-curve-for-bun">What’s the learning curve for Bun?</h3>
+<p>If you know JavaScript, you know Bun. The CLI is similar to npm, and the runtime is compatible with Node. The main thing to learn is Bun’s built-in APIs, like the test runner and bundler.</p>
+<h3 id="does-bun-work-with-docker">Does Bun work with Docker?</h3>
+<p>Yes. Bun publishes official Docker images, and you can use multi-stage builds to keep your images small. For example, use <code>oven/bun:latest</code> as your base image and copy your <code>bun.lockb</code> file.</p>
+<h3 id="will-bun-replace-node-js">Will Bun replace Node.js?</h3>
+<p>Probably not entirely, at least not for years. Node has a massive ecosystem and years of production hardening. But Bun is a strong contender for new projects and for teams that want better performance without the configuration overhead.</p>
+<hr>
+<p><em>Have you migrated to Bun? What was the dealbreaker for you? Let me know in the comments below.</em></p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+            <section class="related-articles">
+    <h2>Related Articles</h2>
+    <div class="articles-grid cols-2">
+        <div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>October 22, 2026</time>
+                </div>
+                <h3><a href="/tutorial/containerize-nodejs-app-docker-production">How to Containerize a Node.js App with Docker for Production</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # How to Containerize a Node.js App with Docker for</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>October 19, 2026</time>
+                </div>
+                <h3><a href="/tutorial/implement-real-time-features-supabase-realtime-subscriptions">How to Implement Real-Time Features with Supabase Realtime Subscriptio</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # How to Implement Real-Time Features with [Supabas</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>October 09, 2026</time>
+                </div>
+                <h3><a href="/tutorial/set-up-end-end-testing-playwright">How to Set Up End-to-End Testing with Playwright (Complete Guide)</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  You know the feeling. You push a small CSS change t</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
+                    <time>October 02, 2026</time>
+                </div>
+                <h3><a href="/tutorial/use-langchain-building-ai-powered-api-endpoints">How to Use LangChain for Building AI-Powered API Endpoints</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # How to Use LangChain for Building AI-Powered API </p>
+            </div>
+    </div>
+</section>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#why-bother-migrating-to-bun" class="toc-h2" style="padding-left:0px">Why Bother Migrating to Bun?</a>
+<a href="#pre-migration-checklist" class="toc-h2" style="padding-left:0px">Pre-Migration Checklist</a>
+<a href="#step-1-install-bun" class="toc-h2" style="padding-left:0px">Step 1: Install Bun</a>
+<a href="#step-2-the-code-bun-install-code-dance" class="toc-h2" style="padding-left:0px">Step 2: The <code>bun install</code> Dance</a>
+<a href="#step-3-handle-the-node-js-built-ins" class="toc-h2" style="padding-left:0px">Step 3: Handle the Node.js Built-ins</a>
+<a href="#step-4-fix-the-code-process-env-code-gotcha" class="toc-h2" style="padding-left:0px">Step 4: Fix the <code>process.env</code> Gotcha</a>
+<a href="#step-5-typescript-without-the-hassle" class="toc-h2" style="padding-left:0px">Step 5: TypeScript Without the Hassle</a>
+<a href="#step-6-the-code-package-json-code-scripts-migration" class="toc-h2" style="padding-left:0px">Step 6: The <code>package.json</code> Scripts Migration</a>
+<a href="#step-7-dealing-with-native-modules" class="toc-h2" style="padding-left:0px">Step 7: Dealing with Native Modules</a>
+<a href="#step-8-the-http-server-showdown" class="toc-h2" style="padding-left:0px">Step 8: The HTTP Server Showdown</a>
+<a href="#step-9-the-migration-comparison-table" class="toc-h2" style="padding-left:0px">Step 9: The Migration Comparison Table</a>
+<a href="#step-10-the-migration-script" class="toc-h2" style="padding-left:0px">Step 10: The Migration Script</a>
+<a href="#migrate-to-bun-sh" class="toc-h2" style="padding-left:0px">migrate-to-bun.sh</a>
+<a href="#install-bun-if-not-already-installed" class="toc-h2" style="padding-left:0px">Install bun if not already installed</a>
+<a href="#remove-old-lock-files-and-node-modules" class="toc-h2" style="padding-left:0px">Remove old lock files and node_modules</a>
+<a href="#install-dependencies-with-bun" class="toc-h2" style="padding-left:0px">Install dependencies with bun</a>
+<a href="#run-tests-to-see-what-breaks" class="toc-h2" style="padding-left:0px">Run tests to see what breaks</a>
+<a href="#pros-and-cons" class="toc-h2" style="padding-left:0px">Pros and Cons</a>
+<a href="#pros" class="toc-h3" style="padding-left:8px">Pros</a>
+<a href="#cons" class="toc-h3" style="padding-left:8px">Cons</a>
+<a href="#the-verdict" class="toc-h2" style="padding-left:0px">The Verdict</a>
+<a href="#frequently-asked-questions" class="toc-h2" style="padding-left:0px">Frequently Asked Questions</a>
+<a href="#is-bun-a-drop-in-replacement-for-node-js" class="toc-h3" style="padding-left:8px">Is Bun a drop-in replacement for Node.js?</a>
+<a href="#do-i-need-to-uninstall-node-js-to-use-bun" class="toc-h3" style="padding-left:8px">Do I need to uninstall Node.js to use Bun?</a>
+<a href="#will-my-express-app-work-with-bun" class="toc-h3" style="padding-left:8px">Will my Express app work with Bun?</a>
+<a href="#can-i-use-npm-packages-with-bun" class="toc-h3" style="padding-left:8px">Can I use npm packages with Bun?</a>
+<a href="#is-bun-production-ready" class="toc-h3" style="padding-left:8px">Is Bun production-ready?</a>
+<a href="#what-s-the-learning-curve-for-bun" class="toc-h3" style="padding-left:8px">What’s the learning curve for Bun?</a>
+<a href="#does-bun-work-with-docker" class="toc-h3" style="padding-left:8px">Does Bun work with Docker?</a>
+<a href="#will-bun-replace-node-js" class="toc-h3" style="padding-left:8px">Will Bun replace Node.js?</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

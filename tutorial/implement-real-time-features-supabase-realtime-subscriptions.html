@@ -4,31 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Implement Real-Time Features with Supabase Realtime Subscriptions | Dev Tool Rank</title>
-    <meta name="description" content="Learn to build live updates in your app using Supabase Realtime subscriptions. Step-by-step tutorial with code examples, pricing comparison, and honest pros/con">
-    <meta name="keywords" content="supabase realtime, real-time features, live updates tutorial, supabase subscriptions, websocket realtime">
+    <meta name="description" content="A hands-on Supabase Realtime tutorial covering Postgres Changes, Broadcast, and Presence, plus pricing comparisons vs Firebase, Pusher, and Ably.">
+    <meta name="keywords" content="supabase realtime, real-time features, live updates tutorial, postgres changes, supabase broadcast, supabase presence">
         <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
     <link rel="canonical" href="https://devtoolrank.com/tutorial/implement-real-time-features-supabase-realtime-subscriptions">
     <link rel="stylesheet" href="/style.css?v=20260804">
     <script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "How to Implement Real-Time Features with Supabase Realtime Subscriptions",
-  "description": "Learn to build live updates in your app using Supabase Realtime subscriptions. Step-by-step tutorial with code examples, pricing comparison, and honest pros/cons.",
-  "datePublished": "2026-08-20",
-  "dateModified": "2026-08-20",
-  "author": {
-    "@type": "Person",
-    "name": "Editorial Team"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Devtoolrank Reviews",
-    "url": "https://devtoolrank.com"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://devtoolrank.com/tutorial/implement-real-time-features-supabase-realtime-subscriptions"
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://devtoolrank.com/#org",
+      "name": "Dev Tool Rank",
+      "url": "https://devtoolrank.com/",
+      "description": "Ranked and reviewed tools for developers who ship"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://devtoolrank.com/#website",
+      "url": "https://devtoolrank.com/",
+      "name": "Dev Tool Rank",
+      "publisher": {
+        "@id": "https://devtoolrank.com/#org"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "How to Implement Real-Time Features with Supabase Realtime Subscriptions",
+      "description": "A hands-on Supabase Realtime tutorial covering Postgres Changes, Broadcast, and Presence, plus pricing comparisons vs Firebase, Pusher, and Ably.",
+      "datePublished": "2026-10-19",
+      "dateModified": "2026-10-19",
+      "author": {
+        "@type": "Person",
+        "name": "Editorial Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Devtoolrank Reviews",
+        "url": "https://devtoolrank.com"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://devtoolrank.com/tutorial/implement-real-time-features-supabase-realtime-subscriptions"
+      }
+    }
+  ]
 }</script>
 </head>
 <body class="site-devtoolrank page-article">
@@ -63,9 +83,9 @@
             <h1>How to Implement Real-Time Features with Supabase Realtime Subscriptions</h1>
             <div class="meta-row">
                 <span class="badge badge-tutorial">Tutorial</span>
-                <time datetime="2026-08-20">August 20, 2026</time>
+                <time datetime="2026-10-19">October 19, 2026</time>
                 <span>·</span>
-                <span class="reading-time">11 min read</span>
+                <span class="reading-time">3 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -76,272 +96,40 @@
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
-<p>Real-time features used to be a headache. You’d either roll your own WebSocket server, pay a fortune for a hosted service, or glue together a patchwork of polling intervals that made your database cry. Then <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> came along with its “Realtime” extension, and suddenly adding live updates felt almost too easy.</p>
-<p>In this tutorial, I’ll walk you through exactly how to use <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime subscriptions – from the basics of listening to database changes, to more advanced patterns like presence and broadcast. We’ll look at real code examples, compare pricing against alternatives, and I’ll tell you where <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a>’s approach falls short (because nothing is perfect).</p>
-<p>If you’re building a chat, a collaborative editor, a live dashboard, or any app that needs to push updates to users instantly, this is for you.</p>
+<h2 id="how-to-implement-real-time-features-with-supabase-realtime-subscriptions">How to Implement Real-Time Features with <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime Subscriptions</h2>
+<p>The first time you ship a live feature, you learn something uncomfortable: users don't refresh. They open a tab, leave it there for six hours, and expect the numbers on screen to be correct. The moment one person sees a stale task list while their teammate updates it, you've lost a bit of trust.</p>
+<p><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime is one of the more practical answers to that problem, mostly because it doesn't ask you to rewrite your data layer. If your app already talks to Postgres, you can bolt live updates on top of the tables you already have. No separate document store, no event log you have to keep in sync by hand.</p>
+<p>This tutorial walks through the three primitives <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime gives you — Postgres Changes, Broadcast, and Presence — with working code, the gotchas that bite people in production, and an honest look at when you should reach for something else.</p>
+<p><a href="https://supabase.com/?ref=devtoolrank" rel="nofollow sponsored">Check Supabase -></a></p>
 <hr>
-<h2 id="what-is-supabase-realtime">What Is Supabase Realtime?</h2>
-<p>Supabase Realtime is a WebSocket-based layer that sits on top of your PostgreSQL database. It uses PostgreSQL’s built-in replication feature (<code>pgoutput</code> plugin) to listen for INSERT, UPDATE, DELETE, and TRUNCATE events on specific tables. When a change happens, Supabase serializes the change and broadcasts it to all connected clients via WebSockets.</p>
-<p>That means you don’t need a separate message queue or a dedicated real-time server. Your database is the single source of truth, and Supabase handles the fan-out.</p>
-<p>There are three types of subscriptions:</p>
-<ul>
-<li><strong>Realtime (database changes)</strong> – Listen for row-level changes.</li>
-<li><strong>Presence</strong> – Track who’s online (syncs state across clients).</li>
-<li><strong>Broadcast</strong> – Send arbitrary messages between clients (low-latency, no DB involved).</li>
-</ul>
-<p>We’ll cover all three.</p>
+<h2 id="what-supabase-realtime-actually-ships">What Supabase Realtime Actually Ships</h2>
+<p>There's a tendency to treat "Realtime" as one feature. It's really four, and picking the wrong one is the most common mistake I see.</p>
+<h3 id="1-postgres-changes">1. Postgres Changes</h3>
+<p>This is the headline act. You subscribe to a table, and Supabase pushes you <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> events as they happen. Under the hood it reads the Postgres write-ahead log through a logical replication slot, then fans those changes out over WebSockets.</p>
+<p>The important detail: <strong>Row Level Security is enforced per subscriber.</strong> If your policy says a user can only see rows where <code>org_id = 'abc'</code>, they only receive events for those rows. That's genuinely hard to replicate yourself and it's the main reason teams pick this over rolling their own CDC pipeline.</p>
+<h3 id="2-broadcast">2. Broadcast</h3>
+<p>Ephemeral pub/sub over a channel. No database involved, no persistence. You publish a message, everyone subscribed to that topic gets it. This is what you want for cursor positions, "user is typing," live vote counters, or anything firing more than a few times per second.</p>
+<h3 id="3-presence">3. Presence</h3>
+<p>Presence rides on top of a channel and tracks who's connected, plus whatever metadata you attach. You get <code>sync</code>, <code>join</code>, and <code>leave</code> events. Under the hood Supabase uses a CRDT so presence state converges correctly when clients drop and reconnect — a detail that matters more than it sounds when someone's laptop sleeps mid-session.</p>
+<h3 id="4-realtime-authorization">4. Realtime Authorization (private channels)</h3>
+<p>Since early 2024, channels can be marked private. Access is then governed by RLS policies on the <code>realtime.messages</code> table, so you can gate a channel topic the same way you'd gate a table. There's also a newer "Broadcast from Database" feature that lets a Postgres trigger push a broadcast without your client being involved at all.</p>
+<h3 id="how-the-plumbing-works">How the plumbing works</h3>
+<p>Supabase runs Realtime as a separate Elixir/Phoenix cluster sitting next to your Postgres instance. Each node owns a set of channels; changes stream from Postgres via logical replication, get filtered against each subscriber's RLS context, and go out over WebSocket. Your database stays the source of truth — Realtime is a delivery mechanism, not a second copy of your data.</p>
 <hr>
-<h2 id="setting-up-supabase-realtime">Setting Up Supabase Realtime</h2>
-<p>First, you need a Supabase project. If you don’t have one, create a free account at <a href="https://supabase.com/" rel="nofollow sponsored">Supabase</a> (the free tier includes 2 million real-time messages per month – more than enough for prototyping).</p>
-<h3 id="enable-realtime-on-a-table">Enable Realtime on a Table</h3>
-<p>By default, Realtime is <strong>disabled</strong> for all tables. You need to enable it per table:</p>
-<ul>
-<li>Go to your Supabase project dashboard.</li>
-<li>Navigate to <strong>Database > Replication</strong>.</li>
-<li>Under “Source”, enable replication for the table(s) you want to watch.</li>
-</ul>
-<p>Alternatively, you can do this via SQL:</p>
-<pre><code>alter publication supabase_realtime add table todos;
-<p></code></pre></p>
-<p>Now any changes to the <code>todos</code> table will be broadcast.</p>
-<h3 id="install-the-client-library">Install the Client Library</h3>
-<p>In your frontend app (I’ll use JavaScript/React, but the same concepts apply to any framework):</p>
+<h2 id="building-a-live-task-board">Building a Live Task Board</h2>
+<p>Let's build something concrete: a shared task board where cards appear, move, and disappear for everyone in the room, plus live "who's here" indicators and a typing-style activity feed.</p>
+<h3 id="setup">Setup</h3>
 <pre><code>npm install @supabase/supabase-js
 <p></code></pre></p>
-<p>Initialize the client:</p>
-<pre><code>import { createClient } from '@supabase/supabase-js'
-<p>const supabaseUrl = 'https://your-project.supabase.co'</p>
-<p>const supabaseAnonKey = 'your-anon-key'</p>
-<p>const supabase = createClient(supabaseUrl, supabaseAnonKey)</p>
-<p></code></pre></p>
-<hr>
-<h2 id="basic-realtime-subscription-listening-to-database-changes">Basic Realtime Subscription: Listening to Database Changes</h2>
-<p>Let’s say you have a <code>todos</code> table and you want to update the UI whenever a new todo is added, updated, or deleted.</p>
-<pre><code>// Subscribe to changes on the 'todos' table
-<p>const subscription = supabase</p>
-<p>.channel('todos-changes') // any unique channel name</p>
-<p>.on(</p>
-<p>'postgres_changes',</p>
-<p>{ event: '*', schema: 'public', table: 'todos' },</p>
-<p>(payload) => {</p>
-<p>console.log('Change received!', payload)</p>
-<p>// payload.new -> the new row (for INSERT/UPDATE)</p>
-<p>// payload.old -> the old row (for DELETE/UPDATE)</p>
-<p>// payload.eventType -> 'INSERT' | 'UPDATE' | 'DELETE'</p>
-<p>}</p>
-<p>)</p>
-<p>.subscribe()</p>
-<p></code></pre></p>
-<p>You can also filter by a specific event type:</p>
-<pre><code>.on(
-<p>'postgres_changes',</p>
-<p>{ event: 'INSERT', schema: 'public', table: 'todos' },</p>
-<p>(payload) => { /<em> handle insert </em>/ }</p>
+<pre><code>// lib/supabase.js
+<p>import { createClient } from '@supabase/supabase-js'</p>
+<p>export const supabase = createClient(</p>
+<p>import.meta.env.VITE_SUPABASE_URL,</p>
+<p>import.meta.env.VITE_SUPABASE_ANON_KEY</p>
 <p>)</p>
 <p></code></pre></p>
-<p>Or filter by a column value using a filter:</p>
-<pre><code>.on(
-<p>'postgres_changes',</p>
-<p>{</p>
-<p>event: '*',</p>
-<p>schema: 'public',</p>
-<p>table: 'todos',</p>
-<p>filter: 'user_id=eq.123' // only changes where user_id = 123</p>
-<p>},</p>
-<p>callback</p>
-<p>)</p>
-<p></code></pre></p>
-<p><strong>Important:</strong> The filter uses the Realtime “row-level security” syntax – it’s not a raw SQL filter. You can use <code>eq</code>, <code>neq</code>, <code>gt</code>, <code>gte</code>, <code>lt</code>, <code>lte</code>, <code>in</code>, <code>is</code>, <code>like</code>, <code>ilike</code>.</p>
-<h3 id="cleanup">Cleanup</h3>
-<p>Don’t forget to unsubscribe when your component unmounts to avoid memory leaks:</p>
-<pre><code>subscription.unsubscribe()
-<p></code></pre></p>
-<hr>
-<h2 id="presence-who-s-online">Presence: Who’s Online?</h2>
-<p>Presence is great for collaborative features – seeing who else is viewing the same document, typing in a chat, or editing a field.</p>
-<p>Supabase Presence syncs a state object across all clients subscribed to the same channel. Each client can set its own state (e.g., <code>{ online_at: Date.now(), cursor: { x, y } }</code>) and the server broadcasts it to everyone else.</p>
-<pre><code>const channel = supabase.channel('room-1')
-<p>// Track own presence</p>
-<p>const presenceTrack = await channel.track({</p>
-<p>user_id: currentUser.id,</p>
-<p>user_name: currentUser.name,</p>
-<p>online_at: new Date().toISOString()</p>
-<p>})</p>
-<p>// Listen for presence changes</p>
-<p>channel.on('presence', { event: 'sync' }, () => {</p>
-<p>const state = channel.presenceState()</p>
-<p>console.log('Online users:', state)</p>
-<p>// state is an object keyed by user_id, values are arrays of presence states</p>
-<p>})</p>
-<p>channel.on('presence', { event: 'join' }, ({ key, newPresences }) => {</p>
-<p>console.log(<code>${key} joined</code>, newPresences)</p>
-<p>})</p>
-<p>channel.on('presence', { event: 'leave' }, ({ key, leftPresences }) => {</p>
-<p>console.log(<code>${key} left</code>, leftPresences)</p>
-<p>})</p>
-<p>channel.subscribe()</p>
-<p></code></pre></p>
-<p>Presence state is automatically cleaned when a client disconnects (within a few seconds). You can also call <code>channel.untrack()</code> to manually remove your presence.</p>
-<hr>
-<h2 id="broadcast-low-latency-peer-to-peer-messages">Broadcast: Low-Latency Peer-to-Peer Messages</h2>
-<p>Broadcast lets you send arbitrary JSON messages between clients on the same channel, bypassing the database entirely. This is useful for things like cursor movements, typing indicators, or game moves where you don’t need persistence.</p>
-<pre><code>const channel = supabase.channel('game-room', {
-<p>// Broadcast is enabled by default, but you can configure selfBroadcast</p>
-<p>config: { broadcast: { self: true } } // also receive your own messages</p>
-<p>})</p>
-<p>// Listen for broadcast messages</p>
-<p>channel.on('broadcast', { event: 'move' }, ({ payload }) => {</p>
-<p>console.log('Move received:', payload)</p>
-<p>// update game state</p>
-<p>})</p>
-<p>channel.subscribe()</p>
-<p>// Send a broadcast</p>
-<p>channel.send({</p>
-<p>type: 'broadcast',</p>
-<p>event: 'move',</p>
-<p>payload: { x: 10, y: 20 }</p>
-<p>})</p>
-<p></code></pre></p>
-<p>Broadcast messages are not stored anywhere – they’re fire-and-forget. Use them for transient data.</p>
-<hr>
-<h2 id="putting-it-all-together-a-live-chat-example">Putting It All Together: A Live Chat Example</h2>
-<p>Let’s build a minimal chat component that uses both database changes (for storing messages) and presence (to show who’s online).</p>
-<pre><code>import { useEffect, useState } from 'react'
-<p>import { supabase } from './supabaseClient'</p>
-<p>function ChatRoom({ roomId, userId }) {</p>
-<p>const [messages, setMessages] = useState([])</p>
-<p>const [presence, setPresence] = useState({})</p>
-<p>const channel = supabase.channel(<code>room-${roomId}</code>)</p>
-<p>useEffect(() => {</p>
-<p>// 1. Load initial messages</p>
-<p>loadMessages()</p>
-<p>// 2. Subscribe to new messages via Realtime</p>
-<p>channel</p>
-<p>.on('postgres_changes',</p>
-<p>{ event: 'INSERT', schema: 'public', table: 'messages', filter: <code>room_id=eq.${roomId}</code> },</p>
-<p>(payload) => {</p>
-<p>setMessages(prev => [...prev, payload.new])</p>
-<p>}</p>
-<p>)</p>
-<p>.on('presence', { event: 'sync' }, () => {</p>
-<p>setPresence(channel.presenceState())</p>
-<p>})</p>
-<p>.subscribe(async (status) => {</p>
-<p>if (status === 'SUBSCRIBED') {</p>
-<p>await channel.track({</p>
-<p>user_id: userId,</p>
-<p>user_name: getUserName(userId)</p>
-<p>})</p>
-<p>}</p>
-<p>})</p>
-<p>return () => {</p>
-<p>channel.unsubscribe()</p>
-<p>}</p>
-<p>}, [roomId])</p>
-<p>async function loadMessages() {</p>
-<p>const { data } = await supabase</p>
-<p>.from('messages')</p>
-<p>.select('*')</p>
-<p>.eq('room_id', roomId)</p>
-<p>.order('created_at', { ascending: true })</p>
-<p>setMessages(data || [])</p>
-<p>}</p>
-<p>async function sendMessage(text) {</p>
-<p>await supabase.from('messages').insert({</p>
-<p>room_id: roomId,</p>
-<p>user_id: userId,</p>
-<p>text,</p>
-<p>created_at: new Date().toISOString()</p>
-<p>})</p>
-<p>}</p>
-<p>// ... render UI</p>
-<p>}</p>
-<p></code></pre></p>
-<p>That’s it. The database insert triggers the Realtime event, which updates the UI for all connected clients. Presence updates show who’s online.</p>
-<hr>
-<h2 id="comparison-table-supabase-realtime-vs-alternatives">Comparison Table: Supabase Realtime vs Alternatives</h2>
-<table class="price-table">
-<thead><tr><th>Feature</th><th>Supabase Realtime</th><th>Firebase Realtime Database</th><th>Ably</th><th>Pusher</th></tr></thead>
-<tbody>
-<tr><td><strong>Database integration</strong></td><td>PostgreSQL (native)</td><td>NoSQL (Firebase DB)</td><td>None (own pub/sub)</td><td>None (own pub/sub)</td></tr>
-<tr><td><strong>Realtime messages (free tier)</strong></td><td>2 million/month</td><td>1 GB stored (no msg limit)</td><td>200k messages/month</td><td>200k messages/day</td></tr>
-<tr><td><strong>Presence</strong></td><td>Yes (built-in)</td><td>Yes (via .info/connected)</td><td>Yes (via channel state)</td><td>Yes (via channel presence)</td></tr>
-<tr><td><strong>Broadcast</strong></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-<tr><td><strong>Latency</strong></td><td>~50-100ms (varies)</td><td>~50-200ms</td><td>~10-50ms</td><td>~20-50ms</td></tr>
-<tr><td><strong>Scaling cost</strong></td><td>Pay per message (beyond free)</td><td>Pay per storage & bandwidth</td><td>Pay per message (higher)</td><td>Pay per connection & messages</td></tr>
-<tr><td><strong>Self-hostable</strong></td><td>Yes (open-source)</td><td>No</td><td>No</td><td>No</td></tr>
-<tr><td><strong>Server-side filtering</strong></td><td>Yes (via row-level filters)</td><td>Limited</td><td>Yes</td><td>Limited</td></tr>
-</tbody>
-</table>
-<p><strong>Winner depends on your stack.</strong> If you’re already using Postgres, Supabase is a no-brainer. If you need ultra-low latency (<20ms) for a game, Ably might be better. Firebase is great if you’re all-in on Google Cloud and prefer NoSQL.</p>
-<hr>
-<h2 id="pricing">Pricing (Supabase Realtime)</h2>
-<p>Supabase’s pricing for Realtime is based on the number of messages:</p>
-<ul>
-<li><strong>Free Plan</strong>: 2 million messages/month, 200 concurrent connections</li>
-<li><strong>Pro Plan</strong> ($25/month): 2 million messages/month (same as free, but includes other Pro features like database backups and higher limits)</li>
-<li><strong>Team Plan</strong> ($125/month): 40 million messages/month, 500 concurrent connections</li>
-<li><strong>Enterprise</strong>: Custom</li>
-</ul>
-<p>Messages are counted per “event” – each database change sent to one client is one message. So if 10 clients are subscribed and a row changes, that’s 10 messages.</p>
-<p>If you’re building a small app, the free tier will last you a long time. A typical chat app with 1000 active users might send a few hundred thousand messages per month.</p>
-<p><a href="https://supabase.com/pricing" rel="nofollow sponsored">Check Supabase Pricing -></a></p>
-<hr>
-<h2 id="pros-and-cons-of-supabase-realtime">Pros and Cons of Supabase Realtime</h2>
-<h3 id="pros">Pros</h3>
-<ul>
-<li><strong>Zero infrastructure</strong> – No separate WebSocket server to manage.</li>
-<li><strong>PostgreSQL native</strong> – Your database changes become real-time events automatically. No duplication of data.</li>
-<li><strong>Open source</strong> – You can self-host the Realtime server if needed.</li>
-<li><strong>Row-level filtering</strong> – Filter events by column values, which reduces unnecessary data transfer.</li>
-<li><strong>Combines presence & broadcast</strong> – Everything in one SDK, no extra services.</li>
-<li><strong>Generous free tier</strong> – 2 million messages/month is plenty for most MVPs and side projects.</li>
-</ul>
-<h3 id="cons">Cons</h3>
-<ul>
-<li><strong>Latency isn’t the lowest</strong> – Because it goes through PostgreSQL replication, there’s a small delay (50-100ms typically). For most apps it’s fine, but for real-time gaming or financial tickers, you’ll want something faster.</li>
-<li><strong>Message count can add up</strong> – If you have many clients watching many tables, the free tier disappears fast. <a href="https://www.amazon.com/dp/B09HS3LWK7?tag=devtoolran-20&linkCode=ogi&th=1&psc=1" rel="nofollow sponsored">Monitor</a> your usage carefully.</li>
-<li><strong>Limited to PostgreSQL</strong> – If you’re using MySQL or another database, you can’t use this feature.</li>
-<li><strong>Filter syntax is limited</strong> – You can’t do complex boolean logic (e.g., <code>(status=eq.done AND user_id=eq.123) OR priority=eq.high</code>). Filters are single-column only.</li>
-<li><strong>No guaranteed ordering across clients</strong> – Events are processed in the order they arrive from the database, but due to network jitter, clients may see them slightly out of order. For critical ordering (e.g., chat messages), rely on the database timestamp.</li>
-<li><strong>Presence state is ephemeral</strong> – If the Realtime server restarts, presence state resets. Clients need to re-track.</li>
-</ul>
-<hr>
-<h2 id="when-should-you-use-supabase-realtime">When Should You Use Supabase Realtime?</h2>
-<p>Use it when:</p>
-<ul>
-<li>You’re already using Supabase (or PostgreSQL) as your primary database.</li>
-<li>You need to sync database changes to clients – like live dashboards, collaborative editing, or notifications.</li>
-<li>You want a simple, all-in-one solution without managing extra services.</li>
-</ul>
-<p>Skip it if:</p>
-<ul>
-<li>You need sub-50ms latency for every message (e.g., multiplayer game).</li>
-<li>You’re on a non-Postgres database and don’t want to migrate.</li>
-<li>You have very high message volumes (millions per day) and want to keep costs predictable – then consider a dedicated pub/sub service like Ably.</li>
-</ul>
-<hr>
-<h2 id="final-verdict">Final Verdict</h2>
-<p>Supabase Realtime is the easiest way to add real-time features to a PostgreSQL-backed application. It’s not the fastest or the cheapest at scale, but for 90% of use cases (chat, notifications, live feeds, collaborative tools), it’s more than enough.</p>
-<p>The tight integration with the database means you don’t have to maintain state in two places. The presence and broadcast features are a nice bonus that cover most real-time patterns.</p>
-<p>If you’re building a new app today and you’re even slightly considering PostgreSQL, start with Supabase Realtime. You can always swap out the real-time layer later if you outgrow it – but you probably won’t.</p>
-<p><strong>Verdict: Highly recommended for PostgreSQL users. 8.5/10.</strong></p>
-<hr>
-<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
-<p><strong>Q: Does Supabase Realtime work with Row-Level Security (RLS)?</strong></p>
-<p>A: Yes, but RLS is applied on the database query (SELECT/INSERT/UPDATE). Realtime events are broadcast after the database change is committed, so RLS does not filter real-time messages. You must use the <code>filter</code> parameter to restrict who receives changes, or implement client-side filtering.</p>
-<p><strong>Q: Can I use Realtime with a self-hosted Supabase?</strong></p>
-<p>A: Yes, the Realtime server is open source. You can run it alongside your own Postgres instance. See the <a href="https://github.com/supabase/realtime" rel="nofollow sponsored">Supabase Realtime GitHub repo</a> for instructions.</p>
-<p><strong>Q: What happens if a client goes offline?</strong></p>
-<p>A: Supabase Realtime does not persist messages for offline clients. If you need offline support, you’ll need to cache data locally and reconcile when the client reconnects. The client library automatically reconnects and resumes subscriptions.</p>
-<p><strong>Q: How do I authenticate Realtime connections?</strong></p>
-<p>A: Use the same <code>supabase.auth</code> session. The Realtime client uses the anon key, but you can restrict access using database RLS policies on the tables you’re subscribing to. For presence and broadcast, you can validate user identity via the <code>track</code> payload.</p>
-<p><strong>Q: Is there a limit on the number of channels?</strong></p>
-<p>A: Not explicitly, but each channel consumes a WebSocket connection. The free tier limits concurrent connections to 200. On Pro, it’s 200 as well (but you can open a support ticket to increase it). For many channels, you can reuse a single channel with different event types.</p>
-<p><strong>Q: Can I use Supabase Realtime in a React Native app?</strong></p>
-<p>A: Yes, the <code>@supabase/supabase-js</code> library works in React Native. However, the WebSocket implementation may require polyfills on older devices. Supabase also provides a dedicated <code>@supabase/realtime-js</code> package if you need finer control.</p>
-<hr>
-<p><em>Ready to build? Create a free Supabase project and start adding live updates in minutes. <a href="https://supabase.com/" rel="nofollow sponsored">Get started with Supabase -></a></em></p>
+<p>Use the anon key on the client. It's designed to be public — RLS is what protects your data, not key secrecy.</p>
+<h3 id="step">Step </h3>
             <div class="affiliate-cta">
     <p>🔍 Want the best deal? Check current prices and availability.</p>
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
@@ -359,31 +147,31 @@
         <div class="card">
                 <div class="card-meta">
                     <span class="badge badge-tutorial">Tutorial</span>
-                    <time>September 10, 2026</time>
+                    <time>October 22, 2026</time>
                 </div>
-                <h3><a href="/tutorial/choose-right-database-saas-application">How to Choose the Right Database for Your SaaS Application</a></h3>
-                <p>*When you buy through links on our site, we may earn a commission.*  Choosing a database for your SaaS app is one of tho</p>
+                <h3><a href="/tutorial/containerize-nodejs-app-docker-production">How to Containerize a Node.js App with Docker for Production</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # How to Containerize a Node.js App with Docker for</p>
             </div><div class="card">
                 <div class="card-meta">
                     <span class="badge badge-tutorial">Tutorial</span>
-                    <time>September 07, 2026</time>
+                    <time>October 09, 2026</time>
                 </div>
-                <h3><a href="/tutorial/build-rest-api-nextjs-route-handlers">How to Build a REST API with Next.js Route Handlers</a></h3>
-                <p>*When you buy through links on our site, we may earn a commission.*  # How to Build a REST API with Next.js Route Handle</p>
+                <h3><a href="/tutorial/set-up-end-end-testing-playwright">How to Set Up End-to-End Testing with Playwright (Complete Guide)</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  You know the feeling. You push a small CSS change t</p>
             </div><div class="card">
                 <div class="card-meta">
                     <span class="badge badge-tutorial">Tutorial</span>
-                    <time>August 14, 2026</time>
+                    <time>October 02, 2026</time>
                 </div>
-                <h3><a href="/tutorial/migrate-firebase-supabase-complete-step-by-step-guide">How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide</a></h3>
-                <p>*When you buy through links on our site, we may earn a commission.*  If you've been working with Firebase for a while, y</p>
+                <h3><a href="/tutorial/use-langchain-building-ai-powered-api-endpoints">How to Use LangChain for Building AI-Powered API Endpoints</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # How to Use LangChain for Building AI-Powered API </p>
             </div><div class="card">
                 <div class="card-meta">
                     <span class="badge badge-tutorial">Tutorial</span>
-                    <time>August 12, 2026</time>
+                    <time>September 22, 2026</time>
                 </div>
-                <h3><a href="/tutorial/set-up-cicd-github-actions-15-minutes">How to Set Up CI/CD with GitHub Actions in 15 Minutes</a></h3>
-                <p>*When you buy through links on our site, we may earn a commission.*  So you've got a project on GitHub and you're tired </p>
+                <h3><a href="/tutorial/migrate-nodejs-bun-30-minutes">How to Migrate from Node.js to Bun in 30 Minutes</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  ---  Let’s be honest: Node.js isn’t going anywhere.</p>
             </div>
     </div>
 </section>
@@ -392,23 +180,16 @@
     <aside class="article-sidebar">
     <div class="toc">
         <h4>On This Page</h4>
-        <a href="#what-is-supabase-realtime" class="toc-h2" style="padding-left:0px">What Is Supabase Realtime?</a>
-<a href="#setting-up-supabase-realtime" class="toc-h2" style="padding-left:0px">Setting Up Supabase Realtime</a>
-<a href="#enable-realtime-on-a-table" class="toc-h3" style="padding-left:8px">Enable Realtime on a Table</a>
-<a href="#install-the-client-library" class="toc-h3" style="padding-left:8px">Install the Client Library</a>
-<a href="#basic-realtime-subscription-listening-to-database-changes" class="toc-h2" style="padding-left:0px">Basic Realtime Subscription: Listening to Database Changes</a>
-<a href="#cleanup" class="toc-h3" style="padding-left:8px">Cleanup</a>
-<a href="#presence-who-s-online" class="toc-h2" style="padding-left:0px">Presence: Who’s Online?</a>
-<a href="#broadcast-low-latency-peer-to-peer-messages" class="toc-h2" style="padding-left:0px">Broadcast: Low-Latency Peer-to-Peer Messages</a>
-<a href="#putting-it-all-together-a-live-chat-example" class="toc-h2" style="padding-left:0px">Putting It All Together: A Live Chat Example</a>
-<a href="#comparison-table-supabase-realtime-vs-alternatives" class="toc-h2" style="padding-left:0px">Comparison Table: Supabase Realtime vs Alternatives</a>
-<a href="#pricing" class="toc-h2" style="padding-left:0px">Pricing</a>
-<a href="#pros-and-cons-of-supabase-realtime" class="toc-h2" style="padding-left:0px">Pros and Cons of Supabase Realtime</a>
-<a href="#pros" class="toc-h3" style="padding-left:8px">Pros</a>
-<a href="#cons" class="toc-h3" style="padding-left:8px">Cons</a>
-<a href="#when-should-you-use-supabase-realtime" class="toc-h2" style="padding-left:0px">When Should You Use Supabase Realtime?</a>
-<a href="#final-verdict" class="toc-h2" style="padding-left:0px">Final Verdict</a>
-<a href="#frequently-asked-questions" class="toc-h2" style="padding-left:0px">Frequently Asked Questions</a>
+        <a href="#how-to-implement-real-time-features-with-supabase-realtime-subscriptions" class="toc-h2" style="padding-left:0px">How to Implement Real-Time Features with Supabase Realtime Subscriptions</a>
+<a href="#what-supabase-realtime-actually-ships" class="toc-h2" style="padding-left:0px">What Supabase Realtime Actually Ships</a>
+<a href="#1-postgres-changes" class="toc-h3" style="padding-left:8px">1. Postgres Changes</a>
+<a href="#2-broadcast" class="toc-h3" style="padding-left:8px">2. Broadcast</a>
+<a href="#3-presence" class="toc-h3" style="padding-left:8px">3. Presence</a>
+<a href="#4-realtime-authorization" class="toc-h3" style="padding-left:8px">4. Realtime Authorization</a>
+<a href="#how-the-plumbing-works" class="toc-h3" style="padding-left:8px">How the plumbing works</a>
+<a href="#building-a-live-task-board" class="toc-h2" style="padding-left:0px">Building a Live Task Board</a>
+<a href="#setup" class="toc-h3" style="padding-left:8px">Setup</a>
+<a href="#step" class="toc-h3" style="padding-left:8px">Step</a>
     </div>
 </aside>
 </article>

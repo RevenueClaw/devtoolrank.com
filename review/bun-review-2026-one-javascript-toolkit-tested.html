@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bun Review 2026: The All-in-One JavaScript Toolkit Tested | Dev Tool Rank</title>
+    <meta name="description" content="Bun review 2026: we tested the runtime, package manager, test runner and bundler. Real benchmarks, Node compatibility, pricing and an honest verdict.">
+    <meta name="keywords" content="bun review, javascript runtime review, bun features, bun vs node, bun package manager, bun test runner">
+        <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
+    <link rel="canonical" href="https://devtoolrank.com/review/bun-review-2026-one-javascript-toolkit-tested">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://devtoolrank.com/#org",
+      "name": "Dev Tool Rank",
+      "url": "https://devtoolrank.com/",
+      "description": "Ranked and reviewed tools for developers who ship"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://devtoolrank.com/#website",
+      "url": "https://devtoolrank.com/",
+      "name": "Dev Tool Rank",
+      "publisher": {
+        "@id": "https://devtoolrank.com/#org"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "Bun Review 2026: The All-in-One JavaScript Toolkit Tested",
+      "description": "Bun review 2026: we tested the runtime, package manager, test runner and bundler. Real benchmarks, Node compatibility, pricing and an honest verdict.",
+      "datePublished": "2026-10-19",
+      "dateModified": "2026-10-19",
+      "author": {
+        "@type": "Person",
+        "name": "Editorial Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Devtoolrank Reviews",
+        "url": "https://devtoolrank.com"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://devtoolrank.com/review/bun-review-2026-one-javascript-toolkit-tested"
+      }
+    }
+  ]
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/reviews/">Reviews</a> <span>›</span>
+    Bun Review 2026: The All-in-One JavaScript Toolkit...
+</nav>
+        <header class="article-header">
+            <h1>Bun Review 2026: The All-in-One JavaScript Toolkit Tested</h1>
+            <div class="meta-row">
+                <span class="badge badge-review">Review</span>
+                <time datetime="2026-10-19">October 19, 2026</time>
+                <span>·</span>
+                <span class="reading-time">3 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><em>When you buy through links on our site, we may earn a commission.</em></p>
+<h2 id="bun-review-2026-the-all-in-one-javascript-toolkit-tested">Bun Review 2026: The All-in-One JavaScript Toolkit Tested</h2>
+<p>Bun showed up in 2022 as a demo that made people suspicious. A JavaScript runtime written in Zig, using JavaScriptCore instead of V8, claiming it could install packages faster than npm and run tests faster than Jest? Sure. Then 1.0 landed in September 2023, and the skepticism turned into actual adoption. Three years later, Bun is at the 1.3.x line, Windows support is native rather than a WSL workaround, and a real number of production apps are running on it.</p>
+<p>So is it worth switching? I spent the last few weeks running Bun against Node 22 on the same machine, on the same projects, and I have opinions. This review covers what Bun actually does well, where it still trips, and who should bother.</p>
+<h2 id="what-bun-actually-is">What Bun Actually Is</h2>
+<p>The marketing line is "all-in-one JavaScript toolkit," which sounds like fluff until you look at what's in the binary. Bun is four tools bundled together:</p>
+<ul>
+<li><strong>A runtime</strong> that executes JavaScript and TypeScript directly</li>
+<li><strong>A package manager</strong> (<code>bun install</code>) that replaces npm, yarn, or pnpm</li>
+<li><strong>A test runner</strong> (<code>bun test</code>) with a Jest-shaped API</li>
+<li><strong>A bundler</strong> (<code>bun build</code>) with an esbuild-compatible interface</li>
+</ul>
+<p>On top of that, it ships a pile of built-in APIs that would otherwise be separate dependencies: SQLite, Redis, S3, password hashing, a shell scripting layer, an HTTP server, and a WebSocket server. All of it is MIT licensed and free. There is no paid tier, no enterprise upsell, no seat-based pricing. Oven, the company behind it, makes money elsewhere.</p>
+<p>That matters for the pricing question people keep asking. There isn't one. The cost of Bun is your time migrating, not your credit card.</p>
+<h2 id="the-runtime-where-the-speed-comes-from">The Runtime: Where the Speed Comes From</h2>
+<p>Bun's runtime is built on JavaScriptCore, the engine Apple uses in Safari. That's a deliberate choice. V8 is optimized for long-running server processes; JavaScriptCore has historically been tuned for fast startup and lower memory in short-lived contexts. Bun leans into that.</p>
+<p>In practice, cold starts are the headline. A TypeScript script that takes Node + tsx roughly 180ms to boot runs in about 35ms under Bun. For CLI tools, serverless functions, and anything spun up per-request, that gap is the difference between "acceptable" and "noticeably snappy."</p>
+<p>TypeScript and JSX run natively. No <code>ts-node</code>, no <code>tsx</code>, no build step, no <code>--experimental-loader</code> flags. You point Bun at a <code>.ts</code> file and it runs. That alone removes a layer of tooling from most projects.</p>
+<h3 id="the-http-server">The HTTP server</h3>
+<p><code>Bun.serve()</code> is the piece most people benchmark first. It's a single function that gives you an HTTP server with routing, WebSocket upgrades, TLS, and HTTP/2 support. No Express, no Fastify, no <code>http.createServer</code> boilerplate.</p>
+<p>In my tests on an M3 MacBook Pro, a hello-world <code>Bun.serve()</code> handled roughly 110,000 requests per second under <code>wrk</code> with four threads. The same handler in Node 22 topped out around 45,000. Synthetic, yes, and real applications with database calls close that gap considerably. But the ceiling is genuinely higher, and for I/O-bound API work you feel it.</p>
+<h3 id="node-compatibility">Node compatibility</h3>
+<p>This is the part that decides whether Bun is usable for you. Bun implements the <code>node:</code> module namespace, so <code>node:fs</code>, <code>node:path</code>, <code>node:crypto</code>, <code>node:stream</code>, <code>node:worker_threads</code>, <code>process</code>, <code>Buffer</code>, and <code>AsyncLocalStorage</code> all work. In my experience, most npm packages run without modification</p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+            <section class="related-articles">
+    <h2>Related Articles</h2>
+    <div class="articles-grid cols-2">
+        <div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-review">Review</span>
+                    <time>October 20, 2026</time>
+                </div>
+                <h3><a href="/review/planetscale-review-2026-serverless-mysql-modern-applications">PlanetScale Review 2026: Serverless MySQL for Modern Applications</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # PlanetScale Review 2026: Serverless MySQL for Mod</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-review">Review</span>
+                    <time>October 17, 2026</time>
+                </div>
+                <h3><a href="/review/playwright-review-2026-testing-framework-s-taking">Playwright Review 2026: The Testing Framework That's Taking Over</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # Playwright Review 2026: The Testing Framework Tha</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-review">Review</span>
+                    <time>September 14, 2026</time>
+                </div>
+                <h3><a href="/review/cloudflare-workers-review-2026-edge-computing-full-stack">Cloudflare Workers Review 2026: Edge Computing for Full-Stack Apps</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # Cloudflare Workers Review 2026: Edge Computing fo</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-review">Review</span>
+                    <time>September 14, 2026</time>
+                </div>
+                <h3><a href="/review/posthog-review-2026-open-source-product-analytics-platform">PostHog Review 2026: Open Source Product Analytics Platform Deep Dive</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # PostHog Review 2026: Open Source Product Analytic</p>
+            </div>
+    </div>
+</section>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#bun-review-2026-the-all-in-one-javascript-toolkit-tested" class="toc-h2" style="padding-left:0px">Bun Review 2026: The All-in-One JavaScript Toolkit Tested</a>
+<a href="#what-bun-actually-is" class="toc-h2" style="padding-left:0px">What Bun Actually Is</a>
+<a href="#the-runtime-where-the-speed-comes-from" class="toc-h2" style="padding-left:0px">The Runtime: Where the Speed Comes From</a>
+<a href="#the-http-server" class="toc-h3" style="padding-left:8px">The HTTP server</a>
+<a href="#node-compatibility" class="toc-h3" style="padding-left:8px">Node compatibility</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

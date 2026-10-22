@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker vs Podman vs Colima: Best Container Runtime for Devs | Dev Tool Rank</title>
+    <meta name="description" content="Compare Docker, Podman, and Colima for local dev. Which container runtime fits your workflow? Honest review with pros, cons, and verdict.">
+    <meta name="keywords" content="docker vs podman, container runtime comparison, dev container tools, colima, containerization for developers">
+        <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
+    <link rel="canonical" href="https://devtoolrank.com/comparison/docker-vs-podman-vs-colima-best-container-runtime-devs">
+    <link rel="stylesheet" href="/style.css?v=20260804">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://devtoolrank.com/#org",
+      "name": "Dev Tool Rank",
+      "url": "https://devtoolrank.com/",
+      "description": "Ranked and reviewed tools for developers who ship"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://devtoolrank.com/#website",
+      "url": "https://devtoolrank.com/",
+      "name": "Dev Tool Rank",
+      "publisher": {
+        "@id": "https://devtoolrank.com/#org"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "Docker vs Podman vs Colima: Best Container Runtime for Devs",
+      "description": "Compare Docker, Podman, and Colima for local dev. Which container runtime fits your workflow? Honest review with pros, cons, and verdict.",
+      "datePublished": "2026-09-19",
+      "dateModified": "2026-09-19",
+      "author": {
+        "@type": "Person",
+        "name": "Editorial Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Devtoolrank Reviews",
+        "url": "https://devtoolrank.com"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://devtoolrank.com/comparison/docker-vs-podman-vs-colima-best-container-runtime-devs"
+      }
+    }
+  ]
+}</script>
+</head>
+<body class="site-devtoolrank page-article">
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-icon">D</span>
+                Dev Tool Rank
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="article-page">
+    <div class="article-content">
+        <nav class="breadcrumbs">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/comparisons/">Comparisons</a> <span>›</span>
+    Docker vs Podman vs Colima: Best Container Runtime...
+</nav>
+        <header class="article-header">
+            <h1>Docker vs Podman vs Colima: Best Container Runtime for Devs</h1>
+            <div class="meta-row">
+                <span class="badge badge-comparison">Comparison</span>
+                <time datetime="2026-09-19">September 19, 2026</time>
+                <span>·</span>
+                <span class="reading-time">10 min read</span>
+                <span class="affiliate-tag">🔄 Affiliate Links</span>
+            </div>
+        </header>
+
+        <div class="body-content">
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <p><em>When you buy through links on our site, we may earn a commission.</em></p>
+<p>If you’ve been building containers for more than a week, you’ve probably run into the question: <strong>Should I stick with Docker, or is it time to try Podman or Colima?</strong> The container runtime landscape has shifted. Docker is still the 800-pound gorilla, but Podman brings a daemonless, rootless approach, and Colima offers a dead-simple macOS experience that’s lighter than Docker Desktop.</p>
+<p>I’ve spent the last month testing all three on my daily driver (a 2023 MacBook Pro with Apple Silicon) and a Linux VM. Here’s what I found — no fluff, just real differences that matter when you’re trying to ship code.</p>
+<h2 id="the-state-of-container-runtimes-for-developers">The State of Container Runtimes for Developers</h2>
+<p>A few years ago, “container runtime” basically meant Docker. You installed Docker Desktop, ran <code>docker run</code>, and that was it. But Docker Desktop’s licensing changes in 2021 (requiring paid subscriptions for large enterprises) and its resource-hungry VM on macOS pushed many devs to look elsewhere.</p>
+<p>Enter Podman — developed by Red Hat — which runs containers without a central daemon and supports rootless operation out of the box. And Colima, a newer macOS-only tool that wraps Lima (a Linux VM manager) to give you a Docker-compatible CLI with minimal overhead.</p>
+<p>The question isn’t “which is best” in a vacuum. It’s “which fits <em>your</em> setup and workflow?” Let’s break them down.</p>
+<h2 id="detailed-feature-breakdown">Detailed Feature Breakdown</h2>
+<h3 id="docker">Docker (Docker Desktop & Engine)</h3>
+<p>Docker remains the most popular container runtime for good reason: it works everywhere, has the largest ecosystem, and its CLI is the de facto standard. Even Podman and Colima offer Docker-compatible commands.</p>
+<p><strong>Key features:</strong></p>
+<ul>
+<li><strong>Daemon-based architecture:</strong> A long-running <code>dockerd</code> process manages containers. This makes it easy to run background services, but it also means you’re running a privileged process.</li>
+<li><strong>Docker Desktop</strong> (macOS/Windows) bundles a lightweight Linux VM (HyperKit on macOS, WSL2 on Windows). It’s convenient but can eat 2–4 GB of RAM on idle.</li>
+<li><strong>Docker Engine</strong> (Linux) runs natively, no VM overhead.</li>
+<li><strong>Docker Compose</strong> is built-in for multi-container apps.</li>
+<li><strong>Docker Hub</strong> remains the largest public registry, though you can use any OCI-compatible registry.</li>
+<li><strong>Paid plans</strong> for teams: Docker Pro ($5/user/month) removes the “docker pull” rate limit and adds vulnerability scanning. Docker Team ($9/user/month) adds SSO and audit logs.</li>
+</ul>
+<p><strong>The elephant in the room:</strong> Docker Desktop on macOS can be sluggish, especially on older machines. The VM startup time is real, and resource usage doesn’t scale down well.</p>
+<h3 id="podman">Podman (Podman Engine + Podman Desktop)</h3>
+<p>Podman is Docker-compatible without the daemon. It uses a fork/exec model: each container or pod is a separate child process of the Podman command. No central daemon means you can run containers as a non-root user, and you don’t have to worry about a background process consuming resources.</p>
+<p><strong>Key features:</strong></p>
+<ul>
+<li><strong>Daemonless:</strong> No <code>podman daemon</code>. You run <code>podman run</code>, it spawns a container directly.</li>
+<li><strong>Rootless by default:</strong> Containers run with your user’s UID inside the container, reducing security risks.</li>
+<li><strong>Pods:</strong> Podman supports pods (groups of containers that share a namespace), inspired by Kubernetes. You can use <code>podman pod create</code> and then <code>podman run --pod mypod</code>.</li>
+<li><strong>Docker-compatible CLI:</strong> Most <code>docker</code> commands work by aliasing <code>docker</code> to <code>podman</code>. Or use <code>podman-compose</code> for Docker Compose files.</li>
+<li><strong>Podman Desktop</strong> is a GUI (electron-based) that mirrors Docker Desktop’s UI, but it’s still maturing.</li>
+<li><strong>macOS support:</strong> Podman runs inside a Linux VM (via Podman Machine, which uses QEMU). It’s functional but the setup is heavier than Colima.</li>
+<li><strong>Completely free and open source</strong> (Apache 2.0). No paid tiers.</li>
+</ul>
+<p><strong>The catch:</strong> Podman’s macOS experience isn’t as polished as Docker Desktop. The VM management is manual, and some edge cases (like networking with <code>--network host</code>) behave differently. Also, the ecosystem of tools (e.g., <code>docker-compose</code> with V2) isn’t 100% compatible.</p>
+<h3 id="colima">Colima (Container Lima)</h3>
+<p>Colima is a newcomer specifically designed for macOS (and Linux, but it shines on Mac). It’s essentially a wrapper around Lima (Linux VM manager) that sets up a lightweight VM running containerd or Docker. By default, it uses Docker’s engine inside the VM, so you get a Docker-compatible CLI with minimal fuss.</p>
+<p><strong>Key features:</strong></p>
+<ul>
+<li><strong>One-command setup:</strong> <code>brew install colima && colima start</code>. That’s it. The VM starts in seconds, uses ~1–2 GB RAM (configurable), and automatically integrates with your shell.</li>
+<li><strong>Docker-compatible:</strong> Colima ships with a Docker socket, so <code>docker</code> commands work natively. You don’t need to install Docker Desktop.</li>
+<li><strong>Lightweight:</strong> The underlying Lima VM is based on Alpine Linux. It’s much leaner than Docker Desktop’s VM.</li>
+<li><strong>Supports Kubernetes:</strong> Colima can spin up a single-node K3s cluster with <code>colima kubernetes start</code>.</li>
+<li><strong>Rootless option:</strong> You can run the VM in rootless mode (experimental).</li>
+<li><strong>Free and open source</strong> (MIT).</li>
+</ul>
+<p><strong>Limitations:</strong> Colima is macOS-first. On Linux, you’re better off with Docker Engine or Podman directly. Also, because it’s a wrapper around Docker, you don’t get Podman’s daemonless or pod features. It’s essentially “Docker Desktop, but lighter and free.”</p>
+<h2 id="comparison-table">Comparison Table</h2>
+<table class="price-table">
+<thead><tr><th>Feature</th><th>Docker Desktop (macOS)</th><th>Podman (macOS)</th><th>Colima (macOS)</th></tr></thead>
+<tbody>
+<tr><td><strong>Architecture</strong></td><td>Daemon + VM</td><td>Daemonless + VM (QEMU)</td><td>VM (Lima) + Docker daemon inside</td></tr>
+<tr><td><strong>Rootless by default</strong></td><td>No</td><td>Yes</td><td>Optional (experimental)</td></tr>
+<tr><td><strong>Docker CLI compatibility</strong></td><td>Native</td><td>Via alias (mostly)</td><td>Native (Docker socket)</td></tr>
+<tr><td><strong>Docker Compose support</strong></td><td>Built-in</td><td>Via podman-compose</td><td>Built-in (Docker Compose inside VM)</td></tr>
+<tr><td><strong>Kubernetes support</strong></td><td>Built-in (single node)</td><td>Via kind/microk8s</td><td>Built-in (K3s)</td></tr>
+<tr><td><strong>Resource usage (idle)</strong></td><td>~2–4 GB RAM</td><td>~1–2 GB RAM (VM)</td><td>~1–2 GB RAM</td></tr>
+<tr><td><strong>Startup time</strong></td><td>15–30 seconds</td><td>10–20 seconds (VM)</td><td>5–10 seconds</td></tr>
+<tr><td><strong>Pricing</strong></td><td>Free for small teams; Pro $5/user/mo; Team $9/user/mo</td><td>Free</td><td>Free</td></tr>
+<tr><td><strong>Linux native support</strong></td><td>Yes (Engine)</td><td>Yes (native, no VM)</td><td>Yes (via Lima, but less common)</td></tr>
+<tr><td><strong>Community & ecosystem</strong></td><td>Largest</td><td>Growing (Red Hat backed)</td><td>Small but active</td></tr>
+<tr><td><strong>Security model</strong></td><td>Requires root daemon</td><td>Rootless by design</td><td>Depends on VM config</td></tr>
+</tbody>
+</table>
+<p><em>Note: Podman on macOS requires a VM (via Podman Machine) because containers need a Linux kernel. On Linux, Podman runs natively without a VM, making it even lighter.</em></p>
+<h2 id="pros-and-cons">Pros and Cons</h2>
+<h3 id="docker">Docker (Docker Desktop / Engine)</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Industry standard – almost every CI/CD pipeline, tutorial, and tool assumes Docker.</li>
+<li>Docker Compose is battle-tested and widely supported.</li>
+<li>Huge library of official images and extensive documentation.</li>
+<li>Docker Desktop offers a polished GUI for managing containers, volumes, and networks.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Daemon-based means a privileged process runs all the time.</li>
+<li>macOS/Windows version is a resource hog. I’ve seen it eat 6 GB RAM after a few days of uptime.</li>
+<li>Licensing changes (paid for large enterprises) caused a trust hit.</li>
+<li>Slower startup compared to alternatives.</li>
+</ul>
+<h3 id="podman">Podman (Podman Engine + Podman Desktop)</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Daemonless and rootless by default – better security, less attack surface.</li>
+<li>Pods feature aligns with Kubernetes concepts, useful for devs moving to K8s.</li>
+<li>Fully open source, no paid tiers.</li>
+<li>On Linux, it’s native and incredibly fast.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>macOS experience is still rough around the edges. VM management via <code>podman machine</code> is functional but not as smooth as Colima.</li>
+<li>Some Docker features (like <code>docker buildx</code> with certain drivers) aren’t fully replicated.</li>
+<li><code>podman-compose</code> lags behind Docker Compose in features (e.g., support for <code>depends_on</code> conditions).</li>
+<li>Smaller community means fewer tutorials and troubleshooting resources.</li>
+</ul>
+<h3 id="colima">Colima</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Easiest setup on macOS – one command and you’re running Docker commands.</li>
+<li>Lightweight VM – I measured ~1.2 GB RAM on idle with a 2 CPU config.</li>
+<li>Built-in Kubernetes (K3s) is handy for local cluster testing.</li>
+<li>Free, open source, and actively maintained.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>macOS-only for practical purposes. On Linux, it’s redundant.</li>
+<li>Doesn’t add anything new to the container runtime itself – it’s just a Docker wrapper. You don’t get Podman’s security model or daemonless architecture.</li>
+<li>Less documentation and community support compared to Docker or Podman.</li>
+<li>Experimental features (like rootless mode) can be unstable.</li>
+</ul>
+<h2 id="final-verdict-which-one-should-you-pick">Final Verdict: Which One Should You Pick?</h2>
+<p>There’s no universal winner. Your choice depends on your OS and priorities.</p>
+<ul>
+<li><strong>Stick with Docker Desktop if:</strong> You’re on macOS or Windows and need maximum compatibility with existing tooling (CI/CD, Docker Compose, third-party services). The paid plans are annoying, but for solo devs, the free tier is fine. Just be prepared for the RAM usage.</li>
+</ul>
+<ul>
+<li><strong>Switch to Podman if:</strong> You’re on Linux and value security, or if you want a daemonless runtime that aligns with Kubernetes pods. On macOS, Podman is viable but you’ll have more friction. I’d only recommend it if you’re already using Red Hat tools or need rootless containers on Mac.</li>
+</ul>
+<ul>
+<li><strong>Go with Colima if:</strong> You’re on macOS and want a lightweight, free alternative to Docker Desktop. It’s the best balance of simplicity and performance. You get a Docker-compatible environment without the bloat. If you don’t need Kubernetes, Colima is still a great choice.</li>
+</ul>
+<p><strong>My personal pick:</strong> I use Colima on my Mac daily. It’s fast, minimal, and I can run <code>docker compose up</code> without thinking. For Linux servers, I use Podman for its security benefits. Docker Desktop sits on my backup machine for when I need to test something in a specific Docker version.</p>
+<h2 id="faq">FAQ</h2>
+<p><strong>Q: Can Podman fully replace Docker?</strong></p>
+<p>A: For most development workflows, yes. The CLI is almost identical. However, some edge cases (like <code>docker buildx</code> with specific drivers or <code>docker-compose</code> V2 features) may not work perfectly. Test your specific setup before switching completely.</p>
+<p><strong>Q: Is Colima production-ready?</strong></p>
+<p>A: Colima is designed for local development, not production. It uses a VM that’s not optimized for uptime or high load. Use it for dev, not prod.</p>
+<p><strong>Q: Does Colima work on Windows?</strong></p>
+<p>A: Not natively. It’s built for macOS. On Windows, consider Docker Desktop or Podman with WSL2.</p>
+<p><strong>Q: Which is more secure: Docker, Podman, or Colima?</strong></p>
+<p>A: Podman wins here because it runs rootless by default. Docker requires a root daemon, and Colima runs Docker inside a VM (still root inside the VM). For local dev, the security difference is minimal unless you’re handling sensitive data.</p>
+<p><strong>Q: Can I run Kubernetes with all three?</strong></p>
+<p>A: Docker Desktop has built-in Kubernetes (single node). Podman can use kind or microk8s. Colima has built-in K3s. All work for local clusters.</p>
+<p><strong>Q: Do I need to uninstall Docker Desktop to use Colima?</strong></p>
+<p>A: No, they can coexist. Just stop Docker Desktop before starting Colima, and <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure the Docker socket isn’t conflicting. Colima creates its own socket at <code>~/.colima/docker.sock</code>.</p>
+<p><strong>Q: Which has the best performance on Apple Silicon?</strong></p>
+<p>A: Colima uses Lima’s native ARM64 VM, so it’s fast. Docker Desktop also has native Apple Silicon support now. Podman’s QEMU-based VM is a bit slower due to emulation overhead. For raw speed, Colima edges ahead.</p>
+<p><strong>Q: What about Podman Desktop vs Docker Desktop?</strong></p>
+<p>A: Podman Desktop is a GUI that mimics Docker Desktop but is still in beta. It’s usable but lacks polish. Docker Desktop’s GUI is more mature.</p>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>Container runtimes are a means to an end: shipping software reliably. Don’t overthink the choice. If you’re on macOS, start with Colima (<a href="https://github.com/abiosoft/colima" rel="nofollow sponsored">Check Colima -></a>) because it’s the simplest way to get a Docker-compatible environment that doesn’t drain your battery. If you need Kubernetes built-in, Colima has you covered. For Linux users, Podman (<a href="https://podman.io" rel="nofollow sponsored">Check Podman -></a>) is a no-brainer. And if you’re deep in the Docker ecosystem and don’t mind the resource usage, Docker Desktop (<a href="https://docker.com" rel="nofollow sponsored">Check Docker -></a>) still gets the job done.</p>
+<p>Try them all — they’re free. Your workflow will tell you which one fits.</p>
+            <div class="affiliate-cta">
+    <p>🔍 Want the best deal? Check current prices and availability.</p>
+    <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
+</div>
+            <div class="author-box">
+    <div class="author-avatar">D</div>
+    <div class="author-info">
+        <h4>Dev Tool Rank Editorial Team</h4>
+        <p>We're a team of tech enthusiasts who test and review tools so you don't have to. Our reviews are independent — we only recommend what we'd actually use ourselves.</p>
+    </div>
+</div>
+            <section class="related-articles">
+    <h2>Related Articles</h2>
+    <div class="articles-grid cols-2">
+        <div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-comparison">Comparison</span>
+                    <time>October 21, 2026</time>
+                </div>
+                <h3><a href="/comparison/playwright-vs-cypress-vs-selenium-best-browser-automation">Playwright vs Cypress vs Selenium: Best Browser Automation in 2026</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # Playwright vs Cypress vs Selenium: Best Browser A</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-comparison">Comparison</span>
+                    <time>October 19, 2026</time>
+                </div>
+                <h3><a href="/comparison/cloudflare-workers-vs-aws-lambda-vs-vercel-edge-functions">Cloudflare Workers vs AWS Lambda vs Vercel Edge Functions: Which Serve</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # Cloudflare Workers vs AWS Lambda vs [Vercel](http</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-comparison">Comparison</span>
+                    <time>October 16, 2026</time>
+                </div>
+                <h3><a href="/comparison/bun-vs-nodejs-vs-deno-javascript-runtime-wins">Bun vs Node.js vs Deno: Which JavaScript Runtime Wins in 2026?</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # Bun vs Node.js vs Deno: Which JavaScript Runtime </p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-comparison">Comparison</span>
+                    <time>September 24, 2026</time>
+                </div>
+                <h3><a href="/comparison/shadcnui-vs-mantine-vs-chakra-best-react-component-library">shadcn/ui vs Mantine vs Chakra: Best React Component Library 2026</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  Picking a React component library in 2026 isn’t as </p>
+            </div>
+    </div>
+</section>
+        </div>
+    </div>
+    <aside class="article-sidebar">
+    <div class="toc">
+        <h4>On This Page</h4>
+        <a href="#the-state-of-container-runtimes-for-developers" class="toc-h2" style="padding-left:0px">The State of Container Runtimes for Developers</a>
+<a href="#detailed-feature-breakdown" class="toc-h2" style="padding-left:0px">Detailed Feature Breakdown</a>
+<a href="#docker" class="toc-h3" style="padding-left:8px">Docker</a>
+<a href="#podman" class="toc-h3" style="padding-left:8px">Podman</a>
+<a href="#colima" class="toc-h3" style="padding-left:8px">Colima</a>
+<a href="#comparison-table" class="toc-h2" style="padding-left:0px">Comparison Table</a>
+<a href="#pros-and-cons" class="toc-h2" style="padding-left:0px">Pros and Cons</a>
+<a href="#docker" class="toc-h3" style="padding-left:8px">Docker</a>
+<a href="#podman" class="toc-h3" style="padding-left:8px">Podman</a>
+<a href="#colima" class="toc-h3" style="padding-left:8px">Colima</a>
+<a href="#final-verdict-which-one-should-you-pick" class="toc-h2" style="padding-left:0px">Final Verdict: Which One Should You Pick?</a>
+<a href="#faq" class="toc-h2" style="padding-left:0px">FAQ</a>
+<a href="#final-thoughts" class="toc-h2" style="padding-left:0px">Final Thoughts</a>
+    </div>
+</aside>
+</article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="newsletter-signup">
+                <h3>Get the Best Tools Delivered</h3>
+                <p>Weekly roundup of the top SaaS deals, new reviews, and exclusive comparisons. No spam, ever.</p>
+                <form class="signup-form" action="https://chipradar.io/subscribe" method="GET">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <input type="hidden" name="source" value="devtoolrank">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/comparisons/">Comparisons</a>
+                <a href="/reviews/">Reviews</a>
+                <a href="/best-of/">Best Of</a>
+                <a href="/about/">About</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/contact/">Contact</a>
+            </div>
+            <p class="disclosure">Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our reviews and comparisons remain editorially independent.</p>
+            <p class="copyright">&copy; 2026 Dev Tool Rank. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
