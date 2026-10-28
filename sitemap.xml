@@ -46,14 +46,44 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/tutorial/containerize-nodejs-app-docker-production</loc>
-    <lastmod>2026-10-22</lastmod>
+    <loc>https://devtoolrank.com/best_of/8-best-database-tools-saas-developers</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://devtoolrank.com/comparison/playwright-vs-cypress-vs-selenium-best-browser-automation</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/review/supabase-review-2026-open-source-firebase-alternative-ready</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/best_of/8-best-sqlite-tools-guis-developers</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/tutorial/containerize-nodejs-app-docker-production</loc>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -166,12 +196,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/best_of/8-best-sqlite-tools-guis-developers</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/review/cloudflare-workers-review-2026-edge-computing-full-stack</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
@@ -214,12 +238,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</loc>
-    <lastmod>2026-09-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://devtoolrank.com/tutorial/build-rest-api-nextjs-route-handlers</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
@@ -234,12 +252,6 @@
   <url>
     <loc>https://devtoolrank.com/comparison/redis-vs-memcached-vs-dragonfly-best-memory-cache</loc>
     <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/review/supabase-review-2026-open-source-firebase-alternative-ready</loc>
-    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -288,18 +300,6 @@
   <url>
     <loc>https://devtoolrank.com/best_of/7-best-api-gateway-tools-microservices</loc>
     <lastmod>2026-08-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/best_of/8-best-database-tools-saas-developers</loc>
-    <lastmod>2026-08-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</loc>
-    <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
