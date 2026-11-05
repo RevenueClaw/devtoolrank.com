@@ -7,6 +7,7 @@
     <!-- Amazon OneLink -- auto-redirect international visitors to their local store -->
     <div id="amzn-assoc-ad"></div>
     <script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+
     <title>How to Set Up CI/CD with GitHub Actions in 15 Minutes | Dev Tool Rank</title>
     <meta name="description" content="Learn to automate your deployment pipeline with GitHub Actions CI/CD. Step-by-step guide with real examples, pricing, and honest pros/cons.">
     <meta name="keywords" content="github actions ci/cd, deployment pipeline, devops tutorial, github actions tutorial, ci cd pipeline">
@@ -108,7 +109,7 @@
 <ul>
 <li><strong>On every push</strong> – Run tests and linting</li>
 <li><strong>On merge to main</strong> – Build the app, run full test suite, then deploy to a Linux server</li>
-<li><strong>Send notifications</strong> – Ping a Slack webhook if something breaks</li>
+<li><strong>Send notifications</strong> – Ping a <a href="https://slack.pxf.io/c/7203256/3887205/52501" rel="nofollow sponsored">Slack</a> webhook if something breaks</li>
 </ul>
 <p>The whole thing lives in a <code>.github/workflows/</code> folder in your repo. No extra services, no Jenkins plugins, no YAML spaghetti.</p>
 <h2 id="prerequisites">Prerequisites</h2>
@@ -253,9 +254,9 @@
 <p>${{ runner.os }}-node-</p>
 <p></code></pre></p>
 <p>This saves about 30 seconds per run by avoiding redundant npm installs.</p>
-<h3 id="slack-notifications">Slack Notifications</h3>
+<h3 id="slack-notifications"><a href="https://slack.pxf.io/c/7203256/3887205/52501" rel="nofollow sponsored">Slack</a> Notifications</h3>
 <p>Add a notification step to your deploy job:</p>
-<pre><code>- name: Notify Slack on failure
+<pre><code>- name: Notify <a href="https://slack.pxf.io/c/7203256/3887205/52501" rel="nofollow sponsored">Slack</a> on failure
 <p>if: failure()</p>
 <p>uses: slackapi/slack-github-action@v1.24.0</p>
 <p>with:</p>
@@ -371,6 +372,13 @@
         <div class="card">
                 <div class="card-meta">
                     <span class="badge badge-tutorial">Tutorial</span>
+                    <time>November 03, 2026</time>
+                </div>
+                <h3><a href="/tutorial/set-up-application-monitoring-sentry-complete-guide">How to Set Up Application Monitoring with Sentry: Complete Guide</a></h3>
+                <p>*When you buy through links on our site, we may earn a commission.*  # How to Set Up Application Monitoring with [Sentry</p>
+            </div><div class="card">
+                <div class="card-meta">
+                    <span class="badge badge-tutorial">Tutorial</span>
                     <time>October 22, 2026</time>
                 </div>
                 <h3><a href="/tutorial/containerize-nodejs-app-docker-production">How to Containerize a Node.js App with Docker for Production</a></h3>
@@ -389,13 +397,6 @@
                 </div>
                 <h3><a href="/tutorial/set-up-end-end-testing-playwright">How to Set Up End-to-End Testing with Playwright (Complete Guide)</a></h3>
                 <p>*When you buy through links on our site, we may earn a commission.*  You know the feeling. You push a small CSS change t</p>
-            </div><div class="card">
-                <div class="card-meta">
-                    <span class="badge badge-tutorial">Tutorial</span>
-                    <time>October 02, 2026</time>
-                </div>
-                <h3><a href="/tutorial/use-langchain-building-ai-powered-api-endpoints">How to Use LangChain for Building AI-Powered API Endpoints</a></h3>
-                <p>*When you buy through links on our site, we may earn a commission.*  # How to Use LangChain for Building AI-Powered API </p>
             </div>
     </div>
 </section>
