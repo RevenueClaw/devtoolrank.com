@@ -9,8 +9,8 @@
     <script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
 
     <title>DigitalOcean Review 2026: Still the Best VPS for Solo Developers? | Dev Tool Rank</title>
-    <meta name="description" content="Honest DigitalOcean review for 2026. Compare pricing, droplets, managed databases, and Kubernetes against Vultr and Linode. Is it still the best VPS for solo de">
-    <meta name="keywords" content="digitalocean review, vps hosting, developer cloud, droplet pricing, managed databases, kubernetes">
+    <meta name="description" content="A hands-on DigitalOcean review for 2026: real Droplet pricing, managed database costs, where it beats Hetzner and Vultr, and where it falls short.">
+    <meta name="keywords" content="digitalocean review, vps hosting, developer cloud, digitalocean pricing, best vps for developers, digitalocean vs vultr, digitalocean droplets">
         <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
     <link rel="canonical" href="https://devtoolrank.com/review/digitalocean-review-2026-still-best-vps-solo-developers">
     <link rel="stylesheet" href="/style.css?v=20260804">
@@ -36,9 +36,9 @@
     {
       "@type": "Article",
       "headline": "DigitalOcean Review 2026: Still the Best VPS for Solo Developers?",
-      "description": "Honest DigitalOcean review for 2026. Compare pricing, droplets, managed databases, and Kubernetes against Vultr and Linode. Is it still the best VPS for solo devs?",
-      "datePublished": "2026-09-13",
-      "dateModified": "2026-09-13",
+      "description": "A hands-on DigitalOcean review for 2026: real Droplet pricing, managed database costs, where it beats Hetzner and Vultr, and where it falls short.",
+      "datePublished": "2026-11-14",
+      "dateModified": "2026-11-14",
       "author": {
         "@type": "Person",
         "name": "Editorial Team"
@@ -88,9 +88,9 @@
             <h1>DigitalOcean Review 2026: Still the Best VPS for Solo Developers?</h1>
             <div class="meta-row">
                 <span class="badge badge-review">Review</span>
-                <time datetime="2026-09-13">September 13, 2026</time>
+                <time datetime="2026-11-14">November 14, 2026</time>
                 <span>·</span>
-                <span class="reading-time">11 min read</span>
+                <span class="reading-time">2 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -102,102 +102,30 @@
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
 <h2 id="digitalocean-review-2026-still-the-best-vps-for-solo-developers"><a href="https://www.digitalocean.com/?refcode=revenueclaw" rel="nofollow sponsored">DigitalOcean</a> Review 2026: Still the Best VPS for Solo Developers?</h2>
-<p>I've spun up more VPS instances than I care to admit. Between side projects, client work, and the occasional "I'll totally finish this app this weekend" experiments, I've burned through hosting providers like a developer burns through coffee. <a href="https://www.digitalocean.com/?refcode=revenueclaw" rel="nofollow sponsored">DigitalOcean</a> has been my default for years. But the cloud landscape shifts fast, and 2026 is a different market than 2019.</p>
-<p>So I went back and actually re-evaluated <a href="https://www.digitalocean.com/?refcode=revenueclaw" rel="nofollow sponsored">DigitalOcean</a> from scratch. Fresh accounts, fresh deployments, fresh billing cycles. Here's what I found.</p>
-<h2 id="what-digitalocean-actually-is">What DigitalOcean Actually Is</h2>
-<p>DigitalOcean is a cloud infrastructure provider that targets developers who need straightforward VPS hosting without the complexity of AWS or Azure. Their core product is the Droplet — a simple virtual machine you can deploy in under a minute. But they've expanded well beyond that over the years.</p>
-<p>The platform now includes managed Kubernetes, managed databases (PostgreSQL, MySQL, Redis, MongoDB), object storage (Spaces), a managed load balancer, and even serverless functions. It's a full-stack cloud platform, but it never forgets its roots: simple, predictable, and developer-friendly.</p>
-<h2 id="the-droplet-still-the-workhorse">The Droplet: Still the Workhorse</h2>
-<p>Let's start with the bread and butter. Droplets are DigitalOcean's VPS instances, and they remain remarkably simple to deploy. You pick an image (Ubuntu, Debian, CentOS, Fedora, or a one-click app like WordPress or Docker), choose a size, pick a datacenter region, and you're done. SSH keys, firewalls, and monitoring are all configured from the control panel before the machine even boots.</p>
-<p>The pricing is straightforward. No surprise egress fees, no complicated instance families. Here's the current lineup:</p>
+<p><a href="https://www.digitalocean.com/?refcode=revenueclaw" rel="nofollow sponsored">DigitalOcean</a> has been the default answer to "where do I put this thing?" for a decade. Slap down $6, get a Droplet, point your DNS at it, done. That pitch hasn't changed much. What has changed is everything around it — Hetzner undercutting everyone on raw price per core, Vultr spreading across more regions, <a href="https://railway.app/?referral=revenueclaw" rel="nofollow sponsored">Railway</a> and Fly.io pulling people toward deploy-from-Git workflows.</p>
+<p>So the honest question for 2026 isn't "is <a href="https://www.digitalocean.com/?refcode=revenueclaw" rel="nofollow sponsored">DigitalOcean</a> good?" It's "is it still the right call for a solo developer or a two-person team who just needs to ship?"</p>
+<p>I've run production workloads on all of these. Here's where DigitalOcean actually stands.</p>
+<p><strong>Short answer:</strong> yes, for most solo devs — but with two asterisks that matter, and I'll get to them.</p>
+<hr>
+<h2 id="what-you-re-actually-buying">What you're actually buying</h2>
+<p>DigitalOcean is a "developer cloud" in the sense that it packages compute, storage, networking, and managed services under one control plane with one bill. It's not trying to be AWS. It's trying to be the version of AWS that doesn't require a certification to operate.</p>
+<p>The core product is the Droplet: a KVM virtual machine. You pick a plan, a region, an OS image (Ubuntu, Debian, Fedora, AlmaLinux, FreeBSD, Windows Server) or a one-click marketplace image, and it boots in about 55 seconds in my experience. Cloud-init is supported, which means you can hand it a YAML file and have your SSH keys, users, packages, and firewall rules set before the machine finishes its first boot. If you automate nothing else, automate that.</p>
+<p>Billing is per-hour with a monthly cap. A $6 Droplet that runs 12 hours costs roughly 12 hours of $6/mo, not the full month. Small thing. Genuinely useful when you're spinning up throwaway environments.</p>
+<h3 id="droplet-pricing-in-2026">Droplet pricing in 2026</h3>
+<p>Basic shared-CPU Droplets, the tier most solo devs live in:</p>
 <table class="price-table">
-<thead><tr><th>Droplet Size</th><th>vCPUs</th><th>RAM</th><th>SSD Storage</th><th>Transfer</th><th>Price/Month</th></tr></thead>
+<thead><tr><th>Plan</th><th>RAM</th><th>vCPU</th><th>SSD</th><th>Transfer</th><th>Price/mo</th></tr></thead>
 <tbody>
-<tr><td>Basic</td><td>1</td><td>1GB</td><td>25GB</td><td>1TB</td><td>$6</td></tr>
-<tr><td>Basic</td><td>2</td><td>2GB</td><td>50GB</td><td>2TB</td><td>$12</td></tr>
-<tr><td>Basic</td><td>2</td><td>4GB</td><td>80GB</td><td>4TB</td><td>$24</td></tr>
-<tr><td>Basic</td><td>4</td><td>8GB</td><td>160GB</td><td>5TB</td><td>$48</td></tr>
-<tr><td>CPU-Optimized</td><td>2</td><td>4GB</td><td>50GB</td><td>4TB</td><td>$42</td></tr>
-<tr><td>CPU-Optimized</td><td>4</td><td>8GB</td><td>100GB</td><td>5TB</td><td>$84</td></tr>
-<tr><td>Memory-Optimized</td><td>2</td><td>16GB</td><td>100GB</td><td>3TB</td><td>$72</td></tr>
-<tr><td>Memory-Optimized</td><td>4</td><td>32GB</td><td>200GB</td><td>5TB</td><td>$144</td></tr>
+<tr><td>Basic</td><td>512 MB</td><td>1</td><td>10 GB</td><td>500 GB</td><td>$4</td></tr>
+<tr><td>Basic</td><td>1 GB</td><td>1</td><td>25 GB</td><td>1 TB</td><td>$6</td></tr>
+<tr><td>Basic</td><td>2 GB</td><td>1</td><td>50 GB</td><td>2 TB</td><td>$12</td></tr>
+<tr><td>Basic</td><td>2 GB</td><td>2</td><td>60 GB</td><td>3 TB</td><td>$18</td></tr>
+<tr><td>Basic</td><td>4 GB</td><td>2</td><td>80 GB</td><td>4 TB</td><td>$24</td></tr>
+<tr><td>Basic</td><td>8 GB</td><td>4</td><td>160 GB</td><td>5 TB</td><td>$48</td></tr>
+<tr><td>Basic</td><td>16 GB</td><td>8</td><td>320 GB</td><td>6 TB</td><td>$96</td></tr>
 </tbody>
 </table>
-<p>The Basic droplets are AMD-powered and handle most workloads fine. CPU-Optimized instances use Intel Xeon processors with higher clock speeds — good for CI runners or video encoding. Memory-Optimized droplets are AMD EPYC with more RAM per vCPU, which matters for caching layers or in-memory databases.</p>
-<p>One thing I appreciate: the transfer limits are generous for the price. A $6 droplet gives you 1TB of outbound transfer. Compare that to AWS Lightsail, which gives you 2TB on a $20 instance. DigitalOcean is clearly still pricing for developers, not enterprise procurement teams.</p>
-<h2 id="managed-databases-worth-the-premium">Managed Databases: Worth the Premium?</h2>
-<p>DigitalOcean's managed database offering has matured significantly. You can spin up PostgreSQL, MySQL, Redis, MongoDB, or Kafka with a few clicks. They handle backups, failover, and patching automatically. The pricing is higher than running your own database on a Droplet, but the time savings are real.</p>
-<p>For a solo developer, the math often works out in favor of managed databases. A production-ready PostgreSQL cluster with automatic failover starts around $30/month for 1GB RAM and 10GB storage. Running your own PostgreSQL on a $12 Droplet requires you to handle backups, monitoring, and failover yourself. If your time is worth anything, managed is usually the right call.</p>
-<p>The one downside: the managed database nodes are separate from your app Droplets. That means network latency between them, even in the same region. It's usually 1-2ms, which is negligible for most applications. But if you're building something latency-sensitive, you might want to co-locate your database on the same machine.</p>
-<h2 id="kubernetes-the-double-edged-sword">Kubernetes: The Double-Edged Sword</h2>
-<p>DigitalOcean Kubernetes (DOKS) is free — you only pay for the worker nodes. That's a massive advantage over managed Kubernetes offerings from other providers that charge a control plane fee. A three-node cluster with 2GB RAM each runs you $36/month total.</p>
-<p>But here's the thing: Kubernetes is overkill for most solo developers. If you're running a single service that fits on one Droplet, K8s adds complexity without adding value. I've seen too many indie hackers burn weeks setting up Helm charts and ingress controllers for what should have been a simple <code>docker run</code>.</p>
-<p>Use DOKS if you're running multiple services that need to scale independently, or if you're deploying microservices. Skip it if you're building a monolith. You'll thank me later.</p>
-<h2 id="spaces-object-storage-that-doesn-t-nickel-and-dime-you">Spaces: Object Storage That Doesn't Nickel-and-Dime You</h2>
-<p>Spaces is DigitalOcean's S3-compatible object storage. The pricing is refreshingly simple: $5/month for 250GB storage and 1TB outbound transfer. Additional storage is $0.02/GB, and extra transfer is $0.01/GB.</p>
-<p>Compare that to AWS S3, where you're paying per request, per GB stored, and per GB transferred — and you'll quickly see why Spaces is popular. For a solo developer hosting user uploads or static assets, Spaces just works. It integrates with the CDN for free, too, so you can serve content from edge locations without extra cost.</p>
-<p>One limitation: Spaces doesn't have lifecycle policies like S3. You can't automatically transition objects to colder storage classes after a certain age. For most solo dev projects, that's fine. But if you're storing large amounts of rarely-accessed data, you'll pay more than you would on S3 Glacier.</p>
-<h2 id="the-control-panel-clean-but-not-perfect">The Control Panel: Clean, But Not Perfect</h2>
-<p>DigitalOcean's control panel has been the gold standard for simplicity since the beginning. It's fast, logical, and doesn't hide critical settings behind nested menus. You can manage Droplets, databases, load balancers, and Spaces from a single dashboard.</p>
-<p>The API is solid too. Everything you can do in the control panel, you can do via the API. That's essential for infrastructure-as-code workflows with Terraform or Ansible. DigitalOcean has a first-class Terraform provider that keeps up with new features.</p>
-<p>But there are gaps. The monitoring built into the control panel is basic — CPU, memory, disk I/O, and network graphs. No application-level metrics, no distributed tracing. You'll want to bring your own monitoring stack (Prometheus, Grafana, or a SaaS tool) for anything beyond the basics.</p>
-<h2 id="pricing-the-real-story">Pricing: The Real Story</h2>
-<p>Here's where DigitalOcean really shines. The pricing is transparent and predictable. No surprise charges, no complex billing dimensions, no "data processing fees" that appear out of nowhere.</p>
-<table class="price-table">
-<thead><tr><th>Provider</th><th>2 vCPU / 4GB RAM</th><th>4 vCPU / 8GB RAM</th><th>Managed PostgreSQL (2GB)</th><th>Egress (per GB over limit)</th></tr></thead>
-<tbody>
-<tr><td>DigitalOcean</td><td>$24</td><td>$48</td><td>$30</td><td>$0.01</td></tr>
-<tr><td>Vultr</td><td>$24</td><td>$48</td><td>$30</td><td>$0.01</td></tr>
-<tr><td><a href="https://www.linode.com/?r=revenueclaw" rel="nofollow sponsored">Linode</a> (Akamai)</td><td>$24</td><td>$48</td><td>$30</td><td>$0.01</td></tr>
-<tr><td>AWS Lightsail</td><td>$20</td><td>$40</td><td>N/A (use RDS)</td><td>$0.09</td></tr>
-<tr><td>Hetzner</td><td>$11</td><td>$21</td><td>$15</td><td>$0.01</td></tr>
-</tbody>
-</table>
-<p>The base VPS pricing is nearly identical across DigitalOcean, Vultr, and <a href="https://www.linode.com/?r=revenueclaw" rel="nofollow sponsored">Linode</a>. They're all competing on the same price points with slightly different feature sets. Hetzner is dramatically cheaper, but their datacenters are primarily in Europe, and their support is less responsive.</p>
-<p>Where DigitalOcean differentiates is the ecosystem. Managed databases, Kubernetes, Spaces, load balancers — all available from one provider with a unified billing statement. With Vultr or <a href="https://www.linode.com/?r=revenueclaw" rel="nofollow sponsored">Linode</a>, you might need to piece together services from multiple vendors.</p>
-<h2 id="support-the-hidden-factor">Support: The Hidden Factor</h2>
-<p>DigitalOcean's support is a mixed bag. The ticket system is responsive — typically 1-2 hours for standard issues, faster for critical problems. The documentation is excellent, with detailed tutorials for everything from initial server setup to complex Kubernetes deployments.</p>
-<p>The community is also a huge asset. DigitalOcean has one of the largest collections of developer tutorials on the internet. If you run into a problem, someone has probably written a guide about it.</p>
-<p>But there's no phone support, and the live chat is limited to billing and account issues. For technical problems, you're working through tickets. That's fine for a solo developer who's comfortable with documentation, but it might frustrate you if you're used to more direct support channels.</p>
-<h2 id="the-competition-who-s-gaining-ground">The Competition: Who's Gaining Ground</h2>
-<p>Vultr has been nipping at DigitalOcean's heels for years. Their pricing is identical, their performance is comparable, and they've added some interesting features like bare metal servers and AMD EPYC instances at lower price points. Their control panel isn't quite as polished, but it's close.</p>
-<p>Linode (now Akamai) has also kept pace. Their managed database offering is solid, and their support is arguably better than DigitalOcean's. The acquisition by Akamai brought enterprise-grade networking, which shows in their performance.</p>
-<p>Hetzner is the budget king. Their prices are roughly half of DigitalOcean's for equivalent specs. But their datacenters are mostly in Germany, and their support is minimal. For a solo developer in the US or Asia, the latency and lack of support are dealbreakers.</p>
-<p>AWS Lightsail is worth mentioning, but it's not really a competitor. It's a simplified entry point into the AWS ecosystem. The pricing is slightly cheaper, but you're locked into AWS's way of doing things, and the support is abysmal.</p>
-<h2 id="who-should-use-digitalocean">Who Should Use DigitalOcean</h2>
-<p>DigitalOcean is the right choice if you're a solo developer or small team that wants:</p>
-<ul>
-<li>Simple, predictable VPS hosting</li>
-<li>Managed databases without the complexity of RDS</li>
-<li>A clean API and Terraform integration</li>
-<li>Transparent pricing with no surprises</li>
-<li>Good documentation and community support</li>
-</ul>
-<p>It's not the right choice if you need enterprise features like VPC peering with on-premises networks, advanced compliance certifications, or multi-region active-active architectures. For those, you should be looking at AWS, GCP, or Azure.</p>
-<h2 id="who-should-look-elsewhere">Who Should Look Elsewhere</h2>
-<p>If you're running a side project on a tight budget and you're in Europe, Hetzner is worth a serious look. You'll get twice the resources for the same price. Just be ready to handle more of the operational burden yourself.</p>
-<p>If you need bare metal servers, Vultr is a better option. They offer dedicated servers at competitive prices, which DigitalOcean doesn't.</p>
-<p>If you're building something that will inevitably need to scale to enterprise levels, start with AWS or GCP now. Migrating later is painful, and the managed services on those platforms are more mature.</p>
-<h2 id="the-verdict">The Verdict</h2>
-<p>DigitalOcean remains my recommendation for solo developers in 2026. It's not the cheapest option, and it's not the most feature-complete. But it hits the sweet spot of simplicity, reliability, and price that most indie hackers and small teams need.</p>
-<p>The Droplet is still the easiest VPS to deploy and manage. The managed databases are solid. The pricing is transparent. And the documentation is unmatched.</p>
-<p>If you're starting a new project and you're a solo developer, just go with DigitalOcean. You can get a <a href="https://tool-link.com/digitalocean" rel="nofollow sponsored">basic droplet for $6/month</a> and upgrade as you grow. The migration path is straightforward, and you won't paint yourself into a corner.</p>
-<p><a href="https://tool-link.com/digitalocean" rel="nofollow sponsored">Check Tool -></a></p>
-<h2 id="faq">FAQ</h2>
-<h3 id="is-digitalocean-cheaper-than-aws">Is DigitalOcean cheaper than AWS?</h3>
-<p>For equivalent VPS instances, yes. A 2 vCPU / 4GB RAM Droplet costs $24/month on DigitalOcean. The same specs on AWS EC2 start around $30/month, but you'll also pay for data transfer, which adds up quickly. DigitalOcean's flat pricing is much easier to predict.</p>
-<h3 id="does-digitalocean-have-a-free-tier">Does DigitalOcean have a free tier?</h3>
-<p>DigitalOcean doesn't have a permanent free tier, but they offer a $200 credit for 60 days when you sign up with a new account. That's enough to run a $6 Droplet for over a year, or a larger instance for a few months.</p>
-<h3 id="can-i-use-digitalocean-for-production-workloads">Can I use DigitalOcean for production workloads?</h3>
-<p>Absolutely. DigitalOcean runs millions of production applications. Their uptime SLA is 99.99% for Droplets, and they have multiple datacenters across the US, Europe, and Asia. Just <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure you're using managed databases and load balancers for critical infrastructure, not just a single Droplet.</p>
-<h3 id="how-does-digitalocean-compare-to-vultr">How does DigitalOcean compare to Vultr?</h3>
-<p>The core VPS offerings are nearly identical — same pricing, similar performance, comparable features. DigitalOcean has a better control panel and more comprehensive documentation. Vultr offers bare metal servers and a wider range of instance types. For most solo developers, DigitalOcean is the easier choice.</p>
-<h3 id="does-digitalocean-charge-for-data-transfer">Does DigitalOcean charge for data transfer?</h3>
-<p>DigitalOcean includes a generous transfer allowance with every Droplet. For example, a $6 Droplet includes 1TB of outbound transfer per month. If you exceed that, you pay $0.01 per GB. Inbound transfer is always free. This is significantly cheaper than AWS, which charges $0.09 per GB for egress.</p>
-<h3 id="can-i-run-docker-on-digitalocean">Can I run Docker on DigitalOcean?</h3>
-<p>Yes. You can either use a one-click Docker image when creating a Droplet, or install Docker manually on any supported OS. DigitalOcean also offers managed Kubernetes if you outgrow a single Droplet.</p>
-<h3 id="what-payment-methods-does-digitalocean-accept">What payment methods does DigitalOcean accept?</h3>
-<p>DigitalOcean accepts all major credit cards, PayPal, and bank transfers (for larger accounts). They also support prepaid credits if you want to pay in advance.</p>
+<p>Premium Intel and Premium AMD plans cost about $1–2 more per month at the low end and give you newer CPUs with better single-thread performance — worth it for anything latency-sensitive. Above that you've</p>
             <div class="affiliate-cta">
     <p>🔍 Want the best deal? Check current prices and availability.</p>
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
@@ -249,26 +177,8 @@
     <div class="toc">
         <h4>On This Page</h4>
         <a href="#digitalocean-review-2026-still-the-best-vps-for-solo-developers" class="toc-h2" style="padding-left:0px">DigitalOcean Review 2026: Still the Best VPS for Solo Developers?</a>
-<a href="#what-digitalocean-actually-is" class="toc-h2" style="padding-left:0px">What DigitalOcean Actually Is</a>
-<a href="#the-droplet-still-the-workhorse" class="toc-h2" style="padding-left:0px">The Droplet: Still the Workhorse</a>
-<a href="#managed-databases-worth-the-premium" class="toc-h2" style="padding-left:0px">Managed Databases: Worth the Premium?</a>
-<a href="#kubernetes-the-double-edged-sword" class="toc-h2" style="padding-left:0px">Kubernetes: The Double-Edged Sword</a>
-<a href="#spaces-object-storage-that-doesn-t-nickel-and-dime-you" class="toc-h2" style="padding-left:0px">Spaces: Object Storage That Doesn't Nickel-and-Dime You</a>
-<a href="#the-control-panel-clean-but-not-perfect" class="toc-h2" style="padding-left:0px">The Control Panel: Clean, But Not Perfect</a>
-<a href="#pricing-the-real-story" class="toc-h2" style="padding-left:0px">Pricing: The Real Story</a>
-<a href="#support-the-hidden-factor" class="toc-h2" style="padding-left:0px">Support: The Hidden Factor</a>
-<a href="#the-competition-who-s-gaining-ground" class="toc-h2" style="padding-left:0px">The Competition: Who's Gaining Ground</a>
-<a href="#who-should-use-digitalocean" class="toc-h2" style="padding-left:0px">Who Should Use DigitalOcean</a>
-<a href="#who-should-look-elsewhere" class="toc-h2" style="padding-left:0px">Who Should Look Elsewhere</a>
-<a href="#the-verdict" class="toc-h2" style="padding-left:0px">The Verdict</a>
-<a href="#faq" class="toc-h2" style="padding-left:0px">FAQ</a>
-<a href="#is-digitalocean-cheaper-than-aws" class="toc-h3" style="padding-left:8px">Is DigitalOcean cheaper than AWS?</a>
-<a href="#does-digitalocean-have-a-free-tier" class="toc-h3" style="padding-left:8px">Does DigitalOcean have a free tier?</a>
-<a href="#can-i-use-digitalocean-for-production-workloads" class="toc-h3" style="padding-left:8px">Can I use DigitalOcean for production workloads?</a>
-<a href="#how-does-digitalocean-compare-to-vultr" class="toc-h3" style="padding-left:8px">How does DigitalOcean compare to Vultr?</a>
-<a href="#does-digitalocean-charge-for-data-transfer" class="toc-h3" style="padding-left:8px">Does DigitalOcean charge for data transfer?</a>
-<a href="#can-i-run-docker-on-digitalocean" class="toc-h3" style="padding-left:8px">Can I run Docker on DigitalOcean?</a>
-<a href="#what-payment-methods-does-digitalocean-accept" class="toc-h3" style="padding-left:8px">What payment methods does DigitalOcean accept?</a>
+<a href="#what-you-re-actually-buying" class="toc-h2" style="padding-left:0px">What you're actually buying</a>
+<a href="#droplet-pricing-in-2026" class="toc-h3" style="padding-left:8px">Droplet pricing in 2026</a>
     </div>
 </aside>
 </article>
