@@ -52,6 +52,74 @@
         "@type": "WebPage",
         "@id": "https://devtoolrank.com/best_of/7-best-api-gateway-tools-microservices"
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://devtoolrank.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Best Of",
+          "item": "https://devtoolrank.com/best-of/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "7 Best API Gateway Tools for Microservices in 2026",
+          "item": "https://devtoolrank.com/best_of/7-best-api-gateway-tools-microservices"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I always need an API gateway for microservices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not always. If you have fewer than 5 services and no need for authentication or rate limiting, a simple reverse proxy (like NGINX OSS) is enough. But as you grow, an API gateway centralizes cross-cutting concerns and saves you from implementing them in every service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use an API gateway with serverless functions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. AWS API Gateway is designed for it, but you can also put Kong or Traefik in front of any HTTP endpoint, including serverless functions on other clouds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between an API gateway and a service mesh?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An API gateway handles north-south traffic (client to service), while a service mesh handles east-west traffic (service to service). Many modern architectures use both \u2014 the gateway routes external requests, and the mesh handles internal communication. Some gateways (like Kong and Envoy) can also serve as mesh data planes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are open-source API gateways production-ready?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Kong OSS, APISIX, Traefik, and NGINX OSS are used in production by large companies. The trade-off is that you'll need to handle your own monitoring, backups, and upgrades. Enterprise versions add support and nicer UIs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I migrate from one API gateway to another?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's rarely easy. Plan to do it incrementally: route a subset of traffic to the new gateway, verify behavior, then shift more. Most gateways support common formats (OpenAPI, etc.) but will require re-implementing custom plugins or middleware. Disclosure: Some links above are affiliate links. We only recommend tools we've actually tested and believe in. See our full disclosure policy ."
+          }
+        }
+      ]
     }
   ]
 }</script>

@@ -52,6 +52,90 @@
         "@type": "WebPage",
         "@id": "https://devtoolrank.com/tutorial/deploy-serverless-app-cloudflare-workers-r2"
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://devtoolrank.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tutorial",
+          "item": "https://devtoolrank.com/tutorials/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Deploy a Serverless App with Cloudflare Workers and R2",
+          "item": "https://devtoolrank.com/tutorial/deploy-serverless-app-cloudflare-workers-r2"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I use Cloudflare Workers with a framework like React or Next.js?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but it's not a drop-in replacement. You can use Workers with the Workers Sites feature or frameworks like Remix that support the Workers runtime. For Next.js, you'd use @cloudflare/next-on-pages to adapt it. It works, but you'll hit edge cases. If you're building a static site with some dynamic API routes, it's a solid fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does R2 compare to S3 for compatibility?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "R2 implements the S3 API for basic operations, so tools like rclone and aws-sdk can work with it. But it's not 100% compatible\u2014some advanced S3 features like bucket policies and versioning are handled differently. For basic storage and retrieval, you won't notice the difference."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I exceed the free tier limits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You don't get cut off. Cloudflare just starts billing you at the standard rates. I've accidentally exceeded the free tier on a side project and ended up with a $0.47 bill. It's refreshingly transparent compared to other providers that hit you with a surprise $50 charge."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a way to handle authentication for uploads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can use Cloudflare Access to protect the upload endpoint, or you can implement your own auth in the Worker using JWTs or session tokens. The Worker code runs server-side, so you have full control over what requests you accept."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use Workers for WebSockets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Workers supports WebSockets, including real-time communication. It's a newer feature and works well for chat apps or live updates. Just be aware that long-lived connections count against your request quotas differently than standard HTTP requests."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the performance compare to a traditional server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most use cases, Workers is faster because it runs at the edge. A user in Europe hitting your Worker gets a response from a European data center, not from a server in Virginia. The trade-off is that compute is limited to a few seconds per request, so you can't run heavy background processing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a credit card to get started?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The free tier doesn't require a card. You only add billing information if you want to exceed the free limits or use paid add-on features like custom domains with Workers for Platforms."
+          }
+        }
+      ]
     }
   ]
 }</script>
