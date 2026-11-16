@@ -5,12 +5,19 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Mon, 16 Nov 2026 06:07:23 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 06:16:25 +0000</lastBuildDate>
     <item>
       <title>9 Best Monitoring and Observability Tools in 2026 Compared</title>
       <link>https://devtoolrank.com/best_of/9-best-monitoring-observability-tools-2026-compared</link>
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/9-best-monitoring-observability-tools-2026-compared</guid>
       <description>We compared 9 of the best monitoring and observability tools in 2026 — real pricing, real limits, and which one fits your stack and your budget.</description>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Playwright vs Cypress vs Selenium: Best Browser Automation in 2026</title>
+      <link>https://devtoolrank.com/comparison/playwright-vs-cypress-vs-selenium-best-browser-automation</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/comparison/playwright-vs-cypress-vs-selenium-best-browser-automation</guid>
+      <description>Playwright vs Cypress vs Selenium compared for 2026: real pricing, browser support, speed, debugging, and a clear verdict on which E2E testing tool to pick.</description>
       <pubDate>Mon, 16 Nov 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -130,13 +137,6 @@
       <link>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</link>
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</guid>
       <description>Six headless CMS platforms ranked for developers: schema flexibility, API design, self-hosting, and real 2026 pricing for Payload, Sanity, Strapi, and more.</description>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Playwright vs Cypress vs Selenium: Best Browser Automation in 2026</title>
-      <link>https://devtoolrank.com/comparison/playwright-vs-cypress-vs-selenium-best-browser-automation</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/comparison/playwright-vs-cypress-vs-selenium-best-browser-automation</guid>
-      <description>Playwright, Cypress, and Selenium compared for 2026: real feature breakdown, pricing tables, honest pros and cons, and a clear winner for your stack.</description>
       <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
