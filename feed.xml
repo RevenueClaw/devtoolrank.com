@@ -5,7 +5,14 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Mon, 16 Nov 2026 06:16:25 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 06:16:13 +0000</lastBuildDate>
+    <item>
+      <title>How to Deploy a Full-Stack App in 10 Minutes with Vercel and Supabase</title>
+      <link>https://devtoolrank.com/tutorial/deploy-full-stack-app-10-minutes-vercel-supabase</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/tutorial/deploy-full-stack-app-10-minutes-vercel-supabase</guid>
+      <description>A hands-on guide to deploying a full-stack app with Vercel and Supabase in about 10 minutes, plus real pricing, free-tier limits, and honest tradeoffs.</description>
+      <pubDate>Tue, 17 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>9 Best Monitoring and Observability Tools in 2026 Compared</title>
       <link>https://devtoolrank.com/best_of/9-best-monitoring-observability-tools-2026-compared</link>
@@ -410,13 +417,6 @@
       <link>https://devtoolrank.com/review/supabase-review-2026-open-source-firebase-alternative-ready-2</link>
       <guid isPermaLink='true'>https://devtoolrank.com/review/supabase-review-2026-open-source-firebase-alternative-ready-2</guid>
       <description>Honest Supabase review 2026: features, pricing, limitations, and how it compares to Firebase. Is this open-source backend ready for production?</description>
-      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>How to Deploy a Full-Stack App in 10 Minutes with Vercel and Supabase</title>
-      <link>https://devtoolrank.com/tutorial/deploy-full-stack-app-10-minutes-vercel-supabase</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/tutorial/deploy-full-stack-app-10-minutes-vercel-supabase</guid>
-      <description>Deploy a full-stack app in 10 minutes using Vercel and Supabase. Step-by-step guide with Next.js, authentication, and real-time database.</description>
       <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
