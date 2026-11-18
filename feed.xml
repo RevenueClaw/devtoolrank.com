@@ -5,7 +5,14 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Tue, 17 Nov 2026 06:16:13 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 06:16:28 +0000</lastBuildDate>
+    <item>
+      <title>6 Best Headless CMS Platforms for 2026: Ranked for Developers</title>
+      <link>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</guid>
+      <description>We tested six headless CMS platforms on content modeling, APIs, pricing, and editor experience. Here's which one fits your stack in 2026.</description>
+      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>How to Deploy a Full-Stack App in 10 Minutes with Vercel and Supabase</title>
       <link>https://devtoolrank.com/tutorial/deploy-full-stack-app-10-minutes-vercel-supabase</link>
@@ -138,13 +145,6 @@
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/8-best-database-tools-saas-developers</guid>
       <description>We tested 8 database tools for SaaS builders — Neon, Supabase, PlanetScale, Turso, MongoDB Atlas, CockroachDB, ClickHouse and Prisma. Real pricing, honest pros and cons, and one clear winner.</description>
       <pubDate>Wed, 28 Oct 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>6 Best Headless CMS Platforms for 2026: Ranked for Developers</title>
-      <link>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</guid>
-      <description>Six headless CMS platforms ranked for developers: schema flexibility, API design, self-hosting, and real 2026 pricing for Payload, Sanity, Strapi, and more.</description>
-      <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Supabase Review 2026: Open Source Firebase Alternative - Is It Ready?</title>
