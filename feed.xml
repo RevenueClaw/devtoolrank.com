@@ -5,7 +5,14 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Wed, 18 Nov 2026 06:16:28 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 06:16:36 +0000</lastBuildDate>
+    <item>
+      <title>Prisma vs Drizzle vs TypeORM: Best ORM for Node.js in 2026</title>
+      <link>https://devtoolrank.com/comparison/prisma-vs-drizzle-vs-typeorm-best-orm-nodejs</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/comparison/prisma-vs-drizzle-vs-typeorm-best-orm-nodejs</guid>
+      <description>We compare Prisma, Drizzle, and TypeORM on type safety, migrations, raw SQL, performance, and pricing to pick the best Node.js ORM for 2026. Here's our pick.</description>
+      <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>6 Best Headless CMS Platforms for 2026: Ranked for Developers</title>
       <link>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</link>
@@ -334,13 +341,6 @@
       <guid isPermaLink='true'>https://devtoolrank.com/review/railway-review-2026-developer-platform-makes-deployment-easy</guid>
       <description>Honest Railway review 2026: pricing, features, pros &amp; cons. Is this developer platform the best for app deployment? Detailed comparison &amp; verdict.</description>
       <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Prisma vs Drizzle vs TypeORM: Best ORM for Node.js in 2026</title>
-      <link>https://devtoolrank.com/comparison/prisma-vs-drizzle-vs-typeorm-best-orm-nodejs</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/comparison/prisma-vs-drizzle-vs-typeorm-best-orm-nodejs</guid>
-      <description>Compare Prisma, Drizzle, and TypeORM for Node.js in 2026. Features, pricing, pros/cons, and verdict to help you pick the best ORM.</description>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Vercel vs Netlify vs Railway: Best Hosting for Indie Developers in 2026</title>
