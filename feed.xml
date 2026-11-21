@@ -5,12 +5,19 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Sat, 21 Nov 2026 12:07:22 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 21 Nov 2026 12:10:18 +0000</lastBuildDate>
     <item>
       <title>GitHub Actions vs GitLab CI vs CircleCI: Best CI/CD Pipeline in 2026</title>
       <link>https://devtoolrank.com/comparison/github-actions-vs-gitlab-ci-vs-circleci-best-cicd-pipeline</link>
       <guid isPermaLink='true'>https://devtoolrank.com/comparison/github-actions-vs-gitlab-ci-vs-circleci-best-cicd-pipeline</guid>
       <description>GitHub Actions vs GitLab CI vs CircleCI compared on pricing, runners, caching, and speed. Real benchmarks and a clear 2026 winner for small dev teams.</description>
+      <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Surfshark One for Homelab and Dev Use in 2026: Unlimited Devices Without the Upsell Maze</title>
+      <link>https://devtoolrank.com/review/surfshark-one-homelab-dev-use-2026-unlimited-devices</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/review/surfshark-one-homelab-dev-use-2026-unlimited-devices</guid>
+      <description>Surfshark One reviewed for homelab and dev work in 2026: unlimited device coverage, WireGuard configs, Linux CLI, and the port forwarding gap that hurts homelabs.</description>
       <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
