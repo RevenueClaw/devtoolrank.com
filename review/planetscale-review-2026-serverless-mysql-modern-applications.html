@@ -13,7 +13,7 @@
     <meta name="keywords" content="planetscale review, serverless mysql, database platform, vitess, database branching, serverless database">
         <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
     <link rel="canonical" href="https://devtoolrank.com/review/planetscale-review-2026-serverless-mysql-modern-applications">
-    <link rel="stylesheet" href="/style.css?v=20260804">
+    <link rel="stylesheet" href="/style.css?v=20261122b">
     <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -130,7 +130,7 @@
 <p>This review covers what PlanetScale actually does in 2026, what it costs, where it's genuinely better than the alternatives, and where it will frustrate you. I've run production workloads on it, migrated schemas with it, and hit the billing dashboard with a wince more than once.</p>
 <h2 id="the-short-version">The short version</h2>
 <p><strong>PlanetScale is the best managed MySQL platform available today — if you can afford it and your workload fits its constraints.</strong> Database branching and non-blocking schema changes are legitimately years ahead of what you get from RDS or a self-managed MySQL instance. The HTTP serverless driver solves real problems for edge functions. But there's no free tier anymore, row-based billing can surprise you, and Vitess's architectural limits (no stored procedures, no triggers, cross-shard foreign key restrictions) mean some applications simply can't run on it.</p>
-<p>If you're an indie hacker on a $0 budget, look at Neon or <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> first. If you're running a production app that's outgrowing a single MySQL instance and you have real revenue, PlanetScale is worth the money. <a href="https://planetscale.com/?ref=devtoolrank" rel="nofollow sponsored">Check PlanetScale -></a></p>
+<p>If you're an indie hacker on a $0 budget, look at Neon or <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> first. If you're running a production app that's outgrowing a single MySQL instance and you have real revenue, PlanetScale is worth the money. <a class="cta-btn cta-inline" href="https://planetscale.com/?ref=devtoolrank" rel="nofollow sponsored">Check PlanetScale Current Deal →</a></p>
 <h2 id="what-planetscale-actually-is">What PlanetScale actually is</h2>
 <p>PlanetScale isn't a database engine. It's a control plane and a fleet of MySQL instances running on top of Vitess. When you create a database, you're getting a Vitess cluster: a set of MySQL nodes, a set of <code>vtgate</code> proxies, and a topology service that keeps track of which shard lives where.</p>
 <p>That architecture is why PlanetScale can do things a single MySQL server can't:</p>
@@ -185,6 +185,7 @@
     <p>🔍 Want the best deal? Check current prices and availability.</p>
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
 </div>
+            
             <div class="author-box">
     <div class="author-avatar">D</div>
     <div class="author-info">
