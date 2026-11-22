@@ -9,8 +9,8 @@
     <script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
 
     <title>How to Implement Real-Time Features with Supabase Realtime Subscriptions | Dev Tool Rank</title>
-    <meta name="description" content="A hands-on Supabase Realtime tutorial covering Postgres Changes, Broadcast, and Presence, plus pricing comparisons vs Firebase, Pusher, and Ably.">
-    <meta name="keywords" content="supabase realtime, real-time features, live updates tutorial, postgres changes, supabase broadcast, supabase presence">
+    <meta name="description" content="Build live updates, presence, and chat with Supabase Realtime. A hands-on tutorial covering Postgres Changes, Broadcast, Presence, pricing, and limits.">
+    <meta name="keywords" content="supabase realtime, real-time features, live updates tutorial, supabase broadcast, supabase presence, postgres changes">
         <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
     <link rel="canonical" href="https://devtoolrank.com/tutorial/implement-real-time-features-supabase-realtime-subscriptions">
     <link rel="stylesheet" href="/style.css?v=20260804">
@@ -36,9 +36,9 @@
     {
       "@type": "Article",
       "headline": "How to Implement Real-Time Features with Supabase Realtime Subscriptions",
-      "description": "A hands-on Supabase Realtime tutorial covering Postgres Changes, Broadcast, and Presence, plus pricing comparisons vs Firebase, Pusher, and Ably.",
-      "datePublished": "2026-10-19",
-      "dateModified": "2026-10-19",
+      "description": "Build live updates, presence, and chat with Supabase Realtime. A hands-on tutorial covering Postgres Changes, Broadcast, Presence, pricing, and limits.",
+      "datePublished": "2026-11-22",
+      "dateModified": "2026-11-22",
       "author": {
         "@type": "Person",
         "name": "Editorial Team"
@@ -111,9 +111,9 @@
             <h1>How to Implement Real-Time Features with Supabase Realtime Subscriptions</h1>
             <div class="meta-row">
                 <span class="badge badge-tutorial">Tutorial</span>
-                <time datetime="2026-10-19">October 19, 2026</time>
+                <time datetime="2026-11-22">November 22, 2026</time>
                 <span>·</span>
-                <span class="reading-time">3 min read</span>
+                <span class="reading-time">2 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -124,40 +124,58 @@
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
-<h2 id="how-to-implement-real-time-features-with-supabase-realtime-subscriptions">How to Implement Real-Time Features with <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime Subscriptions</h2>
-<p>The first time you ship a live feature, you learn something uncomfortable: users don't refresh. They open a tab, leave it there for six hours, and expect the numbers on screen to be correct. The moment one person sees a stale task list while their teammate updates it, you've lost a bit of trust.</p>
-<p><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime is one of the more practical answers to that problem, mostly because it doesn't ask you to rewrite your data layer. If your app already talks to Postgres, you can bolt live updates on top of the tables you already have. No separate document store, no event log you have to keep in sync by hand.</p>
-<p>This tutorial walks through the three primitives <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime gives you — Postgres Changes, Broadcast, and Presence — with working code, the gotchas that bite people in production, and an honest look at when you should reach for something else.</p>
-<p><a href="https://supabase.com/?ref=devtoolrank" rel="nofollow sponsored">Check Supabase -></a></p>
-<hr>
-<h2 id="what-supabase-realtime-actually-ships">What Supabase Realtime Actually Ships</h2>
-<p>There's a tendency to treat "Realtime" as one feature. It's really four, and picking the wrong one is the most common mistake I see.</p>
-<h3 id="1-postgres-changes">1. Postgres Changes</h3>
-<p>This is the headline act. You subscribe to a table, and Supabase pushes you <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> events as they happen. Under the hood it reads the Postgres write-ahead log through a logical replication slot, then fans those changes out over WebSockets.</p>
-<p>The important detail: <strong>Row Level Security is enforced per subscriber.</strong> If your policy says a user can only see rows where <code>org_id = 'abc'</code>, they only receive events for those rows. That's genuinely hard to replicate yourself and it's the main reason teams pick this over rolling their own CDC pipeline.</p>
-<h3 id="2-broadcast">2. Broadcast</h3>
-<p>Ephemeral pub/sub over a channel. No database involved, no persistence. You publish a message, everyone subscribed to that topic gets it. This is what you want for cursor positions, "user is typing," live vote counters, or anything firing more than a few times per second.</p>
-<h3 id="3-presence">3. Presence</h3>
-<p>Presence rides on top of a channel and tracks who's connected, plus whatever metadata you attach. You get <code>sync</code>, <code>join</code>, and <code>leave</code> events. Under the hood Supabase uses a CRDT so presence state converges correctly when clients drop and reconnect — a detail that matters more than it sounds when someone's laptop sleeps mid-session.</p>
-<h3 id="4-realtime-authorization">4. Realtime Authorization (private channels)</h3>
-<p>Since early 2024, channels can be marked private. Access is then governed by RLS policies on the <code>realtime.messages</code> table, so you can gate a channel topic the same way you'd gate a table. There's also a newer "Broadcast from Database" feature that lets a Postgres trigger push a broadcast without your client being involved at all.</p>
-<h3 id="how-the-plumbing-works">How the plumbing works</h3>
-<p>Supabase runs Realtime as a separate Elixir/Phoenix cluster sitting next to your Postgres instance. Each node owns a set of channels; changes stream from Postgres via logical replication, get filtered against each subscriber's RLS context, and go out over WebSocket. Your database stays the source of truth — Realtime is a delivery mechanism, not a second copy of your data.</p>
-<hr>
-<h2 id="building-a-live-task-board">Building a Live Task Board</h2>
-<p>Let's build something concrete: a shared task board where cards appear, move, and disappear for everyone in the room, plus live "who's here" indicators and a typing-style activity feed.</p>
-<h3 id="setup">Setup</h3>
-<pre><code>npm install @supabase/supabase-js
+<p>Real-time features are a trap for solo developers. Not because they're hard to build — they're hard to build <em>correctly</em>. You stand up a WebSocket server in an afternoon, then spend three weeks adding auth, per-row permission checks, reconnect handling, presence tracking, and a message fan-out strategy that doesn't melt under load. By the time you're done, you've built a second backend you have to maintain.</p>
+<p><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime is an attempt to skip that. It gives you three primitives on top of the Postgres database you already have, and the permissions model is row-level security — the same policies you wrote for your REST endpoints. That's the pitch. Whether it holds up depends heavily on which of the three primitives you pick, because one of them is significantly better than the others at scale.</p>
+<p>This tutorial walks through all three, with working code, real limits, and an honest look at where things break.</p>
+<h2 id="the-three-primitives">The Three Primitives</h2>
+<p>Most people say "<a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Realtime" and mean one thing. It's actually three distinct products sharing a single WebSocket connection:</p>
+<table class="price-table">
+<thead><tr><th>Primitive</th><th>What it does</th><th>Backed by</th></tr></thead>
+<tbody>
+<tr><td><strong>Postgres Changes</strong></td><td>Streams INSERT/UPDATE/DELETE events for a table via logical replication</td><td>Your database's WAL</td></tr>
+<tr><td><strong>Broadcast</strong></td><td>Fire-and-forget messages between clients, or from a database trigger</td><td>Ephemeral in-memory pub/sub</td></tr>
+<tr><td><strong>Presence</strong></td><td>Shared state that syncs on join/leave — "who's online," cursors, typing indicators</td><td>Ephemeral, tied to connection lifecycle</td></tr>
+</tbody>
+</table>
+<p>One client, one socket, many channels. That detail matters later when you're debugging.</p>
+<h2 id="setup">Setup</h2>
+<p>Install the client:</p>
+<pre><code>npm install @<a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a>/supabase-js
 <p></code></pre></p>
-<pre><code>// lib/supabase.js
-<p>import { createClient } from '@supabase/supabase-js'</p>
-<p>export const supabase = createClient(</p>
-<p>import.meta.env.VITE_SUPABASE_URL,</p>
-<p>import.meta.env.VITE_SUPABASE_ANON_KEY</p>
+<pre><code>import { createClient } from '@supabase/supabase-js'
+<p>const supabase = createClient(</p>
+<p>process.env.SUPABASE_URL,</p>
+<p>process.env.SUPABASE_ANON_KEY</p>
 <p>)</p>
 <p></code></pre></p>
-<p>Use the anon key on the client. It's designed to be public — RLS is what protects your data, not key secrecy.</p>
-<h3 id="step">Step </h3>
+<p>For Postgres Changes, you have to explicitly opt each table into the replication publication. Either flip the toggle in Table Editor → Realtime, or run:</p>
+<pre><code>alter publication supabase_realtime add table public.messages;
+<p></code></pre></p>
+<p>Broadcast and Presence need no database setup at all — they never touch Postgres by default.</p>
+<h2 id="part-1-postgres-changes">Part 1: Postgres Changes</h2>
+<p>Let's build a chat feed. You have a <code>messages</code> table and you want new rows to appear for everyone in a room.</p>
+<pre><code>const channel = supabase
+<p>.channel('messages-room-42')</p>
+<p>.on(</p>
+<p>'postgres_changes',</p>
+<p>{</p>
+<p>event: 'INSERT',</p>
+<p>schema: 'public',</p>
+<p>table: 'messages',</p>
+<p>filter: 'room_id=eq.42',</p>
+<p>},</p>
+<p>(payload) => {</p>
+<p>console.log('new row:', payload.new)</p>
+<p>}</p>
+<p>)</p>
+<p>.subscribe((status, err) => {</p>
+<p>console.log(status) // SUBSCRIBED | CHANNEL_ERROR | TIMED_OUT | CLOSED</p>
+<p>})</p>
+<p>// later</p>
+<p>await supabase.removeChannel(channel)</p>
+<p></code></pre></p>
+<p>Three things trip people up here.</p>
+<p><strong>Filters are single-column only.</strong> `filter: 'room_id=</p>
             <div class="affiliate-cta">
     <p>🔍 Want the best deal? Check current prices and availability.</p>
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
@@ -208,16 +226,9 @@
     <aside class="article-sidebar">
     <div class="toc">
         <h4>On This Page</h4>
-        <a href="#how-to-implement-real-time-features-with-supabase-realtime-subscriptions" class="toc-h2" style="padding-left:0px">How to Implement Real-Time Features with Supabase Realtime Subscriptions</a>
-<a href="#what-supabase-realtime-actually-ships" class="toc-h2" style="padding-left:0px">What Supabase Realtime Actually Ships</a>
-<a href="#1-postgres-changes" class="toc-h3" style="padding-left:8px">1. Postgres Changes</a>
-<a href="#2-broadcast" class="toc-h3" style="padding-left:8px">2. Broadcast</a>
-<a href="#3-presence" class="toc-h3" style="padding-left:8px">3. Presence</a>
-<a href="#4-realtime-authorization" class="toc-h3" style="padding-left:8px">4. Realtime Authorization</a>
-<a href="#how-the-plumbing-works" class="toc-h3" style="padding-left:8px">How the plumbing works</a>
-<a href="#building-a-live-task-board" class="toc-h2" style="padding-left:0px">Building a Live Task Board</a>
-<a href="#setup" class="toc-h3" style="padding-left:8px">Setup</a>
-<a href="#step" class="toc-h3" style="padding-left:8px">Step</a>
+        <a href="#the-three-primitives" class="toc-h2" style="padding-left:0px">The Three Primitives</a>
+<a href="#setup" class="toc-h2" style="padding-left:0px">Setup</a>
+<a href="#part-1-postgres-changes" class="toc-h2" style="padding-left:0px">Part 1: Postgres Changes</a>
     </div>
 </aside>
 </article>
