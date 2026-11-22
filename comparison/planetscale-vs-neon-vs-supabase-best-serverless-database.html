@@ -38,7 +38,7 @@
       "headline": "PlanetScale vs Neon vs Supabase: Which Serverless Database Wins in 2026?",
       "description": "Detailed comparison of PlanetScale, Neon, and Supabase for serverless databases in 2026. Compare features, pricing, performance, and find the best fit for your project.",
       "datePublished": "2026-08-24",
-      "dateModified": "2026-08-24",
+      "dateModified": "2026-11-22",
       "author": {
         "@type": "Person",
         "name": "Editorial Team"
@@ -73,6 +73,69 @@
           "position": 3,
           "name": "PlanetScale vs Neon vs Supabase: Which Serverless Database Wins in 2026?",
           "item": "https://devtoolrank.com/comparison/planetscale-vs-neon-vs-supabase-best-serverless-database"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "numberOfItems": 3,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "name": "PlanetScale",
+            "category": "SoftwareApplication",
+            "url": "https://devtoolrank.com/comparison/planetscale-vs-neon-vs-supabase-best-serverless-database",
+            "offers": {
+              "@type": "Offer",
+              "price": "5.00",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "5.00",
+                "priceCurrency": "USD",
+                "unitText": "MONTH"
+              }
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "name": "Neon",
+            "category": "SoftwareApplication",
+            "url": "https://devtoolrank.com/comparison/planetscale-vs-neon-vs-supabase-best-serverless-database",
+            "offers": {
+              "@type": "Offer",
+              "price": "0.10",
+              "priceCurrency": "USD"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Product",
+            "name": "Supabase",
+            "category": "SoftwareApplication",
+            "url": "https://devtoolrank.com/comparison/planetscale-vs-neon-vs-supabase-best-serverless-database",
+            "offers": {
+              "@type": "Offer",
+              "price": "25.00",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "25.00",
+                "priceCurrency": "USD",
+                "unitText": "MONTH"
+              }
+            }
+          }
         }
       ]
     }
@@ -125,8 +188,11 @@
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
 <p>So you're building something new — an API, a side project, maybe the next big SaaS — and you don't want to manage a database server. You want something that scales automatically, bills you only for what you use, and doesn't require a DevOps degree to set up. That's exactly what the "serverless database" category promises.</p>
+<blockquote><strong>2026 verdict:</strong> <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> still wins for most apps — Postgres plus auth, storage, and realtime at $25/mo. Neon’s usage-based pricing ($0.106/CU-hr) now beats PlanetScale for scaling out, and PlanetScale’s entry price dropped to $5/mo for dev work.</blockquote>
+<p>Related reading: our <a href="/review/supabase-review-2026-open-source-firebase-alternative-ready/" rel="nofollow sponsored">Supabase review</a> and <a href="/tutorial/choose-right-database-saas-application/" rel="nofollow sponsored">choosing the right database</a>.</p>
 <p>Three names keep coming up: <strong>PlanetScale</strong>, <strong>Neon</strong>, and <strong><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a></strong>. Each takes a different approach, and each has passionate fans. But which one should you actually use in 2026? I've spent weeks running benchmarks, reading documentation, and building real projects on all three. Here's the honest breakdown.</p>
 <hr>
+<div class="verdict-table-wrap"><table class="price-table verdict-table"><thead><tr><th></th><th>PlanetScale</th><th>Neon</th></tr></thead><tbody><tr><td>Entry price/mo</td><td>$5.00</td><td>$0.10</td></tr><tr><td>Renewal price/mo</td><td>—</td><td>—</td></tr><tr><td>True 24-month cost</td><td>$120.00*</td><td>$2.40*</td></tr><tr><td>Our verdict</td><td colspan="2">—</td></tr></tbody></table><p style="font-size:0.85em;color:#64748b;margin:6px 0 0">True 24-month cost = first 12 months at the entry rate, then 12 months at the renewal rate. * Renewal rate not published at time of writing — total shown at entry rate.</p></div>
 <h2 id="the-contenders-at-a-glance">The Contenders at a Glance</h2>
 <ul>
 <li><strong>PlanetScale</strong> – MySQL-compatible, built on Vitess, pioneered database branching. Strong for teams that need schema changes without downtime.</li>
@@ -138,7 +204,7 @@
 <h3 id="planetscale">PlanetScale</h3>
 <p>PlanetScale runs MySQL on top of Vitess (the same tech behind YouTube's scaling). The killer feature is <strong>database branching</strong>: you can create a copy of your production database instantly, <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> schema changes, and merge back — all without downtime. It's like Git for your database.</p>
 <p><strong>Performance</strong>: Reads are fast, writes are consistent. Because of Vitess, you can scale horizontally by sharding, but that requires some planning. For most projects, you won't need it.</p>
-<p><strong>Pricing model</strong>: Free tier includes 10GB storage, 1 billion row reads/month, and 10 million row writes/month. Paid plans start at $39/month for 100GB storage and more throughput. You pay for row reads and writes, not compute time. That's great for bursty workloads but can surprise you if you have a lot of small queries.</p>
+<p><strong>Pricing model</strong>: No permanent free tier anymore — a 21-day trial, then paid. Dev and low-traffic workloads start at $5/month; high-performance NVMe production plans start at $50/month (2026 pricing). You pay for row reads and writes, not compute time. That's great for bursty workloads but can surprise you if you have a lot of small queries.</p>
 <p><strong>Developer experience</strong>: The CLI (<code>pscale</code>) is excellent. Branching workflows feel natural. The web console is clean. But you're locked into MySQL — no Postgres support.</p>
 <p><strong>Best for</strong>: Teams doing continuous database migrations, or anyone who values zero-downtime schema changes.</p>
 <p><a href="https://planetscale.com/?ref=devtoolrank" rel="nofollow sponsored">Check PlanetScale -></a></p>
@@ -147,12 +213,12 @@
 <p>Neon is Postgres with a twist: it separates compute and storage. The compute layer is stateless and can scale down to zero when idle. Storage is a multi-tenant S3-like system that handles all your data. This means you can have a database that costs nothing when not in use, then springs to life instantly.</p>
 <p><strong>Cold starts</strong>: The first query after idle time takes ~500ms to 1 second. That's fine for APIs, less so for real-time user interactions. You can configure a minimum compute to avoid cold starts.</p>
 <p><strong>Performance</strong>: Once warm, Neon runs standard Postgres — no magic, just regular queries. The branching feature is similar to PlanetScale but uses copy-on-write under the hood, which is incredibly fast.</p>
-<p><strong>Pricing model</strong>: Free tier gives you 500MB storage and 100 compute hours per month (shared compute). Paid plans start at $19/month for 10GB storage and dedicated compute with no cold starts. Compute time is billed per second.</p>
+<p><strong>Pricing model</strong>: Free plan gives you 5 GB storage per project across up to 100 projects, plus 100 compute-hours per project monthly. Paid is usage-based — Launch compute at $0.106/CU-hour, Scale at $0.222/CU-hour, storage $0.35/GB-month — with no fixed plan fee (Neon pegs typical spend at ~$15/month).</p>
 <p><strong>Developer experience</strong>: The branching is more limited than PlanetScale's (no schema diff tooling), but the console is modern. They recently added a built-in SQL editor with AI assistance.</p>
 <p><strong>Best for</strong>: Postgres lovers who want the lowest possible cost for staging or development environments, or projects with intermittent traffic.</p>
 <p><a href="https://neon.tech/?ref=devtoolrank" rel="nofollow sponsored">Check Neon -></a></p>
 <hr>
-<h3 id="supabase"><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a></h3>
+<h3 id="supabase">Supabase</h3>
 <p>Supabase started as "open source Firebase" and grew into a full backend platform. At its core is a managed Postgres database, but it also bundles authentication, realtime subscriptions, storage, and Edge Functions (Deno-based). You can build an entire app without leaving their ecosystem.</p>
 <p><strong>Performance</strong>: Standard Postgres performance, but you also get realtime (via logical replication) and a REST API auto-generated from your schema. No cold starts because the database runs continuously (even on the free tier, though it may be paused after a week of inactivity).</p>
 <p><strong>Pricing model</strong>: Free tier includes 500MB database, 2GB bandwidth, 50,000 monthly active users, and 1GB file storage. Pro plan is $25/month for 8GB database, 50GB bandwidth, and 100,000 users. Billing is straightforward — no surprise compute charges.</p>
@@ -167,7 +233,7 @@
 <tr><td><strong>Database Engine</strong></td><td>MySQL (Vitess)</td><td>Postgres</td><td>Postgres</td></tr>
 <tr><td><strong>Free Tier Storage</strong></td><td>10 GB</td><td>500 MB</td><td>500 MB</td></tr>
 <tr><td><strong>Free Tier Throughput</strong></td><td>1B row reads / 10M row writes per month</td><td>100 compute hours / month</td><td>2 GB bandwidth</td></tr>
-<tr><td><strong>Paid Starting Price</strong></td><td>$39/mo (Scaling)</td><td>$19/mo (Launch)</td><td>$25/mo (Pro)</td></tr>
+<tr><td><strong>Paid Starting Price</strong></td><td>$5/mo (dev); $50/mo (prod)</td><td>usage-based ($0.106/CU-hr)</td><td>$25/mo (Pro)</td></tr>
 <tr><td><strong>Branching</strong></td><td>Yes, with schema diff</td><td>Yes, copy-on-write</td><td>No (snapshots only)</td></tr>
 <tr><td><strong>Cold Starts</strong></td><td>No (always-on compute)</td><td>Yes (can be reduced)</td><td>No (always-on)</td></tr>
 <tr><td><strong>Realtime</strong></td><td>No (requires third-party)</td><td>No (requires third-party)</td><td>Yes (built-in)</td></tr>
@@ -288,14 +354,14 @@
                     <time>November 21, 2026</time>
                 </div>
                 <h3><a href="/comparison/github-actions-vs-gitlab-ci-vs-circleci-best-cicd-pipeline">GitHub Actions vs GitLab CI vs CircleCI: Best CI/CD Pipeline in...</a></h3>
-                <p>GitHub Actions vs GitLab CI vs CircleCI: Best CI/CD Pipeline in 2026 Three tools dominate the CI/CD conversation in...</p>
+                <p>GitHub Actions vs GitLab CI vs CircleCI: Best CI/CD Pipeline in 2026 CI/CD pipelines often pair with edge deployment —...</p>
             </div><div class="card">
                 <div class="card-meta">
                     <span class="badge badge-comparison">Comparison</span>
                     <time>November 20, 2026</time>
                 </div>
                 <h3><a href="/comparison/posthog-vs-mixpanel-vs-amplitude-best-product-analytics">PostHog vs Mixpanel vs Amplitude: Which Product Analytics Platform...</a></h3>
-                <p>PostHog vs Mixpanel vs Amplitude: Which Product Analytics Platform Actually Fits Your Stack? You shipped something. A...</p>
+                <p>PostHog vs Mixpanel vs Amplitude: Which Product Analytics Platform Actually Fits Your Stack? Analytics belongs in every...</p>
             </div><div class="card">
                 <div class="card-meta">
                     <span class="badge badge-comparison">Comparison</span>

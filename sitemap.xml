@@ -46,6 +46,36 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://devtoolrank.com/guide/migrate-bluehost-to-namecheap-2026</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/guide/migrate-domaincom-to-namecheap-2026</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/guide/migrate-expressvpn-to-icevpn-2026</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/guide/migrate-parallels-to-vmware-fusion-2026</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devtoolrank.com/guide/migrate-supabase-to-firebase-2026</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://devtoolrank.com/tutorial/implement-real-time-features-supabase-realtime-subscriptions</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
