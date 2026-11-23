@@ -5,7 +5,14 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Sun, 22 Nov 2026 21:16:25 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2026 06:06:53 +0000</lastBuildDate>
+    <item>
+      <title>How to Containerize a Node.js App with Docker for Production</title>
+      <link>https://devtoolrank.com/tutorial/containerize-nodejs-app-docker-production</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/tutorial/containerize-nodejs-app-docker-production</guid>
+      <description>A practical guide to containerizing a Node.js app with Docker for production: multi-stage builds, non-root users, health checks, and where to deploy it.</description>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Migrating from Bluehost to Namecheap in 2026: The Step-by-Step Switch Guide (Real 2026 Prices)</title>
       <link>https://devtoolrank.com/guide/migrate-bluehost-to-namecheap-2026</link>
@@ -299,13 +306,6 @@
       <guid isPermaLink='true'>https://devtoolrank.com/review/supabase-review-2026-open-source-firebase-alternative-ready</guid>
       <description>Our hands-on Supabase review for 2026 covers Postgres, auth, storage, edge functions, real pricing, and how it really stacks up against Firebase.</description>
       <pubDate>Sun, 25 Oct 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>How to Containerize a Node.js App with Docker for Production</title>
-      <link>https://devtoolrank.com/tutorial/containerize-nodejs-app-docker-production</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/tutorial/containerize-nodejs-app-docker-production</guid>
-      <description>A step-by-step guide to containerizing a Node.js app with Docker for production, covering multi-stage builds, base image choice, non-root users, and registry pricing.</description>
-      <pubDate>Thu, 22 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>PlanetScale Review 2026: Serverless MySQL for Modern Applications</title>
