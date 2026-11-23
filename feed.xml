@@ -5,7 +5,14 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Mon, 23 Nov 2026 06:06:53 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Nov 2026 06:18:00 +0000</lastBuildDate>
+    <item>
+      <title>Top 5 CI/CD Tools for Solo Developers in 2026</title>
+      <link>https://devtoolrank.com/best_of/top-5-cicd-tools-solo-developers</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/best_of/top-5-cicd-tools-solo-developers</guid>
+      <description>We compared five CI/CD platforms on what actually matters for solo developers: free tier limits, setup time, and bills that don't surprise you each month.</description>
+      <pubDate>Mon, 23 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>How to Containerize a Node.js App with Docker for Production</title>
       <link>https://devtoolrank.com/tutorial/containerize-nodejs-app-docker-production</link>
@@ -481,13 +488,6 @@
       <guid isPermaLink='true'>https://devtoolrank.com/comparison/vercel-vs-netlify-vs-railway-best-hosting-indie-developers</guid>
       <description>Honest comparison of Vercel, Netlify, and Railway for indie developers in 2026. Pricing, features, pros/cons, and verdict for solo devs and small teams.</description>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Top 5 CI/CD Tools for Solo Developers in 2026 (Honest Review)</title>
-      <link>https://devtoolrank.com/best_of/top-5-cicd-tools-solo-developers</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/best_of/top-5-cicd-tools-solo-developers</guid>
-      <description>Find the best CI/CD tools for solo developers and indie hackers. We review GitHub Actions, GitLab CI, CircleCI, Semaphore, and Codefresh with pricing, pros, cons, and a clear verdict.</description>
-      <pubDate>Sat, 29 Aug 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>8 Best Authentication and Authorization Tools for 2026</title>
