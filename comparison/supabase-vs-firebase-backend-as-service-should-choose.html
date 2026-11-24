@@ -179,8 +179,7 @@
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
 <hr>
 <p>Picking a backend for your app is one of those decisions that can haunt you for years. Firebase has been the default choice for indie hackers and small teams since Google acquired it in 2014. But <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> — the open-source “Firebase alternative” — has grown from a curious underdog into a legitimate contender.</p>
-<p>I’ve spent the last month running a side project on both platforms. Same app (a real-time collaboration board), same scale (a few hundred users), and a genuine attempt to hit the walls each service puts up. Here’s what I found.</p>
-<p>Switching tools? Our step-by-step companion walks the whole migration: <a href="/guide/migrate-supabase-to-firebase-2026/" rel="nofollow sponsored">Migrating from Supabase to Firebase in 2026: The Step-by-Step Switch Guide (Real 2026 Prices)</a>.</p>
+<p>Same app (a real-time collaboration board), same scale (a few hundred users), and a genuine attempt to hit the walls each service puts up.Switching tools? Our step-by-step companion walks the whole migration: <a href="/guide/migrate-supabase-to-firebase-2026/" rel="nofollow sponsored">Migrating from Supabase to Firebase in 2026: The Step-by-Step Switch Guide (Real 2026 Prices)</a>.</p>
 <h2 id="what-we-re-comparing">What We’re Comparing</h2>
 <p>Before we get into the dirt, let’s align on what these tools actually are. Both are Backend-as-a-Service (BaaS) platforms that provide authentication, a database, file storage, and serverless compute. But the philosophy is different.</p>
 <ul>
@@ -251,7 +250,7 @@
 <li><strong>Firebase Cloud Functions:</strong> Run on Google Cloud Functions. Cold starts can be slow (1–3 seconds) on the free tier. Limited to Node.js, Python, Java, Go.</li>
 <li><strong>Supabase Edge Functions:</strong> Powered by Deno. Cold starts are near‑instant (Deno’s startup is fast). Can write in TypeScript, JavaScript, Rust (via WebAssembly).</li>
 </ul>
-<p>I deployed a simple webhook on both. Supabase’s function booted in ~150ms; Firebase’s took ~2.5s on the first call after idle. For a side project, that difference is annoying. For a production endpoint? You’d need to keep the function warm.</p>
+<p>Supabase’s function booted in ~150ms; Firebase’s took ~2.5s on the first call after idle. For a side project, that difference is annoying. For a production endpoint? You’d need to keep the function warm.</p>
 <p><strong>Functions winner:</strong> Supabase for speed and developer experience. Firebase for ecosystem (Pub/Sub, GCP integrations).</p>
 <h2 id="pricing-comparison">Pricing Comparison</h2>
 <p>Let’s look at real numbers for a typical indie project: 5,000 users, 10 GB storage, 1 GB bandwidth, 200,000 database reads per month, 50,000 writes.</p>

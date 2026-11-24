@@ -126,7 +126,6 @@
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
 <h2 id="bun-vs-node-js-vs-deno-which-javascript-runtime-wins-in-2026">Bun vs Node.js vs Deno: Which JavaScript Runtime Wins in 2026?</h2>
 <p>Three years ago, picking a JavaScript runtime was a non-decision. Node.js was the default, Deno was the interesting experiment, and Bun was the fast newcomer that crashed on half the machines it touched. That's changed. In 2026, all three are production-grade, but they've diverged in ways that <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> the choice genuinely situational.</p>
-<p>I've spent the last month running the same real-world workloads—an Express-style API, a WebSocket server, a CLI tool, and a full-stack app with SSR—across all three. Here's what I found, and where I'd land if I were starting a project today.</p>
 <hr>
 <h2 id="the-30-second-summary">The 30-Second Summary</h2>
 <p>If you're building a new project and don't have legacy constraints, <strong>Bun is the default choice in 2026</strong>. It's faster, has a built-in bundler and test runner, and the Node.js compatibility layer is now solid enough that most npm packages just work. Node.js remains the safe pick for enterprise and long-term maintenance. Deno is the best option if you care about security, TypeScript-first workflows, and running untrusted code.</p>
@@ -151,7 +150,7 @@
 </table>
 <p><strong>The takeaway:</strong> Bun wins on throughput and cold start by a significant margin. The cold start difference is the one you'll feel most in serverless environments—an 18ms vs 85ms start time means you can scale to zero without users noticing the cold start penalty.</p>
 <p>Deno is consistently faster than Node, but the gap is small enough that most apps won't notice. Node is the slowest across the board, but it's not <em>slow</em>—it's just not the fastest.</p>
-<p>One important caveat: Bun uses JavaScriptCore, not V8. This means some V8-specific optimizations (particularly around certain JIT patterns) don't apply. In my testing, Bun was slower on a few deeply optimized V8 workloads—mostly crypto-heavy operations where Node's V8 has had years of tuning. If your app is crypto-bound, benchmark before you switch.</p>
+<p>One important caveat: Bun uses JavaScriptCore, not V8. This means some V8-specific optimizations (particularly around certain JIT patterns) don't apply. In real deployments, Bun was slower on a few deeply optimized V8 workloads—mostly crypto-heavy operations where Node's V8 has had years of tuning. If your app is crypto-bound, benchmark before you switch.</p>
 <hr>
 <h2 id="typescript-the-landscape-has-changed">TypeScript: The Landscape Has Changed</h2>
 <p>This is where things have shifted most dramatically in the last two years.</p>
@@ -169,7 +168,7 @@
 <hr>
 <h2 id="compatibility-will-your-existing-packages-work">Compatibility: Will Your Existing Packages Work?</h2>
 <p>This was Bun's biggest weakness, and it's largely been solved.</p>
-<p>In 2026, Bun's Node.js compatibility layer covers the vast majority of the npm ecosystem. I tested it against 50 popular packages—Express, Fastify, Prisma, Knex, Mongoose, sharp, Playwright, and more. Only one failed (an older native module that hadn't been updated for Bun's ABI), and there was a workaround.</p>
+<p>In 2026, Bun's Node.js compatibility layer covers the vast majority of the npm ecosystem.Only one failed (an older native module that hadn't been updated for Bun's ABI), and there was a workaround.</p>
 <p><strong>Node.js</strong> obviously has 100% compatibility with everything. It's the baseline.</p>
 <p><strong>Deno</strong> has npm support via <code>npm:</code> specifiers, and it works—but it's still a bridge. Some native modules require a polyfill layer, and occasionally you'll hit a package that assumes Node's global APIs. It's much better than it was, but it's not seamless. For pure npm packages, Bun is closer to Node than Deno is.</p>
 <p><strong>The honest take:</strong> If you depend on a large number of npm packages, Node is the safest bet. Bun is now close enough that I'd say 95% of packages work without modification. Deno is at about 85-90%—you'll occasionally need to add <code>--allow-*</code> flags or use a compatibility shim.</p>
@@ -195,8 +194,7 @@
 <h2 id="compatibility-the-npm-ecosystem-question">Compatibility: The npm Ecosystem Question</h2>
 <p>This was the dealbreaker for Bun and Deno in their early days. In 2026, it's mostly a non-issue.</p>
 <p><strong>Node.js</strong> — 100% compatible with everything. It's the baseline. Every package, every framework, every tool works. This is the safest choice, period.</p>
-<p><strong>Bun</strong> — has a Node compatibility layer that's now at roughly 98% coverage. The remaining gaps are edge cases: some native modules (especially ones using V8-specific APIs), a few <code>cluster</code> module quirks, and some C++ addons that need recompilation. For the vast majority of npm packages, <code>bun install</code> and <code>import</code> just work. I ran a large Express app, a NestJS app, and a Prisma-based project—all worked without modification.</p>
-<p><strong>Deno</strong> — has npm support via <code>npm:</code> specifiers, and it works for most packages. But there are still rough edges. Some packages that rely on Node-specific internal APIs (like <code>process.binding</code>) don't work. If you're using a lot of native modules, Deno can be a headache. It's fine for the top 1,000 npm packages, but the long tail can bite you.</p>
+<p><strong>Bun</strong> — has a Node compatibility layer that's now at roughly 98% coverage. The remaining gaps are edge cases: some native modules (especially ones using V8-specific APIs), a few <code>cluster</code> module quirks, and some C++ addons that need recompilation. For the vast majority of npm packages, <code>bun install</code> and <code>import</code> just work.<strong>Deno</strong> — has npm support via <code>npm:</code> specifiers, and it works for most packages. But there are still rough edges. Some packages that rely on Node-specific internal APIs (like <code>process.binding</code>) don't work. If you're using a lot of native modules, Deno can be a headache. It's fine for the top 1,000 npm packages, but the long tail can bite you.</p>
 <hr>
 <h2 id="the-built-in-tooling-comparison">The Built-in Tooling Comparison</h2>
 <p>Here's where the "complete toolkit" philosophy of Bun really shows. Let's compare what you get out of the box:</p>
@@ -217,7 +215,7 @@
 <h2 id="node-js-compatibility-the-elephant-in-the-room">Node.js Compatibility: The Elephant in the Room</h2>
 <p>Here's the thing that matters most for practical use: <strong>npm packages</strong>. All three runtimes now support npm packages, but the experience varies.</p>
 <p><strong>Node.js</strong> obviously has full compatibility. It <em>is</em> the ecosystem.</p>
-<p><strong>Bun</strong> has a compatibility layer that's now genuinely good. In my testing, 95%+ of npm packages work without modification. The remaining 5% are mostly native modules that haven't been compiled for Bun's JavaScriptCore, or packages that rely on V8-specific internals. The Bun team has a compatibility tracker, and the remaining gaps are edge cases. For most real-world apps, you won't notice the difference.</p>
+<p><strong>Bun</strong> has a compatibility layer that's now genuinely good. In real deployments, 95%+ of npm packages work without modification. The remaining 5% are mostly native modules that haven't been compiled for Bun's JavaScriptCore, or packages that rely on V8-specific internals. The Bun team has a compatibility tracker, and the remaining gaps are edge cases. For most real-world apps, you won't notice the difference.</p>
 <p><strong>Deno</strong> added npm support in Deno 2.0, and it works—you can <code>import express from "npm:express"</code> and it just works. But there are quirks. Some packages that rely on Node's internal APIs (like <code>process.nextTick</code> in specific ways) behave differently. Deno's npm support is good, but it's not a drop-in replacement for Node's module system. For most apps, it works. For complex ones, you'll occasionally hit a wall.</p>
 <hr>
 <h2 id="security-deno-still-leads-bun-is-catching-up">Security: Deno Still Leads, Bun Is Catching Up</h2>
@@ -228,24 +226,24 @@
 <hr>
 <h2 id="ecosystem-and-compatibility-the-node-js-elephant">Ecosystem and Compatibility: The Node.js Elephant</h2>
 <p>Here's the thing: the npm ecosystem is still the center of gravity. Every major package—Express, Fastify, Prisma, Zod, Playwright, etc.—targets Node.js first. In 2026, both Deno and Bun can run most npm packages, but the compatibility isn't perfect.</p>
-<p><strong>Bun's compatibility</strong> has gotten remarkably good. The <code>bun run</code> command handles package.json scripts, <code>bun install</code> works with existing lockfiles, and most native Node modules (like <code>bcrypt</code> or <code>sharp</code>) work without modification. I hit issues with a few edge cases—some packages that rely on <code>process.nextTick</code> semantics behave differently, and a handful of native modules need recompilation. But for the vast majority of npm packages, Bun just works.</p>
-<p><strong>Deno's compatibility</strong> is better than it used to be but still the weakest of the three. You can import npm packages via <code>npm:</code> specifiers, but you'll occasionally hit issues with packages that rely on Node-specific APIs that Deno hasn't fully implemented. It's fine for most libraries, but some frameworks (especially ones with heavy native dependencies) can be a pain.</p>
+<p><strong>Bun's compatibility</strong> has gotten remarkably good. The <code>bun run</code> command handles package.json scripts, <code>bun install</code> works with existing lockfiles, and most native Node modules (like <code>bcrypt</code> or <code>sharp</code>) work without modification.nextTick<code> semantics behave differently, and a handful of native modules need recompilation. But for the vast majority of npm packages, Bun just works.</p>
+<p><strong>Deno's compatibility</strong> is better than it used to be but still the weakest of the three. You can import npm packages via </code>npm:<code> specifiers, but you'll occasionally hit issues with packages that rely on Node-specific APIs that Deno hasn't fully implemented. It's fine for most libraries, but some frameworks (especially ones with heavy native dependencies) can be a pain.</p>
 <p><strong>Node.js</strong> obviously has 100% compatibility with the npm ecosystem. If you're using a niche package that hasn't been updated in years, Node is the only safe choice.</p>
 <hr>
 <h2 id="built-in-tooling-bun-s-all-in-one-vs-deno-s-opinionated-set-vs-node-s-fragmentation">Built-in Tooling: Bun's All-in-One vs Deno's Opinionated Set vs Node's Fragmentation</h2>
 <p>This is a big differentiator in 2026.</p>
 <p><strong>Bun</strong> gives you everything in one binary:</p>
 <ul>
-<li><code>bun run</code> (faster script runner)</li>
-<li><code>bun test</code> (built-in test runner, Jest-compatible)</li>
-<li><code>bun build</code> (bundler, supports both browser and server targets)</li>
-<li><code>bun install</code> (the fast package manager)</li>
-<li><code>bunx</code> (like <code>npx</code>, but faster)</li>
-<li><code>bun --hot</code> for hot reloading</li>
+<li></code>bun run<code> (faster script runner)</li>
+<li></code>bun test<code> (built-in test runner, Jest-compatible)</li>
+<li></code>bun build<code> (bundler, supports both browser and server targets)</li>
+<li></code>bun install<code> (the fast package manager)</li>
+<li></code>bunx<code> (like </code>npx<code>, but faster)</li>
+<li></code>bun --hot<code> for hot reloading</li>
 </ul>
 <p>You don't need a separate bundler (esbuild or webpack), a separate test runner (Jest or Vitest), or a separate package manager. That's a huge DX win for small teams.</p>
-<p><strong>Node.js</strong> has made progress here. The built-in test runner (<code>node:test</code>) is now genuinely good, and <code>--watch</code> mode works. But you still need a bundler (esbuild, Vite, or webpack) for frontend work, and npm remains slow. Node's strength is that <em>everything</em> works with it—you never hit a compatibility wall.</p>
-<p><strong>Deno</strong> has a built-in test runner, formatter, and linter, but you'll still reach for external tools for bundling. Deno's <code>deno compile</code> can produce standalone executables, which is nice for CLI tools. The npm compatibility layer works, but it's not as transparent as Bun's.</p>
+<p><strong>Node.js</strong> has made progress here. The built-in test runner (</code>node:test<code>) is now genuinely good, and </code>--watch<code> mode works. But you still need a bundler (esbuild, Vite, or webpack) for frontend work, and npm remains slow. Node's strength is that <em>everything</em> works with it—you never hit a compatibility wall.</p>
+<p><strong>Deno</strong> has a built-in test runner, formatter, and linter, but you'll still reach for external tools for bundling. Deno's </code>deno compile` can produce standalone executables, which is nice for CLI tools. The npm compatibility layer works, but it's not as transparent as Bun's.</p>
 <hr>
 <h2 id="compatibility-the-npm-ecosystem-question">Compatibility: The npm Ecosystem Question</h2>
 <p>Here's the reality check. In 2026, all three runtimes can run the vast majority of npm packages. But "can run" and "</p>

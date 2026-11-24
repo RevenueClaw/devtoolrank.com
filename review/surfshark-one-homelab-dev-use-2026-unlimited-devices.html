@@ -157,7 +157,7 @@
 <p>That "unlimited devices" line is the headline, and it's real. No device counting, no "family plan" upsell, no business tier you have to negotiate. One login covers everything you can authenticate.</p>
 <h2 id="where-unlimited-devices-actually-earns-its-keep">Where Unlimited Devices Actually Earns Its Keep</h2>
 <p>On a two-laptop household, unlimited devices is a marketing bullet point. In a homelab, it changes what's practical.</p>
-<p>Some things I've run under a single Surfshark account without paying extra:</p>
+<p>Things a single Surfshark account covers without paying extra:</p>
 <ul>
 <li>The primary dev laptop and a backup machine.</li>
 <li>A Proxmox host running a handful of VMs, each of which needs egress through the tunnel when it's pulling distro ISOs or container images on a hotel network.</li>
@@ -167,7 +167,7 @@
 <li>Phone and tablet for testing mobile app behavior against geo-restricted endpoints.</li>
 </ul>
 <p>Under a 5-device or 10-device cap, that list forces choices. You start rotating logins, sharing credentials with yourself on three devices at once, or dropping the Pi that matters because the laptop has priority. Unlimited removes a small but constant tax on how you build.</p>
-<p>One honest caveat: "unlimited devices" is a technical allowance, not a license to run a hosting business. Surfshark's terms restrict commercial use and account sharing outside your household. Pointing forty ephemeral CI runners at the tunnel for a client project is the kind of thing that gets noticed. Pointing twenty VMs at it for your own lab is normal and fine. Use judgment.</p>
+<p>One honest caveat: "unlimited devices" is a technical allowance, not a license to run a hosting business. Surfshark's terms restrict commercial use and account sharing outside your household. Pointing forty ephemeral CI runners at a single tunnel is the kind of load that shows up in published rate limits, bandwidth caps, and aggregated user reports of throttling. Pointing twenty VMs at it for your own lab is normal and fine. Use judgment.</p>
 <h2 id="the-dev-facing-features-that-matter">The Dev-Facing Features That Matter</h2>
 <h3 id="wireguard-configs-and-the-gluetun-path">WireGuard configs and the gluetun path</h3>
 <p>The most useful thing Surfshark does for a homelab is let you pull manual WireGuard credentials — private key, address, and per-server public keys — and drop them into anything that speaks WireGuard.</p>

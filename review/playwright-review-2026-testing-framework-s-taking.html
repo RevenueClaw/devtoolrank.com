@@ -124,15 +124,7 @@
           "name": "Does Playwright work with TypeScript?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, and it's arguably the best-supported language. TypeScript gives you autocomplete on locators and assertions, which catches a lot of mistakes before you run anything. The project is written in TypeScript."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I run Playwright tests in parallel?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, by default. It uses worker processes, and you can shard across multiple CI machines with --shard=1/4 style flags. Just watch memory usage \u2014 each worker launches its own browser instances."
+            "text": "Yes, and it's arguably the best-supported language. TypeScript gives you autocomplete on locators and assertions, which catches a lot of mistakes before you run anything. The project is written in TypeScript. ** Yes, by default. It uses worker processes, and you can shard across multiple CI machines with --shard=1/4 style flags. Just watch memory usage \u2014 each worker launches its own browser instances."
           }
         },
         {
@@ -190,7 +182,7 @@
                 <span class="badge badge-review">Review</span>
                 <time datetime="2026-11-24">November 24, 2026</time>
                 <span>·</span>
-                <span class="reading-time">13 min read</span>
+                <span class="reading-time">12 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -204,7 +196,7 @@
 <h2 id="playwright-review-2026-the-testing-framework-that-s-taking-over">Playwright Review 2026: The Testing Framework That's Taking Over</h2>
 <p>Three years ago, if you asked a room of developers what they used for end-to-end testing, you'd get a split between Cypress and Selenium, with a few stubborn holdouts still writing Puppeteer scripts. Ask that same room today and the answer is increasingly the same: Playwright.</p>
 <p>That shift didn't happen by accident. Microsoft built Playwright to solve the exact problems that made browser testing miserable for a decade — flaky waits, cross-browser pain, and debugging sessions that eat entire afternoons. Whether it actually delivers on that promise is what this review is about.</p>
-<p>I've been running Playwright in production across a handful of projects for the past couple of years, from a solo side project to a small team's CI pipeline. Here's what actually works, what doesn't, and who should be using it in 2026.</p>
+<p>Here's what actually works, what doesn't, and who should be using it in 2026.</p>
 <h2 id="what-playwright-actually-is">What Playwright Actually Is</h2>
 <p>Playwright is an open-source browser automation and testing framework, originally released by Microsoft in 2020. It drives Chromium, Firefox, and WebKit (Safari's engine) through a single API, and it ships with its own test runner, assertion library, and code generation tools.</p>
 <p>The key architectural decision that separates it from older tools: Playwright talks to browsers over the Chrome DevTools Protocol and similar low-level interfaces, rather than injecting JavaScript into the page like Selenium's WebDriver approach. That one choice cascades into almost every advantage Playwright has — faster execution, better network control, and the ability to test things that used to be impossible without hacks.</p>
@@ -212,13 +204,11 @@
 <h2 id="feature-breakdown">Feature Breakdown</h2>
 <h3 id="auto-waiting-and-web-first-assertions">Auto-Waiting and Web-First Assertions</h3>
 <p>This is the feature that converts people. In Selenium, you spend a meaningful chunk of your test code writing explicit waits — <code>WebDriverWait</code>, polling loops, <code>sleep(2)</code> calls that you know are wrong but add anyway. Playwright's locators automatically wait for elements to be actionable before interacting with them.</p>
-<p>More importantly, its assertions retry. When you write <code>expect(page.getByRole('button')).toBeVisible()</code>, Playwright polls until the condition passes or a timeout is hit. That single behavior eliminates the majority of flaky tests I used to deal with, because most flakiness is just a race condition between your test and the app's render cycle.</p>
-<h3 id="locators-that-encourage-better-tests">Locators That Encourage Better Tests</h3>
-<p>Playwright pushes you toward user-facing locators: <code>getByRole</code>, <code>getByLabel</code>, <code>getByText</code>, <code>getByTestId</code>. This is a philosophy as much as a feature. Tests written against ARIA roles break less often than tests written against CSS classes, and they double as accessibility checks. If your button has no accessible name, <code>getByRole('button', { name: 'Submit' })</code> fails — which is a bug worth knowing about.</p>
+<p>More importantly, its assertions retry. When you write <code>expect(page.getByRole('button')).toBeVisible()</code>, Playwright polls until the condition passes or a timeout is hit.### Locators That Encourage Better Tests</p>
+<p>This is a philosophy as much as a feature. Tests written against ARIA roles break less often than tests written against CSS classes, and they double as accessibility checks. If your button has no accessible name, <code>getByRole('button', { name: 'Submit' })</code> fails — which is a bug worth knowing about.</p>
 <p>You can still use CSS and XPath selectors if you want. Playwright won't stop you. But the defaults nudge you somewhere better.</p>
 <h3 id="the-trace-viewer">The Trace Viewer</h3>
 <p>If Playwright has a killer feature, it's the trace viewer. When a test fails in CI, you get a <code>.zip</code> file containing a full timeline: DOM snapshots before and after every action, network requests, console logs, screenshots, and a scrubbable video-like replay of the entire test.</p>
-<p>This changes debugging from "read the stack trace and guess" to "watch exactly what happened." I've fixed CI-only failures in five minutes that would have taken an hour of adding <code>console.log</code> statements and re-running pipelines. Nothing else in the browser testing space comes close to this.</p>
 <h3 id="codegen-and-the-ui-mode">Codegen and the UI Mode</h3>
 <p><code>npx playwright codegen</code> opens a browser and records your interactions into test code. It's not going to write your test suite for you — the generated selectors are sometimes ugly, and it doesn't know your page objects — but it's a genuinely useful starting point for new tests.</p>
 <p>UI Mode (<code>npx playwright test --ui</code>) is the better long-term tool. It's a watch-mode test runner with a time-travel debugger built in. You can step through a test, inspect locators live, and re-run individual tests without leaving the window. If you're coming from Cypress, this is the closest equivalent to its interactive runner.</p>
@@ -326,7 +316,7 @@
 <p>Moderate. If you know JavaScript or Python and have written any tests before, you can be productive in a day. The harder parts are advanced patterns: fixtures, custom reporters, handling complex async flows, and deciding when to mock versus hit real APIs.</p>
 <p><strong>Does Playwright work with TypeScript?</strong></p>
 <p>Yes, and it's arguably the best-supported language. TypeScript gives you autocomplete on locators and assertions, which catches a lot of mistakes before you run anything. The project is written in TypeScript.</p>
-<p><strong>Can I run Playwright tests in parallel?</strong></p>
+<p>**</p>
 <p>Yes, by default. It uses worker processes, and you can shard across multiple CI machines with <code>--shard=1/4</code> style flags. Just watch memory usage — each worker launches its own browser instances.</p>
 <p><strong>What's the biggest downside?</strong></p>
 <p>No native mobile app testing, and the resulting need to maintain a second test stack if you ship both web and mobile. Memory consumption on CI runners is a close second.</p>
@@ -387,7 +377,6 @@
 <a href="#what-playwright-actually-is" class="toc-h2" style="padding-left:0px">What Playwright Actually Is</a>
 <a href="#feature-breakdown" class="toc-h2" style="padding-left:0px">Feature Breakdown</a>
 <a href="#auto-waiting-and-web-first-assertions" class="toc-h3" style="padding-left:8px">Auto-Waiting and Web-First Assertions</a>
-<a href="#locators-that-encourage-better-tests" class="toc-h3" style="padding-left:8px">Locators That Encourage Better Tests</a>
 <a href="#the-trace-viewer" class="toc-h3" style="padding-left:8px">The Trace Viewer</a>
 <a href="#codegen-and-the-ui-mode" class="toc-h3" style="padding-left:8px">Codegen and the UI Mode</a>
 <a href="#network-interception-and-mocking" class="toc-h3" style="padding-left:8px">Network Interception and Mocking</a>

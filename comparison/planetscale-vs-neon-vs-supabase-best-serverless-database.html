@@ -190,7 +190,7 @@
 <p>So you're building something new — an API, a side project, maybe the next big SaaS — and you don't want to manage a database server. You want something that scales automatically, bills you only for what you use, and doesn't require a DevOps degree to set up. That's exactly what the "serverless database" category promises.</p>
 <blockquote><strong>2026 verdict:</strong> <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> still wins for most apps — Postgres plus auth, storage, and realtime at $25/mo. Neon’s usage-based pricing ($0.106/CU-hr) now beats PlanetScale for scaling out, and PlanetScale’s entry price dropped to $5/mo for dev work.</blockquote>
 <p>Related reading: our <a href="/review/supabase-review-2026-open-source-firebase-alternative-ready/" rel="nofollow sponsored">Supabase review</a> and <a href="/tutorial/choose-right-database-saas-application/" rel="nofollow sponsored">choosing the right database</a>.</p>
-<p>Three names keep coming up: <strong>PlanetScale</strong>, <strong>Neon</strong>, and <strong><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a></strong>. Each takes a different approach, and each has passionate fans. But which one should you actually use in 2026? I've spent weeks running benchmarks, reading documentation, and building real projects on all three. Here's the honest breakdown.</p>
+<p>Here's the honest breakdown.</p>
 <hr>
 <div class="verdict-table-wrap"><table class="price-table verdict-table"><thead><tr><th></th><th>PlanetScale</th><th>Neon</th></tr></thead><tbody><tr><td>Entry price/mo</td><td>$5.00</td><td>$0.10</td></tr><tr><td>Renewal price/mo</td><td>—</td><td>—</td></tr><tr><td>True 24-month cost</td><td>$120.00*</td><td>$2.40*</td></tr><tr><td>Our verdict</td><td colspan="2">—</td></tr></tbody></table><p style="font-size:0.85em;color:#64748b;margin:6px 0 0">True 24-month cost = first 12 months at the entry rate, then 12 months at the renewal rate. * Renewal rate not published at time of writing — total shown at entry rate.</p></div>
 <h2 id="the-contenders-at-a-glance">The Contenders at a Glance</h2>
@@ -218,11 +218,11 @@
 <p><strong>Best for</strong>: Postgres lovers who want the lowest possible cost for staging or development environments, or projects with intermittent traffic.</p>
 <p><a class="cta-btn cta-inline" href="https://neon.tech/?ref=devtoolrank" rel="nofollow sponsored">Check Neon Current Deal →</a></p>
 <hr>
-<h3 id="supabase">Supabase</h3>
+<h3 id="supabase"><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a></h3>
 <p>Supabase started as "open source Firebase" and grew into a full backend platform. At its core is a managed Postgres database, but it also bundles authentication, realtime subscriptions, storage, and Edge Functions (Deno-based). You can build an entire app without leaving their ecosystem.</p>
 <p><strong>Performance</strong>: Standard Postgres performance, but you also get realtime (via logical replication) and a REST API auto-generated from your schema. No cold starts because the database runs continuously (even on the free tier, though it may be paused after a week of inactivity).</p>
 <p><strong>Pricing model</strong>: Free tier includes 500MB database, 2GB bandwidth, 50,000 monthly active users, and 1GB file storage. Pro plan is $25/month for 8GB database, 50GB bandwidth, and 100,000 users. Billing is straightforward — no surprise compute charges.</p>
-<p><strong>Developer experience</strong>: Supabase Studio is the best web-based database UI I've used. You can edit rows, run queries, manage policies, and even browse your storage. The Row Level Security (RLS) system is powerful but has a learning curve.</p>
+<p><strong>Developer experience</strong>: Supabase Studio is the best web-based database UI among mainstream providers. You can edit rows, run queries, manage policies, and even browse your storage. The Row Level Security (RLS) system is powerful but has a learning curve.</p>
 <p><strong>Best for</strong>: Full-stack developers who want Postgres plus all the extras (auth, realtime, storage) without managing separate services.</p>
 <p><a class="cta-btn cta-inline" href="https://supabase.com/?ref=devtoolrank" rel="nofollow sponsored">Check Supabase Current Deal →</a></p>
 <hr>

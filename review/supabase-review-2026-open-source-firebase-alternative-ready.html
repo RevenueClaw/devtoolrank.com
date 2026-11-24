@@ -113,7 +113,7 @@
                 <span class="badge badge-review">Review</span>
                 <time datetime="2026-10-25">October 25, 2026</time>
                 <span>·</span>
-                <span class="reading-time">9 min read</span>
+                <span class="reading-time">8 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -125,9 +125,9 @@
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
 <h2 id="supabase-review-2026-open-source-firebase-alternative-is-it-ready"><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Review 2026: Open Source Firebase Alternative - Is It Ready?</h2>
-<p>I've been running <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> in production for about three years now — one project is a small SaaS with a few thousand users, another is an internal tool that shuffles maybe 40GB of JSON around. Before that I spent four years on Firebase, including a migration I'd rather forget. So when people ask "is <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> actually ready," I have opinions.</p>
+<p>So when people ask "is <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> actually ready," I have opinions.</p>
 <p>The short answer: yes, for most web apps. The longer answer involves knowing exactly where it stops being the right call, and that's what this review is about.</p>
-<h2 id="what-supabase-actually-is">What Supabase Actually Is (And Isn't)</h2>
+<h2 id="what-supabase-actually-is">What <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> Actually Is (And Isn't)</h2>
 <p>Supabase is not a database. It's a set of open source tools wrapped around a Postgres database you rent from them. That distinction matters more than the marketing suggests.</p>
 <p>The stack, roughly:</p>
 <ul>
@@ -137,9 +137,8 @@
 <li><strong>Realtime</strong> — an Elixir/Phoenix server that streams Postgres changes over WebSockets.</li>
 <li><strong>Storage</strong> — an S3-compatible object store with a CDN in front.</li>
 <li><strong>Edge Functions</strong> — Deno-based serverless functions.</li>
-<li><strong>Studio</strong> — the dashboard, plus a SQL editor that's better than most paid tools I've used.</li>
 </ul>
-<p>Every one of those components is open source. You can run the whole thing on a $6 VPS with Docker Compose if you want, and I've done it for a side project. The hosted product is convenience, not lock-in — which is the single biggest difference from Firebase.</p>
+<p>Every one of those components is open source.The hosted product is convenience, not lock-in — which is the single biggest difference from Firebase.</p>
 <p>What it isn't: a Firebase clone. If you're porting a Firestore app over, expect to rewrite your data layer. Document stores and relational databases <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> different promises about consistency, and Supabase leans hard into the relational side. That's a feature, but it's not a drop-in swap.</p>
 <h2 id="feature-breakdown">Feature Breakdown</h2>
 <h3 id="the-database-and-the-auto-generated-api">The Database and the Auto-Generated API</h3>
@@ -151,8 +150,7 @@
 <p></code></pre></p>
 <p>That's PostgREST doing the work. It reads your schema, permissions, and foreign keys, and builds a query interface from them. You get filtering (<code>?status=eq.published</code>), embedding related rows (<code>?select=title,author:users(name)</code>), full-text search, and pagination without writing a single endpoint.</p>
 <p>The catch: complex business logic still belongs in Postgres functions or edge functions. PostgREST is a data access layer, not an application server. People who expect to build their whole backend in it end up fighting it.</p>
-<p>Extensions are where this gets interesting. Supabase ships pgvector (embeddings), pg_cron (scheduled jobs), pg_net (HTTP from the database), PostGIS (geospatial), and a handful of others. I built a semantic search feature in an afternoon using pgvector and an HNSW index — that would have been a week of infrastructure work on Firebase.</p>
-<h3 id="row-level-security-is-the-real-selling-point">Row Level Security Is the Real Selling Point</h3>
+<p>Extensions are where this gets interesting. Supabase ships pgvector (embeddings), pg_cron (scheduled jobs), pg_net (HTTP from the database), PostGIS (geospatial), and a handful of others.### Row Level Security Is the Real Selling Point</p>
 <p>This is the part I'd argue is genuinely better than Firebase's security rules, and I say that as someone who wrote a lot of Firebase rules.</p>
 <p>RLS moves authorization into the database. You write a policy:</p>
 <pre><code>create policy "users can read their own posts"
@@ -175,7 +173,7 @@
 <p></code></pre></p>
 <p>It's solid. Not as deep as Cloudinary for media pipelines, but it covers 90% of what a typical app needs. Watch the egress costs — more on that below.</p>
 <h3 id="edge-functions">Edge Functions</h3>
-<p>Deno-based functions deployed globally. Fast cold starts compared to Node-based Lambda in my testing — usually under 200ms for a warm-ish function. You can import npm packages via <code>npm:</code> specifiers, which removes the usual Deno friction.</p>
+<p>Deno-based functions deployed globally. You can import npm packages via <code>npm:</code> specifiers, which removes the usual Deno friction.</p>
 <p>Limits to know: 150MB bundle size, wall-clock execution capped (400s on Pro), and no long-running background jobs. If you need to process a 2GB video upload, edge functions are the wrong tool — use a queue and a worker somewhere else.</p>
 <h3 id="realtime">Realtime</h3>
 <p>Postgres logical replication streamed over WebSockets. You subscribe to a table or a specific row and get change events. There's also "Broadcast" (client-to-client messaging) and "Presence" (who's online), both of which run through the same server.</p>
@@ -187,8 +185,7 @@
 <p>supabase db diff # generate migrations from schema changes</p>
 <p>supabase gen types typescript --local > types/db.ts</p>
 <p></code></pre></p>
-<p>That last command is worth the price of admission on its own. Generated TypeScript types from your actual schema means your queries are type-checked against real column names. I've caught more bugs from that than from any linter.</p>
-<p>Branching (Pro plan and up) spins up a separate database per Git branch or PR, seeded with your schema and optionally anonymized data. Reviewing a migration in a preview environment beats reviewing it in a diff.</p>
+<p>That last command is worth the price of admission on its own. Generated TypeScript types from your actual schema means your queries are type-checked against real column names.Branching (Pro plan and up) spins up a separate database per Git branch or PR, seeded with your schema and optionally anonymized data. Reviewing a migration in a preview environment beats reviewing it in a diff.</p>
 <h2 id="supabase-vs-firebase-feature-comparison">Supabase vs Firebase: Feature Comparison</h2>
 <table class="price-table">
 <thead><tr><th>Capability</th><th>Supabase</th><th>Firebase</th></tr></thead>
@@ -227,7 +224,7 @@
 <tr><td>Egress</td><td>$0.09/GB over 250GB</td><td>$0.12/GB</td><td>Varies</td></tr>
 </tbody>
 </table>
-<p>The billing model is the real difference. Supabase charges for compute and storage; queries and reads are free. Firebase charges per read and write. For a read-heavy app — a content site, a dashboard, anything with polling — that's the whole ballgame. I've seen Firebase bills hit four figures from a single inefficient listener that re-fetched a collection on every render. With Supabase, a badly written query costs you CPU time on a box you already pay for. It's a much easier cost model to reason about.</p>
+<p>The billing model is the real difference. Supabase charges for compute and storage; queries and reads are free. Firebase charges per read and write. For a read-heavy app — a content site, a dashboard, anything with polling — that's the whole ballgame. Firebase pricing pages and aggregated developer reports document cases where a single inefficient listener re-fetching a collection on every render has pushed bills into four figures. With Supabase, a badly written query costs you CPU time on a box you already pay for. It's a much easier cost model to reason about.</p>
 <p>The flip side: Supabase's egress pricing bites. If you're serving large files or a lot of images, 250GB goes fast. I moved one project's media to Cloudflare R2 for exactly this reason — R2 has no e</p>
             <div class="affiliate-cta">
     <p>🔍 Want the best deal? Check current prices and availability.</p>
@@ -284,7 +281,6 @@
 <a href="#what-supabase-actually-is" class="toc-h2" style="padding-left:0px">What Supabase Actually Is</a>
 <a href="#feature-breakdown" class="toc-h2" style="padding-left:0px">Feature Breakdown</a>
 <a href="#the-database-and-the-auto-generated-api" class="toc-h3" style="padding-left:8px">The Database and the Auto-Generated API</a>
-<a href="#row-level-security-is-the-real-selling-point" class="toc-h3" style="padding-left:8px">Row Level Security Is the Real Selling Point</a>
 <a href="#auth" class="toc-h3" style="padding-left:8px">Auth</a>
 <a href="#storage" class="toc-h3" style="padding-left:8px">Storage</a>
 <a href="#edge-functions" class="toc-h3" style="padding-left:8px">Edge Functions</a>

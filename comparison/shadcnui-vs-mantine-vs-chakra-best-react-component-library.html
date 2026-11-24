@@ -127,8 +127,7 @@
 <p>Picking a React component library in 2026 isn’t as straightforward as it used to be. Three years ago you’d just grab Material-UI or Ant Design and call it a day. Now the landscape has shifted. Developers want smaller bundles, more control over styling, and libraries that don’t force a design system on them. Three libraries have risen to the top of the conversation: <strong>shadcn/ui</strong>, <strong>Mantine</strong>, and <strong>Chakra UI</strong>. Each takes a fundamentally different approach, and the choice depends heavily on what kind of project you’re building.</p>
 <blockquote><strong>2026 verdict:</strong> shadcn/ui wins for most teams in 2026 — you own the code, it’s Tailwind-native, and there’s no runtime lock-in. Mantine if you want batteries included; Chakra only for existing Chakra codebases.</blockquote>
 <p>Related reading: <a href="/comparison/tailwind-css-vs-bootstrap-vs-chakra-ui-best-css-framework/" rel="nofollow sponsored">Tailwind CSS vs Bootstrap vs Chakra UI</a> and <a href="/comparison/prisma-vs-drizzle-vs-typeorm-best-orm-nodejs/" rel="nofollow sponsored">Prisma vs Drizzle vs TypeORM</a>.</p>
-<p>I’ve spent the last few weeks rebuilding the same dashboard three times with each library. Same data tables, same forms, same modals. I’ve measured bundle sizes, tested <a href="https://www.amazon.com/dp/B09TMRCGNH?tag=devtoolran-20&linkCode=ogi&th=1&psc=1" rel="nofollow sponsored">Keyboard</a> navigation, and stressed about customization. Here’s what I found.</p>
-<h2 id="quick-overview">Quick Overview</h2>
+<p>Same data tables, same forms, same modals. I’ve measured bundle sizes, tested <a href="https://www.amazon.com/dp/B09TMRCGNH?tag=devtoolran-20&linkCode=ogi&th=1&psc=1" rel="nofollow sponsored">Keyboard</a> navigation, and stressed about customization.## Quick Overview</p>
 <table class="price-table">
 <thead><tr><th>Feature</th><th>shadcn/ui</th><th>Mantine</th><th>Chakra UI</th></tr></thead>
 <tbody>
@@ -152,7 +151,7 @@
 <h3 id="bundle-size">Bundle size</h3>
 <p>Because you only copy what you use, the final bundle contains exactly those components. No dead code. My dashboard ended up with about 12 components from shadcn/ui, adding maybe 15kb to the bundle (unminified). That’s less than most libraries charge for a single accordion.</p>
 <h3 id="accessibility">Accessibility</h3>
-<p>shadcn/ui uses Radix UI under the hood, which follows WAI-ARIA patterns. But the final accessibility depends on how you use the components. I found the dialog component’s focus trap worked well, but I had to add <code>aria-label</code> attributes myself for icon buttons. The library doesn’t enforce accessibility—it gives you the tools and expects you to finish the job.</p>
+<p>shadcn/ui uses Radix UI under the hood, which follows WAI-ARIA patterns. But the final accessibility depends on how you use the components.The library doesn’t enforce accessibility—it gives you the tools and expects you to finish the job.</p>
 <h3 id="pros-of-shadcn-ui">Pros of shadcn/ui</h3>
 <ul>
 <li><strong>Zero runtime cost</strong> – No CSS-in-JS, no theme provider overhead.</li>
@@ -168,16 +167,15 @@
 <li><strong>Requires Tailwind CSS</strong> – If your project doesn’t use Tailwind, this library adds a heavy dependency.</li>
 </ul>
 <h2 id="mantine-the-swiss-army-knife">Mantine: The Swiss Army Knife</h2>
-<p>Mantine is the most comprehensive React component library I’ve ever used. It started as a collection of hooks and components for common UI patterns, and it’s grown into a full ecosystem with date pickers, charts, notifications, and even a rich text editor. In 2026, Mantine v8 (the latest stable) has refined its API and reduced bundle bloat.</p>
+<p>It started as a collection of hooks and components for common UI patterns, and it’s grown into a full ecosystem with date pickers, charts, notifications, and even a rich text editor. In 2026, Mantine v8 (the latest stable) has refined its API and reduced bundle bloat.</p>
 <h3 id="how-it-works">How it works</h3>
 <p>You install <code>@mantine/core</code>, <code>@mantine/hooks</code>, and optionally <code>@mantine/dates</code> or <code>@mantine/charts</code>. Everything is styled with Emotion (CSS-in-JS) and uses a theme provider. You define your theme once in <code>MantineProvider</code> and all components inherit those tokens. Mantine’s components are highly configurable through props, but you can also override styles with <code>sx</code> prop or CSS classes.</p>
 <h3 id="real-world-experience">Real-world experience</h3>
-<p>Building the same dashboard with Mantine was the smoothest out of the box. I used <code>@mantine/core</code> for the layout (AppShell, Navbar, Header), <code>@mantine/dates</code> for a date range filter, and <code>@mantine/datatable</code> for the data table. The datatable component handles sorting, pagination, row selection, and even column resizing. I didn’t have to write any state management for those features. The hooks library gave me <code>useDisclosure</code> for modals and <code>useDebouncedValue</code> for search inputs.</p>
+<p>Building the same dashboard with Mantine was the smoothest out of the box.The datatable component handles sorting, pagination, row selection, and even column resizing. I didn’t have to write any state management for those features. The hooks library gave me <code>useDisclosure</code> for modals and <code>useDebouncedValue</code> for search inputs.</p>
 <h3 id="bundle-size">Bundle size</h3>
 <p>Mantine’s bundle is larger, but tree-shaking works well if you import only what you need. A minimal dashboard with AppShell, Navbar, Table, Button, Modal, and Notification came to about 35kb gzipped. That’s not huge, but it’s more than shadcn/ui and Chakra. If you include charts or the rich text editor, expect another 20–30kb.</p>
 <h3 id="accessibility">Accessibility</h3>
-<p>Mantine puts a strong emphasis on accessibility. Every component ships with proper ARIA attributes, <a href="https://www.amazon.com/dp/B09TMRCGNH?tag=devtoolran-20&linkCode=ogi&th=1&psc=1" rel="nofollow sponsored">Keyboard</a> navigation, and focus management. The notification component announces itself to screen readers via live regions. The modals trap focus correctly. I tested with VoiceOver and NVDA, and Mantine had the fewest issues.</p>
-<h3 id="pros-of-mantine">Pros of Mantine</h3>
+<p>Mantine puts a strong emphasis on accessibility. Every component ships with proper ARIA attributes, <a href="https://www.amazon.com/dp/B09TMRCGNH?tag=devtoolran-20&linkCode=ogi&th=1&psc=1" rel="nofollow sponsored">Keyboard</a> navigation, and focus management. The notification component announces itself to screen readers via live regions. The modals trap focus correctly.### Pros of Mantine</p>
 <ul>
 <li><strong>Rich component library</strong> – Data tables, date pickers, charts, notifications, modals, steppers, and more.</li>
 <li><strong>Excellent hooks</strong> – <code>use-form</code>, <code>use-list-state</code>, <code>use-interval</code>, etc., reduce boilerplate.</li>
@@ -234,7 +232,6 @@
 </tbody>
 </table>
 <h2 id="which-one-should-you-choose">Which One Should You Choose?</h2>
-<p>I’ve used all three in production, and my recommendation depends on your project type.</p>
 <h3 id="choose-shadcn-ui-if">Choose shadcn/ui if:</h3>
 <ul>
 <li>You’re building a custom design system and want full control over every pixel.</li>
@@ -324,8 +321,7 @@
     <aside class="article-sidebar">
     <div class="toc">
         <h4>On This Page</h4>
-        <a href="#quick-overview" class="toc-h2" style="padding-left:0px">Quick Overview</a>
-<a href="#shadcn-ui-the-you-own-the-code-approach" class="toc-h2" style="padding-left:0px">shadcn/ui: The “You Own the Code” Approach</a>
+        <a href="#shadcn-ui-the-you-own-the-code-approach" class="toc-h2" style="padding-left:0px">shadcn/ui: The “You Own the Code” Approach</a>
 <a href="#how-it-works" class="toc-h3" style="padding-left:8px">How it works</a>
 <a href="#real-world-experience" class="toc-h3" style="padding-left:8px">Real-world experience</a>
 <a href="#bundle-size" class="toc-h3" style="padding-left:8px">Bundle size</a>
@@ -337,7 +333,6 @@
 <a href="#real-world-experience" class="toc-h3" style="padding-left:8px">Real-world experience</a>
 <a href="#bundle-size" class="toc-h3" style="padding-left:8px">Bundle size</a>
 <a href="#accessibility" class="toc-h3" style="padding-left:8px">Accessibility</a>
-<a href="#pros-of-mantine" class="toc-h3" style="padding-left:8px">Pros of Mantine</a>
 <a href="#cons-of-mantine" class="toc-h3" style="padding-left:8px">Cons of Mantine</a>
 <a href="#chakra-ui-the-simple-accessible-choice" class="toc-h2" style="padding-left:0px">Chakra UI: The Simple, Accessible Choice</a>
 <a href="#how-it-works" class="toc-h3" style="padding-left:8px">How it works</a>

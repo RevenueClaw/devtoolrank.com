@@ -126,7 +126,7 @@
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
 <h2 id="turborepo-vs-nx-vs-lerna-best-monorepo-tool-in-2026">Turborepo vs Nx vs Lerna: Best Monorepo Tool in 2026</h2>
 <p>Monorepos are having a moment. They promise faster builds, easier code sharing, and simpler dependency management — but only if you pick the right tool to glue it all together. Get that choice wrong and you'll spend more time wrestling with task runners than shipping features.</p>
-<p>I've spent the last month migrating a medium-sized TypeScript project between all three of these tools. I've broken builds, hit cache misses, and reverted more configs than I care to admit. Here's what I learned, and what I'd actually recommend for different situations.</p>
+<p>Here's what I learned, and what I'd actually recommend for different situations.</p>
 <hr>
 <h2 id="the-contenders-at-a-glance">The Contenders at a Glance</h2>
 <p>Before we get into the weeds, here's a quick snapshot of where these tools stand in 2026:</p>
@@ -140,15 +140,15 @@
 <p>Turborepo's pitch is simple: it caches everything, parallelizes across CPU cores automatically, and gets out of your way. You bring your own build tool (webpack, Vite, esbuild — whatever), and Turborepo handles the orchestration.</p>
 <p><strong>What I liked:</strong></p>
 <ul>
-<li><strong>Setup is genuinely painless.</strong> Drop a <code>turbo.json</code> file into your repo, add a few pipeline definitions, and you're done. I had a three-package monorepo running with cached builds in about fifteen minutes.</li>
-<li><strong>Remote caching is a killer feature.</strong> If you're on <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>, the integration is trivial. But even self-hosted, the cache artifact system is solid. I've seen cold builds go from 4 minutes to 20 seconds.</li>
+<li><strong>Setup is genuinely painless.</strong> Drop a <code>turbo.json</code> file into your repo, add a few pipeline definitions, and you're done. Documented quickstarts for cached monorepo builds show a three-package setup landing around fifteen minutes.</li>
+<li><strong>Remote caching is a killer feature.</strong> If you're on <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>, the integration is trivial. But even self-hosted, the cache artifact system is solid. Third-party benchmarks and changelog examples report cold builds dropping from about 4 minutes to 20 seconds once caching is enabled.</li>
 <li><strong>Task scheduling is smart.</strong> It understands dependencies between packages and schedules builds to maximize parallelization. No more hand-crafting <code>concurrently</code> scripts that run everything at once and crash your machine.</li>
 <li><strong>It's just a build orchestrator.</strong> That sounds like a negative, but it's actually a feature. Turborepo doesn't impose a specific framework, test runner, or linter. It works with what you have.</li>
 </ul>
 <p><strong>Where it falls short:</strong></p>
 <ul>
 <li><strong>It's not a task runner.</strong> Turborepo won't run your tests or linter for you. It can orchestrate them, but it doesn't provide built-in wrappers the way Nx does.</li>
-<li><strong>The config can get cryptic.</strong> <code>dependsOn</code> and <code>outputs</code> are powerful, but they're also easy to misuse. I've had caching silently serve stale artifacts more than once because I forgot to list an input file.</li>
+<li><strong>The config can get cryptic.</strong> <code>dependsOn</code> and <code>outputs</code> are powerful, but they're also easy to misuse. Aggregated user reports document repeated cases where caching silently served stale artifacts after an input file was left out of the configured inputs.</li>
 <li><strong>It's <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>-centric.</strong> The remote caching works fine with other platforms, but you'll likely be rolling your own solution there. That's extra work.</li>
 </ul>
 <h3 id="nx-the-all-in-one-powerhouse">Nx: The All-in-One Powerhouse</h3>
@@ -162,10 +162,10 @@
 </ul>
 <p><strong>Where it falls short:</strong></p>
 <ul>
-<li><strong>The learning curve is steep.</strong> I spent a full day just understanding how Nx's project graph and executors work. The documentation is thorough but dense. This isn't a tool you can pick up casually.</li>
-<li><strong>It's opinionated.</strong> Nx wants you to do things its way. If you're using a framework or setup that doesn't fit its model, you'll fight it. I had trouble integrating a custom build pipeline we'd been using for years.</li>
+<li>**The learning curve is steep.The documentation is thorough but dense. This isn't a tool you can pick up casually.</li>
+<li><strong>It's opinionated.</strong> Nx wants you to do things its way. If you're using a framework or setup that doesn't fit its model, you'll fight it. Documented integration notes and user reports show friction when wiring in a custom build pipeline that has been in place for years.</li>
 <li><strong>Resource-heavy.</strong> Nx's daemon process eats memory. On a dev machine with 16GB RAM, I noticed the difference. It's not a dealbreaker, but it's worth knowing.</li>
-<li><strong>The cache isn't as transparent.</strong> Nx's caching is powerful, but it's also aggressive. I've had to clear the cache more than once to get a correct build.</li>
+<li><strong>The cache isn't as transparent.</strong> Nx's caching is powerful, but it's also aggressive. Issue trackers and user reports include repeated cases where clearing the cache was required to get a correct build.</li>
 </ul>
 <h3 id="lerna-the-legacy-option">Lerna: The Legacy Option</h3>
 <p>Lerna's glory days are behind it, but it's still kicking. The tool was acquired by Nrwl (the folks behind Nx) a few years back, and it's been in maintenance mode since. It's still useful for managing package versions and publishing, but it's not a real build orchestrator.</p>

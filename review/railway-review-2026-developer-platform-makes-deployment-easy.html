@@ -134,7 +134,7 @@
 <h2 id="key-features-in-2026">Key Features in 2026</h2>
 <h3 id="zero-config-deployments">Zero-Config Deployments</h3>
 <p>The “just push and it works” promise holds up surprisingly well. Railway detects your language (Node, Python, Go, Ruby, Rust, Java, PHP, Elixir, and more) and picks a buildpack automatically. If you have a Dockerfile, it uses that instead. You don’t need to write a <code>Procfile</code> or <code>Docker Compose</code> unless you’re doing something custom.</p>
-<p>I deployed a simple Express API in about three minutes: connected the repo, Railway detected Node, installed dependencies, and ran <code>npm start</code>. No config needed.</p>
+<p>No config needed.</p>
 <p>But here’s the thing—when it <em>doesn’t</em> detect correctly, debugging can be annoying. You have to dig into the build logs, which are not always clear. Railway recently added better error messages, but I’ve still had to open Dockerfiles for a few edge cases.</p>
 <h3 id="private-networking-and-service-linking">Private Networking and Service Linking</h3>
 <p>This is the feature that made me move a production app from Render to Railway. You can create multiple services inside one project and connect them via private network (internal DNS). Your database, your backend, your frontend—they all talk to each other without exposing anything to the public internet.</p>
@@ -159,7 +159,6 @@
 <tr><td>Team</td><td>Quote-based</td><td>Dedicated CPU</td><td>Variable</td><td>Variable</td><td>Custom</td><td>Teams needing isolation</td></tr>
 </tbody>
 </table>
-<p>Note: If you exceed the included credits, you pay overage at $0.0001 per CPU-second and $0.0002 per GB-hour of memory. I’ve seen hobby apps burn through $15-20/month when they get some traffic. The pricing is transparent but can be unpredictable.</p>
 <h2 id="comparison-railway-vs-heroku-vs-render-vs-fly-io">Comparison: Railway vs. Heroku vs. Render vs. Fly.io</h2>
 <table class="price-table">
 <thead><tr><th>Feature</th><th>Railway</th><th>Heroku</th><th>Render</th><th>Fly.io</th></tr></thead>
@@ -217,7 +216,6 @@
 <p>Best for: Solo devs and small teams who value speed and simplicity.</p>
 <p><a class="cta-btn cta-inline" href="https://railway.app?referral=devtoolrank" rel="nofollow sponsored">Check Railway Plans Current Deal →</a></p>
 <aside class="deal-card"><div class="deal-kicker"><span class="deal-pick">Top Pick</span></div><h4 class="deal-name">Railway</h4><ul class="deal-facts"><li>Entry price (listed): <b>$5.00/mo</b></li><li>Renewal rate varies by promo — confirm at checkout</li></ul></aside><h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
-<h3 id="can-i-run-docker-containers-on-railway">Can I run Docker containers on Railway?</h3>
 <p>Yes. If your repo has a Dockerfile, Railway will use it. You can also specify a custom Dockerfile path in <code>railway.json</code>. You get root access to the container.</p>
 <h3 id="does-railway-support-background-workers-or-cron-jobs">Does Railway support background workers or cron jobs?</h3>
 <p>Railway added support for cron jobs in 2025. You can schedule tasks at intervals (every 5 minutes, daily, etc.) using the <code>railway cron</code> command or via the dashboard. Workers are just services that don’t expose a public port.</p>
@@ -297,7 +295,6 @@
 <a href="#who-should-use-railway" class="toc-h2" style="padding-left:0px">Who Should Use Railway?</a>
 <a href="#verdict-should-you-use-railway-in-2026" class="toc-h2" style="padding-left:0px">Verdict: Should You Use Railway in 2026?</a>
 <a href="#frequently-asked-questions" class="toc-h2" style="padding-left:0px">Frequently Asked Questions</a>
-<a href="#can-i-run-docker-containers-on-railway" class="toc-h3" style="padding-left:8px">Can I run Docker containers on Railway?</a>
 <a href="#does-railway-support-background-workers-or-cron-jobs" class="toc-h3" style="padding-left:8px">Does Railway support background workers or cron jobs?</a>
 <a href="#how-do-i-migrate-my-app-from-heroku-to-railway" class="toc-h3" style="padding-left:8px">How do I migrate my app from Heroku to Railway?</a>
 <a href="#what-happens-if-i-exceed-my-plan-credits" class="toc-h3" style="padding-left:8px">What happens if I exceed my plan credits?</a>

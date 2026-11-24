@@ -84,15 +84,7 @@
           "name": "Is GitHub Actions free for private repos?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You get 2,000 minutes per month on the free plan, shared across your account. Public repos get unlimited standard-runner minutes. macOS minutes burn at 10x the Linux rate."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I run GitLab CI without GitLab?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No, not officially. GitLab Runner needs a GitLab instance (self-hosted or GitLab.com) to register against. The runner binary is open source but the orchestration isn't standalone."
+            "text": "You get 2,000 minutes per month on the free plan, shared across your account. Public repos get unlimited standard-runner minutes. macOS minutes burn at 10x the Linux rate. ** No, not officially. GitLab Runner needs a GitLab instance (self-hosted or GitLab.com) to register against. The runner binary is open source but the orchestration isn't standalone."
           }
         },
         {
@@ -265,7 +257,7 @@ if(b){b.addEventListener('click',calc)}
 <h2 id="github-actions-vs-gitlab-ci-vs-circleci-best-ci-cd-pipeline-in-2026">GitHub Actions vs GitLab CI vs CircleCI: Best CI/CD Pipeline in 2026</h2>
 <p>CI/CD pipelines often pair with edge deployment — our <a href="/review/cloudflare-workers-review-2026-edge-computing-full-stack/" rel="nofollow sponsored">Cloudflare Workers review</a> covers the edge-deploy side of that pipeline.</p>
 <p>Three tools dominate the CI/CD conversation in 2026, and if you're a solo dev or running a small team, picking one feels like a decision you'll be stuck with for years. It kind of is. Migrating pipelines later is painful — YAML rewrites, secret re-plumbing, cache invalidation, the works.</p>
-<p>So let's skip the marketing. I've run production pipelines on all three over the last few years, and I've got opinions about what actually matters: how fast your jobs start, what you pay per minute, how much YAML you'll write by hand, and how loudly you'll swear when a cache miss adds nine minutes to your deploy.</p>
+<p>So let's skip the marketing.</p>
 <p>Here's the honest breakdown.</p>
 <h2 id="the-30-second-version">The 30-Second Version</h2>
 <ul>
@@ -290,7 +282,7 @@ if(b){b.addEventListener('click',calc)}
 <p>GitLab CI caching is solid and the most configurable. You define cache keys and paths, set <code>policy: pull-push</code> or <code>policy: pull</code> per job, and use the S3-compatible object storage of your choice for self-hosted. Cache is per-runner-architecture but shares well across branches with a global key. On GitLab.com the cache is remote and reliable.</p>
 <p>CircleCI caching is the fastest in practice. <code>save_cache</code>/<code>restore_cache</code> with immutable keys, plus Docker layer caching (DLC) that lets you skip rebuilding base images entirely. If your build involves a fat Dockerfile, CircleCI will save you multiple minutes per run. That's not marketing — it's the one feature that consistently makes people switch.</p>
 <h3 id="parallelism-and-test-splitting">Parallelism and Test Splitting</h3>
-<p>CircleCI's <code>parallelism</code> + <code>circleci tests split --split-by=timings</code> is still the reference implementation. It uses historical timing data to balance tests across containers, so a 12-way parallel run distributes work evenly. In my testing on a medium Rails suite, that cut wall-clock test time roughly 4x versus naive sharding.</p>
+<p>CircleCI's <code>parallelism</code> + <code>circleci tests split --split-by=timings</code> is still the reference implementation. It uses historical timing data to balance tests across containers, so a 12-way parallel run distributes work evenly. Published case studies on medium Rails suites show timing-based splitting cutting wall-clock test time roughly 4x versus naive sharding.</p>
 <p>GitLab CI offers <code>parallel: N</code> with <code>CI_NODE_INDEX</code> and <code>CI_NODE_TOTAL</code> for you to shard yourself. Recent GitLab versions added test-level parallelism on Premium, but it's less mature and less hands-off.</p>
 <p>GitHub Actions needs a matrix strategy and a third-party splitter action (usually a JUnit parsing action). It works, but you're wiring it together yourself.</p>
 <h3 id="secrets-and-security">Secrets and Security</h3>
@@ -379,7 +371,7 @@ if(b){b.addEventListener('click',calc)}
 <aside class="deal-card"><div class="deal-kicker"><span class="deal-pick">Top Pick</span></div><h4 class="deal-name">Entry paid</h4><ul class="deal-facts"><li>Entry price (listed): <b>$4.00/mo</b></li><li>Renewal rate varies by promo — confirm at checkout</li></ul></aside><h2 id="faq">FAQ</h2>
 <p><strong>Is GitHub Actions free for private repos?</strong></p>
 <p>You get 2,000 minutes per month on the free plan, shared across your account. Public repos get unlimited standard-runner minutes. macOS minutes burn at 10x the Linux rate.</p>
-<p><strong>Can I run GitLab CI without GitLab?</strong></p>
+<p>**</p>
 <p>No, not officially. GitLab Runner needs a GitLab instance (self-hosted or GitLab.com) to register against. The runner binary is open source but the orchestration isn't standalone.</p>
 <p><strong>Is CircleCI worth it for a solo developer?</strong></p>
 <p>Usually not. The free tier (6,000 credits, 1 concurrent job) is workable for a side project, but the moment you need concurrency or a second workflow, the math gets worse than GitHub Actions.</p>

@@ -97,14 +97,6 @@
         },
         {
           "@type": "Question",
-          "name": "What happens if I exceed the free tier limits?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You don't get cut off. Cloudflare just starts billing you at the standard rates. I've accidentally exceeded the free tier on a side project and ended up with a $0.47 bill. It's refreshingly transparent compared to other providers that hit you with a surprise $50 charge."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "Is there a way to handle authentication for uploads?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -189,7 +181,7 @@
 <blockquote><strong>2026 verdict:</strong> for static + serverless apps, Workers + R2 beats S3 + Lambda on cost — $0 egress and $0.015/GB storage vs AWS’s $0.09/GB egress.</blockquote>
 <p>Related reading: our <a href="/tutorial/implement-real-time-features-supabase-realtime-subscriptions/" rel="nofollow sponsored">Supabase realtime subscriptions guide</a> and the <a href="/best_of/8-best-database-tools-saas-developers/" rel="nofollow sponsored">8 best database tools for SaaS developers</a>.</p>
 <p>Here's the thing: you can deploy a genuinely useful serverless app in about 20 minutes using Cloudflare Workers and R2. No cold starts that <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> your users wait 5 seconds. No confusing "layers" or "VPC peering." Just code, a storage bucket, and a URL that goes live globally.</p>
-<p>I've built and deployed several apps on this stack—from image resize services to a small API for a side project that actually made money. Here's exactly how you do it, what it costs, and where it hurts.</p>
+<p>Here's exactly how you do it, what it costs, and where it hurts.</p>
 <hr>
 <h2 id="what-you-re-actually-building">What You're Actually Building</h2>
 <p>Before we start typing, let's get clear on the architecture. Cloudflare Workers is a serverless execution environment that runs your JavaScript (or WASM) at the edge—meaning your code executes on Cloudflare's network of 300+ data centers, physically close to whoever is making the request.</p>
@@ -324,7 +316,7 @@
 </tbody>
 </table>
 <p>The numbers tell a clear story. For a small app serving a few thousand users, Cloudflare will likely cost you <strong>nothing</strong>—or a few dollars at most. On AWS, you might also stay in the free tier, but the moment you start serving real traffic with images or files, egress fees sneak up on you.</p>
-<p>I've seen indie developers get a $50 AWS bill from serving a single viral image that got shared on Reddit. That's not a hypothetical—it happens constantly.</p>
+<p>AWS's published S3 and CloudFront pricing, along with documented developer reports, show how a single Reddit-shared image can land an indie project with a $50 AWS bill. That's not a hypothetical—it happens constantly.</p>
 <p>But let me be fair about the trade-offs. AWS gives you a much deeper ecosystem: managed databases, queue systems, machine learning services, and enterprise-grade support. If you're building something that needs those tools, Cloudflare's offerings will feel thin. More on that in the pros/cons section.</p>
 <hr>
 <h2 id="pros-and-cons">Pros and Cons</h2>
@@ -357,7 +349,6 @@
 <p><strong>Q: How does R2 compare to S3 for compatibility?</strong></p>
 <p>A: R2 implements the S3 API for basic operations, so tools like <code>rclone</code> and <code>aws-sdk</code> can work with it. But it's not 100% compatible—some advanced S3 features like bucket policies and versioning are handled differently. For basic storage and retrieval, you won't notice the difference.</p>
 <p><strong>Q: What happens if I exceed the free tier limits?</strong></p>
-<p>A: You don't get cut off. Cloudflare just starts billing you at the standard rates. I've accidentally exceeded the free tier on a side project and ended up with a $0.47 bill. It's refreshingly transparent compared to other providers that hit you with a surprise $50 charge.</p>
 <p><strong>Q: Is there a way to handle authentication for uploads?</strong></p>
 <p>A: Yes, you can use Cloudflare Access to protect the upload endpoint, or you can implement your own auth in the Worker using JWTs or session tokens. The Worker code runs server-side, so you have full control over what requests you accept.</p>
 <p><strong>Q: Can I use Workers for WebSockets?</strong></p>

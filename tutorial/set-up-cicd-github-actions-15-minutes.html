@@ -124,7 +124,7 @@
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
-<p>So you've got a project on GitHub and you're tired of manually deploying every time you push a commit. Maybe you're running <code>npm run build && rsync</code> from your laptop like it's 2012. I've been there.</p>
+<p>So you've got a project on GitHub and you're tired of manually deploying every time you push a commit. Maybe you're running <code>npm run build && rsync</code> from your laptop like it's 2012.</p>
 <p>GitHub Actions is baked right into every repository on GitHub, and it's genuinely good. Not just "good for a built-in tool"—actually good. In about 15 minutes, you can have a working CI/CD pipeline that builds your code, runs tests, and deploys to production.</p>
 <p>Let me walk you through it step by step, with a real example that deploys a Node.js app to a VPS. Along the way, I'll show you the gotchas that the official docs gloss over.</p>
 <h2 id="what-we-re-building">What We're Building</h2>
@@ -349,7 +349,6 @@
 <p><strong>Use GitHub Actions.</strong> Set up the workflow I showed you above, add caching and notifications, and you're done. You'll spend more time deciding which YAML editor to use than actually building your pipeline.</p>
 <p>If you want a deployment platform that handles the server side too, <a href="https://railway.app?ref=devtoolrank" rel="nofollow sponsored">Railway</a> connects to your repo and deploys automatically without SSH or PM2 config. It's more expensive than a $6 VPS, but the convenience might be worth it.</p>
 <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
-<h3 id="how-do-i-run-workflows-locally">How do I run workflows locally?</h3>
 <p>You can't natively, but <a href="https://github.com/nektos/act" rel="nofollow sponsored">act</a> lets you run GitHub Actions locally using Docker containers. It's not perfect—some actions don't translate well—but it's useful for quick YAML validation.</p>
 <h3 id="can-i-deploy-to-multiple-environments">Can I deploy to multiple environments (staging, production)?</h3>
 <p>Yes. Define separate jobs with different conditions:</p>
@@ -446,7 +445,6 @@
 <a href="#the-frustrating-parts" class="toc-h3" style="padding-left:8px">The Frustrating Parts</a>
 <a href="#verdict" class="toc-h2" style="padding-left:0px">Verdict</a>
 <a href="#frequently-asked-questions" class="toc-h2" style="padding-left:0px">Frequently Asked Questions</a>
-<a href="#how-do-i-run-workflows-locally" class="toc-h3" style="padding-left:8px">How do I run workflows locally?</a>
 <a href="#can-i-deploy-to-multiple-environments" class="toc-h3" style="padding-left:8px">Can I deploy to multiple environments ?</a>
 <a href="#what-s-the-difference-between-code-npm-ci-code-and-code-npm-install-code" class="toc-h3" style="padding-left:8px">What's the difference between <code>npm ci</code> and <code>npm install</code>?</a>
 <a href="#my-deploy-keeps-failing-with-host-key-verification-failed" class="toc-h3" style="padding-left:8px">My deploy keeps failing with "Host key verification failed"</a>

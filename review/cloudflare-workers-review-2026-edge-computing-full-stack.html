@@ -174,7 +174,7 @@
                 <span class="badge badge-review">Review</span>
                 <time datetime="2026-09-14">September 14, 2026</time>
                 <span>·</span>
-                <span class="reading-time">13 min read</span>
+                <span class="reading-time">12 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -189,7 +189,7 @@
 <blockquote><strong>2026 verdict:</strong> Cloudflare Workers still wins on price-to-performance — $5/month covers 10 million requests with zero egress fees, something neither AWS Lambda nor <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a> can match at equivalent scale.</blockquote>
 <p>Related reading: <a href="/tutorial/deploy-full-stack-app-10-minutes-vercel-supabase/" rel="nofollow sponsored">deploy a full-stack app in 10 minutes</a> and <a href="/tutorial/choose-right-database-saas-application/" rel="nofollow sponsored">choosing the right database for a SaaS app</a>.</p>
 <p>Back in 2018, Cloudflare dropped Workers with a simple pitch: run your JavaScript at the edge, closer to your users than any traditional server could get. Eight years later, the platform has grown into something far more ambitious. It's no longer just a CDN with a clever trick up its sleeve — it's a full application platform competing directly with AWS Lambda, <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a>, and even traditional hosting.</p>
-<p>I've spent the last few months building and deploying real applications on Workers. Some experiments worked brilliantly. Others made me want to throw my laptop out the window. Here's the honest breakdown.</p>
+<p>Some experiments worked brilliantly. Others made me want to throw my laptop out the window. Here's the honest breakdown.</p>
 <h2 id="what-exactly-is-cloudflare-workers">What Exactly Is Cloudflare Workers?</h2>
 <p>At its core, Workers is a serverless execution environment that runs your code on Cloudflare's network of 300+ data centers worldwide. When a request hits any of those locations, your code executes there — not in a central region you picked during deployment.</p>
 <p>The key difference from conventional serverless: your code runs <em>before</em> the request even reaches your origin server. You're not scaling containers or managing cold starts in a single region. You're running on the same infrastructure that serves millions of websites every second.</p>
@@ -204,7 +204,6 @@
 </ul>
 <p>That's a full-stack toolkit. You could build an entire application without ever touching a traditional server.</p>
 <h2 id="the-developer-experience">The Developer Experience</h2>
-<p>Let me be direct: deploying to Workers is the smoothest serverless experience I've had. The <code>wrangler</code> CLI handles everything from local development to production deploys. You write code, run <code>wrangler dev</code> for a local environment that simulates the edge, then <code>wrangler deploy</code> when you're ready.</p>
 <p>Here's a minimal example. Create a new project, write a handler, deploy:</p>
 <pre><code>export default {
 <p>async fetch(request, env, ctx) {</p>
@@ -220,7 +219,7 @@
 <p>What impressed me most: <strong>local development actually works</strong>. <code>wrangler dev</code> spins up a local environment that faithfully reproduces Workers runtime behavior, including KV, D1, and Durable Objects. That's rare in the serverless world. Most platforms give you a local emulator that behaves <em>slightly</em> differently from production. Workers gets this right.</p>
 <p>The TypeScript support is first-class. Types are auto-generated from your bindings, so you get autocomplete for your database schema, KV namespaces, and environment variables. It's a small touch that makes a big difference in daily development.</p>
 <h2 id="performance-the-real-numbers">Performance: The Real Numbers</h2>
-<p>I ran a series of tests comparing Workers against AWS Lambda (us-east-1) and a VPS in Frankfurt. The results told an interesting story.</p>
+<p>The results told an interesting story.</p>
 <table class="price-table">
 <thead><tr><th>Metric</th><th>Cloudflare Workers</th><th>AWS Lambda (us-east-1)</th><th>VPS (Frankfurt)</th></tr></thead>
 <tbody>
@@ -233,8 +232,7 @@
 </table>
 <p>The performance advantage is real. Because code executes at the edge, users in Tokyo get responses in 11 milliseconds when the request hits a Tokyo data center. Lambda forces that same request to travel to us-east-1 and back. The difference is dramatic for global audiences.</p>
 <p>Cold starts are where Workers truly shines. Lambda cold starts can take over a second at the p95 percentile — that's a noticeable delay for every new function invocation. Workers manages to keep cold starts under 32ms even at the p95 mark. The V8 isolates approach means new instances spin up in microseconds, not seconds.</p>
-<p>One thing to note: Workers runs on V8, not Node.js. Most Node.js APIs work, but there are differences. The runtime uses Web Standard APIs (<code>fetch</code>, <code>Request</code>, <code>Response</code>) rather than Node-specific modules. If you're using libraries that depend on Node internals, you might need to find alternatives. I hit this with a few database drivers and had to swap them for edge-compatible versions.</p>
-<h2 id="the-full-stack-story-databases-and-storage">The Full-Stack Story: Databases and Storage</h2>
+<p>One thing to note: Workers runs on V8, not Node.js. Most Node.js APIs work, but there are differences. The runtime uses Web Standard APIs (<code>fetch</code>, <code>Request</code>, <code>Response</code>) rather than Node-specific modules. If you're using libraries that depend on Node internals, you might need to find alternatives.## The Full-Stack Story: Databases and Storage</p>
 <p>A serverless runtime is only half the equation. You need somewhere to store data. Workers offers three main options, and each serves a different purpose.</p>
 <h3 id="workers-kv">Workers KV</h3>
 <p>KV is a global key-value store with strong consistency at the write location. Reads are served from edge caches, making them incredibly fast. The trade-off: eventual consistency for reads outside the write region. Changes propagate globally within about 60 seconds.</p>
@@ -253,12 +251,11 @@
 </ul>
 <h3 id="d1">D1</h3>
 <p>D1 is Cloudflare's serverless SQLite database. It's a full relational database that runs on the edge. You get real SQL, transactions, and familiar query patterns. The catch: D1 is currently single-region by default, with read replicas available for global distribution.</p>
-<p>D1 has come a long way since its beta. The query performance is solid for most use cases. I ran a small CRUD API against it and saw latency around 15ms for simple queries from the same region. Not as fast as KV, but far more flexible.</p>
+<p>D1 has come a long way since its beta. The query performance is solid for most use cases.Not as fast as KV, but far more flexible.</p>
 <p>The backup and restore story is straightforward. You can export your entire database to a local SQLite file, and restoring is just an import away. That's a level of simplicity you won't find with managed Postgres.</p>
 <h3 id="durable-objects">Durable Objects</h3>
 <p>Durable Objects provide single-threaded, strongly consistent state coordination. Each object has a unique ID and maintains its own state. This is the right tool for real-time collaboration, queuing systems, or any workload that needs a consistent view of data across requests.</p>
-<p>The learning curve is steeper here. You need to think about concurrency differently — each Durable Object is a single point of coordination, so you need to design for that. But the power is real. I built a simple multiplayer presence system with Durable Objects, and the consistency guarantees made it painless.</p>
-<h2 id="pricing-where-workers-gets-interesting">Pricing: Where Workers Gets Interesting</h2>
+<p>The learning curve is steeper here. You need to think about concurrency differently — each Durable Object is a single point of coordination, so you need to design for that. But the power is real.## Pricing: Where Workers Gets Interesting</p>
 <p>Cloudflare's pricing model is refreshingly different from the competition. The free tier is genuinely useful, and the paid tiers are transparent.</p>
 <table class="price-table">
 <thead><tr><th>Tier</th><th>Price</th><th>Requests</th><th>CPU Time</th><th>KV Operations</th></tr></thead>
@@ -276,9 +273,9 @@
 <li>Server-side rendering of heavy pages</li>
 </ul>
 <p>For reference, Lambda gives you up to 15 minutes of execution time. Workers is designed for quick, focused operations. If you need long-running processes, this isn't the right tool.</p>
-<p>The free tier is surprisingly generous. 100,000 requests per day is enough for a side project or a small API. I've run several hobby projects on the free tier without hitting any limits.</p>
+<p>The free tier is surprisingly generous. 100,000 requests per day is enough for a side project or a small API.</p>
 <h2 id="comparing-workers-to-the-competition">Comparing Workers to the Competition</h2>
-<p>I've used all three major serverless platforms extensively. Here's how they stack up:</p>
+<p>Here's how they stack up:</p>
 <table class="price-table">
 <thead><tr><th>Feature</th><th>Cloudflare Workers</th><th>AWS Lambda</th><th><a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a></th></tr></thead>
 <tbody>
@@ -296,19 +293,17 @@
 <p>Vercel is the best choice if you're building Next.js applications. The integration is unmatched, and the developer experience is fantastic. But Vercel's edge functions have limitations — they're primarily designed for middleware and lightweight operations, not full application logic. You'll still need serverless functions for heavier work, which defeats some of the purpose.</p>
 <p>Workers sits in a sweet spot. It has the performance of edge computing with the flexibility of a full application platform. The trade-off is the CPU time limit and the V8 runtime differences. If your workload fits within those constraints, Workers is the best value on the market.</p>
 <h2 id="real-world-use-cases">Real-World Use Cases</h2>
-<p>I've seen Workers used effectively for several patterns:</p>
-<p><strong>Authentication and authorization</strong>: Running JWT verification at the edge means your origin server never sees unauthenticated requests. This is a perfect use case — the checks are quick, stateless, and benefit enormously from edge execution.</p>
+<p>This is a perfect use case — the checks are quick, stateless, and benefit enormously from edge execution.</p>
 <p><strong>API gateways</strong>: Workers can route, transform, and rate-limit requests before they hit your backend. You can add caching, header manipulation, or request validation without touching your main application.</p>
 <p><strong>Image optimization</strong>: Cloudflare's image resizing works natively with Workers. You can write logic that resizes, crops, and serves images on the fly, then caches the results at the edge. This is a huge performance win for media-heavy sites.</p>
 <p><strong>A/B testing</strong>: Serve different variations of your site based on cookies, headers, or geographic location. The logic is simple enough to run at the edge, and the performance impact is negligible.</p>
-<p><strong>Server-side rendering</strong>: Workers can render React or Vue applications at the edge. The V8 isolates spin up fast enough that even dynamic pages feel instant. I tested this with a small Next.js app and saw TTFB around 50ms globally.</p>
+<p><strong>Server-side rendering</strong>: Workers can render React or Vue applications at the edge. The V8 isolates spin up fast enough that even dynamic pages feel instant.js app and saw TTFB around 50ms globally.</p>
 <h2 id="the-frustrating-parts">The Frustrating Parts</h2>
 <p>I can't write a completely positive review, because that wouldn't be honest. Workers has real limitations that might <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> you think twice.</p>
 <p><strong>The 30ms CPU limit is restrictive</strong>. My first attempt at building a server-rendered dashboard hit this wall immediately. The page required significant computation, and the default limit wasn't enough. You can increase it, but that costs more money and requires manual configuration. Compare that to Lambda where you're limited by memory and time, not a strict CPU budget.</p>
 <p><strong>The V8 runtime is not Node.js</strong>. This is the biggest source of frustration. Many npm packages rely on Node.js APIs that aren't available in Workers. You'll spend time debugging compatibility issues and searching for edge-compatible alternatives. The ecosystem has improved significantly, but you'll still run into problems with more niche libraries.</p>
 <p><strong>D1 is not a full Postgres replacement</strong>. Yes, it's SQL, and yes, it supports transactions. But the single-region limitation means global writes are slow. If you need low-latency writes from multiple regions, you'll need to design around this or choose a different database.</p>
-<p><strong>Debugging can be painful</strong>. The production logs are decent, but tracing issues across multiple Workers services is harder than it should be. The local dev environment works well, but reproducing production issues locally isn't always straightforward. I spent an embarrassing amount of time debugging a race condition that only manifested at the edge.</p>
-<h2 id="who-should-use-cloudflare-workers">Who Should Use Cloudflare Workers?</h2>
+<p><strong>Debugging can be painful</strong>. The production logs are decent, but tracing issues across multiple Workers services is harder than it should be. The local dev environment works well, but reproducing production issues locally isn't always straightforward.## Who Should Use Cloudflare Workers?</p>
 <p>Workers is the right choice if:</p>
 <ul>
 <li>You're building applications with a global audience</li>
@@ -400,15 +395,12 @@
 <a href="#what-exactly-is-cloudflare-workers" class="toc-h2" style="padding-left:0px">What Exactly Is Cloudflare Workers?</a>
 <a href="#the-developer-experience" class="toc-h2" style="padding-left:0px">The Developer Experience</a>
 <a href="#performance-the-real-numbers" class="toc-h2" style="padding-left:0px">Performance: The Real Numbers</a>
-<a href="#the-full-stack-story-databases-and-storage" class="toc-h2" style="padding-left:0px">The Full-Stack Story: Databases and Storage</a>
 <a href="#workers-kv" class="toc-h3" style="padding-left:8px">Workers KV</a>
 <a href="#d1" class="toc-h3" style="padding-left:8px">D1</a>
 <a href="#durable-objects" class="toc-h3" style="padding-left:8px">Durable Objects</a>
-<a href="#pricing-where-workers-gets-interesting" class="toc-h2" style="padding-left:0px">Pricing: Where Workers Gets Interesting</a>
 <a href="#comparing-workers-to-the-competition" class="toc-h2" style="padding-left:0px">Comparing Workers to the Competition</a>
 <a href="#real-world-use-cases" class="toc-h2" style="padding-left:0px">Real-World Use Cases</a>
 <a href="#the-frustrating-parts" class="toc-h2" style="padding-left:0px">The Frustrating Parts</a>
-<a href="#who-should-use-cloudflare-workers" class="toc-h2" style="padding-left:0px">Who Should Use Cloudflare Workers?</a>
 <a href="#the-verdict" class="toc-h2" style="padding-left:0px">The Verdict</a>
 <a href="#faq" class="toc-h2" style="padding-left:0px">FAQ</a>
     </div>

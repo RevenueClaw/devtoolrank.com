@@ -134,7 +134,7 @@
                 <span class="badge badge-review">Guide</span>
                 <time datetime="2026-11-22">November 22, 2026</time>
                 <span>·</span>
-                <span class="reading-time">9 min read</span>
+                <span class="reading-time">8 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -194,7 +194,6 @@ if(b){b.addEventListener('click',calc)}
 <p><strong>Hosting.</strong> Supabase doesn't host your frontend. Firebase Hosting does, with a global CDN and preview channels per PR. If you were on <a href="https://vercel.com/?ref=revenueclaw" rel="nofollow sponsored">Vercel</a> plus Supabase, you can consolidate to one vendor here. That's a genuine simplification.</p>
 <h2 id="the-migration-step-by-step">The migration, step by step</h2>
 <h3 id="step-1-audit-what-you-actually-use">Step 1: Audit what you actually use</h3>
-<p>Before touching anything, inventory your project. Export your schema, list every edge function, count your storage buckets, and grep your codebase for every <code>supabase.from()</code> call. I've watched people start a migration convinced they use four tables, then discover a <code>user_settings</code> table that seventeen components hit.</p>
 <p>Also check your Supabase dashboard's usage graphs. If you're on Pro and nowhere near the 8 GB database or 100 GB bandwidth limits, you're on a flat $25/month with no surprises. That's a hard thing to walk away from, and it's worth writing down what you're gaining before you give it up.</p>
 <h3 id="step-2-design-the-firestore-data-model">Step 2: Design the Firestore data model</h3>
 <p>Do this on paper first. Seriously — sketch the collections before you write a single line of migration code.</p>

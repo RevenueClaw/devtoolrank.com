@@ -127,7 +127,7 @@
 <p>NGINX has been the go-to web server for high-traffic sites for years. But in 2026, with tools like Caddy snagging attention for their zero-config HTTPS and Apache still powering millions of shared hosting boxes, the question is fair: is NGINX still worth reaching for?</p>
 <blockquote><strong>2026 verdict:</strong> NGINX stays the default web server in 2026 — free, battle-tested, everywhere. Only pay for NGINX Plus (~$850–$2.1k/yr, quote-based) when you need F5-grade support and observability.</blockquote>
 <p>Related reading: the <a href="/best_of/black-friday-2026-developer-deals-hosting-domains-tools-s/" rel="nofollow sponsored">Black Friday developer deals roundup</a> and <a href="/comparison/sentry-vs-datadog-vs-new-relic-best-application-monitoring/" rel="nofollow sponsored">Sentry vs Datadog vs New Relic</a>.</p>
-<p>I've been running NGINX in production since version 1.4 — on everything from $5 VPS boxes running side projects to multi-region Kubernetes clusters serving millions of requests per day. This review breaks down what NGINX does well today, where it falls short, and whether it should still be your default pick.</p>
+<p>4 — on everything from $5 VPS boxes running side projects to multi-region Kubernetes clusters serving millions of requests per day. This review breaks down what NGINX does well today, where it falls short, and whether it should still be your default pick.</p>
 <p>Let's get into it.</p>
 <hr>
 <h2 id="what-is-nginx">What Is NGINX (and Why Does Everyone Use It)?</h2>
@@ -205,7 +205,7 @@
 <p>}</p>
 <p>}</p>
 <p></code></pre></p>
-<p>I used Unit for a microservices project in 2024. It worked well — but the documentation is sparse. The community is tiny. You will be on your own if something breaks.</p>
+<p>It worked well — but the documentation is sparse. The community is tiny. You will be on your own if something breaks.</p>
 <h3 id="caching">Caching</h3>
 <p>NGINX's proxy caching is simple and fast. You set a cache path and zone, define when to cache and for how long, and NGINX handles the rest.</p>
 <pre><code>proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=my_cache:10m max_size=1g;
@@ -221,7 +221,7 @@
 <hr>
 <h2 id="nginx-vs-the-competition">NGINX vs. The Competition (Real Talk)</h2>
 <p>Here's the thing: <strong>NGINX is excellent, but newer tools have simplified things that still suck in NGINX.</strong></p>
-<p>The biggest pain point: <strong>configuration</strong>. NGINX config is a DSL with no validation baked in. You bloat your configs with <code>location</code> blocks and <code>if</code> statements. One wrong semicolon and the syntax check passes but the behavior is wrong. I've been bitten by <code>proxy_set_header</code> not being inherited inside nested <code>location</code> blocks. More than once.</p>
+<p>The biggest pain point: <strong>configuration</strong>. NGINX config is a DSL with no validation baked in. You bloat your configs with <code>location</code> blocks and <code>if</code> statements. One wrong semicolon and the syntax check passes but the behavior is wrong. Nginx's <code>proxy_set_header</code> directive does not inherit from an outer block once a nested <code>location</code> defines its own <code>proxy_set_header</code>; the ngx_http_proxy_module docs state that inheritance applies only when no directive is defined at the current level, and Nginx configuration troubleshooting threads document this as a common gotcha. More than once.</p>
 <p>Caddy uses templating and JSON. Traefik auto-detects Docker containers. NGINX requires you to _write_ everything yourself.</p>
 <h3 id="price-vs-value-comparison">Price vs. Value Comparison</h3>
 <table class="price-table">
