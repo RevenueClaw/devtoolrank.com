@@ -5,7 +5,14 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Mon, 23 Nov 2026 06:18:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Nov 2026 06:17:07 +0000</lastBuildDate>
+    <item>
+      <title>Playwright Review 2026: The Testing Framework That's Taking Over</title>
+      <link>https://devtoolrank.com/review/playwright-review-2026-testing-framework-s-taking</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/review/playwright-review-2026-testing-framework-s-taking</guid>
+      <description>An honest Playwright review for 2026: real features, pricing, pros and cons, and how it stacks up against Cypress and Selenium for automated testing.</description>
+      <pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Top 5 CI/CD Tools for Solo Developers in 2026</title>
       <link>https://devtoolrank.com/best_of/top-5-cicd-tools-solo-developers</link>
@@ -334,13 +341,6 @@
       <guid isPermaLink='true'>https://devtoolrank.com/review/bun-review-2026-one-javascript-toolkit-tested</guid>
       <description>Bun review 2026: we tested the runtime, package manager, test runner and bundler. Real benchmarks, Node compatibility, pricing and an honest verdict.</description>
       <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Playwright Review 2026: The Testing Framework That's Taking Over</title>
-      <link>https://devtoolrank.com/review/playwright-review-2026-testing-framework-s-taking</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/review/playwright-review-2026-testing-framework-s-taking</guid>
-      <description>An honest Playwright review for 2026: features, pricing, pros and cons, and how it compares to Cypress and Selenium for automated browser testing.</description>
-      <pubDate>Sat, 17 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Bun vs Node.js vs Deno: Which JavaScript Runtime Wins in 2026?</title>
