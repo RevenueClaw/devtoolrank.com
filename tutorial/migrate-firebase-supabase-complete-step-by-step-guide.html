@@ -9,8 +9,8 @@
     <script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
 
     <title>How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide | Dev Tool Rank</title>
-    <meta name="description" content="Step-by-step guide to migrating from Firebase to Supabase. Learn how to export Firestore data, set up PostgreSQL, and move authentication, storage, and real-tim">
-    <meta name="keywords" content="migrate firebase to supabase, database migration, supabase guide, firebase to supabase tutorial">
+    <meta name="description" content="Move your app off Firebase without breaking auth or data. A step-by-step Firebase to Supabase migration guide covering schema, users, RLS, and costs.">
+    <meta name="keywords" content="migrate firebase to supabase, database migration, supabase guide, firestore to postgres, firebase alternative">
         <meta name="impact-site-verification" value="72e78125-83d8-4a51-b7db-e3ad7e2be67b">
     <link rel="canonical" href="https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide">
     <link rel="stylesheet" href="/style.css?v=20261122b">
@@ -36,9 +36,9 @@
     {
       "@type": "Article",
       "headline": "How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide",
-      "description": "Step-by-step guide to migrating from Firebase to Supabase. Learn how to export Firestore data, set up PostgreSQL, and move authentication, storage, and real-time features.",
-      "datePublished": "2026-08-14",
-      "dateModified": "2026-08-14",
+      "description": "Move your app off Firebase without breaking auth or data. A step-by-step Firebase to Supabase migration guide covering schema, users, RLS, and costs.",
+      "datePublished": "2026-11-25",
+      "dateModified": "2026-11-25",
       "author": {
         "@type": "Person",
         "name": "Editorial Team"
@@ -111,9 +111,9 @@
             <h1>How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide</h1>
             <div class="meta-row">
                 <span class="badge badge-tutorial">Tutorial</span>
-                <time datetime="2026-08-14">August 14, 2026</time>
+                <time datetime="2026-11-25">November 25, 2026</time>
                 <span>·</span>
-                <span class="reading-time">3 min read</span>
+                <span class="reading-time">7 min read</span>
                 <span class="affiliate-tag">🔄 Affiliate Links</span>
             </div>
         </header>
@@ -124,63 +124,99 @@
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
 </div>
             <p><em>When you buy through links on our site, we may earn a commission.</em></p>
-<p>If you've been working with Firebase for a while, you've probably felt the pain. Bizarre billing surprises, vendor lock-in, and a NoSQL database that becomes a nightmare as your app grows.</p>
-<p><a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> has emerged as the leading open-source alternative, and migrating from Firebase to <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> is easier than most people think. In this guide, I'll walk through the entire process—exporting your data, porting authentication, moving storage, and setting up real-time subscriptions—with production-proven steps.</p>
-<p>Let's get to it.</p>
-<h2 id="why-migrate-from-firebase-to-supabase">Why Migrate from Firebase to <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a>?</h2>
-<p>Firebase isn't bad. It's great for prototypes. But once you hit scale, the problems stack up:</p>
-<ul>
-<li><strong>Billing unpredictability</strong> — Firestore reads/writes cost per operation. One runaway query and your bill jumps $500.</li>
-<li><strong>No SQL</strong> — Complex aggregations, joins, and relational queries require workarounds or separate indexing services.</li>
-<li><strong>Vendor lock-in</strong> — Firebase Authentication, Firestore, and Cloud Functions are deeply tied to Google Cloud. Porting out feels like a hostage negotiation.</li>
-<li><strong>Limited self-hosting</strong> — You cannot run Firebase on your own infrastructure.</li>
-</ul>
-<p>Supabase solves all of that. It wraps PostgreSQL—a battle-tested relational database—with authentication, storage, real-time subscriptions, and auto-generated APIs. It's open-source, has predictable pricing, and you can self-host if needed.</p>
-<h2 id="feature-comparison-firebase-vs-supabase">Feature Comparison: Firebase vs Supabase</h2>
+<h2 id="how-to-migrate-from-firebase-to-supabase-complete-step-by-step-guide">How to Migrate from Firebase to <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a>: Complete Step-by-Step Guide</h2>
+<p>Firebase and <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> look like the same product from a distance. Both give you auth, a database, file storage, and serverless functions behind a client SDK. The resemblance stops the moment you look at what's underneath. Firebase hands you a proprietary document store with its own query language and security rule syntax. <a href="https://supabase.com/?ref=revenueclaw" rel="nofollow sponsored">Supabase</a> hands you Postgres, and everything else is a layer on top of it.</p>
+<p>That difference is why the migration question keeps coming up. Teams hit a Firestore query they can't express, a bill that jumps after a viral week, or a reporting requirement that needs SQL joins. Moving is not a weekend project, but it's also not the rewrite people fear. Most of the work is mechanical once you understand the mapping between the two systems.</p>
+<p>This guide walks through that mapping and the actual migration sequence. Nothing here assumes you're starting from scratch — it assumes you have a live Firebase app with real users and real data, and you'd rather not lose either.</p>
+<h2 id="firebase-vs-supabase-what-each-one-actually-gives-you">Firebase vs Supabase: what each one actually gives you</h2>
+<p>Before touching a single line of code, it helps to see the two platforms side by side. They overlap in roughly 60% of their surface area, and the gaps on either side are where migration pain lives.</p>
 <table class="price-table">
-<thead><tr><th>Feature</th><th>Firebase</th><th>Supabase</th></tr></thead>
+<thead><tr><th>Capability</th><th>Firebase</th><th>Supabase</th></tr></thead>
 <tbody>
-<tr><td><strong>Database</strong></td><td>NoSQL (Firestore/Realtime)</td><td>PostgreSQL (Relational)</td></tr>
-<tr><td><strong>Query capabilities</strong></td><td>Limited, no JOINs</td><td>Full SQL — JOINs, aggregations, window functions</td></tr>
-<tr><td><strong>Auth</strong></td><td>Built-in, proprietary</td><td>Built-in, open-source (GoTrue)</td></tr>
-<tr><td><strong>Storage</strong></td><td>Cloud Storage (GCS)</td><td>S3-compatible (MinIO, Backblaze, or local)</td></tr>
-<tr><td><strong>Real-time</strong></td><td>WebSocket-based (Realtime DB)</td><td>PostgreSQL replication via Realtime</td></tr>
-<tr><td><strong>Self-hostable</strong></td><td>No</td><td>Yes</td></tr>
-<tr><td><strong>Pricing (1GB DB)</strong></td><td>Free tier, then pay-per-operation (~$25+/mo for small apps)</td><td>Free tier, then $25/mo for 8GB DB, 50GB bandwidth</td></tr>
-<tr><td><strong>Export tooling</strong></td><td>Manual JSON/CSV export</td><td>Import scripts, <code>pg_dump</code>, direct migration tools</td></tr>
-<tr><td><strong>Open-source</strong></td><td>No (client SDKs only)</td><td>Yes (MIT license)</td></tr>
-<tr><td><strong>Functions</strong></td><td>Cloud Functions (Node.js, Python)</td><td>Edge Functions (Deno) or custom API routes</td></tr>
+<tr><td>Primary database</td><td>Firestore (document/NoSQL) or Realtime Database</td><td>Postgres 15+ (relational, full SQL)</td></tr>
+<tr><td>Query model</td><td>Limited compound queries, no joins, no aggregates</td><td>Full SQL: joins, CTEs, window functions, views</td></tr>
+<tr><td>Auth</td><td>Email/password, OAuth, phone, anonymous, MFA</td><td>Email/password, OAuth, phone, anonymous, MFA, SAML SSO</td></tr>
+<tr><td>Authorization</td><td>Security Rules (custom DSL)</td><td>Row Level Security policies (SQL)</td></tr>
+<tr><td>File storage</td><td>Cloud Storage buckets</td><td>S3-compatible Storage buckets</td></tr>
+<tr><td>Realtime</td><td>Firestore snapshot listeners</td><td>Realtime channels (Postgres changes, broadcast, presence)</td></tr>
+<tr><td>Serverless functions</td><td>Cloud Functions (Node.js, Python)</td><td>Edge Functions (Deno) + Postgres triggers</td></tr>
+<tr><td>Push notifications</td><td>Firebase Cloud Messaging</td><td>None built in</td></tr>
+<tr><td>Analytics / crash reporting</td><td>Google Analytics, Crashlytics</td><td>None built in</td></tr>
+<tr><td>Remote config</td><td>Firebase Remote Config</td><td>None built in</td></tr>
+<tr><td>Hosting</td><td>Firebase Hosting with CDN</td><td>No first-party CDN hosting</td></tr>
+<tr><td>Local development</td><td>Emulator Suite</td><td><code>supabase start</code> (full local stack in Docker)</td></tr>
+<tr><td>Vendor lock-in</td><td>High — proprietary APIs, no SQL export</td><td>Low — standard Postgres, <code>pg_dump</code> works</td></tr>
 </tbody>
 </table>
-<h2 id="prerequisites">Prerequisites</h2>
-<p>Before you start, <a href="https://www.make.com/en/register?pc=shaynesailab" rel="nofollow sponsored">Make</a> sure you have:</p>
+<p>Two rows matter more than the rest. The first is the query model. Firestore forces you to denormalize aggressively and duplicate data because you can't join. Postgres lets you normalize and let the database do the work. That's a design shift, not a syntax swap, and it's where most of your thinking time goes.</p>
+<p>The second is lock-in. Supabase runs on vanilla Postgres, so if you leave Supabase later you take a <code>pg_dump</code> with you and point it at RDS, Neon, or a box in a closet. Leaving Firebase means exporting JSON and rebuilding your data model from scratch. If portability is part of why you're migrating, Supabase is the more honest choice.</p>
+<h2 id="concept-mapping-firebase-to-supabase">Concept mapping: Firebase to Supabase</h2>
+<p>Keep this table open while you work. Nearly every Firestore concept has a Postgres counterpart, though a few are one-to-many.</p>
+<table class="price-table">
+<thead><tr><th>Firebase</th><th>Supabase equivalent</th></tr></thead>
+<tbody>
+<tr><td>Collection</td><td>Table</td></tr>
+<tr><td>Document</td><td>Row</td></tr>
+<tr><td>Document ID</td><td>Primary key (often <code>uuid</code> or <code>text</code>)</td></tr>
+<tr><td>Subcollection</td><td>Separate table with a foreign key</td></tr>
+<tr><td>Field</td><td>Column</td></tr>
+<tr><td><code>onSnapshot()</code> listener</td><td><code>supabase.channel().on('postgres_changes', ...)</code></td></tr>
+<tr><td>Security Rules</td><td>RLS policies</td></tr>
+<tr><td>Cloud Function (HTTPS)</td><td>Edge Function</td></tr>
+<tr><td>Cloud Function (Firestore trigger)</td><td>Postgres trigger + <code>pg_net</code> or Database Webhooks</td></tr>
+<tr><td>Firebase Storage path</td><td>Storage object key inside a bucket</td></tr>
+<tr><td>Custom Claims</td><td><code>app_metadata</code> in the JWT, or a <code>profiles</code> table</td></tr>
+<tr><td>Firebase UID</td><td><code>auth.users.id</code> (UUID)</td></tr>
+<tr><td>Cloud Scheduler</td><td><code>pg_cron</code></td></tr>
+</tbody>
+</table>
+<p>The subcollection row is the one that trips people up. A Firestore subcollection under <code>/users/{uid}/orders/{orderId}</code> becomes an <code>orders</code> table with a <code>user_id</code> column and a foreign key. It sounds trivial. When you have nested subcollections three levels deep, it stops being trivial, and you should plan the schema on paper before you write any migration code.</p>
+<h2 id="step-1-audit-what-you-re-actually-running">Step 1: Audit what you're actually running</h2>
+<p>You can't migrate what you haven't counted. Open the Firebase console and pull numbers for:</p>
 <ul>
-<li>A Supabase project (create one free at <a href="https://supabase.com" rel="nofollow sponsored">supabase.com</a>)</li>
-<li>A Firebase project with data you want to move</li>
-<li>Node.js installed (v18+)</li>
-<li>The Firebase Admin SDK credentials (a service account JSON file)</li>
-<li>Your Supabase project URL and <code>service_role</code> key</li>
+<li><strong>Auth users</strong> — total count, and which sign-in providers are active. Phone auth and SAML are the two that need extra attention.</li>
+<li><strong>Firestore collections</strong> — list every top-level and subcollection, plus approximate document counts.</li>
+<li><strong>Storage buckets</strong> — total size in GB and object count.</li>
+<li><strong>Cloud Functions</strong> — each function's trigger type (HTTPS, Firestore, Auth, Scheduled, Pub/Sub).</li>
+<li><strong>Integrations you depend on</strong> — FCM, Remote Config, Crashlytics, A/B Testing, App Check.</li>
 </ul>
-<blockquote><strong>Pro tip:</strong> Create a dedicated migration branch in your Supabase project. This isolates your work and lets you roll back if something breaks.</blockquote>
-<h2 id="step-1-export-firestore-data">Step 1: Export Firestore Data</h2>
-<p>Firestore stores data as collections of documents. We'll export everything as JSON files.</p>
-<pre><code># Install firebase-tools if you haven't already
-<p>npm install -g firebase-tools</p>
-<h2 id="export-all-firestore-data">Export all Firestore data</h2>
-<p>firebase firestore:export ./firestore-export --project YOUR_FIREBASE_PROJECT_ID</p>
+<p>That last bullet is the reality check. Supabase has no FCM, no Remote Config, no Crashlytics, and no A/B testing. If your app leans on push notifications, you're keeping Firebase for that piece or moving to OneSignal. If you rely on Remote Config for feature flags, you're replacing it with something like PostHog, LaunchDarkly, or a <code>feature_flags</code> table you write yourself.</p>
+<p>Be honest here. A partial migration that keeps Firebase for messaging and Supabase for data is a completely reasonable end state, and it's better than a full migration that ships a broken notification system.</p>
+<h2 id="step-2-create-the-supabase-project-and-design-the-schema">Step 2: Create the Supabase project and design the schema</h2>
+<p>Sign up and create a project at <a class="cta-btn cta-inline" href="https://supabase.com/?ref=devtoolrank" rel="nofollow sponsored">Check Supabase Current Deal →</a>. Pick a region close to your users — this is the one decision that's genuinely hard to reverse later, since moving a live Postgres database across regions means downtime.</p>
+<p>On the free tier you get 500 MB of database space, 1 GB of file storage, 5 GB of egress, and 50,000 monthly active users. That's fine for staging. Before you cut production over, you'll want Pro at $25/month per project, which raises those to 8 GB, 100 GB, and 250,000 MAU respectively.</p>
+<p>Now design the schema. Don't try to mirror Firestore's document shapes. Firestore users typically end up with <code>users</code>, <code>profiles</code>, <code>orders</code>, <code>order_items</code>, and a handful of join tables. Write it as SQL migrations using the Supabase CLI:</p>
+<pre><code>supabase init
+<p>supabase migration new initial_schema</p>
 <p></code></pre></p>
-<p>This creates a folder structure like:</p>
-<pre><code>firestore-export/
-<p>users/</p>
-<p>all_namespaces/</p>
-<p>kind_users/</p>
-<p>output-0</p>
-<p>posts/</p>
-<p>all_namespaces/</p>
-<p>kind_posts/</p>
-<p>output-0</p>
+<p>Put your <code>CREATE TABLE</code> statements in the generated file, then run <code>supabase db push</code>. Keeping migrations in version control from day one saves you a lot of grief when the schema inevitably changes.</p>
+<p>Two conventions worth adopting immediately: use <code>uuid</code> primary keys so you can reuse Firebase UIDs during migration, and add <code>created_at timestamptz default now()</code> to every table. You will want it later.</p>
+<h2 id="step-3-migrate-auth-users">Step 3: Migrate auth users (including password hashes)</h2>
+<p>This is the step people assume is impossible. It isn't — Firebase exports password hashes in a format Supabase can import, and users keep their existing passwords without a reset email.</p>
+<p>Export from Firebase:</p>
+<pre><code>firebase auth:export users.json --format=json --project your-project-id
 <p></code></pre></p>
-<p>Each <code>output-0</code> file contains JSON lines with document IDs and data. For smaller exports (under 500MB total), you can also use the Firebase Console to export manually</p>
+<p>Then use the community migration scripts from the <code>supabase-community/firebase-to-supabase</code> repository. The <code>auth</code> subdirectory contains a script that reads the exported JSON and inserts users through the Supabase Admin API, preserving the Firebase UID as the Supabase user ID.</p>
+<p>You'll need these environment variables:</p>
+<pre><code>FIREBASE_PROJECT_ID=
+<p>FIREBASE_CLIENT_EMAIL=</p>
+<p>FIREBASE_PRIVATE_KEY=</p>
+<p>SUPABASE_URL=</p>
+<p>SUPABASE_SERVICE_ROLE_KEY=</p>
+<p></code></pre></p>
+<p>Firebase stores passwords using scrypt with parameters that Supabase Auth understands. When a migrated user logs in for the first time, Supabase verifies the scrypt hash and silently re-hashes the password to bcrypt. From the user's perspective, nothing happened.</p>
+<p>Caveats worth knowing before you run this:</p>
+<ul>
+<li><strong>Phone-only users</strong> have no password hash. They'll need to re-verify via OTP on first login to Supabase.</li>
+<li><strong>Custom claims</strong> don't transfer automatically. Read them from the export and write them into a <code>profiles</code> table or into Supabase's <code>app_metadata</code>.</li>
+<li><strong>Run it against staging first.</strong> The script is idempotent-ish but not bulletproof, and a botched import against production auth is a bad afternoon.</li>
+</ul>
+<h2 id="step-4-export-firestore-and-load-it-into-postgres">Step 4: Export Firestore and load it into Postgres</h2>
+<p>There's no automated Firestore-to-Postgres converter, and you should distrust anyone selling one. Document stores and relational schemas don't map cleanly, and the transformation is where your domain knowledge matters.</p>
+<p>Start with a managed export:</p>
+<pre><code>gcloud firestore export gs://your-bucket/firestore-export
+<p></code></pre></p>
+<p>That gives you a set of LevelDB-format files. To work with them, load them</p>
             <div class="affiliate-cta">
     <p>🔍 Want the best deal? Check current prices and availability.</p>
     <a href="https://devtoolrank.com/#deals" class="cta-btn">Compare Prices →</a>
@@ -232,11 +268,13 @@
     <aside class="article-sidebar">
     <div class="toc">
         <h4>On This Page</h4>
-        <a href="#why-migrate-from-firebase-to-supabase" class="toc-h2" style="padding-left:0px">Why Migrate from Firebase to Supabase?</a>
-<a href="#feature-comparison-firebase-vs-supabase" class="toc-h2" style="padding-left:0px">Feature Comparison: Firebase vs Supabase</a>
-<a href="#prerequisites" class="toc-h2" style="padding-left:0px">Prerequisites</a>
-<a href="#step-1-export-firestore-data" class="toc-h2" style="padding-left:0px">Step 1: Export Firestore Data</a>
-<a href="#export-all-firestore-data" class="toc-h2" style="padding-left:0px">Export all Firestore data</a>
+        <a href="#how-to-migrate-from-firebase-to-supabase-complete-step-by-step-guide" class="toc-h2" style="padding-left:0px">How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide</a>
+<a href="#firebase-vs-supabase-what-each-one-actually-gives-you" class="toc-h2" style="padding-left:0px">Firebase vs Supabase: what each one actually gives you</a>
+<a href="#concept-mapping-firebase-to-supabase" class="toc-h2" style="padding-left:0px">Concept mapping: Firebase to Supabase</a>
+<a href="#step-1-audit-what-you-re-actually-running" class="toc-h2" style="padding-left:0px">Step 1: Audit what you're actually running</a>
+<a href="#step-2-create-the-supabase-project-and-design-the-schema" class="toc-h2" style="padding-left:0px">Step 2: Create the Supabase project and design the schema</a>
+<a href="#step-3-migrate-auth-users" class="toc-h2" style="padding-left:0px">Step 3: Migrate auth users</a>
+<a href="#step-4-export-firestore-and-load-it-into-postgres" class="toc-h2" style="padding-left:0px">Step 4: Export Firestore and load it into Postgres</a>
     </div>
 </aside>
 </article>

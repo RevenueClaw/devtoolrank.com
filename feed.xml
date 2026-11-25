@@ -5,7 +5,14 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Tue, 24 Nov 2026 19:07:45 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2026 06:21:01 +0000</lastBuildDate>
+    <item>
+      <title>How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide</title>
+      <link>https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide</guid>
+      <description>Move your app off Firebase without breaking auth or data. A step-by-step Firebase to Supabase migration guide covering schema, users, RLS, and costs.</description>
+      <pubDate>Wed, 25 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Bluehost vs InMotion Hosting: Which Hosting or Domain Deal Wins in 2026?</title>
       <link>https://devtoolrank.com/comparison/bluehost-vs-inmotion-hosting-hosting-domain-deal-wins</link>
@@ -217,13 +224,6 @@
       <pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>6 Best Headless CMS Platforms for 2026: Ranked for Developers</title>
-      <link>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/best_of/6-best-headless-cms-platforms-2026-ranked-developers</guid>
-      <description>We tested six headless CMS platforms on content modeling, APIs, pricing, and editor experience. Here's which one fits your stack in 2026.</description>
-      <pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
       <title>How to Deploy a Full-Stack App in 10 Minutes with Vercel and Supabase</title>
       <link>https://devtoolrank.com/tutorial/deploy-full-stack-app-10-minutes-vercel-supabase</link>
       <guid isPermaLink='true'>https://devtoolrank.com/tutorial/deploy-full-stack-app-10-minutes-vercel-supabase</guid>
@@ -287,13 +287,6 @@
       <pubDate>Tue, 10 Nov 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>10 Best GitHub Actions and CI/CD Alternatives in 2026</title>
-      <link>https://devtoolrank.com/best_of/10-best-github-actions-cicd-alternatives</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/best_of/10-best-github-actions-cicd-alternatives</guid>
-      <description>We tested 10 CI/CD tools that compete with GitHub Actions — pricing, runner speed, self-hosting, and which pipeline automation platform fits your team.</description>
-      <pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
       <title>How to Choose the Right Database for Your SaaS Application</title>
       <link>https://devtoolrank.com/tutorial/choose-right-database-saas-application</link>
       <guid isPermaLink='true'>https://devtoolrank.com/tutorial/choose-right-database-saas-application</guid>
@@ -304,7 +297,7 @@
       <title>8 Best SQLite Tools and GUIs for Developers in 2026</title>
       <link>https://devtoolrank.com/best_of/8-best-sqlite-tools-guis-developers</link>
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/8-best-sqlite-tools-guis-developers</guid>
-      <description>We tested 8 of the best SQLite tools and GUIs — DB Browser, DBeaver, TablePlus, DataGrip and more — with real pricing and honest pros and cons.</description>
+      <description></description>
       <pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -339,7 +332,7 @@
       <title>8 Best Database Tools for SaaS Developers in 2026</title>
       <link>https://devtoolrank.com/best_of/8-best-database-tools-saas-developers</link>
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/8-best-database-tools-saas-developers</guid>
-      <description>We tested 8 database tools for SaaS builders — Neon, Supabase, PlanetScale, Turso, MongoDB Atlas, CockroachDB, ClickHouse and Prisma. Real pricing, honest pros and cons, and one clear winner.</description>
+      <description></description>
       <pubDate>Wed, 28 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -367,7 +360,7 @@
       <title>Bun Review 2026: The All-in-One JavaScript Toolkit Tested</title>
       <link>https://devtoolrank.com/review/bun-review-2026-one-javascript-toolkit-tested</link>
       <guid isPermaLink='true'>https://devtoolrank.com/review/bun-review-2026-one-javascript-toolkit-tested</guid>
-      <description>Bun review 2026: we tested the runtime, package manager, test runner and bundler. Real benchmarks, Node compatibility, pricing and an honest verdict.</description>
+      <description></description>
       <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -402,7 +395,7 @@
       <title>Top 9 AI Coding Assistants and Copilot Alternatives in 2026</title>
       <link>https://devtoolrank.com/best_of/top-9-ai-coding-assistants-copilot-alternatives</link>
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/top-9-ai-coding-assistants-copilot-alternatives</guid>
-      <description>We tested the top AI coding assistants of 2026. Honest comparison of Copilot, Cursor, Windsurf, Tabnine, and more. Real pricing, real pros and cons.</description>
+      <description></description>
       <pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -430,7 +423,7 @@
       <title>7 Best React State Management Libraries in 2026 (Honest Review)</title>
       <link>https://devtoolrank.com/best_of/7-best-state-management-libraries-react</link>
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/7-best-state-management-libraries-react</guid>
-      <description>We tested the top React state libraries for 2026. Compare Zustand, Jotai, Redux Toolkit, and more with real pros, cons, and pricing.</description>
+      <description></description>
       <pubDate>Thu, 17 Sep 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -539,17 +532,10 @@
       <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>How to Migrate from Firebase to Supabase: Complete Step-by-Step Guide</title>
-      <link>https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/tutorial/migrate-firebase-supabase-complete-step-by-step-guide</guid>
-      <description>Step-by-step guide to migrating from Firebase to Supabase. Learn how to export Firestore data, set up PostgreSQL, and move authentication, storage, and real-time features.</description>
-      <pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
       <title>10 Best Web Hosting Services for Developers in 2026 (Ranked)</title>
       <link>https://devtoolrank.com/best_of/10-best-web-hosting-services-developers</link>
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/10-best-web-hosting-services-developers</guid>
-      <description>We tested 20+ hosting providers for developer needs in 2026. Here are the top 10 ranked by performance, flexibility, and value.</description>
+      <description></description>
       <pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
