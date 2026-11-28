@@ -5,7 +5,14 @@
     <link>https://devtoolrank.com/</link>
     <atom:link href='https://devtoolrank.com/feed.xml' rel='self' type='application/rss+xml' xmlns:atom='http://www.w3.org/2005/Atom'/>
     <description>Ranked and reviewed tools for developers who ship</description>
-    <lastBuildDate>Fri, 27 Nov 2026 06:17:46 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Nov 2026 06:20:38 +0000</lastBuildDate>
+    <item>
+      <title>Sentry Review 2026: Complete Guide to Error Tracking for Your Apps</title>
+      <link>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</link>
+      <guid isPermaLink='true'>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</guid>
+      <description>An honest Sentry review for 2026: error tracking, performance monitoring, pricing, pros and cons, and how it stacks up against Datadog, Rollbar, and New Relic.</description>
+      <pubDate>Sat, 28 Nov 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>NGINX Review 2026: Is It Still the King of Web Servers?</title>
       <link>https://devtoolrank.com/review/nginx-review-2026-still-king-web-servers</link>
@@ -313,13 +320,6 @@
       <guid isPermaLink='true'>https://devtoolrank.com/best_of/8-best-sqlite-tools-guis-developers</guid>
       <description></description>
       <pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Sentry Review 2026: Complete Guide to Error Tracking for Your Apps</title>
-      <link>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</link>
-      <guid isPermaLink='true'>https://devtoolrank.com/review/sentry-review-2026-complete-guide-error-tracking-apps</guid>
-      <description>An honest, hands-on Sentry review for 2026 covering error tracking, performance monitoring, session replay, real pricing, and where it falls short.</description>
-      <pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>How to Set Up Application Monitoring with Sentry: Complete Guide</title>
